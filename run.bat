@@ -1,0 +1,1 @@
+ node .\scripts\generate-sitemaps.js --baseUrl=https://seo.powermyseo.com --locations=masters/allCities.json --services=masters/services.json --industries=masters/industries.json --per=40000

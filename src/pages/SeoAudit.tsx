@@ -501,7 +501,7 @@ const SeoAudit = () => {
                               <FormControl>
                                 <div className="flex">
                                   <Input 
-                                    placeholder="https://example.com" 
+                                    placeholder="https://seo.powermyseo.com" 
                                     className="rounded-r-none focus-visible:ring-1 focus-visible:ring-offset-1 text-base" 
                                     {...field} 
                                   />
