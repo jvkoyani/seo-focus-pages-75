@@ -1,69 +1,55 @@
-# Welcome to your Lovable project
+# Cambay Industries Website Revamp
 
-## Project info
+This project is a Next.js migration of the Cambay Industries website, featuring a modern design, improved performance, and SEO optimization.
 
-**URL**: https://lovable.dev/projects/b95d84c9-1545-42ed-89e9-81f256585cf4
+## Features
 
-## How can I edit this code?
+- **Next.js 14 App Router**: Utilizing the latest Next.js features for optimal performance and developer experience.
+- **Tailwind CSS**: Utility-first CSS framework for rapid and responsive UI development.
+- **Shadcn UI**: Reusable components built with Radix UI and Tailwind CSS.
+- **TypeScript**: Static type checking for robust and maintainable code.
+- **SEO Optimized**: Built-in metadata, sitemaps, and semantic HTML structure.
+- **Responsive Design**: Fully responsive layout for all devices.
+- **Interactive Forms**: Contact, consultation, and lead capture forms integrated with API routes.
+- **Analytics**: Google Analytics integration ready.
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd <project-directory>
+    ```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b95d84c9-1545-42ed-89e9-81f256585cf4) and start prompting.
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-Changes made via Lovable will be committed automatically to this repo.
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-**Use your preferred IDE**
+4.  **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Build for Production
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+To create an optimized production build:
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `src/app`: App Router pages and API routes.
+- `src/components`: Reusable UI components.
+- `src/lib`: Utility functions and data files.
+- `src/hooks`: Custom React hooks.
+- `public`: Static assets (images, fonts).
 
-**Use GitHub Codespaces**
+## Configuration
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/b95d84c9-1545-42ed-89e9-81f256585cf4) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- **Google Analytics**: Update the GA ID in `src/app/layout.tsx`.
+- **Sitemap**: The sitemap is automatically generated at `/sitemap.xml`.

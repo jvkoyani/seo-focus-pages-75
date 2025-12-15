@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, Calendar, User, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from './AnimatedSection';
@@ -101,13 +101,13 @@ const ServiceBlogTemplate = ({
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Button className="bg-seo-blue hover:bg-seo-blue-light text-white">
-            <Link to="/free-consultation" className="flex items-center">
+            <Link href="/free-consultation" className="flex items-center">
               Get a Free Consultation
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button variant="outline" className="border-seo-blue text-seo-blue hover:bg-seo-blue/5">
-            <Link to={pageUrl} className="flex items-center">
+            <Link href={pageUrl} className="flex items-center">
               {locationName 
                 ? `View ${locationName} SEO Services`
                 : 'View SEO Services'
@@ -121,3 +121,4 @@ const ServiceBlogTemplate = ({
 };
 
 export default ServiceBlogTemplate;
+

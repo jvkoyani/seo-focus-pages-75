@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, Building, TrendingUp } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { CaseStudyData } from '@/lib/data';
@@ -49,7 +49,7 @@ const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
           </div>
         </div>
         <Link 
-          to={`/case-study/${caseStudy.slug}`} 
+          href={`/case-study/${caseStudy.slug}`} 
           className="inline-flex items-center text-seo-blue font-medium group"
         >
           <span className="border-b border-seo-blue/30 group-hover:border-seo-blue transition-colors">
@@ -63,3 +63,4 @@ const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
 };
 
 export default CaseStudyPreview;
+

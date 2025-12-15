@@ -1,5 +1,7 @@
+"use client";
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import AnimatedSection from './AnimatedSection';
 import { allAustralianCities } from '@/lib/locationData';
 import { ArrowRight, MapPin, TrendingUp, Award, Users, Activity, Star, Clock, Building } from 'lucide-react';
@@ -16,10 +18,10 @@ interface LocationLinksProps {
 
 const LocationLinks = ({ service, limit = 9, excludeLocation }: LocationLinksProps) => {
   // Filter out the excluded location if provided
-  const filteredLocations = excludeLocation 
+  const filteredLocations = excludeLocation
     ? allAustralianCities.filter(loc => loc.slug !== excludeLocation)
     : allAustralianCities;
-    
+
   // Only display the specified number of locations (defaults to 9)
   const displayedLocations = filteredLocations.slice(0, limit);
 
@@ -29,7 +31,7 @@ const LocationLinks = ({ service, limit = 9, excludeLocation }: LocationLinksPro
     if (location.image) {
       return location.image;
     }
-    
+
     // Otherwise generate a placeholder image with the location name
     return `/service-images/${service.slug}.jpg`;
   };
@@ -49,12 +51,12 @@ const LocationLinks = ({ service, limit = 9, excludeLocation }: LocationLinksPro
               {getRandomBadge()}
             </span>
           </div>
-          
+
           <div className="relative h-52 overflow-hidden">
-            <img 
-              src={getLocationImage(location)} 
+            <img
+              src={getLocationImage(location)}
               alt={location.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent"></div>
             <div className="absolute bottom-0 left-0 w-full p-4">
@@ -67,18 +69,18 @@ const LocationLinks = ({ service, limit = 9, excludeLocation }: LocationLinksPro
               </h3>
             </div>
           </div>
-          
+
           <div className="p-6">
             <div className="mb-4 bg-gradient-to-r from-seo-blue/5 to-seo-blue/0 p-3 rounded-lg border-l-2 border-seo-blue">
               <p className="text-seo-gray-dark">
                 Customized {service.title.toLowerCase()} solutions for {location.name} businesses to boost rankings and drive targeted traffic.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-3 gap-2 mb-6">
               {getLocationAttributes(index).map((attr, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={cn(
                     "flex flex-col items-center justify-center p-2 rounded-lg group",
                     attr.bgColor,
@@ -94,12 +96,12 @@ const LocationLinks = ({ service, limit = 9, excludeLocation }: LocationLinksPro
                 </div>
               ))}
             </div>
-            
+
             <div className="flex items-center justify-between mb-4 border-t border-b border-gray-100 py-2">
               <span className="text-xs text-seo-gray-dark">Success rate</span>
               <div className="flex items-center">
                 <div className="w-20 h-2 bg-gray-100 rounded-full overflow-hidden mr-2">
-                  <div 
+                  <div
                     className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"
                     style={{ width: `${85 + (index * 5) % 15}%` }}
                   ></div>
@@ -107,9 +109,9 @@ const LocationLinks = ({ service, limit = 9, excludeLocation }: LocationLinksPro
                 <span className="text-xs font-medium text-green-600">{85 + (index * 5) % 15}%</span>
               </div>
             </div>
-            
+
             <Link
-              to={`/location/${location.slug}/${service.slug}`}
+              href={`/${service.slug}-${location.slug}`}
               className="inline-flex items-center justify-center bg-seo-blue text-white px-5 py-3 rounded-md hover:bg-seo-blue-light transition-colors w-full group"
             >
               <span>Explore {location.name} strategies</span>
@@ -146,7 +148,7 @@ const getLocationAttributes = (index: number) => {
       { icon: <Activity className="h-4 w-4 text-orange-600" />, label: "Dynamic", bgColor: "bg-orange-50", textColor: "text-orange-600" }
     ]
   ];
-  
+
   return attributes[index % 3];
 };
 

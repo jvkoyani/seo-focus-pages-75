@@ -1,3 +1,4 @@
+"use client";
 
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -55,7 +56,7 @@ const AnimatedSection = ({
 
   const getAnimationClass = () => {
     if (!isVisible) return '';
-    
+
     switch (animation) {
       case 'fade-in':
         return 'animate-fade-in';
@@ -82,7 +83,7 @@ const AnimatedSection = ({
         getAnimationClass(),
         className
       )}
-      style={{ 
+      style={{
         willChange: 'opacity, transform',
         animationDelay: `${delay}ms`,
         animationFillMode: 'forwards',

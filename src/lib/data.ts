@@ -1,9 +1,9 @@
-import { 
-  MapPin, 
-  Settings, 
-  FileText, 
-  Link as LinkIcon, 
-  ShoppingCart, 
+import {
+  MapPin,
+  Settings,
+  FileText,
+  Link as LinkIcon,
+  ShoppingCart,
   BarChart,
   Briefcase,
   Building,
@@ -11,7 +11,9 @@ import {
   Scale,
   Activity,
   Home,
-  Calculator
+  Calculator,
+  Search,
+  Star
 } from 'lucide-react';
 
 export interface LocationData {
@@ -28,6 +30,32 @@ export interface LocationData {
   relatedLocations?: string[];
 }
 
+export interface ProcessStep {
+  title: string;
+  description: string;
+  icon: React.ElementType;
+}
+
+export interface PricingTier {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  recommended?: boolean;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface ComparisonPoint {
+  feature: string;
+  us: string;
+  others: string;
+  diy: string;
+}
+
 export interface ServiceData {
   id: string;
   title: string;
@@ -36,6 +64,14 @@ export interface ServiceData {
   icon: string;
   features: string[];
   content?: string;
+  longFormContent?: {
+    title: string;
+    sections: { title: string; content: string }[];
+  };
+  process?: ProcessStep[];
+  pricing?: PricingTier[];
+  faqs?: FAQItem[];
+  comparison?: ComparisonPoint[];
 }
 
 export interface TestimonialData {
@@ -85,126 +121,6 @@ export interface CaseStudyData {
   location?: string;
 }
 
-export const locations: LocationData[] = [
-  {
-    id: '1',
-    name: 'Sydney',
-    slug: 'sydney',
-    description: 'Boost your Sydney business with our local SEO expertise tailored to the competitive Sydney market.',
-    image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Sydney SEO Services | Rank Higher in Local Searches',
-    metaDescription: 'Our Sydney SEO services help local businesses rank higher in search results. Get more traffic, leads and sales with our proven SEO strategies.',
-    state: 'New South Wales',
-    county: 'Cumberland',
-    country: 'Australia',
-    relatedLocations: ['parramatta', 'bondi', 'chatswood']
-  },
-  {
-    id: '2',
-    name: 'Melbourne',
-    slug: 'melbourne',
-    description: 'Dominate Melbourne search results with customized SEO strategies designed for the Melbourne market.',
-    image: 'https://images.unsplash.com/photo-1545044846-351ba102b6d5?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Melbourne SEO Services | Boost Your Local Rankings',
-    metaDescription: 'Melbourne SEO experts delivering results-driven strategies for local businesses. Improve visibility, traffic and conversions.',
-    state: 'Victoria',
-    county: 'Melbourne',
-    country: 'Australia',
-    relatedLocations: ['st-kilda', 'brighton', 'dandenong']
-  },
-  {
-    id: '3',
-    name: 'Brisbane',
-    slug: 'brisbane',
-    description: 'Targeted SEO solutions for Brisbane businesses looking to grow their online presence and attract more customers.',
-    image: 'https://images.unsplash.com/photo-1566734904496-9309bb1798b3?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Brisbane SEO Services | Local Search Optimization',
-    metaDescription: 'Brisbane SEO specialists helping businesses rank higher in local search results. Get more visibility and customers with our proven approach.',
-    state: 'Queensland',
-    county: 'Brisbane',
-    country: 'Australia',
-    relatedLocations: ['gold-coast', 'ipswich', 'logan']
-  },
-  {
-    id: '4',
-    name: 'Perth',
-    slug: 'perth',
-    description: 'Specialized SEO services for Perth businesses, focused on increasing local visibility and driving qualified traffic.',
-    image: 'https://images.unsplash.com/photo-1573935448851-4b07c29ee181?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Perth SEO Services | Increase Your Local Visibility',
-    metaDescription: 'Perth SEO services customized to help local businesses attract more customers. Improve rankings, traffic and conversions.',
-    state: 'Western Australia',
-    county: 'Perth',
-    country: 'Australia',
-    relatedLocations: ['fremantle', 'joondalup', 'rockingham']
-  },
-  {
-    id: '5',
-    name: 'Adelaide',
-    slug: 'adelaide',
-    description: 'Results-driven SEO strategies designed specifically for Adelaide businesses and the local market dynamics.',
-    image: 'https://images.unsplash.com/photo-1566208541068-ffdb5471e9bf?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Adelaide SEO Services | Expert Local Optimization',
-    metaDescription: 'Adelaide SEO experts helping local businesses increase online visibility. Get higher rankings and more qualified website traffic.',
-    state: 'South Australia',
-    county: 'Adelaide',
-    country: 'Australia',
-    relatedLocations: ['glenelg', 'norwood', 'prospect']
-  },
-  {
-    id: '6',
-    name: 'Gold Coast',
-    slug: 'gold-coast',
-    description: 'Tailored SEO solutions for Gold Coast businesses looking to stand out in local search results.',
-    image: 'https://images.unsplash.com/photo-1572375992501-4b0892d50c69?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Gold Coast SEO Services | Dominate Local Searches',
-    metaDescription: 'Gold Coast SEO specialists delivering custom strategies to help businesses improve rankings and attract more customers.',
-    state: 'Queensland',
-    county: 'Gold Coast',
-    country: 'Australia',
-    relatedLocations: ['brisbane', 'surfers-paradise', 'broadbeach']
-  },
-  {
-    id: '7',
-    name: 'Parramatta',
-    slug: 'parramatta',
-    description: 'Specialized SEO services for Parramatta businesses to increase visibility in this competitive Western Sydney market.',
-    image: 'https://images.unsplash.com/photo-1598542717377-fbc91674ef3f?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Parramatta SEO Services | Local Digital Marketing',
-    metaDescription: 'Parramatta SEO experts helping local businesses improve rankings and attract more customers with tailored digital strategies.',
-    state: 'New South Wales',
-    county: 'Cumberland',
-    country: 'Australia',
-    relatedLocations: ['sydney', 'blacktown', 'liverpool']
-  },
-  {
-    id: '8',
-    name: 'St Kilda',
-    slug: 'st-kilda',
-    description: 'Customized SEO strategies for St Kilda businesses to stand out in Melbourne\'s vibrant coastal suburb.',
-    image: 'https://images.unsplash.com/photo-1523428461295-92770e70d7ae?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'St Kilda SEO Services | Local Digital Marketing',
-    metaDescription: 'St Kilda SEO specialists helping local businesses boost online visibility and attract more local and tourist customers.',
-    state: 'Victoria',
-    county: 'Melbourne',
-    country: 'Australia',
-    relatedLocations: ['melbourne', 'brighton', 'elwood']
-  },
-  {
-    id: '9',
-    name: 'Fremantle',
-    slug: 'fremantle',
-    description: 'Tailored SEO solutions for Fremantle businesses to thrive in this historic port city marketplace.',
-    image: 'https://images.unsplash.com/photo-1571733847329-3aaa4b5ca970?q=80&w=1000&auto=format&fit=crop',
-    metaTitle: 'Fremantle SEO Services | Local Digital Marketing',
-    metaDescription: 'Fremantle SEO experts delivering customized strategies to help local businesses attract more visitors and customers.',
-    state: 'Western Australia',
-    county: 'Perth',
-    country: 'Australia',
-    relatedLocations: ['perth', 'cottesloe', 'cockburn']
-  }
-];
-
 export const services: ServiceData[] = [
   {
     id: '1',
@@ -219,7 +135,133 @@ export const services: ServiceData[] = [
       'Local link building strategies',
       'Review management system'
     ],
-    content: `<p>Your Google Business Profile is one of the most powerful tools for local SEO. It helps you establish your brand, drive traffic, and improve your search engine rankings.</p>`
+    content: `<p>Your Google Business Profile is one of the most powerful tools for local SEO. It helps you establish your brand, drive traffic, and improve your search engine rankings.</p>`,
+    longFormContent: {
+      title: "The Ultimate Guide to Local SEO Dominance",
+      sections: [
+        {
+          title: "What is Local SEO?",
+          content: "Local SEO is a search engine optimization (SEO) strategy that helps your business be more visible in local search results on Google. Any business that has a physical location or serves a geographic area can benefit from local SEO. If you search Google for any important keywords related to your business and a map with 3 listings appears underneath it (known as a Map Pack), then local SEO can help you grow your business."
+        },
+        {
+          title: "Why Local SEO is Critical for Your Business",
+          content: "46% of all Google searches are looking for local information. If your business isn't optimized for local search, you could be missing out on potential customers who are ready to shop in your area. In short, local SEO is critical if you want your business to stay relevant."
+        },
+        {
+          title: "Our Proven Ranking Factors",
+          content: "We focus on the three core pillars of local ranking: Proximity (how close is the business to the searcher?), Relevance (how relevant to the search query are the products and services?), and Prominence (what do other consumers say about your products and services?)."
+        }
+      ]
+    },
+    process: [
+      {
+        title: "Audit & Strategy",
+        description: "We perform a deep-dive audit of your current local presence, identifying NAP inconsistencies, GMB errors, and competitor gaps.",
+        icon: Search
+      },
+      {
+        title: "Foundation & Optimization",
+        description: "We optimize your Google Business Profile, fix citations, and implement local schema markup on your website.",
+        icon: Settings
+      },
+      {
+        title: "Authority Building",
+        description: "We build high-quality local citations and earn backlinks from reputable local directories and niche-relevant sites.",
+        icon: LinkIcon
+      },
+      {
+        title: "Review & Reputation",
+        description: "We implement a system to generate consistent 5-star reviews and manage your online reputation to build trust.",
+        icon: Star
+      }
+    ],
+    pricing: [
+      {
+        name: "Local Starter",
+        price: "$997/mo",
+        description: "Perfect for small businesses targeting a single location.",
+        features: [
+          "Google Business Profile Optimization",
+          "Local Citation Building (50+)",
+          "Review Management System",
+          "Monthly Performance Report",
+          "1 Location"
+        ]
+      },
+      {
+        name: "Local Growth",
+        price: "$1,997/mo",
+        description: "Ideal for growing businesses in competitive markets.",
+        features: [
+          "Everything in Starter",
+          "Advanced On-Page Local SEO",
+          "Content Creation (2 Blogs/mo)",
+          "Local Link Building",
+          "Competitor Analysis",
+          "Up to 3 Locations",
+          "Priority Support"
+        ],
+        recommended: true
+      },
+      {
+        name: "Market Dominance",
+        price: "$3,497/mo",
+        description: "For businesses that want to own their local market.",
+        features: [
+          "Everything in Growth",
+          "Aggressive Link Building",
+          "Digital PR Campaigns",
+          "Weekly Strategy Calls",
+          "Unlimited Locations",
+          "Dedicated Account Manager",
+          "24/7 Support"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "How long does it take to see results from Local SEO?",
+        answer: "Typically, you can expect to see initial movements within 30-60 days. However, significant results and top 3 rankings usually take 3-6 months depending on the competitiveness of your market and your starting point."
+      },
+      {
+        question: "Do I really need Local SEO if I have a website?",
+        answer: "Yes. Traditional SEO helps you rank globally or nationally, but Local SEO specifically helps you rank for 'near me' searches and in the Google Map Pack, which is where 70% of local clicks happen."
+      },
+      {
+        question: "What is the Google Map Pack?",
+        answer: "The Google Map Pack (or Local Pack) is the section of Google search results that shows the top 3 local businesses on a map. Ranking here is the #1 goal of Local SEO as it generates the highest visibility and click-through rates."
+      },
+      {
+        question: "How do you handle bad reviews?",
+        answer: "We have a proactive reputation management strategy. We help you generate more positive reviews to drown out the negative ones, and we provide templates and guidance on how to respond to negative reviews professionally to turn them into opportunities."
+      }
+    ],
+    comparison: [
+      {
+        feature: "Strategy",
+        us: "Custom-tailored to your city & niche",
+        others: "Generic 'one-size-fits-all'",
+        diy: "Trial and error"
+      },
+      {
+        feature: "Reporting",
+        us: "Live dashboard + Video walkthroughs",
+        others: "Automated PDF exports",
+        diy: "Manual checking"
+      },
+      {
+        feature: "Focus",
+        us: "ROI & Revenue",
+        others: "Vanity metrics (traffic)",
+        diy: "Saving money"
+      },
+      {
+        feature: "Communication",
+        us: "Dedicated Slack channel",
+        others: "Support tickets",
+        diy: "N/A"
+      }
+    ]
   },
   {
     id: '2',

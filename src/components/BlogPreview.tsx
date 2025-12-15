@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { BlogPostData } from '@/lib/data';
@@ -43,7 +43,7 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
           {post.excerpt}
         </p>
         <Link 
-          to={`/blog/${post.slug}`} 
+          href={`/blog/${post.slug}`} 
           className="inline-flex items-center text-seo-blue font-medium group mt-auto"
         >
           <span className="border-b border-seo-blue/30 group-hover:border-seo-blue transition-colors">
@@ -57,3 +57,4 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
 };
 
 export default BlogPreview;
+

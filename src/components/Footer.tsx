@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { MapPin, Mail, Phone, Clock, ChevronRight, FileText, FileJson } from 'lucide-react';
 
 const Footer = () => {
@@ -46,43 +46,43 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Home</span>
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/about" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>About Us</span>
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/services" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Services</span>
                 </Link>
               </li>
               <li>
-                <Link to="/blogs" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/blogs" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Blog</span>
                 </Link>
               </li>
               <li>
-                <Link to="/case-studies" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/case-studies" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Case Studies</span>
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/contact" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Contact</span>
                 </Link>
               </li>
               <li>
-                <Link to="/sitemap" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/sitemap" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Sitemap</span>
                 </Link>
@@ -95,37 +95,37 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Our Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/service/local-seo" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/service/local-seo" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Local SEO</span>
                 </Link>
               </li>
               <li>
-                <Link to="/service/technical-seo" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/service/technical-seo" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Technical SEO</span>
                 </Link>
               </li>
               <li>
-                <Link to="/service/ecommerce-seo" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/service/ecommerce-seo" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>E-commerce SEO</span>
                 </Link>
               </li>
               <li>
-                <Link to="/service/content-marketing" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/service/content-marketing" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Content Marketing</span>
                 </Link>
               </li>
               <li>
-                <Link to="/service/link-building" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/service/link-building" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Link Building</span>
                 </Link>
               </li>
               <li>
-                <Link to="/service/seo-audits" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/service/seo-audits" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>SEO Audits</span>
                 </Link>
@@ -138,31 +138,31 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/free-consultation" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/free-consultation" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Free Consultation</span>
                 </Link>
               </li>
               <li>
-                <Link to="/seo-audit" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/seo-audit" className="text-gray-300 hover:text-white flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1" />
                   <span>Free SEO Audit</span>
                 </Link>
               </li>
               <li>
-                <Link to="/blogs" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/blogs" className="text-gray-300 hover:text-white flex items-center">
                   <FileText className="h-4 w-4 mr-1" />
                   <span>SEO Guides</span>
                 </Link>
               </li>
               <li>
-                <Link to="/sitemap" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/sitemap" className="text-gray-300 hover:text-white flex items-center">
                   <FileJson className="h-4 w-4 mr-1" />
                   <span>Sitemap</span>
                 </Link>
               </li>
               <li>
-                <Link to="/sitemap.xml" className="text-gray-300 hover:text-white flex items-center">
+                <Link href="/sitemap.xml" className="text-gray-300 hover:text-white flex items-center">
                   <FileText className="h-4 w-4 mr-1" />
                   <span>XML Sitemap</span>
                 </Link>
@@ -176,7 +176,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm mb-4">
               Serving all major Australian cities including Sydney, Melbourne, Brisbane, Perth, Adelaide and more.
             </p>
-            <Link to="/sitemap" className="text-seo-blue hover:underline">
+            <Link href="/sitemap" className="text-seo-blue hover:underline">
               View all service locations
             </Link>
           </div>
@@ -193,3 +193,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

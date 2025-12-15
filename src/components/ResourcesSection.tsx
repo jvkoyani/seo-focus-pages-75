@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, FileText, Briefcase } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import BlogPreview from './BlogPreview';
@@ -58,7 +58,7 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
           </div>
           <div className="flex space-x-4">
             <Link 
-              to="/blogs" 
+              href="/blogs" 
               className="flex items-center text-seo-blue hover:text-seo-blue-light font-medium group"
             >
               <span className="border-b border-seo-blue/30 group-hover:border-seo-blue-light transition-colors">
@@ -67,7 +67,7 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link 
-              to="/case-studies" 
+              href="/case-studies" 
               className="flex items-center text-seo-blue hover:text-seo-blue-light font-medium group"
             >
               <span className="border-b border-seo-blue/30 group-hover:border-seo-blue-light transition-colors">
@@ -123,3 +123,4 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
 };
 
 export default ResourcesSection;
+

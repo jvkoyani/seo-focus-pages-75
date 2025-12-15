@@ -1,6 +1,7 @@
+"use client";
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { allAustralianCities } from '@/lib/locationData';
 import { MapPin } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
@@ -9,7 +10,7 @@ const CountryCities = () => {
   // Group cities by state (excluding "Various" state)
   const stateGroups = allAustralianCities.reduce((groups, city) => {
     if (city.state === "Various") return groups;
-    
+
     if (!groups[city.state]) {
       groups[city.state] = [];
     }
@@ -34,26 +35,26 @@ const CountryCities = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Object.entries(stateGroups).map(([state, cities], stateIndex) => (
-            <AnimatedSection 
-              key={state} 
+            <AnimatedSection
+              key={state}
               className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
               animation="fade-in"
               delay={stateIndex * 100}
             >
               <h3 className="text-xl font-bold text-seo-dark mb-4 pb-2 border-b">
-                <Link 
-                  to={`/australia/${state.toLowerCase().replace(/\s+/g, '-')}`}
+                <Link
+                  href={`/australia/${state.toLowerCase().replace(/\s+/g, '-')}`}
                   className="hover:text-seo-blue transition-colors"
                 >
                   {state}
                 </Link>
               </h3>
-              
+
               <div className="grid grid-cols-2 gap-2">
                 {cities.slice(0, 8).map((city, cityIndex) => (
-                  <Link 
+                  <Link
                     key={city.id}
-                    to={`/location/${city.slug}`}
+                    href={`/location/${city.slug}`}
                     className="flex items-center p-2 rounded-md hover:bg-seo-blue/5 transition-colors group"
                   >
                     <MapPin className="h-4 w-4 text-seo-gray-medium group-hover:text-seo-blue transition-colors mr-1 flex-shrink-0" />
@@ -62,10 +63,10 @@ const CountryCities = () => {
                     </span>
                   </Link>
                 ))}
-                
+
                 {cities.length > 8 && (
-                  <Link 
-                    to={`/australia/${state.toLowerCase().replace(/\s+/g, '-')}`}
+                  <Link
+                    href={`/australia/${state.toLowerCase().replace(/\s+/g, '-')}`}
                     className="flex items-center justify-center p-2 rounded-md bg-seo-blue/5 hover:bg-seo-blue/10 text-seo-blue text-sm font-medium transition-colors col-span-2 mt-2"
                   >
                     View all {cities.length} cities

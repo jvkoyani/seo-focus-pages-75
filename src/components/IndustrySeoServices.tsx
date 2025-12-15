@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { industries } from '@/lib/data';
@@ -10,22 +10,22 @@ interface IndustrySeoServicesProps {
   showAll?: boolean;
 }
 
-const IndustrySeoServices = ({ 
-  title = "Industry-Specific SEO Solutions", 
+const IndustrySeoServices = ({
+  title = "Industry-Specific SEO Solutions",
   description = "Tailored SEO strategies for your specific industry needs",
   showAll = true
 }: IndustrySeoServicesProps) => {
   const displayIndustries = showAll ? industries : industries.slice(0, 3);
-  
+
   return (
     <section className="py-24 bg-seo-gray-light relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white to-transparent"></div>
       <div className="absolute -top-10 -right-10 w-72 h-72 bg-seo-blue/5 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-seo-blue/5 rounded-full blur-3xl"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
-        <AnimatedSection 
+        <AnimatedSection
           className="text-center mb-16 max-w-3xl mx-auto"
           animation="fade-in"
         >
@@ -42,7 +42,7 @@ const IndustrySeoServices = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayIndustries.map((industry, index) => (
-            <AnimatedSection 
+            <AnimatedSection
               key={industry.id}
               className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 group"
               animation="fade-in"
@@ -50,19 +50,19 @@ const IndustrySeoServices = ({
             >
               <div className="p-8 relative">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-seo-blue/5 to-transparent rounded-bl-full"></div>
-                
+
                 <div className="bg-seo-blue/10 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <industry.icon className="h-8 w-8 text-seo-blue" />
                 </div>
-                
+
                 <h3 className="text-xl font-display font-bold text-seo-dark mb-3">
                   {industry.title}
                 </h3>
-                
+
                 <p className="text-seo-gray-dark mb-6">
                   {industry.description}
                 </p>
-                
+
                 <div className="mb-6 p-3 rounded-lg bg-gradient-to-r from-seo-blue/5 to-transparent border-l-2 border-seo-blue">
                   <h4 className="font-medium text-seo-dark mb-2">Key benefits:</h4>
                   <ul className="space-y-1">
@@ -74,9 +74,9 @@ const IndustrySeoServices = ({
                     ))}
                   </ul>
                 </div>
-                
-                <Link 
-                  to={`/industry/${industry.slug}`} 
+
+                <Link
+                  href={`/industries/${industry.slug}`}
                   className="inline-flex items-center text-seo-blue font-medium group mt-2 relative"
                 >
                   <span className="border-b border-seo-blue/30 group-hover:border-seo-blue transition-colors">
@@ -89,15 +89,15 @@ const IndustrySeoServices = ({
             </AnimatedSection>
           ))}
         </div>
-        
+
         {!showAll && (
-          <AnimatedSection 
+          <AnimatedSection
             className="text-center mt-12"
             animation="slide-up"
             delay={300}
           >
-            <Link 
-              to="/industries" 
+            <Link
+              href="/industries"
               className="inline-flex items-center bg-seo-blue hover:bg-seo-blue-light text-white font-medium py-3 px-8 rounded-md transition-colors relative overflow-hidden group"
             >
               <span className="relative z-10">View All Industry Solutions</span>
@@ -112,3 +112,4 @@ const IndustrySeoServices = ({
 };
 
 export default IndustrySeoServices;
+
