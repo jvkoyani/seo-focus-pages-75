@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Building, ChevronLeft, Check } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,7 +9,17 @@ import CaseStudyPreview from '@/components/CaseStudyPreview';
 import { caseStudies } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
+import JsonLd from '@/components/JsonLd';
+import { generateCaseStudySchema, generateBreadcrumbSchema } from '@/lib/schema';
+
+export async function generateStaticParams() {
+    return caseStudies.map((caseStudy) => ({
+        slug: caseStudy.slug,
+    }));
+}
+
 export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
+
     const { slug } = await params;
     const caseStudy = caseStudies.find(c => c.slug === slug);
 
@@ -26,8 +37,16 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         )
         .slice(0, 2);
 
+    const caseStudySchema = generateCaseStudySchema(caseStudy);
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: 'Home', url: '/' },
+        { name: 'Case Studies', url: '/case-studies' },
+        { name: caseStudy.title, url: `/case-studies/${caseStudy.slug}` }
+    ]);
+
     return (
         <div className="min-h-screen flex flex-col">
+            <JsonLd data={[caseStudySchema, breadcrumbSchema]} />
             <Navbar />
 
             {/* Hero Section */}
@@ -60,9 +79,11 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto">
                         <div className="rounded-xl overflow-hidden shadow-lg">
-                            <img
+                            <Image
                                 src={caseStudy.image}
                                 alt={caseStudy.title}
+                                width={800}
+                                height={600}
                                 className="w-full h-auto"
                             />
                         </div>

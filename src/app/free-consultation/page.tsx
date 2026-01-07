@@ -5,7 +5,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Check, Calendar, Clock, Phone, Users, FileText, ArrowRight } from 'lucide-react';
+import { Check, Calendar, Clock, Phone, Users, FileText } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -58,12 +58,15 @@ export default function FreeConsultationPage() {
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         try {
-            const response = await fetch('/api/consultation', {
+            const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify({
+                    ...data,
+                    source: 'free-consultation'
+                }),
             });
 
             if (response.ok) {
@@ -158,7 +161,7 @@ export default function FreeConsultationPage() {
                                     <h3 className="font-bold">Prefer to call?</h3>
                                 </div>
                                 <p className="mb-4">
-                                    If you'd prefer to speak directly with an SEO specialist, give us a call:
+                                    If you&apos;d prefer to speak directly with an SEO specialist, give us a call:
                                 </p>
                                 <a href="tel:1300123456" className="text-xl font-bold hover:underline">
                                     1300 123 456
@@ -242,7 +245,7 @@ export default function FreeConsultationPage() {
                                                         <Input placeholder="https://yourwebsite.com" {...field} />
                                                     </FormControl>
                                                     <FormDescription>
-                                                        Optional if you don't have a website yet
+                                                        Optional if you don&apos;t have a website yet
                                                     </FormDescription>
                                                     <FormMessage />
                                                 </FormItem>
@@ -311,7 +314,7 @@ export default function FreeConsultationPage() {
                                                     <FormLabel>Tell us about your goals</FormLabel>
                                                     <FormControl>
                                                         <Textarea
-                                                            placeholder="What are you hoping to achieve with SEO? Any specific challenges you're facing?"
+                                                            placeholder="What are you hoping to achieve with SEO? Any specific challenges you&apos;re facing?"
                                                             rows={4}
                                                             {...field}
                                                         />

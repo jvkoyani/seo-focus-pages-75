@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
 import ServiceBlogTemplate from '@/components/ServiceBlogTemplate';
-import { ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { services } from '@/lib/data';
 import { serviceBlogContents } from '@/lib/service-blog-data';
 
@@ -16,7 +16,14 @@ interface PageProps {
     }>;
 }
 
+export async function generateStaticParams() {
+    return services.map((service) => ({
+        slug: service.slug,
+    }));
+}
+
 export default async function ServiceBlogPage({ params }: PageProps) {
+
     const { slug } = await params;
 
     // Find the service based on slug

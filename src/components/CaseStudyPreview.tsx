@@ -1,9 +1,13 @@
+"use client";
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Building, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, Building, TrendingUp, BarChart3, Target } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { CaseStudyData } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 interface CaseStudyPreviewProps {
   caseStudy: CaseStudyData;
@@ -13,54 +17,73 @@ interface CaseStudyPreviewProps {
 const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
   return (
     <AnimatedSection
-      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row h-full"
-      animation="fade-in"
+      className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-seo-blue/30 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+      animation="slide-up"
       delay={delay}
     >
-      <div className="md:w-2/5 h-48 md:h-auto overflow-hidden">
-        <img 
-          src={caseStudy.image} 
-          alt={caseStudy.title} 
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+      {/* Image Section */}
+      <div className="relative h-56 w-full overflow-hidden">
+        <Image
+          src={caseStudy.image}
+          alt={caseStudy.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
-      </div>
-      <div className="p-6 md:w-3/5">
-        <div className="flex items-center text-sm text-seo-gray-dark mb-3">
-          <span className="flex items-center">
-            <Building className="h-4 w-4 mr-1" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60"></div>
+
+        {/* Industry Badge */}
+        <div className="absolute top-4 left-4">
+          <Badge className="bg-white/90 text-seo-dark hover:bg-white backdrop-blur-sm shadow-sm border-0 px-3 py-1.5 text-xs font-bold uppercase tracking-wide">
+            <Building className="w-3 h-3 mr-1.5 text-seo-blue" />
             {caseStudy.industry}
-          </span>
+          </Badge>
         </div>
-        <h3 className="text-xl font-display font-bold text-seo-dark mb-3">
+      </div>
+
+      {/* Content Section */}
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-xl font-display font-bold text-seo-dark mb-3 group-hover:text-seo-blue transition-colors line-clamp-2">
           {caseStudy.title}
         </h3>
-        <p className="text-seo-gray-dark mb-4">
-          {caseStudy.challenge.split('.')[0]}.
+
+        <p className="text-seo-gray-dark text-sm mb-6 line-clamp-2 flex-grow">
+          {caseStudy.challenge}
         </p>
-        <div className="mb-4">
-          <div className="font-medium text-seo-dark mb-2">Key Results:</div>
-          <div className="grid grid-cols-1 gap-2">
-            {caseStudy.results.slice(0, 2).map((result, index) => (
-              <div key={index} className="flex items-start">
-                <TrendingUp className="h-4 w-4 text-seo-blue mt-1 mr-2 flex-shrink-0" />
-                <span className="text-sm text-seo-gray-dark">{result}</span>
+
+        {/* Key Results Grid */}
+        <div className="grid grid-cols-2 gap-3 mb-6">
+          {caseStudy.results.slice(0, 2).map((result, index) => (
+            <div key={index} className="bg-slate-50 rounded-lg p-3 border border-slate-100 group-hover:bg-seo-blue/5 group-hover:border-seo-blue/10 transition-colors">
+              <div className="flex items-center gap-2 mb-1">
+                {index === 0 ? (
+                  <TrendingUp className="w-4 h-4 text-green-500" />
+                ) : (
+                  <Target className="w-4 h-4 text-blue-500" />
+                )}
+                <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Result</span>
               </div>
-            ))}
-          </div>
+              <p className="text-sm font-bold text-seo-dark leading-tight">
+                {result}
+              </p>
+            </div>
+          ))}
         </div>
-        <Link 
-          href={`/case-study/${caseStudy.slug}`} 
-          className="inline-flex items-center text-seo-blue font-medium group"
-        >
-          <span className="border-b border-seo-blue/30 group-hover:border-seo-blue transition-colors">
-            Read full case study
-          </span>
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </Link>
+
+        {/* CTA */}
+        <div className="mt-auto pt-4 border-t border-slate-100">
+          <Link href={`/case-study/${caseStudy.slug}`} className="w-full">
+            <Button
+              variant="ghost"
+              className="w-full justify-between hover:bg-seo-blue hover:text-white group/btn transition-all duration-300"
+            >
+              <span className="font-medium">Read Case Study</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </AnimatedSection>
   );
 };
 
 export default CaseStudyPreview;
-

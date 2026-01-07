@@ -4,9 +4,9 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import {
     ArrowRight, MapPin, TrendingUp, BarChart,
-    CheckCircle, Award, Users, Target, Star,
-    Zap, Globe, Compass, Building, ShoppingBag,
-    Phone, Lightbulb, ChevronRight, FileText, Share2
+    CheckCircle, Award, Target, Star,
+    Zap, Globe, Building, ShoppingBag,
+    Phone, Lightbulb, FileText, Share2
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -14,11 +14,13 @@ import AnimatedSection from '@/components/AnimatedSection';
 import ContactForm from '@/components/ContactForm';
 import ResourcesSection from '@/components/ResourcesSection';
 import { allAustralianCities } from '@/lib/locationData';
+import { services as allServices } from '@/lib/data';
 import InfoCard from '@/components/InfoCard';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import LocationLinks from '@/components/LocationLinks';
+import LocationGrid from '@/components/LocationGrid';
 import LocationBreadcrumbs from '@/components/LocationBreadcrumbs';
+import ServicePricing from '@/components/service/ServicePricing';
 
 const services = [
     { title: "Local SEO", slug: "local-seo" },
@@ -34,9 +36,10 @@ const services = [
 interface LocationServiceProps {
     locationSlug: string;
     serviceSlug: string;
+    cityName?: string;
 }
 
-const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) => {
+const LocationService = ({ locationSlug, serviceSlug, cityName }: LocationServiceProps) => {
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -44,17 +47,19 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
         });
     }, [locationSlug, serviceSlug]);
 
-    const locationData = allAustralianCities.find(loc => loc.slug === locationSlug);
+    const predefinedLocation = allAustralianCities.find(loc => loc.slug === locationSlug);
+    const locationName = cityName || predefinedLocation?.name;
     const serviceData = services.find(svc => svc.slug === serviceSlug);
+    const fullServiceData = allServices.find(s => s.slug === serviceSlug);
 
-    if (!locationData || !serviceData) {
+    if (!locationName || !serviceData) {
         return (
             <div className="min-h-screen flex flex-col">
                 <Navbar />
                 <div className="flex-1 flex items-center justify-center">
                     <div className="text-center">
                         <h1 className="text-3xl font-bold mb-4">Page Not Found</h1>
-                        <p className="mb-6">Sorry, the location or service you're looking for doesn't exist.</p>
+                        <p className="mb-6">Sorry, the location or service you&apos;re looking for doesn&apos;t exist.</p>
                         <Link
                             href="/"
                             className="inline-flex items-center text-seo-blue font-medium"
@@ -68,11 +73,26 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
             </div>
         );
     }
+    // ... (rest of the component) ...
 
-    const serviceInfo: any = {
+
+    interface ServiceFeature {
+        title: string;
+        description: string;
+        icon: React.ReactNode;
+    }
+
+    interface ServiceInfo {
+        title: string;
+        description: string;
+        benefits: string[];
+        features: ServiceFeature[];
+    }
+
+    const serviceInfo: Record<string, ServiceInfo> = {
         "local-seo": {
-            title: `Local SEO Services in ${locationData.name}`,
-            description: `Boost your business visibility in ${locationData.name} with our specialized local SEO services designed to attract customers in your area.`,
+            title: `Local SEO Services in ${locationName}`,
+            description: `Boost your business visibility in ${locationName} with our specialized local SEO services designed to attract customers in your area.`,
             benefits: [
                 "Higher rankings in local search results",
                 "Increased visibility in Google Maps",
@@ -83,7 +103,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
             features: [
                 {
                     title: "Local Keyword Research",
-                    description: `We identify the most valuable keywords that ${locationData.name} residents are using to find businesses like yours.`,
+                    description: `We identify the most valuable keywords that ${locationName} residents are using to find businesses like yours.`,
                     icon: <Target className="w-full h-full" />
                 },
                 {
@@ -93,19 +113,19 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                 },
                 {
                     title: "Local Citation Building",
-                    description: `We ensure your business information is consistent across all local directories relevant to ${locationData.name}.`,
+                    description: `We ensure your business information is consistent across all local directories relevant to ${locationName}.`,
                     icon: <Building className="w-full h-full" />
                 },
                 {
                     title: "Local Content Creation",
-                    description: `We develop content specifically targeted to the ${locationData.name} market and community.`,
+                    description: `We develop content specifically targeted to the ${locationName} market and community.`,
                     icon: <FileText className="w-full h-full" />
                 }
             ]
         },
         "technical-seo": {
-            title: `Technical SEO Services in ${locationData.name}`,
-            description: `Enhance your website's technical foundation with our specialized technical SEO services for ${locationData.name} businesses.`,
+            title: `Technical SEO Services in ${locationName}`,
+            description: `Enhance your website's technical foundation with our specialized technical SEO services for ${locationName} businesses.`,
             benefits: [
                 "Improved website crawlability and indexing",
                 "Faster page load speeds",
@@ -137,8 +157,8 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
             ]
         },
         "ecommerce-seo": {
-            title: `E-commerce SEO Services in ${locationData.name}`,
-            description: `Drive more sales and revenue with our specialized e-commerce SEO strategies for ${locationData.name} online retailers.`,
+            title: `E-commerce SEO Services in ${locationName}`,
+            description: `Drive more sales and revenue with our specialized e-commerce SEO strategies for ${locationName} online retailers.`,
             benefits: [
                 "Higher product and category page rankings",
                 "Increased organic traffic to your online store",
@@ -170,8 +190,8 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
             ]
         },
         "content-marketing": {
-            title: `Content Marketing Services in ${locationData.name}`,
-            description: `Attract and engage your target audience with our strategic content marketing services tailored for ${locationData.name} businesses.`,
+            title: `Content Marketing Services in ${locationName}`,
+            description: `Attract and engage your target audience with our strategic content marketing services tailored for ${locationName} businesses.`,
             benefits: [
                 "More engaging content that resonates with your audience",
                 "Higher rankings for informational keywords",
@@ -182,7 +202,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
             features: [
                 {
                     title: "Content Strategy Development",
-                    description: `We create a comprehensive content strategy aligned with your ${locationData.name} business goals.`,
+                    description: `We create a comprehensive content strategy aligned with your ${locationName} business goals.`,
                     icon: <Lightbulb className="w-full h-full" />
                 },
                 {
@@ -197,14 +217,14 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                 },
                 {
                     title: "Content Distribution",
-                    description: `We help distribute your content across channels relevant to your ${locationData.name} audience.`,
+                    description: `We help distribute your content across channels relevant to your ${locationName} audience.`,
                     icon: <Share2 className="w-full h-full" />
                 }
             ]
         },
         "default": {
-            title: `${serviceData.title} Services in ${locationData.name}`,
-            description: `Boost your online presence with our specialized ${serviceData.title} services designed for businesses in ${locationData.name}.`,
+            title: `${serviceData.title} Services in ${locationName}`,
+            description: `Boost your online presence with our specialized ${serviceData.title} services designed for businesses in ${locationName}.`,
             benefits: [
                 "Higher search engine rankings",
                 "Increased organic website traffic",
@@ -215,7 +235,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
             features: [
                 {
                     title: "Customized Strategy",
-                    description: `We develop a tailored ${serviceData.title} strategy specific to your ${locationData.name} business needs.`,
+                    description: `We develop a tailored ${serviceData.title} strategy specific to your ${locationName} business needs.`,
                     icon: <Target className="w-full h-full" />
                 },
                 {
@@ -253,7 +273,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="mb-4" animation="fade-in">
                         <LocationBreadcrumbs
-                            locationSlug={locationData.slug}
+                            locationSlug={locationSlug}
                             serviceSlug={serviceData.slug}
                         />
                     </AnimatedSection>
@@ -263,7 +283,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                             <div className="flex items-center mb-4">
                                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-seo-blue/10 text-seo-blue mr-2">
                                     <MapPin className="h-4 w-4 mr-1" />
-                                    {locationData.name}
+                                    {locationName}
                                 </span>
                                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-700">
                                     <Star className="h-4 w-4 mr-1" />
@@ -308,7 +328,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                                             </p>
                                             <div className="flex items-center">
                                                 <Award className="h-8 w-8 text-yellow-300 mr-2" />
-                                                <span className="text-white font-medium">Free for {locationData.name} businesses</span>
+                                                <span className="text-white font-medium">Free for {locationName} businesses</span>
                                             </div>
                                         </div>
                                     </div>
@@ -347,10 +367,10 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                             Key Benefits
                         </span>
                         <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
-                            Why {serviceData.title} Matters for {locationData.name} Businesses
+                            Why {serviceData.title} Matters for {locationName} Businesses
                         </h2>
                         <p className="text-lg text-seo-gray-dark">
-                            Our specialized {serviceData.title.toLowerCase()} services provide significant advantages for businesses in the {locationData.name} area
+                            Our specialized {serviceData.title.toLowerCase()} services provide significant advantages for businesses in the {locationName} area
                         </p>
                     </AnimatedSection>
 
@@ -381,7 +401,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                             Our Approach
                         </span>
                         <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
-                            {serviceData.title} Services We Provide in {locationData.name}
+                            {serviceData.title} Services We Provide in {locationName}
                         </h2>
                         <p className="text-lg text-seo-gray-dark">
                             Our comprehensive {serviceData.title.toLowerCase()} services are designed to deliver exceptional results for your business
@@ -389,7 +409,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                     </AnimatedSection>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        {currentServiceInfo.features.map((feature: any, index: number) => (
+                        {currentServiceInfo.features.map((feature: ServiceFeature, index: number) => (
                             <InfoCard
                                 key={index}
                                 title={feature.title}
@@ -416,7 +436,7 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                                 <div className="flex flex-col md:flex-row md:items-center justify-between">
                                     <div className="mb-8 md:mb-0 md:mr-8">
                                         <h2 className="text-3xl font-bold text-white mb-4">
-                                            Ready to dominate {serviceData.title} in {locationData.name}?
+                                            Ready to dominate {serviceData.title} in {locationName}?
                                         </h2>
                                         <p className="text-white/90 text-lg mb-0">
                                             Get a free consultation and discover how our {serviceData.title.toLowerCase()} services can help your business grow.
@@ -437,23 +457,30 @@ const LocationService = ({ locationSlug, serviceSlug }: LocationServiceProps) =>
                 </div>
             </section>
 
-            <section className="py-16 bg-seo-gray-light">
+            <section className="py-24 bg-slate-50">
                 <div className="container mx-auto px-4">
-                    <AnimatedSection className="text-center max-w-3xl mx-auto mb-12" animation="fade-in">
-                        <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-seo-blue/10 text-seo-blue mb-4">
-                            Other Locations
+                    <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-600 border border-amber-500/20 mb-6">
+                            <MapPin className="w-4 h-4" />
+                            Local Expertise
                         </span>
-                        <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
-                            {serviceData.title} Services in Other Areas
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-seo-dark mb-6">
+                            {serviceData.title} Services Across{' '}
+                            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                                Australia
+                            </span>
                         </h2>
-                        <p className="text-lg text-seo-gray-dark">
-                            We provide specialized {serviceData.title.toLowerCase()} services in these locations as well
+                        <p className="text-xl text-seo-gray-dark">
+                            Specialized {serviceData.title.toLowerCase()} solutions for businesses in major Australian cities
                         </p>
                     </AnimatedSection>
 
-                    <LocationLinks service={serviceData} />
+                    <LocationGrid locations={allAustralianCities.slice(0, 12)} serviceSlug={serviceData.slug} />
                 </div>
             </section>
+
+            {/* Pricing Section */}
+            {fullServiceData?.pricing && <ServicePricing tiers={fullServiceData.pricing} />}
 
             <ResourcesSection
                 filterTag={serviceData.title}

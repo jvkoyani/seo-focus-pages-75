@@ -159,7 +159,7 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                                     </p>
 
                                     <Link
-                                        href={`/location/${location.slug}`}
+                                        href={`/${location.slug}`}
                                         className="inline-flex items-center justify-center bg-seo-blue text-white px-5 py-3 rounded-md hover:bg-seo-blue-light transition-colors w-full group"
                                     >
                                         <span>SEO Services in {location.name}</span>

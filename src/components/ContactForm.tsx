@@ -40,7 +40,7 @@ const ContactForm = ({ location }: ContactFormProps) => {
     setFormState(prev => ({ ...prev, loading: true }));
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +52,8 @@ const ContactForm = ({ location }: ContactFormProps) => {
           website: formState.website,
           challenge: formState.challenge,
           message: formState.message,
-          location: location
+          location: location,
+          source: 'contact-form'
         }),
       });
 
@@ -126,7 +127,7 @@ const ContactForm = ({ location }: ContactFormProps) => {
                   </div>
                   <div>
                     <h3 className="font-bold text-seo-dark text-lg mb-1">Free SEO Audit</h3>
-                    <p className="text-seo-gray-dark">Comprehensive analysis of your website's current performance</p>
+                    <p className="text-seo-gray-dark">Comprehensive analysis of your website&apos;s current performance</p>
                   </div>
                 </div>
 

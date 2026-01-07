@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Link from 'next/link';
+
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,6 +9,7 @@ import ServiceBlogTemplate from '@/components/ServiceBlogTemplate';
 import LocationBreadcrumbs from '@/components/LocationBreadcrumbs';
 import { services, locations } from '@/lib/data';
 import { serviceBlogContents } from '@/lib/service-blog-data';
+import { australianCities } from '@/lib/locationData';
 
 interface PageProps {
     params: Promise<{
@@ -17,7 +18,21 @@ interface PageProps {
     }>;
 }
 
+export async function generateStaticParams() {
+    const params = [];
+    for (const city of australianCities) {
+        for (const service of services) {
+            params.push({
+                slug: service.slug,
+                locationSlug: city.slug,
+            });
+        }
+    }
+    return params;
+}
+
 export default async function ServiceLocationBlogPage({ params }: PageProps) {
+
     const { slug, locationSlug } = await params;
 
     // Find the service based on slug

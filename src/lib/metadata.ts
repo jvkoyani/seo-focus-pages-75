@@ -2,60 +2,60 @@ import { Metadata } from 'next';
 
 // Home Page
 export const homeMetadata: Metadata = {
-    title: 'SEO Agency Australia | Rank #1 on Google',
-    description: 'Stop losing customers to competitors. Our proven SEO strategies help Australian businesses rank higher, get more traffic & grow revenue. Free audit →',
+    title: 'SEOfocus: #1 Data-Driven SEO Agency for Growth',
+    description: 'Dominate search results with SEOfocus. Our data-driven SEO strategies drive qualified traffic and revenue. Get your free professional SEO audit today.',
 };
 
 // About Page
 export const aboutMetadata: Metadata = {
-    title: 'About Us | SEO Experts Since 2010',
-    description: 'Meet the SEO specialists behind 250+ successful rankings. We don\'t just promise results—we deliver them. Discover our data-driven approach.',
+    title: 'About SEOfocus | Data-Driven SEO Experts',
+    description: 'Meet the team behind 250+ successful rankings. We combine data science with creative strategy to deliver measurable growth. Learn more about our approach.',
 };
 
 // Services Page  
 export const servicesMetadata: Metadata = {
-    title: 'SEO Services | Complete Digital Solutions',
-    description: 'From technical SEO to content strategy—everything you need to dominate search. Custom strategies, transparent reporting, no lock-in contracts.',
+    title: 'Professional SEO Services | Grow Your Traffic',
+    description: 'Comprehensive SEO services tailored to your goals. From technical audits to content strategy, we deliver results that matter. View our service packages.',
 };
 
 // Contact Page
 export const contactMetadata: Metadata = {
-    title: 'Contact Us | Get Your Free SEO Quote',
-    description: 'Ready to rank higher? Contact our SEO team for a free strategy session. No obligations, just honest advice on growing your online visibility.',
+    title: 'Contact SEOfocus | Get Your Free Strategy',
+    description: 'Ready to grow? Book a free strategy session with our SEO experts. No sales pressure, just actionable advice to improve your rankings. Contact us now.',
 };
 
 // Blogs Page
 export const blogsMetadata: Metadata = {
-    title: 'SEO Blog | Tips, Trends & Strategies',
-    description: 'Learn what actually works in SEO. Expert insights, actionable tips & latest algorithm updates to keep you ahead of competitors.',
+    title: 'SEO Insights & Tips | The SEOfocus Blog',
+    description: 'Stay ahead of the algorithm with expert SEO insights, guides, and industry news. Learn actionable strategies to improve your search visibility.',
 };
 
 // Case Studies Page
 export const caseStudiesMetadata: Metadata = {
-    title: 'SEO Case Studies | Real Client Results',
-    description: 'See how we helped businesses like yours achieve 175% more traffic. Real numbers, real results—no fluff.',
+    title: 'SEO Case Studies | Real Results & Growth',
+    description: 'See how we\'ve helped businesses achieve triple-digit growth. Explore our case studies to see our data-driven strategies in action. Real results, no fluff.',
 };
 
 // Industries Page
 export const industriesMetadata: Metadata = {
-    title: 'Industry SEO | Tailored Solutions',
-    description: 'Generic SEO doesn\'t work. We specialize in your industry—understanding your audience, competition & unique challenges.',
+    title: 'Industry-Specific SEO | Tailored Strategies',
+    description: 'We understand your market. Discover our specialized SEO solutions for real estate, healthcare, ecommerce, and more. Get a strategy built for your industry.',
 };
 
 // Free Consultation Page
 export const freeConsultationMetadata: Metadata = {
-    title: 'Free SEO Consultation | Book Now',
-    description: 'Get a 30-min strategy session with our SEO experts. We\'ll analyze your site, competitors & show you exactly how to rank higher.',
+    title: 'Book Free SEO Consultation | Expert Advice',
+    description: 'Get a complimentary 30-minute SEO strategy session. We\'ll analyze your site and competitors to reveal your biggest growth opportunities. Book now.',
 };
 
 // SEO Audit Page
 export const seoAuditMetadata: Metadata = {
-    title: 'Free SEO Audit Tool | Instant Analysis',
-    description: 'Discover why your site isn\'t ranking. Our free tool analyzes 50+ SEO factors and shows you exactly what to fix. Try it now →',
+    title: 'Free SEO Audit Tool | Instant Site Analysis',
+    description: 'Why aren\'t you ranking? Our free tool analyzes 50+ SEO factors to identify issues holding you back. Get your comprehensive report in seconds.',
 };
 
 // HTML Sitemap Page
 export const sitemapMetadata: Metadata = {
-    title: 'Sitemap | Navigate Our Website',
-    description: 'Find all our SEO services, location pages, blog posts and resources in one place. Complete directory of our website.',
+    title: 'Sitemap | Navigate SEOfocus Website',
+    description: 'Easily find what you\'re looking for. Browse our complete directory of services, resources, and location pages to navigate our site efficiently.',
 };

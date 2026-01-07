@@ -3,24 +3,28 @@
 import React from 'react';
 import { PricingTier } from '@/lib/data';
 import AnimatedSection from '@/components/AnimatedSection';
-import { Check, ArrowRight, Zap } from 'lucide-react';
+import { Check, ArrowRight, Zap, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 interface ServicePricingProps {
     tiers: PricingTier[];
+    serviceName?: string;
 }
 
-const ServicePricing = ({ tiers }: ServicePricingProps) => {
+const ServicePricing = ({ tiers, serviceName }: ServicePricingProps) => {
     if (!tiers || tiers.length === 0) return null;
 
     return (
         <section className="py-20 bg-white" id="pricing">
             <div className="container mx-auto px-4">
                 <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
-                    <span className="text-seo-blue font-semibold tracking-wider uppercase text-sm">Transparent Pricing</span>
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mt-2 mb-6">
-                        Invest in Growth, Not Guesses
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-orange-500/10 to-red-500/10 text-orange-600 border border-orange-500/20 mb-6">
+                        <TrendingUp className="w-4 h-4" />
+                        Transparent Pricing
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
+                        Invest in {serviceName || 'Growth'}, <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Not Guesses</span>
                     </h2>
                     <p className="text-lg text-seo-gray-dark">
                         Choose the plan that fits your goals. No hidden fees, no long-term lock-ins.
@@ -32,10 +36,10 @@ const ServicePricing = ({ tiers }: ServicePricingProps) => {
                         <AnimatedSection
                             key={index}
                             className={`relative rounded-2xl p-8 border ${tier.recommended
-                                    ? 'bg-slate-900 text-white border-seo-blue shadow-2xl scale-105 z-10'
-                                    : 'bg-white text-slate-900 border-gray-200 shadow-lg hover:shadow-xl'
+                                ? 'bg-slate-900 text-white border-seo-blue shadow-2xl scale-105 z-10'
+                                : 'bg-white text-slate-900 border-gray-200 shadow-lg hover:shadow-xl'
                                 } transition-all duration-300`}
-                            animation="fade-in-up"
+                            animation="slide-up"
                             delay={index * 100}
                         >
                             {tier.recommended && (
@@ -73,8 +77,8 @@ const ServicePricing = ({ tiers }: ServicePricingProps) => {
                             <Link href="/contact">
                                 <Button
                                     className={`w-full h-12 text-base font-semibold rounded-xl ${tier.recommended
-                                            ? 'bg-seo-blue hover:bg-seo-blue-light text-white shadow-lg shadow-blue-500/25'
-                                            : 'bg-slate-100 hover:bg-slate-200 text-slate-900'
+                                        ? 'bg-seo-blue hover:bg-seo-blue-light text-white shadow-lg shadow-blue-500/25'
+                                        : 'bg-slate-100 hover:bg-slate-200 text-slate-900'
                                         }`}
                                 >
                                     Get Started

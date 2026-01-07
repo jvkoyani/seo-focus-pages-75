@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, FileText, Briefcase } from 'lucide-react';
+import { ArrowRight, FileText, Briefcase, BookOpen } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import BlogPreview from './BlogPreview';
 import CaseStudyPreview from './CaseStudyPreview';
@@ -14,79 +14,68 @@ interface ResourcesSectionProps {
 
 const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) => {
   // Filter blog posts if a tag is provided
-  const filteredBlogs = filterTag 
-    ? blogPosts.filter(post => 
-        post.tags.some(tag => tag.toLowerCase().includes(filterTag.toLowerCase())) ||
-        post.category.toLowerCase().includes(filterTag.toLowerCase())
-      ).slice(0, 3)
+  const filteredBlogs = filterTag
+    ? blogPosts.filter(post =>
+      post.tags.some(tag => tag.toLowerCase().includes(filterTag.toLowerCase())) ||
+      post.category.toLowerCase().includes(filterTag.toLowerCase())
+    ).slice(0, 3)
     : blogPosts.slice(0, 3);
 
   // Filter case studies if a tag is provided
   const filteredCaseStudies = filterTag
-    ? caseStudies.filter(study => 
-        study.industry.toLowerCase().includes(filterTag.toLowerCase()) ||
-        study.solution.toLowerCase().includes(filterTag.toLowerCase())
-      ).slice(0, 2)
+    ? caseStudies.filter(study =>
+      study.industry.toLowerCase().includes(filterTag.toLowerCase()) ||
+      study.solution.toLowerCase().includes(filterTag.toLowerCase())
+    ).slice(0, 2)
     : caseStudies.slice(0, 2);
 
   return (
     <div className={`py-16 ${className}`}>
       <div className="container mx-auto px-4">
-        <AnimatedSection 
-          className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12"
+        <AnimatedSection
+          className="text-center max-w-3xl mx-auto mb-16"
           animation="fade-in"
         >
-          <div className="mb-6 md:mb-0">
-            <div className="flex items-center mb-3">
-              <div className="flex space-x-2">
-                <span className="flex items-center bg-seo-blue/10 text-seo-blue px-3 py-1 rounded-full text-sm font-medium">
-                  <FileText className="h-4 w-4 mr-1" />
-                  Blog Articles
-                </span>
-                <span className="flex items-center bg-seo-blue/10 text-seo-blue px-3 py-1 rounded-full text-sm font-medium">
-                  <Briefcase className="h-4 w-4 mr-1" />
-                  Case Studies
-                </span>
-              </div>
-            </div>
-            <h2 className="text-3xl font-display font-bold text-seo-dark mb-2">
-              Resources & Insights
-            </h2>
-            <p className="text-lg text-seo-gray-dark max-w-xl">
-              Stay updated with our latest SEO guides, success stories, and industry insights
-            </p>
-          </div>
-          <div className="flex space-x-4">
-            <Link 
-              href="/blogs" 
-              className="flex items-center text-seo-blue hover:text-seo-blue-light font-medium group"
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-purple-500/10 text-purple-500 border border-purple-500/20 mb-4">
+            <BookOpen className="w-3 h-3 mr-2" />
+            Knowledge Hub
+          </span>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
+            Resources & <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Insights</span>
+          </h2>
+          <p className="text-lg text-seo-gray-dark mb-8">
+            Stay ahead of the curve with our latest SEO guides, success stories, and industry insights designed to help you grow.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/blogs"
+              className="inline-flex items-center px-6 py-2.5 rounded-full bg-white border border-gray-200 text-seo-dark font-medium hover:border-purple-500 hover:text-purple-600 transition-all shadow-sm hover:shadow-md"
             >
-              <span className="border-b border-seo-blue/30 group-hover:border-seo-blue-light transition-colors">
-                All Articles
-              </span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <FileText className="w-4 h-4 mr-2" />
+              Browse Articles
             </Link>
-            <Link 
-              href="/case-studies" 
-              className="flex items-center text-seo-blue hover:text-seo-blue-light font-medium group"
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center px-6 py-2.5 rounded-full bg-white border border-gray-200 text-seo-dark font-medium hover:border-purple-500 hover:text-purple-600 transition-all shadow-sm hover:shadow-md"
             >
-              <span className="border-b border-seo-blue/30 group-hover:border-seo-blue-light transition-colors">
-                All Case Studies
-              </span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <Briefcase className="w-4 h-4 mr-2" />
+              View Case Studies
             </Link>
           </div>
         </AnimatedSection>
-        
+
         {/* Case Studies Section */}
         {filteredCaseStudies.length > 0 && (
           <div className="mb-12">
-            <AnimatedSection 
-              className="mb-6 flex items-center"
+            <AnimatedSection
+              className="mb-8 flex items-center"
               animation="fade-in"
             >
-              <Briefcase className="h-5 w-5 text-seo-blue mr-2" />
-              <h3 className="text-xl font-display font-bold text-seo-dark">
+              <div className="p-2 bg-blue-50 rounded-lg mr-3">
+                <Briefcase className="h-5 w-5 text-seo-blue" />
+              </div>
+              <h3 className="text-2xl font-display font-bold text-seo-dark">
                 Featured Success Stories
               </h3>
             </AnimatedSection>
@@ -97,16 +86,18 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
             </div>
           </div>
         )}
-        
+
         {/* Blog Posts Section */}
         {filteredBlogs.length > 0 && (
           <div>
-            <AnimatedSection 
-              className="mb-6 flex items-center"
+            <AnimatedSection
+              className="mb-8 flex items-center"
               animation="fade-in"
             >
-              <FileText className="h-5 w-5 text-seo-blue mr-2" />
-              <h3 className="text-xl font-display font-bold text-seo-dark">
+              <div className="p-2 bg-purple-50 rounded-lg mr-3">
+                <FileText className="h-5 w-5 text-purple-600" />
+              </div>
+              <h3 className="text-2xl font-display font-bold text-seo-dark">
                 Latest Insights & Guides
               </h3>
             </AnimatedSection>
@@ -123,4 +114,3 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
 };
 
 export default ResourcesSection;
-

@@ -9,6 +9,7 @@ const UrgencyBanner = () => {
     const [spotsRemaining, setSpotsRemaining] = useState(3);
     const [currentMonth, setCurrentMonth] = useState('');
 
+    // eslint-disable-next-line
     useEffect(() => {
         // Get current month name
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -72,8 +73,8 @@ const UrgencyBanner = () => {
                                 <div
                                     key={spot}
                                     className={`w-4 h-4 rounded-full transition-all duration-300 ${spot <= spotsRemaining
-                                            ? 'bg-green-400 shadow-lg shadow-green-400/50 animate-pulse'
-                                            : 'bg-white/30'
+                                        ? 'bg-green-400 shadow-lg shadow-green-400/50 animate-pulse'
+                                        : 'bg-white/30'
                                         }`}
                                     style={{ animationDelay: `${spot * 0.1}s` }}
                                 ></div>

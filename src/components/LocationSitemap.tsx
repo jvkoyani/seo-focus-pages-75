@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { allAustralianCities } from '@/lib/locationData';
 import { services } from '@/lib/data';
@@ -36,12 +36,12 @@ const LocationSitemap = () => {
   const states = useMemo(() => Object.keys(citiesByState).sort(), [citiesByState]);
 
   // Filter locations based on search term
-  const filterLocations = (locations: typeof allCities) => {
+  const filterLocations = useCallback((locations: typeof allCities) => {
     if (!searchTerm) return locations;
     return locations.filter(location =>
       location.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  };
+  }, [searchTerm]);
 
   // Used to track expanded state sections
   const [expandedStates, setExpandedStates] = useState<Record<string, boolean>>({});
@@ -70,7 +70,7 @@ const LocationSitemap = () => {
     return states.reduce((total, state) => {
       return total + filterLocations(citiesByState[state]).length;
     }, 0);
-  }, [states, citiesByState, searchTerm]);
+  }, [states, citiesByState, filterLocations]);
 
   return (
     <div className="container mx-auto px-4 py-16">
@@ -136,7 +136,7 @@ const LocationSitemap = () => {
 
         {searchTerm && (
           <p className="text-center mt-2 text-sm text-seo-gray-dark">
-            Found {totalFilteredCities} locations matching "{searchTerm}"
+            Found {totalFilteredCities} locations matching &quot;{searchTerm}&quot;
           </p>
         )}
       </AnimatedSection>
@@ -173,7 +173,7 @@ const LocationSitemap = () => {
                   return (
                     <li key={`${city.id}-${cityIndex}`}>
                       <Link
-                        href={`/location/${city.slug}`}
+                        href={`/${city.slug}`}
                         className="flex items-center text-seo-gray-dark hover:text-seo-blue transition-colors"
                       >
                         <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />

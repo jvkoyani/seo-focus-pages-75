@@ -1,179 +1,135 @@
+'use client';
 
-import { ArrowRight, ChevronDown, Play, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle2, Star } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedSection from './AnimatedSection';
-import FatJoeCarousel from './FatJoeCarousel';
+import HeroDashboardPreview from './HeroDashboardPreview';
 
 interface HeroProps {
   title?: string;
   subtitle?: string;
   location?: string;
   backgroundImage?: string;
+  rightContent?: React.ReactNode;
 }
 
 const Hero = ({
   title,
   subtitle,
   location,
-  backgroundImage,
+  rightContent,
 }: HeroProps) => {
   // Default problem-focused content for homepage
   const defaultTitle = location
     ? `Dominate ${location} Search Results`
-    : "Your Competitors Are Stealing Your Customers Right Now";
+    : "Your Competitors Are Stealing Your Customers";
 
   const defaultSubtitle = location
     ? `Data-driven SEO strategies tailored for ${location} businesses`
-    : "While you're reading this, they're ranking higher and capturing leads that should be yours";
+    : "Stop losing revenue. We help Australian businesses rank #1, drive qualified traffic, and turn clicks into customers.";
 
   const displayTitle = title || defaultTitle;
   const displaySubtitle = subtitle || defaultSubtitle;
 
   return (
-    <div className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* Modern gradient background */}
+    <div className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950">
+      {/* Dynamic Background */}
       <div className="absolute inset-0 z-0">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"></div>
+        {/* Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-        {/* Animated mesh gradient */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-0 left-1/2 w-[500px] h-[500px] bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-        </div>
-
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }}></div>
-
-        {/* Radial gradient spotlight */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-radial from-blue-500/20 via-transparent to-transparent"></div>
+        {/* Spotlights */}
+        <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-transparent blur-3xl" />
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse delay-1000" />
       </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Left Column: Text Content */}
           <div className="max-w-2xl">
-            <AnimatedSection
-              className="mb-4"
-              animation="fade-in"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/10">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="text-sm font-medium text-slate-300">
-                  {location ? `${location} SEO Experts` : 'Australia\'s #1 SEO Agency'}
-                </span>
+            <AnimatedSection animation="fade-in">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 hover:bg-white/10 transition-colors cursor-default">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="w-6 h-6 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 border-2 border-slate-950 flex items-center justify-center text-[10px] text-white font-bold">
+                      {String.fromCharCode(64 + i)}
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-1 text-sm text-slate-300 pl-2">
+                  <span className="text-yellow-400 flex items-center">
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                  </span>
+                  <span className="font-medium">Trusted by 250+ Founders</span>
+                </div>
               </div>
             </AnimatedSection>
 
-            <AnimatedSection
-              className="mb-6"
-              animation="fade-in-left"
-              delay={200}
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
-                <span className="text-white">{displayTitle.split(' ').slice(0, -3).join(' ')} </span>
-                <span className="bg-gradient-to-r from-seo-blue via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                  {displayTitle.split(' ').slice(-3).join(' ')}
+            <AnimatedSection animation="fade-in" delay={100}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight mb-6 text-white">
+                {displayTitle.split(' ').slice(0, -2).join(' ')}{' '}
+                <span className="relative whitespace-nowrap">
+                  <span className="relative z-10 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    {displayTitle.split(' ').slice(-2).join(' ')}
+                  </span>
+                  <span className="absolute bottom-2 left-0 w-full h-3 bg-blue-500/20 -rotate-1 -z-10 blur-sm"></span>
                 </span>
               </h1>
             </AnimatedSection>
 
-            <AnimatedSection
-              className="mb-8"
-              animation="fade-in"
-              delay={400}
-            >
-              <p className="text-lg md:text-xl text-slate-400 leading-relaxed">
+            <AnimatedSection animation="fade-in" delay={200}>
+              <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-8 max-w-lg">
                 {displaySubtitle}
               </p>
             </AnimatedSection>
 
-            {/* Trust Points */}
-            <AnimatedSection
-              className="mb-10"
-              animation="fade-in"
-              delay={500}
-            >
-              <div className="flex flex-wrap gap-4 text-sm">
-                <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-green-400" />
-                  <span>No lock-in contracts</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-green-400" />
-                  <span>Results in 90 days</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-green-400" />
-                  <span>250+ businesses helped</span>
-                </div>
+            <AnimatedSection animation="fade-in" delay={300}>
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <Link
+                  href="/seo-audit"
+                  className="group relative px-8 py-4 bg-white text-slate-950 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] flex items-center justify-center"
+                >
+                  Get Free Audit
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href="/case-studies"
+                  className="px-8 py-4 rounded-full font-bold text-lg text-white border border-white/10 hover:bg-white/5 transition-all flex items-center justify-center group"
+                >
+                  <Play className="w-4 h-4 mr-2 fill-current group-hover:scale-110 transition-transform" />
+                  View Case Studies
+                </Link>
               </div>
             </AnimatedSection>
 
-            <AnimatedSection
-              className="flex flex-col sm:flex-row gap-4"
-              animation="fade-in"
-              delay={600}
-            >
-              <Link
-                href="/seo-audit"
-                className="group relative bg-gradient-to-r from-seo-blue to-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center justify-center shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 hover:scale-[1.02] overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Get Free SEO Audit
-                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-seo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </Link>
-              <Link
-                href="/case-studies"
-                className="group bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center justify-center border border-white/10 hover:border-white/20"
-              >
-                <Play className="h-5 w-5 mr-2" />
-                <span>See Our Results</span>
-              </Link>
+            <AnimatedSection animation="fade-in" delay={400}>
+              <div className="flex items-center gap-8 text-sm font-medium text-slate-500 border-t border-white/5 pt-8">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <span>Results in 90 Days</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <span>No Lock-in Contracts</span>
+                </div>
+              </div>
             </AnimatedSection>
           </div>
 
-          {/* Right Column - Service Carousel */}
-          <AnimatedSection
-            className="hidden lg:block relative z-10"
-            animation="fade-in-right"
-            delay={400}
-          >
-            <FatJoeCarousel />
+          {/* Right Column: 3D Dashboard Preview */}
+          <AnimatedSection animation="fade-in-left" delay={200} className="hidden lg:block perspective-1000">
+            {rightContent || <HeroDashboardPreview />}
           </AnimatedSection>
         </div>
-
-        {/* Scroll indicator */}
-        <AnimatedSection
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          animation="fade-in"
-          delay={1200}
-        >
-          <div className="flex flex-col items-center group cursor-pointer">
-            <span className="text-slate-500 text-sm mb-2 group-hover:text-slate-300 transition-colors">Discover more</span>
-            <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center group-hover:border-white/40 transition-colors">
-              <div className="w-1.5 h-3 bg-white/40 rounded-full mt-2 animate-bounce group-hover:bg-white/60"></div>
-            </div>
-          </div>
-        </AnimatedSection>
       </div>
-
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900 to-transparent z-10" />
     </div>
   );
 };
 
 export default Hero;
-

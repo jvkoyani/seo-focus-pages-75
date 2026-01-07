@@ -58,7 +58,7 @@ const Testimonials = ({ location }: TestimonialsProps) => {
             Client Success Stories
           </span>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-            Don't Take Our Word For It
+            Don&apos;t Take Our Word For It
           </h2>
           <p className="text-xl text-slate-400">
             {location
@@ -82,39 +82,29 @@ const Testimonials = ({ location }: TestimonialsProps) => {
                 </div>
               </div>
 
-              <div className="flex flex-col lg:flex-row gap-8 items-center pt-4">
-                {/* Photo */}
-                <div className="relative">
-                  <div className="w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden ring-4 ring-white/10">
-                    <img
-                      src={testimonials[activeIndex].image}
-                      alt={testimonials[activeIndex].name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* Rating Badge */}
-                  <div className="absolute -bottom-3 -right-3 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl px-3 py-1.5 shadow-lg">
-                    <div className="flex items-center gap-1">
+              <div className="flex flex-col items-center pt-8 text-center">
+
+                {/* Content */}
+                <div className="max-w-3xl mx-auto">
+                  <div className="mb-8 flex justify-center">
+                    <div className="flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full px-4 py-1.5 shadow-lg">
                       {[1, 2, 3, 4, 5].map((star) => (
-                        <Star key={star} className="w-3 h-3 text-white fill-current" />
+                        <Star key={star} className="w-4 h-4 text-white fill-current" />
                       ))}
                     </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="flex-1 text-center lg:text-left">
-                  <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 leading-relaxed italic">
-                    "{testimonials[activeIndex].quote}"
+                  <p className="text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 leading-relaxed font-light italic">
+                    &quot;{testimonials[activeIndex].quote}&quot;
                   </p>
 
                   <div>
-                    <h4 className="text-xl font-display font-bold text-white mb-1">
+                    <h4 className="text-2xl font-display font-bold text-white mb-2">
                       {testimonials[activeIndex].name}
                     </h4>
-                    <div className="flex items-center justify-center lg:justify-start gap-2 text-slate-400">
+                    <div className="flex items-center justify-center gap-2 text-slate-400 text-lg">
                       <span>{testimonials[activeIndex].company}</span>
-                      <span className="w-1 h-1 rounded-full bg-slate-500"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
                       <span>{testimonials[activeIndex].location}</span>
                     </div>
                   </div>
@@ -155,8 +145,8 @@ const Testimonials = ({ location }: TestimonialsProps) => {
                 <button
                   key={index}
                   className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
-                      ? 'w-8 bg-gradient-to-r from-amber-500 to-orange-500'
-                      : 'w-2 bg-white/30 hover:bg-white/50'
+                    ? 'w-8 bg-gradient-to-r from-amber-500 to-orange-500'
+                    : 'w-2 bg-white/30 hover:bg-white/50'
                     }`}
                   onClick={() => {
                     setIsAutoPlaying(false);

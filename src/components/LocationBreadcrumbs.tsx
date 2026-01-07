@@ -59,7 +59,7 @@ const LocationBreadcrumbs = ({ locationSlug, serviceSlug, className = '' }: Loca
 
       {/* Location (City) */}
       <Link
-        href={`/location/${locationData.slug}`}
+        href={`/${locationData.slug}`}
         className="hover:text-seo-blue transition-colors flex items-center"
       >
         <MapPin className="h-3 w-3 mr-1" />

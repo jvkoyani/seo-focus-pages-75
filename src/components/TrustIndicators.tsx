@@ -181,7 +181,7 @@ const TrustIndicators = () => {
                         <p className="text-slate-500 text-sm uppercase tracking-wider font-medium">Trusted & Certified</p>
                     </div>
                     <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                        {logos.map((logo, index) => (
+                        {logos.map((logo) => (
                             <div
                                 key={logo.name}
                                 className="flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"

@@ -1,0 +1,121 @@
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: dental-seo-in-melbourne
+Extracted: industrySlug=dental-seo, citySlug=melbourne
+Found industry: Dental SEO
+Parsing industry-in-city for slug: dental-seo-in-melbourne
+Extracted: industrySlug=dental-seo, citySlug=melbourne
+Found industry: Dental SEO
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: melbourne
+No -in- found
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: chiropractor-seo-in-melbourne
+Extracted: industrySlug=chiropractor-seo, citySlug=melbourne
+Found industry: Chiropractor SEO
+Parsing industry-in-city for slug: chiropractor-seo-in-melbourne
+Extracted: industrySlug=chiropractor-seo, citySlug=melbourne
+Found industry: Chiropractor SEO
+Parsing industry-in-city for slug: chiropractor-seo-in-melbourne
+Extracted: industrySlug=chiropractor-seo, citySlug=melbourne
+Found industry: Chiropractor SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: accountant-seo-in-melbourne
+Extracted: industrySlug=accountant-seo, citySlug=melbourne
+Found industry: Accountant SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO
+Parsing industry-in-city for slug: real-estate-seo-in-melbourne
+Extracted: industrySlug=real-estate-seo, citySlug=melbourne
+Found industry: Real Estate SEO

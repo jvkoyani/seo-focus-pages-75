@@ -3,11 +3,23 @@
 import React from 'react';
 import { ProcessStep } from '@/lib/data';
 import AnimatedSection from '@/components/AnimatedSection';
-import { ArrowRight } from 'lucide-react';
+import { Search, Settings, Link as LinkIcon, Star, Target, BarChart, Users, Zap, LucideIcon, Layers } from 'lucide-react';
 
 interface ServiceProcessProps {
     steps: ProcessStep[];
 }
+
+// Map string identifiers to Lucide icons
+const iconMap: Record<string, LucideIcon> = {
+    search: Search,
+    settings: Settings,
+    link: LinkIcon,
+    star: Star,
+    target: Target,
+    'bar-chart': BarChart,
+    users: Users,
+    zap: Zap,
+};
 
 const ServiceProcess = ({ steps }: ServiceProcessProps) => {
     if (!steps || steps.length === 0) return null;
@@ -16,9 +28,12 @@ const ServiceProcess = ({ steps }: ServiceProcessProps) => {
         <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
                 <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
-                    <span className="text-seo-blue font-semibold tracking-wider uppercase text-sm">Our Process</span>
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mt-2 mb-6">
-                        The 4-Step Blueprint to Dominance
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-600/10 to-cyan-500/10 text-blue-600 border border-blue-600/20 mb-6">
+                        <Layers className="w-4 h-4" />
+                        Our Process
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
+                        The 4-Step Blueprint to <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Dominance</span>
                     </h2>
                     <p className="text-lg text-seo-gray-dark">
                         We don't guess. We follow a battle-tested framework that has generated millions in revenue for our clients.
@@ -30,12 +45,12 @@ const ServiceProcess = ({ steps }: ServiceProcessProps) => {
                     <div className="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-seo-blue/0 via-seo-blue/20 to-seo-blue/0 z-0"></div>
 
                     {steps.map((step, index) => {
-                        const Icon = step.icon;
+                        const Icon = iconMap[step.icon] || Zap;
                         return (
                             <AnimatedSection
                                 key={index}
                                 className="relative z-10"
-                                animation="fade-in-up"
+                                animation="slide-up"
                                 delay={index * 100}
                             >
                                 <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">

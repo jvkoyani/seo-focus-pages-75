@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import FeaturedIn from '@/components/FeaturedIn';
 import PainPoints from '@/components/PainPoints';
 import TrustIndicators from '@/components/TrustIndicators';
 import Services from '@/components/Services';
@@ -12,28 +13,35 @@ import Testimonials from '@/components/Testimonials';
 import AnimatedSection from '@/components/AnimatedSection';
 import IndustrySeoServices from '@/components/IndustrySeoServices';
 import { ArrowRight, MapPin, CheckCircle2, Zap, Target, TrendingUp } from 'lucide-react';
-import { locations, caseStudies } from '@/lib/data';
+import { australianCities, caseStudies, services } from '@/lib/data';
 import CaseStudyPreview from '@/components/CaseStudyPreview';
-import Image from 'next/image';
+import LocationGrid from '@/components/LocationGrid';
+import JsonLd from '@/components/JsonLd';
+import { generateWebSiteSchema, generateServiceSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: 'SEO Agency Australia | Rank #1 on Google',
+  title: 'SEO Agency Australia | #1 Rated SEO Services',
   description: 'Stop losing customers to competitors. Our proven SEO strategies help Australian businesses rank higher, get more traffic & grow revenue. Free audit →',
 };
 
-const Index = () => {
+export default function Home() {
+  const websiteSchema = generateWebSiteSchema();
+  const servicesSchema = services.map(service => generateServiceSchema(service));
+
   // Get featured case studies
   const featuredCaseStudies = caseStudies.slice(0, 2);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <main className="flex min-h-screen flex-col bg-white">
+      <JsonLd data={[websiteSchema, ...servicesSchema]} />
       <Navbar />
       <Hero />
+      <FeaturedIn />
 
-      {/* Pain Points Section - Emotional Connection */}
+      {/* Pain Points Section */}
       <PainPoints />
 
-      {/* Trust Indicators - Statistics & Logos */}
+      {/* Trust Indicators */}
       <TrustIndicators />
 
       {/* Services Section */}
@@ -57,7 +65,7 @@ const Index = () => {
               </span>
             </h2>
             <p className="text-xl text-seo-gray-dark">
-              We've simplified the complex world of SEO into a proven 3-step process
+              We&apos;ve simplified the complex world of SEO into a proven 3-step process
             </p>
           </AnimatedSection>
 
@@ -150,7 +158,7 @@ const Index = () => {
               </span>
             </h2>
             <p className="text-xl text-seo-gray-dark">
-              See how we've helped Australian businesses achieve measurable SEO success
+              See how we&apos;ve helped Australian businesses achieve measurable SEO success
             </p>
           </AnimatedSection>
 
@@ -201,55 +209,12 @@ const Index = () => {
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {locations.map((location, index) => (
-              <AnimatedSection
-                key={location.id}
-                className="group"
-                animation="slide-up"
-                delay={index * 100}
-              >
-                <Link href={`/location/${location.slug}`}>
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-transparent group-hover:-translate-y-1">
-                    <div className="h-48 relative overflow-hidden">
-                      <Image
-                        src={location.image}
-                        alt={location.name}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                      <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                          <MapPin className="text-white h-4 w-4" />
-                        </div>
-                        <span className="text-white font-semibold text-lg">{location.name}</span>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-display font-bold text-seo-dark mb-3 group-hover:text-seo-blue transition-colors">
-                        SEO in {location.name}
-                      </h3>
-                      <p className="text-seo-gray-dark mb-4 line-clamp-2">
-                        {location.description.substring(0, 100)}...
-                      </p>
-                      <span className="inline-flex items-center gap-2 text-seo-blue font-semibold group-hover:gap-3 transition-all">
-                        Explore services
-                        <ArrowRight className="h-4 w-4" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </AnimatedSection>
-            ))}
-          </div>
+          <LocationGrid locations={australianCities.slice(0, 12)} />
         </div>
       </section>
 
       <ContactForm />
       <Footer />
-    </div>
+    </main>
   );
-};
-
-export default Index;
+}

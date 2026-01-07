@@ -1,67 +1,48 @@
-
-import React from 'react';
-import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import AnimatedSection from '@/components/AnimatedSection';
-import { ChevronRight } from 'lucide-react';
-import SitemapClient from '@/components/SitemapClient';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import SitemapClient from "@/components/SitemapClient";
+import AnimatedSection from "@/components/AnimatedSection";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export const metadata = {
-    title: 'Sitemap | Navigate Our Website',
-    description: 'Find all our SEO services, location pages, blog posts and resources in one place. Complete directory of our website.',
+    title: 'HTML Sitemap | SEOfocus',
+    description: 'Navigate through all pages on SEOfocus including services, industries, and locations.',
 };
 
 export default function SitemapPage() {
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col bg-slate-50 font-sans">
             <Navbar />
 
-            <main className="flex-1 pt-32 pb-20">
-                <div className="container mx-auto px-4">
-                    <AnimatedSection animation="fade-in">
-                        <div className="inline-flex items-center text-sm text-seo-gray-dark mb-6">
-                            <Link href="/" className="hover:text-seo-blue transition-colors">Home</Link>
-                            <ChevronRight className="h-4 w-4 mx-2" />
-                            <span>Sitemap</span>
+            {/* Hero Section - Dark Premium Theme */}
+            <section className="pt-32 pb-20 bg-slate-900 relative overflow-hidden">
+                {/* Dynamic Background Elements */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-seo-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+
+                <div className="container mx-auto px-4 relative z-10">
+                    <AnimatedSection className="mb-8" animation="fade-in">
+                        <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
+                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                            <ChevronRight className="h-3 w-3" />
+                            <span className="text-seo-blue font-medium">Sitemap</span>
                         </div>
                     </AnimatedSection>
 
-                    <AnimatedSection animation="fade-in">
-                        <h1 className="text-4xl font-display font-bold text-seo-dark mb-8 text-center">
-                            Complete Site Map
+                    <AnimatedSection animation="slide-up">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
+                            Site <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Overview</span>
                         </h1>
-                        <p className="text-lg text-center text-seo-gray-dark max-w-3xl mx-auto mb-12">
-                            Browse our comprehensive sitemap to find all pages and services available across Australia.
+                        <p className="text-xl text-slate-300 max-w-2xl leading-relaxed">
+                            Navigate through our comprehensive list of services, industries, and locations across Australia.
                         </p>
                     </AnimatedSection>
-
-                    <SitemapClient />
-
-                    <section>
-                        <div className="bg-seo-blue-light/10 rounded-xl p-8 text-center">
-                            <h2 className="text-2xl font-bold mb-4">Looking for Something Specific?</h2>
-                            <p className="mb-6 text-seo-gray-dark">
-                                If you can't find what you're looking for, feel free to contact us directly.
-                            </p>
-                            <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                <Link
-                                    href="/contact"
-                                    className="bg-seo-blue text-white px-6 py-3 rounded-md hover:bg-seo-blue-light transition-colors"
-                                >
-                                    Contact Us
-                                </Link>
-                                <Link
-                                    href="/free-consultation"
-                                    className="bg-white border border-seo-blue text-seo-blue px-6 py-3 rounded-md hover:bg-seo-blue/5 transition-colors"
-                                >
-                                    Get a Free Consultation
-                                </Link>
-                            </div>
-                        </div>
-                    </section>
                 </div>
-            </main>
+            </section>
+
+            <SitemapClient />
 
             <Footer />
         </div>

@@ -56,6 +56,10 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
+  h1 {
+    @apply font-mackinac font-bold;
+  }
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;

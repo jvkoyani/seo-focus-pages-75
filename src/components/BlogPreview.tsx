@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { BlogPostData } from '@/lib/data';
@@ -18,10 +19,11 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
       delay={delay}
     >
       <div className="h-48 overflow-hidden">
-        <img 
-          src={post.image} 
-          alt={post.title} 
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
       <div className="p-6 flex-1 flex flex-col">
@@ -42,8 +44,8 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
         <p className="text-seo-gray-dark mb-4 flex-1">
           {post.excerpt}
         </p>
-        <Link 
-          href={`/blog/${post.slug}`} 
+        <Link
+          href={`/blog/${post.slug}`}
           className="inline-flex items-center text-seo-blue font-medium group mt-auto"
         >
           <span className="border-b border-seo-blue/30 group-hover:border-seo-blue transition-colors">

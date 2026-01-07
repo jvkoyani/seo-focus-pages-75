@@ -20,14 +20,15 @@ const ServiceFAQ = ({ faqs }: ServiceFAQProps) => {
                 <div className="flex flex-col lg:flex-row gap-12">
                     <AnimatedSection className="lg:w-1/3" animation="fade-in-right">
                         <div className="sticky top-32">
-                            <div className="w-12 h-12 rounded-xl bg-seo-blue/10 flex items-center justify-center mb-6">
-                                <HelpCircle className="w-6 h-6 text-seo-blue" />
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-600/10 to-violet-500/10 text-indigo-600 border border-indigo-600/20 mb-6">
+                                <HelpCircle className="w-4 h-4" />
+                                Support
                             </div>
                             <h2 className="text-3xl font-display font-bold text-seo-dark mb-4">
-                                Frequently Asked Questions
+                                Frequently Asked <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">Questions</span>
                             </h2>
                             <p className="text-seo-gray-dark mb-6">
-                                Everything you need to know about our service. Can't find the answer you're looking for?
+                                Everything you need to know about our service. Can&apos;t find the answer you&apos;re looking for?
                             </p>
                             <a href="/contact" className="text-seo-blue font-semibold hover:underline">
                                 Contact our team directly →
@@ -40,7 +41,7 @@ const ServiceFAQ = ({ faqs }: ServiceFAQProps) => {
                             {faqs.map((faq, index) => (
                                 <AnimatedSection
                                     key={index}
-                                    animation="fade-in-up"
+                                    animation="slide-up"
                                     delay={index * 50}
                                 >
                                     <div

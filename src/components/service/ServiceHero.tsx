@@ -46,7 +46,7 @@ const ServiceHero = ({ title, description, icon }: ServiceHeroProps) => {
                                     Get My Free Audit
                                     <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
-                                <Button size="lg" variant="outline" className="border-slate-700 text-white hover:bg-white/5 h-14 px-8 text-lg rounded-full">
+                                <Button size="lg" variant="outline" className="bg-transparent border-slate-700 text-white hover:bg-white/10 hover:text-white h-14 px-8 text-lg rounded-full">
                                     View Case Studies
                                 </Button>
                             </div>

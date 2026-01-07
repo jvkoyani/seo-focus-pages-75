@@ -38,6 +38,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // eslint-disable-next-line
   useEffect(() => {
     setIsMenuOpen(false);
     setIsLocationsOpen(false);
@@ -55,19 +56,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center" onClick={handleLinkClick}>
-            <span className="text-2xl font-display font-bold text-seo-dark">
-              SEO<span className="text-seo-blue">focus</span>
-            </span>
+            <img src="/logo.png" alt="SEOfocus" className="h-10 md:h-12 w-auto" />
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/"
-              className="text-seo-dark hover:text-seo-blue font-medium transition-colors"
-              onClick={handleLinkClick}
-            >
-              Home
-            </Link>
+
             <div className="relative">
               <button
                 onClick={toggleServices}
@@ -161,7 +154,7 @@ const Navbar = () => {
                   {locations.map((loc) => (
                     <Link
                       key={loc.id}
-                      href={`/location/${loc.slug}`}
+                      href={`/${loc.slug}`}
                       className="block px-4 py-2 text-sm text-seo-dark hover:bg-seo-gray-light hover:text-seo-blue transition-colors"
                       onClick={handleLinkClick}
                     >
@@ -213,19 +206,13 @@ const Navbar = () => {
             >
               About
             </Link>
-            <Link
-              href="/contact"
-              className="text-seo-dark hover:text-seo-blue font-medium transition-colors"
-              onClick={handleLinkClick}
-            >
-              Contact
-            </Link>
+
             <Link
               href="/contact"
               className="bg-seo-blue hover:bg-seo-blue-light text-white font-medium py-2 px-5 rounded-md transition-colors button-hover-effect"
               onClick={handleLinkClick}
             >
-              Get Started
+              Contact
             </Link>
           </div>
 
@@ -244,13 +231,7 @@ const Navbar = () => {
           style={{ top: '64px' }}
         >
           <div className="flex flex-col p-6 space-y-6 overflow-y-auto max-h-[calc(100vh-64px)]">
-            <Link
-              href="/"
-              className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors"
-              onClick={handleLinkClick}
-            >
-              Home
-            </Link>
+
 
             <div>
               <button
@@ -322,7 +303,7 @@ const Navbar = () => {
                 {locations.map((loc) => (
                   <Link
                     key={loc.id}
-                    href={`/location/${loc.slug}`}
+                    href={`/${loc.slug}`}
                     className="block py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
                     onClick={handleLinkClick}
                   >
@@ -367,19 +348,13 @@ const Navbar = () => {
             >
               About
             </Link>
-            <Link
-              href="/contact"
-              className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors"
-              onClick={handleLinkClick}
-            >
-              Contact
-            </Link>
+
             <Link
               href="/contact"
               className="bg-seo-blue text-white text-center py-3 px-5 rounded-md transition-colors button-hover-effect"
               onClick={handleLinkClick}
             >
-              Get Started
+              Contact
             </Link>
           </div>
         </div>

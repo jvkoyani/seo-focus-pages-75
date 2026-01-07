@@ -149,7 +149,7 @@ const State = ({ countrySlug, stateSlug }: StateProps) => {
                                         {countyLocations.map(location => (
                                             <Link
                                                 key={location.id}
-                                                href={`/location/${location.slug}`}
+                                                href={`/${location.slug}`}
                                                 className="flex items-center p-4 rounded-md hover:bg-gray-50 border border-gray-100 transition-colors"
                                             >
                                                 <MapPin className="h-5 w-5 text-seo-blue mr-3" />

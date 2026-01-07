@@ -30,7 +30,7 @@ const ServiceContent = ({ content }: ServiceContentProps) => {
 
                     <div className="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-seo-blue prose-img:rounded-xl">
                         {content.sections.map((section, index) => (
-                            <AnimatedSection key={index} animation="fade-in-up" delay={index * 100} className="mb-12">
+                            <AnimatedSection key={index} animation="slide-up" delay={index * 100} className="mb-12">
                                 <h3 className="text-2xl font-bold text-seo-dark mb-4 relative pl-6">
                                     <span className="absolute left-0 top-1 w-1 h-6 bg-seo-blue rounded-full"></span>
                                     {section.title}

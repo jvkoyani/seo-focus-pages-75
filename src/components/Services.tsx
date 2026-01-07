@@ -37,9 +37,10 @@ const gradientMap: Record<string, string> = {
 interface ServicesProps {
   location?: string;
   locationSlug?: string;
+  title?: React.ReactNode;
 }
 
-const Services = ({ location, locationSlug }: ServicesProps) => {
+const Services = ({ location, locationSlug, title }: ServicesProps) => {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* Background decoration */}
@@ -58,9 +59,9 @@ const Services = ({ location, locationSlug }: ServicesProps) => {
             <span className="text-sm font-semibold text-seo-blue">Our Services</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-seo-dark mb-6">
-            {location
+            {title ? title : (location
               ? <>SEO Services in <span className="text-seo-blue">{location}</span></>
-              : <>Comprehensive <span className="text-seo-blue">SEO Solutions</span></>}
+              : <>Comprehensive <span className="text-seo-blue">SEO Solutions</span></>)}
           </h2>
           <p className="text-xl text-seo-gray-dark">
             {location

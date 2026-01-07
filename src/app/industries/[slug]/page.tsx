@@ -1,7 +1,8 @@
-"use client";
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+import Image from 'next/image';
 import { ArrowRight, Check, CheckCircle, Star, Building, Award, ShoppingBag } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,47 +11,14 @@ import ContactForm from '@/components/ContactForm';
 import { industries, testimonials } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { notFound } from 'next/navigation';
 
-export default function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
-    const [slug, setSlug] = React.useState<string | null>(null);
-    const [industry, setIndustry] = React.useState<typeof industries[0] | undefined>(undefined);
-
-    React.useEffect(() => {
-        params.then(p => {
-            setSlug(p.slug);
-            setIndustry(industries.find(i => i.slug === p.slug));
-        });
-    }, [params]);
-
-    // Since we are using "use client", we need to handle async params differently or use use.
-    // But for simplicity in client component, useEffect is fine, or we can make it a server component.
-    // The legacy component used hooks like useNavigate, so it was client-side.
-    // However, for SEO, server component is better.
-    // But it uses `useEffect` for scroll.
-    // I'll make it a server component if possible, but `AnimatedSection` might need client? `AnimatedSection` is likely client.
-    // If I make this page a Server Component, I can't use `useEffect`.
-    // But `AnimatedSection` handles animation.
-    // The scroll to top is handled by Next.js router usually.
-    // So I'll try to make it a Server Component.
-    // But wait, `handleIndustryLinkClick` used `navigate`. I can just use `Link`.
-
-    // Let's try to make it a Server Component.
-    // If I need client features, I can add "use client" to specific parts or the whole page.
-    // Given the legacy code was fully client-side, making it server-side is a good upgrade.
-    // `AnimatedSection` is imported. If it's a client component, it's fine to use in server component.
-
-    // Re-evaluating:
-    // I will make it a Server Component.
-    // I will remove `useEffect` for scroll (Next.js handles it).
-    // I will remove `useNavigate`.
-
-    // But wait, I need to await params.
-    // So:
-    return <IndustryPageContent params={params} />;
+export async function generateStaticParams() {
+    return industries.map((industry) => ({
+        slug: industry.slug,
+    }));
 }
 
-async function IndustryPageContent({ params }: { params: Promise<{ slug: string }> }) {
+export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const industry = industries.find(i => i.slug === slug);
 
@@ -274,16 +242,17 @@ async function IndustryPageContent({ params }: { params: Promise<{ slug: string 
                                 <div className="md:w-1/3">
                                     <div className="relative w-48 h-48 mx-auto">
                                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-seo-blue to-purple-600 blur-lg opacity-30"></div>
-                                        <img
+                                        <Image
                                             src={testimonials[0].image}
                                             alt={testimonials[0].name}
-                                            className="relative z-10 w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                                            fill
+                                            className="relative z-10 object-cover rounded-full border-4 border-white shadow-lg"
                                         />
                                     </div>
                                 </div>
                                 <div className="md:w-2/3">
                                     <blockquote className="text-xl italic text-seo-gray-dark mb-6">
-                                        "Since implementing their {industry.title} strategy, our practice has seen a significant increase in new client inquiries and conversion rates. The team truly understands the unique challenges in our industry."
+                                        &quot;Since implementing their {industry.title} strategy, our practice has seen a significant increase in new client inquiries and conversion rates. The team truly understands the unique challenges in our industry.&quot;
                                     </blockquote>
                                     <div className="flex items-center">
                                         <div>

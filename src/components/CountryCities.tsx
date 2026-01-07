@@ -54,7 +54,7 @@ const CountryCities = () => {
                 {cities.slice(0, 8).map((city, cityIndex) => (
                   <Link
                     key={city.id}
-                    href={`/location/${city.slug}`}
+                    href={`/${city.slug}`}
                     className="flex items-center p-2 rounded-md hover:bg-seo-blue/5 transition-colors group"
                   >
                     <MapPin className="h-4 w-4 text-seo-gray-medium group-hover:text-seo-blue transition-colors mr-1 flex-shrink-0" />

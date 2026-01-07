@@ -36,7 +36,14 @@ interface PageProps {
     }>;
 }
 
+export async function generateStaticParams() {
+    return methodologies.map((methodology) => ({
+        slug: methodology.slug,
+    }));
+}
+
 export async function generateMetadata({ params }: PageProps) {
+
     const { slug } = await params;
     const methodology = methodologies.find(m => m.slug === slug);
 

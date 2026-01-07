@@ -1,155 +1,147 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import AnimatedSection from './AnimatedSection';
-import { allAustralianCities } from '@/lib/locationData';
-import { ArrowRight, MapPin, TrendingUp, Award, Users, Activity, Star, Clock, Building } from 'lucide-react';
+import { allAustralianCities, Location } from '@/lib/locationData';
+import { MapPin, Search, ChevronDown, ChevronUp } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import AnimatedSection from './AnimatedSection';
 
 interface LocationLinksProps {
   service: {
     title: string;
     slug: string;
   };
-  limit?: number;
   excludeLocation?: string;
 }
 
-const LocationLinks = ({ service, limit = 9, excludeLocation }: LocationLinksProps) => {
-  // Filter out the excluded location if provided
-  const filteredLocations = excludeLocation
-    ? allAustralianCities.filter(loc => loc.slug !== excludeLocation)
-    : allAustralianCities;
+const LocationLinks = ({ service, excludeLocation }: LocationLinksProps) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  // Only display the specified number of locations (defaults to 9)
-  const displayedLocations = filteredLocations.slice(0, limit);
+  // Filter locations based on search and excludeLocation
+  const filteredLocations = useMemo(() => {
+    let locations = allAustralianCities;
 
-  // Get a location image, with fallback to placeholder
-  const getLocationImage = (location: typeof allAustralianCities[0]) => {
-    // If location has an image defined, use it
-    if (location.image) {
-      return location.image;
+    if (excludeLocation) {
+      locations = locations.filter(loc => loc.slug !== excludeLocation);
     }
 
-    // Otherwise generate a placeholder image with the location name
-    return `/service-images/${service.slug}.jpg`;
-  };
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      locations = locations.filter(loc =>
+        loc.name.toLowerCase().includes(query) ||
+        loc.state.toLowerCase().includes(query)
+      );
+    }
+
+    return locations;
+  }, [searchQuery, excludeLocation]);
+
+  // Group locations by state
+  const locationsByState = useMemo(() => {
+    const groups: Record<string, Location[]> = {};
+    filteredLocations.forEach(loc => {
+      if (!groups[loc.state]) {
+        groups[loc.state] = [];
+      }
+      groups[loc.state].push(loc);
+    });
+    return groups;
+  }, [filteredLocations]);
+
+  const sortedStates = Object.keys(locationsByState).sort();
+  const hasResults = filteredLocations.length > 0;
+
+  // If searching, always expand
+  const showAll = isExpanded || searchQuery.length > 0;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {displayedLocations.map((location, index) => (
-        <AnimatedSection
-          key={location.id}
-          className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden group relative"
-          animation="fade-in"
-          delay={index * 100}
-        >
-          {/* Top badge */}
-          <div className="absolute top-4 right-4 z-20">
-            <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium rounded-full shadow-sm text-seo-blue">
-              {getRandomBadge()}
-            </span>
-          </div>
+    <div className="w-full bg-white rounded-2xl border border-slate-100 p-6 md:p-8 shadow-sm">
+      <div className="flex flex-col md:flex-row gap-6 items-center justify-between mb-8">
+        <div>
+          <h3 className="text-xl font-bold text-seo-dark flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-seo-blue" />
+            Local SEO Services Near You
+          </h3>
+          <p className="text-sm text-slate-500 mt-1">
+            Serving businesses across all Australian states and territories.
+          </p>
+        </div>
 
-          <div className="relative h-52 overflow-hidden">
-            <img
-              src={getLocationImage(location)}
-              alt={location.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full p-4">
-              <div className="flex items-center mb-2">
-                <MapPin className="h-5 w-5 text-white mr-2" />
-                <span className="text-white font-medium text-lg">{location.name}</span>
-              </div>
-              <h3 className="text-xl font-display font-bold text-white">
-                {service.title} in {location.name}
-              </h3>
-            </div>
-          </div>
+        <div className="relative w-full md:w-64">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+          <Input
+            placeholder="Find your city..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-9 h-9 text-sm bg-slate-50 border-slate-200 focus:bg-white transition-colors"
+          />
+        </div>
+      </div>
 
-          <div className="p-6">
-            <div className="mb-4 bg-gradient-to-r from-seo-blue/5 to-seo-blue/0 p-3 rounded-lg border-l-2 border-seo-blue">
-              <p className="text-seo-gray-dark">
-                Customized {service.title.toLowerCase()} solutions for {location.name} businesses to boost rankings and drive targeted traffic.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-3 gap-2 mb-6">
-              {getLocationAttributes(index).map((attr, i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "flex flex-col items-center justify-center p-2 rounded-lg group",
-                    attr.bgColor,
-                    "hover:shadow-md transition-all duration-300 cursor-pointer"
-                  )}
-                >
-                  <div className="transition-transform duration-300 group-hover:scale-110">
-                    {attr.icon}
-                  </div>
-                  <span className={cn("text-xs font-medium mt-1 text-center", attr.textColor)}>
-                    {attr.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between mb-4 border-t border-b border-gray-100 py-2">
-              <span className="text-xs text-seo-gray-dark">Success rate</span>
-              <div className="flex items-center">
-                <div className="w-20 h-2 bg-gray-100 rounded-full overflow-hidden mr-2">
-                  <div
-                    className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"
-                    style={{ width: `${85 + (index * 5) % 15}%` }}
-                  ></div>
-                </div>
-                <span className="text-xs font-medium text-green-600">{85 + (index * 5) % 15}%</span>
+      {hasResults ? (
+        <div className={cn(
+          "space-y-8 transition-all duration-500 ease-in-out overflow-hidden",
+          !showAll && "max-h-[300px] relative"
+        )}>
+          {sortedStates.map((state) => (
+            <div key={state}>
+              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-seo-blue/40"></span>
+                {state}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {locationsByState[state].map((location) => (
+                  <Link
+                    key={location.id}
+                    href={`/location/${location.slug}/${service.slug}`}
+                    className="inline-flex items-center px-3 py-1.5 rounded-md text-sm text-slate-600 bg-slate-50 hover:bg-seo-blue/10 hover:text-seo-blue transition-colors border border-transparent hover:border-seo-blue/20"
+                  >
+                    {location.name}
+                  </Link>
+                ))}
               </div>
             </div>
+          ))}
 
-            <Link
-              href={`/${service.slug}-${location.slug}`}
-              className="inline-flex items-center justify-center bg-seo-blue text-white px-5 py-3 rounded-md hover:bg-seo-blue-light transition-colors w-full group"
-            >
-              <span>Explore {location.name} strategies</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
-        </AnimatedSection>
-      ))}
+          {/* Fade Overlay when collapsed */}
+          {!showAll && (
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent flex items-end justify-center pb-4">
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="text-center py-8">
+          <p className="text-slate-500 text-sm">No locations found matching "{searchQuery}"</p>
+        </div>
+      )}
+
+      {/* Expand/Collapse Button */}
+      {hasResults && !searchQuery && (
+        <div className="mt-6 flex justify-center">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-slate-500 hover:text-seo-blue gap-2"
+          >
+            {isExpanded ? (
+              <>
+                Show Less <ChevronUp className="w-4 h-4" />
+              </>
+            ) : (
+              <>
+                View All Locations <ChevronDown className="w-4 h-4" />
+              </>
+            )}
+          </Button>
+        </div>
+      )}
     </div>
   );
-};
-
-const getRandomBadge = () => {
-  const badges = ['Top Performer', 'High ROI', 'Best Results', 'Recommended', 'Fast Growth'];
-  return badges[Math.floor(Math.random() * badges.length)];
-};
-
-const getLocationAttributes = (index: number) => {
-  // Create different attributes based on index to add variety
-  const attributes = [
-    [
-      { icon: <TrendingUp className="h-4 w-4 text-green-600" />, label: "High Growth", bgColor: "bg-green-50", textColor: "text-green-600" },
-      { icon: <Users className="h-4 w-4 text-blue-600" />, label: "Large Market", bgColor: "bg-blue-50", textColor: "text-blue-600" },
-      { icon: <Award className="h-4 w-4 text-purple-600" />, label: "Top Results", bgColor: "bg-purple-50", textColor: "text-purple-600" }
-    ],
-    [
-      { icon: <Activity className="h-4 w-4 text-red-600" />, label: "Competitive", bgColor: "bg-red-50", textColor: "text-red-600" },
-      { icon: <Star className="h-4 w-4 text-amber-600" />, label: "5-Star", bgColor: "bg-amber-50", textColor: "text-amber-600" },
-      { icon: <TrendingUp className="h-4 w-4 text-green-600" />, label: "Growing", bgColor: "bg-green-50", textColor: "text-green-600" }
-    ],
-    [
-      { icon: <Clock className="h-4 w-4 text-blue-600" />, label: "Fast Results", bgColor: "bg-blue-50", textColor: "text-blue-600" },
-      { icon: <Building className="h-4 w-4 text-slate-600" />, label: "Business Hub", bgColor: "bg-slate-50", textColor: "text-slate-600" },
-      { icon: <Activity className="h-4 w-4 text-orange-600" />, label: "Dynamic", bgColor: "bg-orange-50", textColor: "text-orange-600" }
-    ]
-  ];
-
-  return attributes[index % 3];
 };
 
 export default LocationLinks;

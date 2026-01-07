@@ -8,7 +8,17 @@ import BlogPreview from '@/components/BlogPreview';
 import { blogPosts } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
+import JsonLd from '@/components/JsonLd';
+import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/schema';
+
+export async function generateStaticParams() {
+    return blogPosts.map((post) => ({
+        slug: post.slug,
+    }));
+}
+
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+
     const { slug } = await params;
     const post = blogPosts.find(p => p.slug === slug);
 
@@ -25,8 +35,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         )
         .slice(0, 3);
 
+    const articleSchema = generateArticleSchema(post);
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: 'Home', url: '/' },
+        { name: 'Blog', url: '/blogs' },
+        { name: post.title, url: `/blogs/${post.slug}` }
+    ]);
+
     return (
         <div className="min-h-screen flex flex-col">
+            <JsonLd data={[articleSchema, breadcrumbSchema]} />
             <Navbar />
 
             {/* Hero Section */}

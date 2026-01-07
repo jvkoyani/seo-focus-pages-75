@@ -1,13 +1,13 @@
-
 'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { MapPin, ExternalLink, Layers, ChevronRight, Search } from 'lucide-react';
+import { MapPin, Layers, ExternalLink, Search, ChevronDown, ChevronUp, Briefcase, Building, FileText, Compass } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { allAustralianCities } from '@/lib/locationData';
-import { services } from '@/lib/data';
+import { services, industries } from '@/lib/data';
+import AnimatedSection from '@/components/AnimatedSection';
 
 export default function SitemapClient() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -17,7 +17,6 @@ export default function SitemapClient() {
         const groups: Record<string, typeof allAustralianCities> = {};
 
         allAustralianCities.forEach(city => {
-            // Include all cities, even those with "Various" state
             const state = city.state === "Various" ? "Other Locations" : city.state;
 
             if (!groups[state]) {
@@ -51,259 +50,260 @@ export default function SitemapClient() {
 
     // Get major cities for popular combinations
     const majorCities = useMemo(() => {
-        // Return the first 15 cities with full metadata (excluding "Various" state)
         return allAustralianCities
             .filter(city => city.description && city.state !== "Various")
             .slice(0, 15);
     }, []);
 
     return (
-        <>
-            <section className="mb-16">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2">Main Sections</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <Link href="/" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Home</span>
-                    </Link>
-                    <Link href="/about" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>About Us</span>
-                    </Link>
-                    <Link href="/services" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Services</span>
-                    </Link>
-                    <Link href="/industries" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Industries</span>
-                    </Link>
-                    <Link href="/blogs" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Blogs</span>
-                    </Link>
-                    <Link href="/case-studies" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Case Studies</span>
-                    </Link>
-                    <Link href="/contact" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Contact</span>
-                    </Link>
-                    <Link href="/free-consultation" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Free Consultation</span>
-                    </Link>
-                    <Link href="/sitemap.xml" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>XML Sitemap</span>
-                    </Link>
-                    <Link href="/location-sitemap" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center">
-                        <Layers className="h-5 w-5 mr-3 text-seo-blue" />
-                        <span>Location Directory</span>
-                    </Link>
-                </div>
-            </section>
-
-            <section className="mb-16">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2">Our Services</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    {services.map(service => (
-                        <Link
-                            key={service.id}
-                            href={`/service/${service.slug}`}
-                            className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow"
-                        >
-                            <h3 className="font-semibold text-lg mb-2">{service.title}</h3>
-                            <p className="text-sm text-seo-gray-dark">{service.description}</p>
-                        </Link>
-                    ))}
-                </div>
-            </section>
-
-            <section className="mb-16">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2">Our Methodology</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    <Link href="/methodology/research-analysis" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow">
-                        <h3 className="font-semibold text-lg mb-2">Research & Analysis</h3>
-                    </Link>
-                    <Link href="/methodology/strategic-planning" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow">
-                        <h3 className="font-semibold text-lg mb-2">Strategic Planning</h3>
-                    </Link>
-                    <Link href="/methodology/implementation" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow">
-                        <h3 className="font-semibold text-lg mb-2">Implementation</h3>
-                    </Link>
-                    <Link href="/methodology/monitoring-optimization" className="p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow">
-                        <h3 className="font-semibold text-lg mb-2">Monitoring & Optimization</h3>
-                    </Link>
-                </div>
-            </section>
-
-            <section className="mb-8">
-                <div className="flex items-center gap-4 max-w-md mx-auto">
-                    <Input
-                        type="text"
-                        placeholder="Search for a location..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="flex-1"
-                    />
-                    <Button
-                        variant="ghost"
-                        className="px-3"
-                        onClick={() => setSearchTerm('')}
-                        disabled={!searchTerm}
-                    >
-                        Clear
-                    </Button>
-                </div>
-            </section>
-
-            <section className="mb-16">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2">Locations We Serve</h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {states.map(state => {
-                        const filteredLocations = filterLocations(stateGroups[state]);
-                        if (filteredLocations.length === 0) return null;
-
-                        const isExpanded = expandedStates[state] || false;
-                        const displayLocations = isExpanded ? filteredLocations : filteredLocations.slice(0, 50);
-                        const hasMore = filteredLocations.length > 50;
-
-                        return (
-                            <div key={state} className="bg-white rounded-lg shadow-sm p-6">
-                                <h3 className="text-xl font-semibold mb-4 border-b pb-2">
-                                    <Link href={state !== "Other Locations" ?
-                                        `/australia/${state.toLowerCase().replace(/\s+/g, '-')}` :
-                                        "#"}
-                                        className={state !== "Other Locations" ? "hover:text-seo-blue" : ""}
-                                    >
-                                        {state}
-                                    </Link>
-                                    <span className="text-sm text-seo-gray-dark ml-2">({filteredLocations.length})</span>
-                                </h3>
-
-                                <div className="h-[300px] overflow-y-auto pr-2">
-                                    <div className="grid grid-cols-1 gap-2">
-                                        {displayLocations.map(city => (
-                                            <Link
-                                                key={city.id}
-                                                href={`/location/${city.slug}`}
-                                                className="flex items-center p-2 hover:bg-seo-gray-light rounded transition-colors"
-                                            >
-                                                <MapPin className="h-4 w-4 mr-2 text-seo-blue flex-shrink-0" />
-                                                <span className="truncate">{city.name}</span>
-                                            </Link>
-                                        ))}
-                                    </div>
-
-                                    {hasMore && (
-                                        <div className="mt-3 text-center">
-                                            <Button
-                                                variant="link"
-                                                onClick={() => toggleStateExpansion(state)}
-                                                className="text-seo-blue"
-                                            >
-                                                {isExpanded ? "Show less" : `Show all ${filteredLocations.length} locations`}
-                                            </Button>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {state !== "Other Locations" && (
-                                    <div className="mt-4 text-right">
-                                        <Link href={`/australia/${state.toLowerCase().replace(/\s+/g, '-')}`} className="text-sm text-seo-blue hover:underline">
-                                            All {state} locations
-                                        </Link>
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
-            </section>
-
-            <section className="mb-16">
-                <h2 className="text-2xl font-bold mb-6 border-b pb-2">Popular Service-Location Combinations</h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.slice(0, 6).map(service => (
-                        <div key={service.id} className="bg-white rounded-lg shadow-sm p-6">
-                            <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                            <div className="h-[200px] overflow-y-auto pr-2">
-                                <div className="grid grid-cols-1 gap-2">
-                                    {majorCities.map(city => {
-                                        return (
-                                            <Link
-                                                key={`${service.slug}-${city.slug}`}
-                                                href={`/location/${city.slug}/${service.slug}`}
-                                                className="flex items-center text-sm hover:text-seo-blue"
-                                            >
-                                                <ExternalLink className="h-3 w-3 mr-2 flex-shrink-0" />
-                                                <span className="truncate">{service.title} in {city.name}</span>
-                                            </Link>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                            <div className="mt-4 pt-2 border-t text-center">
-                                <Link href={`/service/${service.slug}`} className="text-sm text-seo-blue hover:underline">
-                                    View all {service.title} services
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-8 p-6 bg-white rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold mb-4">All Service-Location Combinations</h3>
-                    <p className="text-seo-gray-dark mb-4">
-                        We provide specialized SEO services for all {allAustralianCities.length} locations across Australia.
-                        Each of our {services.length} services is available in every location, creating a total of {services.length * allAustralianCities.length} unique service-location combinations.
-                    </p>
-                    <div className="bg-seo-gray-light p-3 rounded mb-4 font-mono text-sm">
-                        /location/{"{location-slug}"}/{"{service-slug}"}
+        <main className="flex-1 py-16 bg-slate-50">
+            <div className="container mx-auto px-4">
+                {/* Main Navigation Section */}
+                <AnimatedSection animation="fade-in" className="mb-16">
+                    <div className="text-center mb-10">
+                        <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-blue-100 text-blue-700 mb-4">
+                            Quick Navigation
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+                            Main <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Sections</span>
+                        </h2>
                     </div>
-                    <p className="text-seo-gray-dark mb-6">
-                        For example, to access our services in major Australian cities:
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                        {majorCities.slice(0, 6).map(city => (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        {[
+                            { href: "/", label: "Home", icon: <Layers className="h-5 w-5" /> },
+                            { href: "/about", label: "About Us", icon: <FileText className="h-5 w-5" /> },
+                            { href: "/services", label: "Services", icon: <Briefcase className="h-5 w-5" /> },
+                            { href: "/industries", label: "Industries", icon: <Building className="h-5 w-5" /> },
+                            { href: "/blogs", label: "Blogs", icon: <FileText className="h-5 w-5" /> },
+                            { href: "/case-studies", label: "Case Studies", icon: <FileText className="h-5 w-5" /> },
+                            { href: "/contact", label: "Contact", icon: <Compass className="h-5 w-5" /> },
+                            { href: "/free-consultation", label: "Free Consultation", icon: <Compass className="h-5 w-5" /> },
+                            { href: "/seo-audit", label: "SEO Audit", icon: <Search className="h-5 w-5" /> },
+                            { href: "/glossary", label: "Glossary", icon: <FileText className="h-5 w-5" /> },
+                        ].map((item) => (
                             <Link
-                                key={city.id}
-                                href={`/location/${city.slug}/local-seo`}
-                                className="p-2 bg-seo-gray-light rounded hover:bg-seo-gray/20 transition-colors flex items-center"
+                                key={item.href}
+                                href={item.href}
+                                className="group p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"
                             >
-                                <ExternalLink className="h-4 w-4 mr-2 text-seo-blue" />
-                                <span>/location/{city.slug}/local-seo</span>
+                                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-3 text-blue-600 group-hover:bg-blue-100 group-hover:scale-110 transition-all duration-300">
+                                    {item.icon}
+                                </div>
+                                <span className="font-medium text-slate-700 group-hover:text-blue-600 transition-colors">{item.label}</span>
                             </Link>
                         ))}
                     </div>
+                </AnimatedSection>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                        {services.slice(0, 6).map(service => {
+                {/* Services Section */}
+                <AnimatedSection animation="fade-in" delay={100} className="mb-16">
+                    <div className="text-center mb-10">
+                        <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-purple-100 text-purple-700 mb-4">
+                            SEO Solutions
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+                            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Services</span>
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {services.map(service => (
+                            <Link
+                                key={service.id}
+                                href={`/service/${service.slug}`}
+                                className="group p-6 bg-white rounded-2xl border border-slate-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300"
+                            >
+                                <h3 className="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">{service.title}</h3>
+                                <p className="text-slate-600 text-sm line-clamp-2">{service.description}</p>
+                            </Link>
+                        ))}
+                    </div>
+                </AnimatedSection>
+
+                {/* Industries Section */}
+                <AnimatedSection animation="fade-in" delay={150} className="mb-16">
+                    <div className="text-center mb-10">
+                        <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-green-100 text-green-700 mb-4">
+                            Industry Expertise
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+                            Industries <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600">We Serve</span>
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {industries.map(industry => (
+                            <Link
+                                key={industry.id}
+                                href={`/industry/${industry.slug}`}
+                                className="group p-4 bg-white rounded-xl border border-slate-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 text-center"
+                            >
+                                <span className="font-medium text-slate-700 group-hover:text-green-600 transition-colors">{industry.title}</span>
+                            </Link>
+                        ))}
+                    </div>
+                </AnimatedSection>
+
+                {/* Locations Section */}
+                <AnimatedSection animation="fade-in" delay={200} className="mb-16">
+                    <div className="text-center mb-10">
+                        <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-orange-100 text-orange-700 mb-4">
+                            Australia Wide
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+                            Locations <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">We Serve</span>
+                        </h2>
+                        <p className="text-slate-600 max-w-2xl mx-auto mb-6">
+                            Serving {allAustralianCities.length.toLocaleString()} locations across Australia
+                        </p>
+                    </div>
+
+                    {/* Search Bar */}
+                    <div className="flex items-center gap-4 max-w-lg mx-auto mb-10">
+                        <div className="relative flex-1">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                            <Input
+                                type="text"
+                                placeholder="Search for a location..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="pl-10 h-12 bg-white border-slate-300 focus:border-orange-400 focus:ring-orange-400/20"
+                            />
+                        </div>
+                        {searchTerm && (
+                            <Button
+                                variant="outline"
+                                onClick={() => setSearchTerm('')}
+                            >
+                                Clear
+                            </Button>
+                        )}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {states.map(state => {
+                            const filteredLocations = filterLocations(stateGroups[state]);
+                            if (filteredLocations.length === 0) return null;
+
+                            const isExpanded = expandedStates[state] || false;
+                            const displayLocations = isExpanded ? filteredLocations : filteredLocations.slice(0, 30);
+                            const hasMore = filteredLocations.length > 30;
+
                             return (
-                                <Link
-                                    key={service.id}
-                                    href={`/location/sydney/${service.slug}`}
-                                    className="p-2 bg-seo-gray-light rounded hover:bg-seo-gray/20 transition-colors flex items-center"
-                                >
-                                    <ExternalLink className="h-4 w-4 mr-2 text-seo-blue" />
-                                    <span>/location/sydney/{service.slug}</span>
-                                </Link>
+                                <div key={state} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                                    <div className="p-5 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
+                                        <h3 className="text-xl font-bold text-slate-900 flex items-center justify-between">
+                                            <Link
+                                                href={state !== "Other Locations" ? `/australia/${state.toLowerCase().replace(/\s+/g, '-')}` : "#"}
+                                                className={state !== "Other Locations" ? "hover:text-orange-600 transition-colors" : ""}
+                                            >
+                                                {state}
+                                            </Link>
+                                            <span className="text-sm font-normal text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
+                                                {filteredLocations.length.toLocaleString()}
+                                            </span>
+                                        </h3>
+                                    </div>
+
+                                    <div className="p-4 max-h-[350px] overflow-y-auto">
+                                        <div className="grid grid-cols-2 gap-1">
+                                            {displayLocations.map(city => (
+                                                <Link
+                                                    key={city.id}
+                                                    href={`/${city.slug}`}
+                                                    className="flex items-center p-2 text-sm hover:bg-orange-50 rounded-lg transition-colors group"
+                                                >
+                                                    <MapPin className="h-3 w-3 mr-1.5 text-orange-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                                                    <span className="truncate text-slate-600 group-hover:text-orange-600">{city.name}</span>
+                                                </Link>
+                                            ))}
+                                        </div>
+
+                                        {hasMore && (
+                                            <div className="mt-4 text-center border-t border-slate-100 pt-4">
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    onClick={() => toggleStateExpansion(state)}
+                                                    className="text-orange-600 hover:text-orange-700 hover:bg-orange-50"
+                                                >
+                                                    {isExpanded ? (
+                                                        <>
+                                                            Show less <ChevronUp className="ml-1 h-4 w-4" />
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            Show all {filteredLocations.length.toLocaleString()} <ChevronDown className="ml-1 h-4 w-4" />
+                                                        </>
+                                                    )}
+                                                </Button>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             );
                         })}
                     </div>
+                </AnimatedSection>
 
-                    <Button asChild className="w-full md:w-auto">
-                        <Link href="/location-sitemap">
-                            View Complete Location Directory
-                        </Link>
-                    </Button>
-                </div>
-            </section>
-        </>
+                {/* Popular Combinations */}
+                <AnimatedSection animation="fade-in" delay={250} className="mb-16">
+                    <div className="text-center mb-10">
+                        <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 mb-4">
+                            Quick Access
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+                            Popular <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Service-Location</span> Pages
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {services.slice(0, 4).map(service => (
+                            <div key={service.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                                <div className="p-5 bg-gradient-to-r from-indigo-50 to-violet-50 border-b border-slate-100">
+                                    <h3 className="text-lg font-bold text-slate-900">{service.title}</h3>
+                                </div>
+                                <div className="p-4">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                        {majorCities.slice(0, 9).map(city => (
+                                            <Link
+                                                key={`${service.slug}-${city.slug}`}
+                                                href={`/location/${city.slug}/${service.slug}`}
+                                                className="flex items-center p-2 text-sm hover:bg-indigo-50 rounded-lg transition-colors group"
+                                            >
+                                                <ExternalLink className="h-3 w-3 mr-1.5 text-indigo-500 flex-shrink-0" />
+                                                <span className="truncate text-slate-600 group-hover:text-indigo-600">{city.name}</span>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </AnimatedSection>
+
+                {/* CTA Section */}
+                <AnimatedSection animation="fade-in" delay={300}>
+                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+                        <div className="absolute inset-0 opacity-10">
+                            <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+                            <div className="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+                        </div>
+                        <div className="relative z-10">
+                            <h2 className="text-2xl md:text-3xl font-bold mb-4">Can't find what you're looking for?</h2>
+                            <p className="text-blue-100 mb-8 max-w-xl mx-auto">
+                                Our team is ready to help. Get in touch for a personalized consultation about your SEO needs.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+                                    <Link href="/contact">Contact Us</Link>
+                                </Button>
+                                <Button asChild size="lg" className="bg-white/20 border border-white/50 text-white hover:bg-white hover:text-blue-600">
+                                    <Link href="/free-consultation">Free Consultation</Link>
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </AnimatedSection>
+            </div>
+        </main>
     );
 }
