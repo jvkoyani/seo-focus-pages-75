@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+
 import { services } from '@/lib/data';
 import {
     MapPin,
@@ -48,7 +48,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
     const Icon = iconMap[service.icon] || Search;
 
     return (
-        <Link
+        <a
             href={`/service/${service.slug}`}
             className="group relative flex flex-col items-center justify-center bg-[#111] rounded-2xl p-6 aspect-square overflow-hidden transition-all duration-300 hover:-translate-y-1"
         >
@@ -70,7 +70,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
 
             {/* Hover Glow Effect */}
             <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-        </Link>
+        </a>
     );
 };
 

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+
 import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -123,13 +123,13 @@ export default function Home() {
           </div>
 
           <AnimatedSection className="text-center mt-12" animation="fade-in" delay={400}>
-            <Link
+            <a
               href="/seo-audit"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-seo-blue to-blue-600 text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
             >
               <span>Start With Free Audit</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </AnimatedSection>
         </div>
       </section>
@@ -173,13 +173,13 @@ export default function Home() {
             animation="fade-in"
             delay={300}
           >
-            <Link
+            <a
               href="/case-studies"
               className="inline-flex items-center gap-3 bg-seo-dark hover:bg-slate-800 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl group"
             >
               <span>View All Case Studies</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </AnimatedSection>
         </div>
       </section>

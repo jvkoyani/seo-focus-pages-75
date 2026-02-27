@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+
 import { MapPin, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Location } from '@/lib/locationData';
@@ -22,8 +22,8 @@ const LocationGrid = ({ locations, serviceSlug }: LocationGridProps) => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
                 >
-                    <Link
-                        href={serviceSlug ? `/location/${location.slug}/${serviceSlug}` : `/${location.slug}`}
+                    <a
+                        href={serviceSlug ? `/areas-we-serve/${location.slug}/${serviceSlug}` : `/areas-we-serve/${location.slug}`}
                         className="group block h-full bg-white rounded-xl p-4 border border-slate-100 shadow-sm hover:shadow-md hover:border-seo-blue/30 transition-all duration-300 relative overflow-hidden"
                     >
                         <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -43,7 +43,7 @@ const LocationGrid = ({ locations, serviceSlug }: LocationGridProps) => {
                                 {location.state}
                             </p>
                         </div>
-                    </Link>
+                    </a>
                 </motion.div>
             ))}
         </div>

@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
 import ContactForm from '@/components/ContactForm';
 import { ChevronRight, Mail, Phone, MapPin, MessageSquare } from 'lucide-react';
-import Link from 'next/link';
+
 
 export const metadata: Metadata = {
     title: 'Contact Us | Get Your Free SEO Quote',
@@ -26,7 +26,7 @@ const Contact = () => {
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="text-center max-w-4xl mx-auto" animation="fade-in">
                         <div className="inline-flex items-center justify-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700 mb-8">
-                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                            <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
                             <span className="text-seo-blue font-medium">Contact</span>
                         </div>
@@ -50,7 +50,7 @@ const Contact = () => {
             {/* Contact Info Cards */}
             <section className="relative z-20 -mt-16 pb-12">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <div className="flex justify-center max-w-5xl mx-auto">
                         {[
                             {
                                 title: "Email Us",
@@ -59,25 +59,9 @@ const Contact = () => {
                                 icon: <Mail className="h-6 w-6 text-blue-500" />,
                                 color: "bg-blue-500/10",
                                 border: "border-blue-500/20"
-                            },
-                            {
-                                title: "Call Us",
-                                info: "+61 3 1234 5678",
-                                subInfo: "Mon-Fri from 9am to 6pm",
-                                icon: <Phone className="h-6 w-6 text-purple-500" />,
-                                color: "bg-purple-500/10",
-                                border: "border-purple-500/20"
-                            },
-                            {
-                                title: "Visit Us",
-                                info: "Melbourne, Australia",
-                                subInfo: "Level 1, 123 SEO Street",
-                                icon: <MapPin className="h-6 w-6 text-green-500" />,
-                                color: "bg-green-500/10",
-                                border: "border-green-500/20"
                             }
                         ].map((item, index) => (
-                            <AnimatedSection key={index} animation="slide-up" delay={index * 100}>
+                            <AnimatedSection key={index} animation="slide-up" delay={index * 100} className="w-full max-w-md">
                                 <div className="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-100 p-8 text-center h-full hover:-translate-y-1 transition-transform duration-300">
                                     <div className={`w-14 h-14 rounded-full ${item.color} flex items-center justify-center mx-auto mb-6 border ${item.border}`}>
                                         {item.icon}

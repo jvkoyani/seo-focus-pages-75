@@ -1,7 +1,7 @@
 import React from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { industries } from '@/lib/data';
-import Link from 'next/link';
+
 import { ArrowRight, Building2 } from 'lucide-react';
 
 interface IndustriesSectionProps {
@@ -36,8 +36,8 @@ const IndustriesSection = ({ locationName, locationSlug }: IndustriesSectionProp
                                 animation="slide-up"
                                 delay={index * 50}
                             >
-                                <Link
-                                    href={`/${industry.slug}-in-${locationSlug}`}
+                                <a
+                                    href={`/areas-we-serve/${locationSlug}/${industry.slug.replace('-seo', '')}/local-seo`}
                                     className="block h-full bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-seo-blue/30 transition-all group"
                                 >
                                     <div className="mb-4 p-3 bg-gray-50 rounded-lg w-fit group-hover:bg-seo-blue/5 transition-colors">
@@ -52,7 +52,7 @@ const IndustriesSection = ({ locationName, locationSlug }: IndustriesSectionProp
                                     <div className="flex items-center text-sm font-semibold text-seo-blue opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
                                         View Strategy <ArrowRight className="ml-1 w-4 h-4" />
                                     </div>
-                                </Link>
+                                </a>
                             </AnimatedSection>
                         );
                     })}

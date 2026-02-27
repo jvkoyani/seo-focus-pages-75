@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Link from 'next/link';
+
 import Image from 'next/image';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
@@ -44,7 +44,7 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
         <p className="text-seo-gray-dark mb-4 flex-1">
           {post.excerpt}
         </p>
-        <Link
+        <a
           href={`/blog/${post.slug}`}
           className="inline-flex items-center text-seo-blue font-medium group mt-auto"
         >
@@ -52,7 +52,7 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
             Read more
           </span>
           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </Link>
+        </a>
       </div>
     </AnimatedSection>
   );

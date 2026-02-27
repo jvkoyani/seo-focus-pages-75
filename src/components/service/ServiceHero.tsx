@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+
 import { ArrowRight, CheckCircle, Star, Shield } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Button } from '@/components/ui/button';

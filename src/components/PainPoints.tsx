@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { TrendingDown, UserX, Trophy, DollarSign, ArrowRight, Search, Clock, AlertTriangle } from 'lucide-react';
-import Link from 'next/link';
+
 import AnimatedSection from './AnimatedSection';
 
 const painPoints = [
@@ -149,13 +149,13 @@ const PainPoints = () => {
           animation="fade-in"
           delay={500}
         >
-          <Link
+          <a
             href="/seo-audit"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-seo-blue to-blue-600 hover:from-blue-600 hover:to-seo-blue text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 group"
           >
             <span>Get Your Free SEO Roadmap</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </a>
           <p className="mt-4 text-slate-500 text-sm">No credit card required • Results in 48 hours</p>
         </AnimatedSection>
       </div>

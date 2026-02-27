@@ -5,7 +5,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import ContactForm from '@/components/ContactForm';
 import Image from 'next/image';
 import { ChevronRight, Users, Target, Zap, Award, BarChart, Globe, ShieldCheck, Heart, Lightbulb } from 'lucide-react';
-import Link from 'next/link';
+
 
 export const metadata: Metadata = {
     title: 'About Us | SEO Experts Since 2010',
@@ -27,7 +27,7 @@ const About = () => {
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="text-center max-w-4xl mx-auto" animation="fade-in">
                         <div className="inline-flex items-center justify-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700 mb-8">
-                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                            <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
                             <span className="text-seo-blue font-medium">About Us</span>
                         </div>

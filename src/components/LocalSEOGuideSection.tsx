@@ -179,9 +179,9 @@ const LocalSEOGuideSection = ({ locationName }: LocalSEOGuideSectionProps) => {
                         <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
                             Local SEO is not a one-time task; it's an ongoing strategy. To stay ahead of your competitors in {locationName}, you need a dedicated partner.
                         </p>
-                        <button className="bg-white text-slate-900 hover:bg-blue-50 font-bold py-4 px-8 rounded-full transition-colors shadow-lg shadow-white/10">
+                        <a href="/contact" className="bg-white text-slate-900 hover:bg-blue-50 font-bold py-4 px-8 rounded-full transition-colors shadow-lg shadow-white/10 inline-block">
                             Get Your Free Audit
-                        </button>
+                        </a>
                     </div>
                 </AnimatedSection>
             </div>

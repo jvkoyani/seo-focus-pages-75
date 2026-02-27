@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowRight, Play, CheckCircle2, Star } from 'lucide-react';
-import Link from 'next/link';
+
 import AnimatedSection from './AnimatedSection';
 import HeroDashboardPreview from './HeroDashboardPreview';
 
@@ -91,20 +91,20 @@ const Hero = ({
 
             <AnimatedSection animation="fade-in" delay={300}>
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Link
+                <a
                   href="/seo-audit"
                   className="group relative px-8 py-4 bg-white text-slate-950 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] flex items-center justify-center"
                 >
                   Get Free Audit
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
+                </a>
+                <a
                   href="/case-studies"
                   className="px-8 py-4 rounded-full font-bold text-lg text-white border border-white/10 hover:bg-white/5 transition-all flex items-center justify-center group"
                 >
                   <Play className="w-4 h-4 mr-2 fill-current group-hover:scale-110 transition-transform" />
                   View Case Studies
-                </Link>
+                </a>
               </div>
             </AnimatedSection>
 

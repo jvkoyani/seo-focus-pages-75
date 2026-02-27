@@ -19,6 +19,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "SEOfocus: #1 Data-Driven SEO Agency for Growth",
   description: "Dominate search results with SEOfocus. Our data-driven SEO strategies drive qualified traffic and revenue. Get your free professional SEO audit today.",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

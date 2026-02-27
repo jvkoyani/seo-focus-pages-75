@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import Link from 'next/link';
+
 import {
     ArrowRight, MapPin, TrendingUp, BarChart,
     CheckCircle, Award, Target, Star,
@@ -60,13 +60,13 @@ const LocationService = ({ locationSlug, serviceSlug, cityName }: LocationServic
                     <div className="text-center">
                         <h1 className="text-3xl font-bold mb-4">Page Not Found</h1>
                         <p className="mb-6">Sorry, the location or service you&apos;re looking for doesn&apos;t exist.</p>
-                        <Link
+                        <a
                             href="/"
                             className="inline-flex items-center text-seo-blue font-medium"
                         >
                             <span>Return to home</span>
                             <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
+                        </a>
                     </div>
                 </div>
                 <Footer />
@@ -301,15 +301,15 @@ const LocationService = ({ locationSlug, serviceSlug, cityName }: LocationServic
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white button-hover-effect">
-                                    <Link href="/free-consultation" className="flex items-center">
+                                    <a href="/free-consultation" className="flex items-center">
                                         Get a Free Consultation
                                         <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Link>
+                                    </a>
                                 </Button>
                                 <Button size="lg" variant="outline" className="border-seo-blue text-seo-blue hover:bg-seo-blue/5">
-                                    <Link href="/case-studies">
+                                    <a href="/case-studies">
                                         View Case Studies
-                                    </Link>
+                                    </a>
                                 </Button>
                             </div>
                         </AnimatedSection>
@@ -346,11 +346,11 @@ const LocationService = ({ locationSlug, serviceSlug, cityName }: LocationServic
                                             <span>Actionable recommendations</span>
                                         </div>
                                         <div className="mt-6">
-                                            <Link href="/seo-audit">
+                                            <a href="/seo-audit">
                                                 <Button className="w-full bg-seo-blue hover:bg-seo-blue-light">
                                                     Request Free Audit
                                                 </Button>
-                                            </Link>
+                                            </a>
                                         </div>
                                     </div>
                                 </CardContent>
@@ -443,12 +443,12 @@ const LocationService = ({ locationSlug, serviceSlug, cityName }: LocationServic
                                         </p>
                                     </div>
                                     <div className="flex-shrink-0">
-                                        <Link href="/contact">
+                                        <a href="/contact">
                                             <Button size="lg" className="bg-white text-seo-blue hover:bg-gray-100 w-full md:w-auto">
                                                 Get Started Today
                                                 <ArrowRight className="ml-2 h-5 w-5" />
                                             </Button>
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

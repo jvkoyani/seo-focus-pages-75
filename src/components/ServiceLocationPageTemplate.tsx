@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+
 import {
     ArrowRight, MapPin, TrendingUp, BarChart,
     CheckCircle, Award, Users, Target, Star,
@@ -63,9 +63,9 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="mb-8" animation="fade-in">
                         <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
-                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                            <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
-                            <Link href={`/location/${locationData.slug}`} className="hover:text-white transition-colors">{locationData.name}</Link>
+                            <a href={`/areas-we-serve/${locationData.slug}`} className="hover:text-white transition-colors">{locationData.name}</a>
                             <ChevronRight className="h-3 w-3" />
                             <span className="text-seo-blue font-medium">{serviceData.title}</span>
                         </div>
@@ -94,15 +94,15 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
-                                    <Link href="/free-consultation" className="flex items-center">
+                                    <a href="/free-consultation" className="flex items-center">
                                         Get Free Consultation
                                         <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Link>
+                                    </a>
                                 </Button>
                                 <Button size="lg" variant="outline" className="bg-transparent border-slate-600 text-white hover:bg-white/10 h-14 px-8 text-lg rounded-full backdrop-blur-sm">
-                                    <Link href="#case-studies">
+                                    <a href="#case-studies">
                                         View Case Studies
-                                    </Link>
+                                    </a>
                                 </Button>
                             </div>
                         </AnimatedSection>
@@ -152,9 +152,9 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
                                     </div>
 
                                     <Button className="w-full bg-white text-slate-900 hover:bg-gray-100 font-bold h-12 text-lg">
-                                        <Link href="/seo-audit">
+                                        <a href="/seo-audit">
                                             Start Your Growth
-                                        </Link>
+                                        </a>
                                     </Button>
                                 </CardContent>
                             </Card>
@@ -261,7 +261,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
                                             Our team in {locationData.name} is ready to help you grow.
                                         </p>
                                         <Button className="w-full bg-seo-blue hover:bg-seo-blue-light text-white font-bold relative z-10">
-                                            <Link href="/contact">Speak to an Expert</Link>
+                                            <a href="/contact">Speak to an Expert</a>
                                         </Button>
                                     </div>
                                 </div>
@@ -334,7 +334,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
                             <CarouselContent className="-ml-4">
                                 {industries.map((industry) => (
                                     <CarouselItem key={industry.id} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                                        <Link href={`/${serviceData.slug}-for-${industry.slug}-in-${locationData.slug}`} className="group h-full block">
+                                        <a href={`/areas-we-serve/${locationData.slug}/${industry.slug.replace('-seo', '')}/${serviceData.slug}`} className="group h-full block">
                                             <Card className="h-full hover:shadow-2xl transition-all duration-500 border-slate-200 group-hover:border-seo-blue/50 bg-white group-hover:-translate-y-2 relative overflow-hidden">
                                                 <div className="absolute inset-0 bg-gradient-to-br from-seo-blue/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                                 <CardContent className="p-8 flex flex-col h-full items-center text-center relative z-10">
@@ -352,7 +352,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
                                                     </div>
                                                 </CardContent>
                                             </Card>
-                                        </Link>
+                                        </a>
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
@@ -382,10 +382,10 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
                             <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-16 px-10 text-xl rounded-full shadow-xl shadow-seo-blue/20">
-                                <Link href="/free-consultation">Get Your Free Proposal</Link>
+                                <a href="/free-consultation">Get Your Free Proposal</a>
                             </Button>
                             <Button size="lg" variant="outline" className="bg-transparent border-slate-700 text-white hover:bg-white/10 h-16 px-10 text-xl rounded-full">
-                                <Link href="/contact">Contact Us</Link>
+                                <a href="/contact">Contact Us</a>
                             </Button>
                         </div>
                     </div>

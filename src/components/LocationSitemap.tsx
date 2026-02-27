@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import Link from 'next/link';
+
 import { allAustralianCities } from '@/lib/locationData';
 import { services } from '@/lib/data';
 import { MapPin, ArrowRight, Globe, Search } from 'lucide-react';
@@ -88,15 +88,15 @@ const LocationSitemap = () => {
         <div className="mb-12">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-bold text-seo-dark">Australian States & Territories</h3>
-            <Link href="/sitemap" className="text-seo-blue hover:underline flex items-center">
+            <a href="/sitemap" className="text-seo-blue hover:underline flex items-center">
               <span>View full sitemap</span>
               <ArrowRight className="ml-1 h-4 w-4" />
-            </Link>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {states.filter(state => state !== "Other Locations").map(state => (
-              <Link
+              <a
                 key={state}
                 href={`/australia/${state.toLowerCase().replace(/\s+/g, '-')}`}
                 className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all"
@@ -108,7 +108,7 @@ const LocationSitemap = () => {
                     {citiesByState[state].length} locations
                   </span>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
@@ -156,12 +156,12 @@ const LocationSitemap = () => {
             <AnimatedSection key={state} className="bg-white rounded-xl shadow-sm p-6" animation="fade-in" delay={200 + stateIndex * 50}>
               <h3 className="text-xl font-bold text-seo-dark mb-4 border-b pb-2">
                 {state !== "Other Locations" ? (
-                  <Link
+                  <a
                     href={`/australia/${state.toLowerCase().replace(/\s+/g, '-')}`}
                     className="hover:text-seo-blue transition-colors"
                   >
                     {state}
-                  </Link>
+                  </a>
                 ) : (
                   <span>{state}</span>
                 )}
@@ -172,13 +172,13 @@ const LocationSitemap = () => {
                   if (cityIndex >= (isExpanded ? filteredLocations.length : displayCount)) return null;
                   return (
                     <li key={`${city.id}-${cityIndex}`}>
-                      <Link
-                        href={`/${city.slug}`}
+                      <a
+                        href={`/areas-we-serve/${city.slug}`}
                         className="flex items-center text-seo-gray-dark hover:text-seo-blue transition-colors"
                       >
                         <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
                         <span>{city.name}</span>
-                      </Link>
+                      </a>
                     </li>
                   );
                 })}
@@ -231,26 +231,26 @@ const LocationSitemap = () => {
               <p className="text-sm text-seo-gray-dark mb-3">
                 {service.title} services available in all major Australian cities.
               </p>
-              <Link
+              <a
                 href={`/service/${service.slug}`}
                 className="text-sm text-seo-blue font-medium hover:underline flex items-center"
               >
                 <span>Learn more</span>
                 <ArrowRight className="h-4 w-4 ml-1" />
-              </Link>
+              </a>
             </AnimatedSection>
           ))}
         </div>
       </AnimatedSection>
 
       <div className="mt-16 text-center">
-        <Link
+        <a
           href="/sitemap"
           className="inline-flex items-center justify-center bg-seo-blue text-white px-6 py-3 rounded-md hover:bg-seo-blue-light transition-colors"
         >
           View Complete Sitemap
           <ArrowRight className="ml-2 h-5 w-5" />
-        </Link>
+        </a>
       </div>
     </div>
   );

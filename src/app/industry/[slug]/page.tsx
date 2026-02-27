@@ -23,10 +23,12 @@ import TrustIndicators from '@/components/TrustIndicators';
 import JsonLd from '@/components/JsonLd';
 import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
+import { getIndustryPaths } from '@/lib/route-utils';
+
+export const dynamicParams = false; // Static Export requires false for ungenerated paths
+
 export async function generateStaticParams() {
-    return industries.map((industry) => ({
-        slug: industry.slug,
-    }));
+    return getIndustryPaths();
 }
 
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {

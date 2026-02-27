@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+
 import { ArrowRight, Search, BarChart, Settings, TrendingUp, Layers } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -112,12 +112,12 @@ const Services = () => {
                                         {step.desc}
                                     </p>
 
-                                    <Link href={step.link} className="inline-flex items-center text-seo-blue font-medium group/link mt-auto relative z-10">
+                                    <a href={step.link} className="inline-flex items-center text-seo-blue font-medium group/link mt-auto relative z-10">
                                         <span className="border-b border-seo-blue/30 group-hover/link:border-seo-blue transition-colors">
                                             Learn more
                                         </span>
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
-                                    </Link>
+                                    </a>
                                 </div>
                             </AnimatedSection>
                         ))}
@@ -175,18 +175,18 @@ const Services = () => {
                             Partner with us for a customized SEO strategy that drives real business growth. Let's take your online presence to the next level.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
+                            <a
                                 href="/free-consultation"
                                 className="bg-seo-blue hover:bg-seo-blue-light text-white px-8 py-4 rounded-md font-medium transition-colors"
                             >
                                 Get a Free Consultation
-                            </Link>
-                            <Link
+                            </a>
+                            <a
                                 href="/seo-audit"
                                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-md font-medium transition-colors border border-white/20"
                             >
                                 Request Free Audit
-                            </Link>
+                            </a>
                         </div>
                     </AnimatedSection>
                 </div>

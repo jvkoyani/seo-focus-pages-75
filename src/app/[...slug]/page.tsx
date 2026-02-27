@@ -39,6 +39,24 @@ function parseServiceIndustryCity(slug: string): { service: typeof services[0], 
     return { service, industry, citySlug };
 }
 
+// Parse service-for-industry pattern (Global/National)
+function parseServiceIndustry(slug: string): { service: typeof services[0], industry: typeof industries[0] } | null {
+    // Pattern: {service-slug}-for-{industry-slug}
+    const forIndex = slug.indexOf('-for-');
+
+    if (forIndex === -1) return null;
+
+    const serviceSlug = slug.substring(0, forIndex);
+    const industrySlug = slug.substring(forIndex + 5);
+
+    const service = services.find(s => s.slug === serviceSlug);
+    const industry = industries.find(i => i.slug === industrySlug);
+
+    if (!service || !industry) return null;
+
+    return { service, industry };
+}
+
 // Parse industry-in-city pattern (defaults to local-seo service)
 function parseIndustryInCity(slug: string): { service: typeof services[0], industry: typeof industries[0], citySlug: string } | null {
     // Pattern: {industry-slug}-in-{city-slug}
@@ -58,6 +76,8 @@ function parseIndustryInCity(slug: string): { service: typeof services[0], indus
     return { service, industry, citySlug };
 }
 
+export const dynamicParams = false; // Static Export requires false for ungenerated paths
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
 
@@ -70,6 +90,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return {
             title: `${parsed.service.title} for ${parsed.industry.title} in ${city?.name} | Expert SEO`,
             description: `Specialized ${parsed.service.title} for ${parsed.industry.title} businesses in ${city?.name}. Tailored strategies to help you outrank competitors and get more clients. Free audit.`,
+        };
+    }
+
+    // Check for service-for-industry pattern (Global/National)
+    const parsedServiceIndustry = parseServiceIndustry(slug[0]);
+    if (parsedServiceIndustry) {
+        return {
+            title: `${parsedServiceIndustry.service.title} for ${parsedServiceIndustry.industry.title} | Expert Agency`,
+            description: `Specialized ${parsedServiceIndustry.service.title} strategies for ${parsedServiceIndustry.industry.title}. We understand your niche and deliver measurable growth. Get a free proposal.`,
         };
     }
 
@@ -116,31 +145,10 @@ function ServiceIndustryCityPage({ service, industry, citySlug }: { service: typ
     );
 }
 
+import { getCatchAllPaths } from '@/lib/route-utils';
+
 export async function generateStaticParams() {
-    const params = [];
-
-    // 1. Australia route
-    params.push({ slug: ['australia'] });
-
-    // 2. Major cities and their combinations
-    const majorCities = ['melbourne', 'sydney', 'brisbane', 'gold-coast', 'perth', 'adelaide', 'canberra', 'hobart'];
-
-    for (const city of majorCities) {
-        // City page
-        params.push({ slug: [city] });
-
-        // Industry in City
-        for (const industry of industries) {
-            params.push({ slug: [`${industry.slug}-in-${city}`] });
-
-            // Service for Industry in City
-            for (const service of services) {
-                params.push({ slug: [`${service.slug}-for-${industry.slug}-in-${city}`] });
-            }
-        }
-    }
-
-    return params;
+    return getCatchAllPaths();
 }
 
 export default async function CatchAllPage({ params }: Props) {
@@ -161,7 +169,29 @@ export default async function CatchAllPage({ params }: Props) {
         // 2a. Check for service-for-industry-in-city pattern
         const parsed = parseServiceIndustryCity(singleSlug);
         if (parsed) {
-            return <ServiceIndustryCityPage service={parsed.service} industry={parsed.industry} citySlug={parsed.citySlug} />;
+            // Redirect to new structure: /areas-we-serve/[city]/[industry]/[service]
+            // Strip -seo from industry slug
+            const shortIndustrySlug = parsed.industry.slug.replace('-seo', '');
+            redirect(`/areas-we-serve/${parsed.citySlug}/${shortIndustrySlug}/${parsed.service.slug}`);
+        }
+
+        // 2b. Check for service-for-industry pattern (Global/National)
+        const parsedServiceIndustry = parseServiceIndustry(singleSlug);
+        if (parsedServiceIndustry) {
+            // Remove icon component to avoid serialization error
+            const { icon, ...serializedIndustry } = parsedServiceIndustry.industry;
+
+            // Reuse ServiceIndustryLocation but without city context
+            // Or use a new template. For now, we can adapt ServiceIndustryLocation or use IndustryLocationPageTemplate
+            // Let's use ServiceIndustryLocation and pass "Australia" as location
+            return (
+                <ServiceIndustryLocation
+                    service={parsedServiceIndustry.service}
+                    industry={serializedIndustry}
+                    cityName="Australia"
+                    locationSlug="australia"
+                />
+            );
         }
 
         // 2b. Check for industry-in-city pattern
@@ -185,19 +215,7 @@ export default async function CatchAllPage({ params }: Props) {
 
         // 2c. Check if slug is a city (e.g., /sydney)
         if (isValidCity(singleSlug)) {
-            const city = getCity(singleSlug);
-            if (city) {
-                return <LocationPageTemplate locationData={{
-                    id: city.slug,
-                    name: city.name,
-                    slug: city.slug,
-                    state: 'Australia',
-                    country: 'Australia',
-                    image: '/placeholder.svg',
-                    metaTitle: `SEO Services in ${city.name}`,
-                    metaDescription: `Professional SEO services in ${city.name}`
-                }} />;
-            }
+            redirect(`/areas-we-serve/${singleSlug}`);
         }
 
         // 2d. Check for service-city pattern (e.g., /local-seo-sydney) and redirect to new structure
@@ -205,13 +223,13 @@ export default async function CatchAllPage({ params }: Props) {
             if (singleSlug.startsWith(service.slug + '-')) {
                 const citySlug = singleSlug.substring(service.slug.length + 1);
                 if (isValidCity(citySlug)) {
-                    redirect(`/location/${citySlug}/${service.slug}`);
+                    redirect(`/areas-we-serve/${citySlug}/${service.slug}`);
                 }
             }
             if (singleSlug.endsWith('-' + service.slug)) {
                 const citySlug = singleSlug.substring(0, singleSlug.length - service.slug.length - 1);
                 if (isValidCity(citySlug)) {
-                    redirect(`/location/${citySlug}/${service.slug}`);
+                    redirect(`/areas-we-serve/${citySlug}/${service.slug}`);
                 }
             }
         }

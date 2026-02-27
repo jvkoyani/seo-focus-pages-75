@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import React from 'react';
-import Link from 'next/link';
+
 import {
     ArrowRight, BarChart, CheckCircle, Award,
     Users, Target, Star, ShoppingBag, Phone,
@@ -53,15 +53,15 @@ const IndustriesPage = () => {
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button asChild size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
-                                <Link href="/free-consultation" className="flex items-center">
+                                <a href="/free-consultation" className="flex items-center">
                                     Get Your Strategy
                                     <ArrowRight className="ml-2 h-5 w-5" />
-                                </Link>
+                                </a>
                             </Button>
                             <Button asChild size="lg" variant="outline" className="bg-transparent border-slate-600 text-white hover:bg-white/10 h-14 px-8 text-lg rounded-full backdrop-blur-sm">
-                                <Link href="/case-studies">
+                                <a href="/case-studies">
                                     See Results
-                                </Link>
+                                </a>
                             </Button>
                         </div>
                     </AnimatedSection>
@@ -218,14 +218,14 @@ const IndustriesPage = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button asChild size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-10 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
-                                <Link href="/free-consultation">
+                                <a href="/free-consultation">
                                     Get Your Free Audit
-                                </Link>
+                                </a>
                             </Button>
                             <Button asChild size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-14 px-10 text-lg rounded-full">
-                                <Link href="/contact">
+                                <a href="/contact">
                                     Talk to an Expert
-                                </Link>
+                                </a>
                             </Button>
                         </div>
                     </AnimatedSection>

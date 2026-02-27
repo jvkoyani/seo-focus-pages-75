@@ -5,7 +5,7 @@ import { PricingTier } from '@/lib/data';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Check, ArrowRight, Zap, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+
 
 interface ServicePricingProps {
     tiers: PricingTier[];
@@ -74,7 +74,7 @@ const ServicePricing = ({ tiers, serviceName }: ServicePricingProps) => {
                                 ))}
                             </div>
 
-                            <Link href="/contact">
+                            <a href="/contact">
                                 <Button
                                     className={`w-full h-12 text-base font-semibold rounded-xl ${tier.recommended
                                         ? 'bg-seo-blue hover:bg-seo-blue-light text-white shadow-lg shadow-blue-500/25'
@@ -84,7 +84,7 @@ const ServicePricing = ({ tiers, serviceName }: ServicePricingProps) => {
                                     Get Started
                                     <ArrowRight className="ml-2 w-4 h-4" />
                                 </Button>
-                            </Link>
+                            </a>
                         </AnimatedSection>
                     ))}
                 </div>

@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { Metadata } from 'next';
 import { getCity, isValidCity } from '@/lib/masterCities';
 import { services } from '@/lib/data';
@@ -28,65 +28,15 @@ import ServiceLocationPageTemplate from '@/components/ServiceLocationPageTemplat
 import { generateServiceSchema, generateLocalBusinessSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { masterCities } from '@/lib/masterCities';
 
+import { getLocationServicePaths } from '@/lib/route-utils';
+
+export const dynamicParams = false; // Static Export requires false for ungenerated paths
+
 export async function generateStaticParams() {
-    // Limit to top 20 cities for now to prevent build timeout
-    const topCities = masterCities.slice(0, 20);
-    const params = [];
-    for (const city of topCities) {
-        for (const service of services) {
-            params.push({
-                city: city.slug,
-                service: service.slug,
-            });
-        }
-    }
-    return params;
+    return getLocationServicePaths();
 }
 
 export default async function CityServicePage({ params }: Props) {
-
     const { city, service } = await params;
-
-    if (!isValidCity(city)) {
-        notFound();
-    }
-
-    const cityData = getCity(city);
-    const serviceData = services.find(s => s.slug === service);
-
-    if (!cityData || !serviceData) {
-        notFound();
-    }
-
-    const locationData = {
-        id: cityData.slug,
-        name: cityData.name,
-        slug: cityData.slug,
-        state: "Australia",
-        country: "Australia",
-        image: "/placeholder.svg",
-        description: `${serviceData.title} in ${cityData.name}`,
-        metaTitle: `${serviceData.title} in ${cityData.name}`,
-        metaDescription: `Professional ${serviceData.title} services in ${cityData.name}.`
-    };
-
-    const serviceSchema = generateServiceSchema(serviceData);
-    const localBusinessSchema = generateLocalBusinessSchema(locationData, serviceData);
-    const faqSchema = serviceData.faqs ? generateFAQSchema(serviceData.faqs) : null;
-    const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: 'Home', url: '/' },
-        { name: 'Locations', url: '/locations' },
-        { name: cityData.name, url: `/location/${cityData.slug}` },
-        { name: serviceData.title, url: `/location/${cityData.slug}/${serviceData.slug}` }
-    ]);
-
-    return (
-        <>
-            <JsonLd data={[serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema].filter(Boolean)} />
-            <ServiceLocationPageTemplate
-                locationData={locationData}
-                serviceData={serviceData}
-            />
-        </>
-    );
+    redirect(`/areas-we-serve/${city}/${service}`);
 }

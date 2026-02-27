@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+
 import { ArrowRight, Search, ChevronRight, BookOpen, Filter } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -43,7 +43,7 @@ const BlogsPage = () => {
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="text-center max-w-4xl mx-auto" animation="fade-in">
                         <div className="inline-flex items-center justify-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700 mb-8">
-                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                            <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
                             <span className="text-seo-blue font-medium">Blog</span>
                         </div>

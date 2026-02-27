@@ -85,14 +85,15 @@ export const generateServiceSchema = (service: ServiceLike) => {
     };
 };
 
-export const generateLocalBusinessSchema = (location: Location, service?: ServiceData) => {
+export const generateLocalBusinessSchema = (location: Location, service?: ServiceData, url?: string) => {
+    const pageUrl = url || `${SITE_URL}/areas-we-serve/${location.slug}`;
     return {
         '@context': 'https://schema.org',
         '@type': 'ProfessionalService',
         name: service ? `${service.title} in ${location.name}` : `SEO Services in ${location.name}`,
         image: location.image ? (location.image.startsWith('http') ? location.image : `${SITE_URL}${location.image}`) : `${SITE_URL}/placeholder.svg`,
-        '@id': `${SITE_URL}/location/${location.slug}`,
-        url: `${SITE_URL}/location/${location.slug}`,
+        '@id': pageUrl,
+        url: pageUrl,
         telephone: '+61-123-456-789',
         address: {
             '@type': 'PostalAddress',

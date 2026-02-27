@@ -9,7 +9,7 @@ import {
   ArrowRight,
   Sparkles
 } from 'lucide-react';
-import Link from 'next/link';
+
 import AnimatedSection from './AnimatedSection';
 import { services } from '@/lib/data';
 
@@ -119,9 +119,9 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
                     </ul>
 
                     {/* Link */}
-                    <Link
+                    <a
                       href={locationSlug
-                        ? `/location/${locationSlug}/${service.slug}`
+                        ? `/areas-we-serve/${locationSlug}/${service.slug}`
                         : `/service/${service.slug}`}
                       className={`inline-flex items-center gap-2 font-semibold text-transparent bg-gradient-to-r ${gradient} bg-clip-text group/link`}
                     >
@@ -129,7 +129,7 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
                         {locationSlug ? `${service.title} in ${location}` : 'Learn more'}
                       </span>
                       <ArrowRight className={`h-4 w-4 text-seo-blue transition-transform group-hover/link:translate-x-1`} />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </AnimatedSection>
@@ -143,13 +143,13 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
           animation="fade-in"
           delay={600}
         >
-          <Link
+          <a
             href="/services"
             className="inline-flex items-center gap-3 bg-seo-dark hover:bg-slate-800 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl group"
           >
             <span>View All Services</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </a>
         </AnimatedSection>
       </div>
     </section>

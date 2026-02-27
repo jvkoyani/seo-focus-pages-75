@@ -2,8 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /** @type {import('next').NextConfig} */
-  output: 'export',
+  output: 'export', // Enabled for Static Site Generation
   images: {
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: "https",
@@ -11,15 +12,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: '/sitemap',
-        destination: '/html-sitemap',
-        permanent: true,
-      },
-    ];
-  },
+  // Redirects are not supported in static export
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/sitemap',
+  //       destination: '/html-sitemap',
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
 };
 
 export default nextConfig;

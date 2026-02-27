@@ -23,14 +23,25 @@ const generatedCities: SimpleLocation[] = allCitiesData.cities.map((name: string
     slug: cityToSlug(name),
 }));
 
-// Manual overrides for missing major cities
-const manualCities: SimpleLocation[] = [
+// Priority cities to ensure they are always included in static generation
+const priorityCities: SimpleLocation[] = [
+    { name: 'Sydney', slug: 'sydney' },
     { name: 'Melbourne', slug: 'melbourne' },
     { name: 'Brisbane', slug: 'brisbane' },
+    { name: 'Perth', slug: 'perth' },
+    { name: 'Adelaide', slug: 'adelaide' },
     { name: 'Gold Coast', slug: 'gold-coast' },
+    { name: 'Canberra', slug: 'canberra' },
+    { name: 'Newcastle', slug: 'newcastle' },
+    { name: 'Wollongong', slug: 'wollongong' },
+    { name: 'Hobart', slug: 'hobart' },
+    { name: 'Geelong', slug: 'geelong' },
+    { name: 'Cairns', slug: 'cairns' },
+    { name: 'Darwin', slug: 'darwin' },
+    { name: 'Townsville', slug: 'townsville' },
 ];
 
-export const masterCities: SimpleLocation[] = [...generatedCities, ...manualCities];
+export const masterCities: SimpleLocation[] = [...priorityCities, ...generatedCities];
 
 // Create a lookup map for fast access
 export const cityBySlug = new Map<string, SimpleLocation>(

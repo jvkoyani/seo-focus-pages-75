@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Link from 'next/link';
+
 import { ArrowRight, FileText, Briefcase, BookOpen } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import BlogPreview from './BlogPreview';
@@ -48,20 +48,20 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
+            <a
               href="/blogs"
               className="inline-flex items-center px-6 py-2.5 rounded-full bg-white border border-gray-200 text-seo-dark font-medium hover:border-purple-500 hover:text-purple-600 transition-all shadow-sm hover:shadow-md"
             >
               <FileText className="w-4 h-4 mr-2" />
               Browse Articles
-            </Link>
-            <Link
+            </a>
+            <a
               href="/case-studies"
               className="inline-flex items-center px-6 py-2.5 rounded-full bg-white border border-gray-200 text-seo-dark font-medium hover:border-purple-500 hover:text-purple-600 transition-all shadow-sm hover:shadow-md"
             >
               <Briefcase className="w-4 h-4 mr-2" />
               View Case Studies
-            </Link>
+            </a>
           </div>
         </AnimatedSection>
 

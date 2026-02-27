@@ -73,7 +73,7 @@ const FloatingCTA = () => {
                 title: `Dominate the ${city} Market`,
                 subtitle: `Get a custom SEO strategy tailored for ${city} businesses.`
             };
-        } else if (segments[0] === 'industry' && segments[1]) {
+        } else if ((segments[0] === 'industry' || segments[0] === 'industries') && segments[1]) {
             // /industry/dental
             const industry = segments[1].charAt(0).toUpperCase() + segments[1].slice(1).replace(/-/g, ' ');
             newContext = {

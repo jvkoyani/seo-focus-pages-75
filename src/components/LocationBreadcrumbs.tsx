@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+
 import { ChevronRight, MapPin } from 'lucide-react';
 import { allAustralianCities } from '@/lib/locationData';
 
@@ -18,53 +18,53 @@ const LocationBreadcrumbs = ({ locationSlug, serviceSlug, className = '' }: Loca
 
   return (
     <div className={`flex flex-wrap items-center text-sm text-seo-gray-dark ${className}`}>
-      <Link
+      <a
         href="/"
         className="hover:text-seo-blue transition-colors"
       >
         Home
-      </Link>
+      </a>
       <ChevronRight className="h-4 w-4 mx-1 text-seo-gray-medium" />
 
       {/* Country */}
-      <Link
+      <a
         href={`/${locationData.country.toLowerCase()}`}
         className="hover:text-seo-blue transition-colors"
       >
         {locationData.country}
-      </Link>
+      </a>
       <ChevronRight className="h-4 w-4 mx-1 text-seo-gray-medium" />
 
       {/* State */}
-      <Link
+      <a
         href={`/${locationData.country.toLowerCase()}/${locationData.state.toLowerCase().replace(/\s+/g, '-')}`}
         className="hover:text-seo-blue transition-colors"
       >
         {locationData.state}
-      </Link>
+      </a>
       <ChevronRight className="h-4 w-4 mx-1 text-seo-gray-medium" />
 
       {/* County (if available) */}
       {locationData.county && (
         <>
-          <Link
+          <a
             href={`/${locationData.country.toLowerCase()}/${locationData.state.toLowerCase().replace(/\s+/g, '-')}/${locationData.county.toLowerCase().replace(/\s+/g, '-')}`}
             className="hover:text-seo-blue transition-colors"
           >
             {locationData.county}
-          </Link>
+          </a>
           <ChevronRight className="h-4 w-4 mx-1 text-seo-gray-medium" />
         </>
       )}
 
       {/* Location (City) */}
-      <Link
-        href={`/${locationData.slug}`}
+      <a
+        href={`/areas-we-serve/${locationData.slug}`}
         className="hover:text-seo-blue transition-colors flex items-center"
       >
         <MapPin className="h-3 w-3 mr-1" />
         {locationData.name}
-      </Link>
+      </a>
 
       {/* Service (if available) */}
       {serviceSlug && (

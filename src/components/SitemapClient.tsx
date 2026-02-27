@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import Link from 'next/link';
+
 import { MapPin, Layers, ExternalLink, Search, ChevronDown, ChevronUp, Briefcase, Building, FileText, Compass } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -81,7 +81,7 @@ export default function SitemapClient() {
                             { href: "/seo-audit", label: "SEO Audit", icon: <Search className="h-5 w-5" /> },
                             { href: "/glossary", label: "Glossary", icon: <FileText className="h-5 w-5" /> },
                         ].map((item) => (
-                            <Link
+                            <a
                                 key={item.href}
                                 href={item.href}
                                 className="group p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"
@@ -90,7 +90,7 @@ export default function SitemapClient() {
                                     {item.icon}
                                 </div>
                                 <span className="font-medium text-slate-700 group-hover:text-blue-600 transition-colors">{item.label}</span>
-                            </Link>
+                            </a>
                         ))}
                     </div>
                 </AnimatedSection>
@@ -107,14 +107,14 @@ export default function SitemapClient() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {services.map(service => (
-                            <Link
+                            <a
                                 key={service.id}
                                 href={`/service/${service.slug}`}
                                 className="group p-6 bg-white rounded-2xl border border-slate-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300"
                             >
                                 <h3 className="font-bold text-xl text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">{service.title}</h3>
                                 <p className="text-slate-600 text-sm line-clamp-2">{service.description}</p>
-                            </Link>
+                            </a>
                         ))}
                     </div>
                 </AnimatedSection>
@@ -131,13 +131,13 @@ export default function SitemapClient() {
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                         {industries.map(industry => (
-                            <Link
+                            <a
                                 key={industry.id}
-                                href={`/industry/${industry.slug}`}
+                                href={`/industries/${industry.slug}`}
                                 className="group p-4 bg-white rounded-xl border border-slate-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 text-center"
                             >
                                 <span className="font-medium text-slate-700 group-hover:text-green-600 transition-colors">{industry.title}</span>
-                            </Link>
+                            </a>
                         ))}
                     </div>
                 </AnimatedSection>
@@ -191,12 +191,12 @@ export default function SitemapClient() {
                                 <div key={state} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                                     <div className="p-5 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
                                         <h3 className="text-xl font-bold text-slate-900 flex items-center justify-between">
-                                            <Link
+                                            <a
                                                 href={state !== "Other Locations" ? `/australia/${state.toLowerCase().replace(/\s+/g, '-')}` : "#"}
                                                 className={state !== "Other Locations" ? "hover:text-orange-600 transition-colors" : ""}
                                             >
                                                 {state}
-                                            </Link>
+                                            </a>
                                             <span className="text-sm font-normal text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
                                                 {filteredLocations.length.toLocaleString()}
                                             </span>
@@ -206,14 +206,14 @@ export default function SitemapClient() {
                                     <div className="p-4 max-h-[350px] overflow-y-auto">
                                         <div className="grid grid-cols-2 gap-1">
                                             {displayLocations.map(city => (
-                                                <Link
+                                                <a
                                                     key={city.id}
-                                                    href={`/${city.slug}`}
+                                                    href={`/areas-we-serve/${city.slug}`}
                                                     className="flex items-center p-2 text-sm hover:bg-orange-50 rounded-lg transition-colors group"
                                                 >
                                                     <MapPin className="h-3 w-3 mr-1.5 text-orange-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
                                                     <span className="truncate text-slate-600 group-hover:text-orange-600">{city.name}</span>
-                                                </Link>
+                                                </a>
                                             ))}
                                         </div>
 
@@ -264,14 +264,14 @@ export default function SitemapClient() {
                                 <div className="p-4">
                                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                         {majorCities.slice(0, 9).map(city => (
-                                            <Link
+                                            <a
                                                 key={`${service.slug}-${city.slug}`}
-                                                href={`/location/${city.slug}/${service.slug}`}
+                                                href={`/areas-we-serve/${city.slug}/${service.slug}`}
                                                 className="flex items-center p-2 text-sm hover:bg-indigo-50 rounded-lg transition-colors group"
                                             >
                                                 <ExternalLink className="h-3 w-3 mr-1.5 text-indigo-500 flex-shrink-0" />
                                                 <span className="truncate text-slate-600 group-hover:text-indigo-600">{city.name}</span>
-                                            </Link>
+                                            </a>
                                         ))}
                                     </div>
                                 </div>
@@ -294,10 +294,10 @@ export default function SitemapClient() {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
-                                    <Link href="/contact">Contact Us</Link>
+                                    <a href="/contact">Contact Us</a>
                                 </Button>
                                 <Button asChild size="lg" className="bg-white/20 border border-white/50 text-white hover:bg-white hover:text-blue-600">
-                                    <Link href="/free-consultation">Free Consultation</Link>
+                                    <a href="/free-consultation">Free Consultation</a>
                                 </Button>
                             </div>
                         </div>

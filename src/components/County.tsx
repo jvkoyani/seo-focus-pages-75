@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import Link from 'next/link';
+
 import { useRouter } from 'next/navigation';
 import { ChevronRight, MapPin, ArrowRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -58,26 +58,26 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="mb-4" animation="fade-in">
                         <div className="inline-flex items-center space-x-2">
-                            <Link
+                            <a
                                 href="/"
                                 className="text-seo-gray-dark hover:text-seo-blue transition-colors"
                             >
                                 Home
-                            </Link>
+                            </a>
                             <ChevronRight className="h-4 w-4 text-seo-gray-medium" />
-                            <Link
+                            <a
                                 href={`/${countrySlug}`}
                                 className="text-seo-gray-dark hover:text-seo-blue transition-colors"
                             >
                                 {countryName}
-                            </Link>
+                            </a>
                             <ChevronRight className="h-4 w-4 text-seo-gray-medium" />
-                            <Link
+                            <a
                                 href={`/${countrySlug}/${stateSlug}`}
                                 className="text-seo-gray-dark hover:text-seo-blue transition-colors"
                             >
                                 {stateFormatted}
-                            </Link>
+                            </a>
                             <ChevronRight className="h-4 w-4 text-seo-gray-medium" />
                             <span className="text-seo-blue font-medium">{countyFormatted}</span>
                         </div>
@@ -101,15 +101,15 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
 
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white button-hover-effect">
-                                <Link href="/free-consultation" className="flex items-center">
+                                <a href="/free-consultation" className="flex items-center">
                                     Get a Free Consultation
                                     <ArrowRight className="ml-2 h-5 w-5" />
-                                </Link>
+                                </a>
                             </Button>
                             <Button size="lg" variant="outline" className="border-seo-blue text-seo-blue hover:bg-seo-blue/5">
-                                <Link href="/case-studies">
+                                <a href="/case-studies">
                                     View Case Studies
-                                </Link>
+                                </a>
                             </Button>
                         </div>
                     </AnimatedSection>
@@ -158,13 +158,13 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                                         Specialized SEO solutions for businesses in {location.name}, helping you improve online visibility and attract more local customers.
                                     </p>
 
-                                    <Link
-                                        href={`/${location.slug}`}
+                                    <a
+                                        href={`/areas-we-serve/${location.slug}`}
                                         className="inline-flex items-center justify-center bg-seo-blue text-white px-5 py-3 rounded-md hover:bg-seo-blue-light transition-colors w-full group"
                                     >
                                         <span>SEO Services in {location.name}</span>
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                    </Link>
+                                    </a>
                                 </div>
                             </AnimatedSection>
                         ))}
@@ -199,7 +199,7 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                                 <p className="text-seo-gray-dark mb-4">{service.description}</p>
 
                                 {countyLocations[0] && (
-                                    <Link
+                                    <a
                                         href={`/${service.slug}-${countyLocations[0].slug}`}
                                         className="inline-flex items-center text-seo-blue font-medium group"
                                     >
@@ -207,7 +207,7 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                                             {service.title} in {countyFormatted}
                                         </span>
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                    </Link>
+                                    </a>
                                 )}
                             </AnimatedSection>
                         ))}
@@ -234,12 +234,12 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                                         </p>
                                     </div>
                                     <div className="flex-shrink-0">
-                                        <Link href="/free-consultation">
+                                        <a href="/free-consultation">
                                             <Button size="lg" className="bg-white text-seo-blue hover:bg-gray-100 w-full md:w-auto">
                                                 Get Started Today
                                                 <ArrowRight className="ml-2 h-5 w-5" />
                                             </Button>
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

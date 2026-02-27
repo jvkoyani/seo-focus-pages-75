@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+
 import { X, Sparkles } from 'lucide-react';
 
 export default function ScrollPopup() {
@@ -59,13 +59,13 @@ export default function ScrollPopup() {
                     Discover what's holding your website back. Get a comprehensive SEO analysis worth $500 - absolutely free!
                 </p>
 
-                <Link
+                <a
                     href="/seo-audit"
                     onClick={handleDismiss}
                     className="block w-full bg-white text-blue-600 font-semibold py-3 px-4 rounded-xl text-center hover:bg-blue-50 transition-colors shadow-lg"
                 >
                     Get Free SEO Audit
-                </Link>
+                </a>
 
                 {/* Decorative elements */}
                 <div className="absolute -top-2 -left-2 w-6 h-6 bg-yellow-400 rounded-full opacity-80 blur-sm"></div>

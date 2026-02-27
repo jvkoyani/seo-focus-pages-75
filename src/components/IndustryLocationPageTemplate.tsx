@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+
 import {
     ArrowRight, MapPin, TrendingUp, BarChart,
     CheckCircle, Award, Users, Target, Star,
@@ -60,9 +60,9 @@ const IndustryLocationPageTemplate = ({ industryData, locationData }: IndustryLo
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="mb-8" animation="fade-in">
                         <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
-                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                            <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
-                            <Link href={`/location/${locationData.slug}`} className="hover:text-white transition-colors">{locationData.name}</Link>
+                            <a href={`/areas-we-serve/${locationData.slug}`} className="hover:text-white transition-colors">{locationData.name}</a>
                             <ChevronRight className="h-3 w-3" />
                             <span className="text-seo-blue font-medium">{industryData.title}</span>
                         </div>
@@ -91,15 +91,15 @@ const IndustryLocationPageTemplate = ({ industryData, locationData }: IndustryLo
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
-                                    <Link href="/free-consultation" className="flex items-center">
+                                    <a href="/free-consultation" className="flex items-center">
                                         Get Free Consultation
                                         <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Link>
+                                    </a>
                                 </Button>
                                 <Button size="lg" variant="outline" className="bg-transparent border-slate-600 text-white hover:bg-white/10 h-14 px-8 text-lg rounded-full backdrop-blur-sm">
-                                    <Link href="#services">
+                                    <a href="#services">
                                         View Our Services
-                                    </Link>
+                                    </a>
                                 </Button>
                             </div>
                         </AnimatedSection>
@@ -149,9 +149,9 @@ const IndustryLocationPageTemplate = ({ industryData, locationData }: IndustryLo
                                     </div>
 
                                     <Button className="w-full bg-white text-slate-900 hover:bg-gray-100 font-bold h-12 text-lg">
-                                        <Link href="/seo-audit">
+                                        <a href="/seo-audit">
                                             Start Your Growth
-                                        </Link>
+                                        </a>
                                     </Button>
                                 </CardContent>
                             </Card>
@@ -181,7 +181,7 @@ const IndustryLocationPageTemplate = ({ industryData, locationData }: IndustryLo
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {services.map((service, index) => (
                             <AnimatedSection key={service.id} delay={index * 100} className="h-full">
-                                <Link href={`/${service.slug}-for-${industryData.slug}-in-${locationData.slug}`} className="group block h-full">
+                                <a href={`/areas-we-serve/${locationData.slug}/${industryData.slug.replace('-seo', '')}/${service.slug}`} className="group block h-full">
                                     <Card className="h-full hover:shadow-xl transition-all duration-300 border-slate-200 group-hover:border-seo-blue/50 bg-slate-50 group-hover:bg-white overflow-hidden">
                                         <CardContent className="p-8 flex flex-col h-full">
                                             <div className="w-14 h-14 rounded-xl bg-white shadow-sm border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-seo-blue/10">
@@ -198,7 +198,7 @@ const IndustryLocationPageTemplate = ({ industryData, locationData }: IndustryLo
                                             </div>
                                         </CardContent>
                                     </Card>
-                                </Link>
+                                </a>
                             </AnimatedSection>
                         ))}
                     </div>

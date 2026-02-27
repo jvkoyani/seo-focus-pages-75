@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import Link from 'next/link';
+
 import { allAustralianCities, Location } from '@/lib/locationData';
 import { MapPin, Search, ChevronDown, ChevronUp } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -95,13 +95,13 @@ const LocationLinks = ({ service, excludeLocation }: LocationLinksProps) => {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {locationsByState[state].map((location) => (
-                  <Link
+                  <a
                     key={location.id}
-                    href={`/location/${location.slug}/${service.slug}`}
+                    href={`/areas-we-serve/${location.slug}/${service.slug}`}
                     className="inline-flex items-center px-3 py-1.5 rounded-md text-sm text-slate-600 bg-slate-50 hover:bg-seo-blue/10 hover:text-seo-blue transition-colors border border-transparent hover:border-seo-blue/20"
                   >
                     {location.name}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>

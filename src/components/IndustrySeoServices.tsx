@@ -1,5 +1,5 @@
 
-import Link from 'next/link';
+
 import { ArrowRight, CheckCircle, Building2 } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { industries } from '@/lib/data';
@@ -81,7 +81,7 @@ const IndustrySeoServices = ({
                   </ul>
                 </div>
 
-                <Link
+                <a
                   href={`/industries/${industry.slug}`}
                   className="inline-flex items-center text-seo-blue font-medium group/link mt-2 relative z-10"
                 >
@@ -89,7 +89,7 @@ const IndustrySeoServices = ({
                     Learn more
                   </span>
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
-                </Link>
+                </a>
               </div>
             </AnimatedSection>
           ))}
@@ -101,14 +101,14 @@ const IndustrySeoServices = ({
             animation="slide-up"
             delay={300}
           >
-            <Link
+            <a
               href="/industries"
               className="inline-flex items-center bg-seo-blue hover:bg-seo-blue-light text-white font-medium py-3 px-8 rounded-md transition-colors relative overflow-hidden group"
             >
               <span className="relative z-10">View All Industry Solutions</span>
               <ArrowRight className="ml-2 h-4 w-4 relative z-10 group-hover:translate-x-1 transition-transform" />
               <div className="absolute inset-0 bg-gradient-to-r from-seo-blue-light to-seo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
+            </a>
           </AnimatedSection>
         )}
       </div>

@@ -1,7 +1,7 @@
 
 import { Metadata } from 'next';
 import React from 'react';
-import Link from 'next/link';
+
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -97,12 +97,12 @@ const CaseStudiesPage = () => {
                         <p className="text-xl text-white/80 mb-8">
                             Contact us today for a free consultation and discover how our SEO services can help your business grow.
                         </p>
-                        <Link
+                        <a
                             href="/contact"
                             className="inline-block bg-seo-blue hover:bg-seo-blue-light text-white font-medium py-3 px-8 rounded-md transition-colors button-hover-effect"
                         >
                             Get Started
-                        </Link>
+                        </a>
                     </AnimatedSection>
                 </div>
             </section>

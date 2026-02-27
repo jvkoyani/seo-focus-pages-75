@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+
 import {
   Mail, Clock, ChevronRight,
   Facebook, Twitter, Linkedin, Instagram, ArrowRight
@@ -52,9 +52,9 @@ const Footer = () => {
           {/* Column 1: Brand & Contact (4 cols) */}
           <div className="lg:col-span-4 space-y-8">
             <div>
-              <Link href="/" className="inline-block mb-4">
+              <a href="/" className="inline-block mb-4">
                 <img src="/logo.png" alt="SEOfocus" className="h-10 md:h-12 w-auto" />
-              </Link>
+              </a>
               <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">
                 We help ambitious businesses dominate search results and drive revenue through data-driven SEO strategies.
               </p>
@@ -104,10 +104,10 @@ const Footer = () => {
                 { label: "SEO Audits", href: "/service/seo-audits" },
               ].map((link, index) => (
                 <li key={index}>
-                  <Link href={link.href} className="text-slate-400 hover:text-seo-blue transition-colors flex items-center group">
+                  <a href={link.href} className="text-slate-400 hover:text-seo-blue transition-colors flex items-center group">
                     <ChevronRight className="w-4 h-4 mr-2 text-slate-600 group-hover:text-seo-blue transition-colors" />
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -127,10 +127,10 @@ const Footer = () => {
                 { label: "Contact", href: "/contact" },
               ].map((link, index) => (
                 <li key={index}>
-                  <Link href={link.href} className="text-slate-400 hover:text-seo-blue transition-colors flex items-center group">
+                  <a href={link.href} className="text-slate-400 hover:text-seo-blue transition-colors flex items-center group">
                     <ChevronRight className="w-4 h-4 mr-2 text-slate-600 group-hover:text-seo-blue transition-colors" />
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -179,9 +179,9 @@ const Footer = () => {
               © {new Date().getFullYear()} SEOfocus. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm text-slate-500">
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-              <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
+              <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/terms" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="/sitemap" className="hover:text-white transition-colors">Sitemap</a>
             </div>
             <div className="flex items-center text-sm text-slate-500">
               <a

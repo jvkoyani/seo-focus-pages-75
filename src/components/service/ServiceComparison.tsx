@@ -5,7 +5,7 @@ import { ComparisonPoint } from '@/lib/data';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Check, X, Minus, Star, ArrowRight, Info, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+
 import { cn } from '@/lib/utils';
 
 interface ServiceComparisonProps {
@@ -108,12 +108,12 @@ const ServiceComparison = ({ points }: ServiceComparisonProps) => {
                             <div className="col-span-3 hidden md:block"></div>
                             <div className="col-span-3 hidden md:block"></div>
                             <div className="col-span-12 md:col-span-2 flex justify-center">
-                                <Link href="/contact" className="w-full">
+                                <a href="/contact" className="w-full">
                                     <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-500/20 group">
                                         Get Started
                                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </Button>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+
 import { Search, ArrowRight, BookOpen } from 'lucide-react';
 import { glossaryTerms } from '@/lib/glossaryData';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -66,7 +66,7 @@ export default function GlossaryIndexPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredTerms.map((term, index) => (
                                 <AnimatedSection key={term.slug} animation="slide-up" delay={index * 50}>
-                                    <Link href={`/glossary/${term.slug}`} className="block h-full group">
+                                    <a href={`/glossary/${term.slug}`} className="block h-full group">
                                         <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                                             <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
 
@@ -94,7 +94,7 @@ export default function GlossaryIndexPage() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </a>
                                 </AnimatedSection>
                             ))}
                         </div>

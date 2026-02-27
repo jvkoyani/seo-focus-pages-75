@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+
 import Image from 'next/image';
 import { ArrowRight, Building, TrendingUp, BarChart3, Target } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
@@ -71,7 +71,7 @@ const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
 
         {/* CTA */}
         <div className="mt-auto pt-4 border-t border-slate-100">
-          <Link href={`/case-study/${caseStudy.slug}`} className="w-full">
+          <a href={`/case-study/${caseStudy.slug}`} className="w-full">
             <Button
               variant="ghost"
               className="w-full justify-between hover:bg-seo-blue hover:text-white group/btn transition-all duration-300"
@@ -79,7 +79,7 @@ const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
               <span className="font-medium">Read Case Study</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </AnimatedSection>

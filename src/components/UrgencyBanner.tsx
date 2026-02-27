@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Zap, Clock, ArrowRight, Phone } from 'lucide-react';
-import Link from 'next/link';
+
 import AnimatedSection from './AnimatedSection';
 
 const UrgencyBanner = () => {
@@ -83,22 +83,22 @@ const UrgencyBanner = () => {
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <Link
+                            <a
                                 href="/seo-audit"
                                 className="group inline-flex items-center gap-3 bg-white text-seo-blue font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-xl shadow-black/20 hover:shadow-2xl hover:shadow-black/30 hover:scale-105"
                             >
                                 <Zap className="w-5 h-5" />
                                 <span>Claim Your Spot Now</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </Link>
+                            </a>
 
-                            <Link
+                            <a
                                 href="/free-consultation"
                                 className="group inline-flex items-center gap-3 bg-transparent text-white font-semibold py-4 px-8 rounded-full border-2 border-white/50 hover:bg-white/10 hover:border-white transition-all duration-300"
                             >
                                 <Phone className="w-5 h-5" />
                                 <span>Schedule Strategy Call</span>
-                            </Link>
+                            </a>
                         </div>
 
                         {/* Trust note */}

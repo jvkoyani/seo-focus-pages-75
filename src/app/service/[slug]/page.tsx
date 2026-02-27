@@ -50,10 +50,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 import JsonLd from '@/components/JsonLd';
 import { generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
+import { getServicePaths } from '@/lib/route-utils';
+
+export const dynamicParams = false; // Static Export requires false for ungenerated paths
+
 export async function generateStaticParams() {
-    return services.map((service) => ({
-        slug: service.slug,
-    }));
+    return getServicePaths();
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {

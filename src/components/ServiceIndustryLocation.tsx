@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import Link from 'next/link';
+
 import {
     ArrowRight, MapPin, TrendingUp, BarChart,
     CheckCircle, Award, Users, Target, Star,
@@ -79,9 +79,9 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="mb-8" animation="fade-in">
                         <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
-                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                            <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
-                            <Link href={`/${locationSlug}`} className="hover:text-white transition-colors">{cityName}</Link>
+                            <a href={`/areas-we-serve/${locationSlug}`} className="hover:text-white transition-colors">{cityName}</a>
                             <ChevronRight className="h-3 w-3" />
                             <span className="text-seo-blue font-medium">{service.title} for {industryBusiness}</span>
                         </div>
@@ -110,15 +110,15 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
-                                    <Link href="/free-consultation" className="flex items-center">
+                                    <a href="/free-consultation" className="flex items-center">
                                         Get Your Free Audit
                                         <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Link>
+                                    </a>
                                 </Button>
                                 <Button size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900 h-14 px-8 text-lg rounded-full backdrop-blur-sm transition-all duration-300">
-                                    <Link href="/case-studies">
+                                    <a href="/case-studies">
                                         View Our Results
-                                    </Link>
+                                    </a>
                                 </Button>
                             </div>
 
@@ -180,9 +180,9 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                                         </div>
 
                                         <Button className="w-full bg-white text-slate-900 hover:bg-gray-100 font-bold h-12 text-lg">
-                                            <Link href="/seo-audit">
+                                            <a href="/seo-audit">
                                                 Claim Your Free Audit Now
-                                            </Link>
+                                            </a>
                                         </Button>
                                     </CardContent>
                                 </Card>
@@ -388,15 +388,15 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
 
                                     <div className="space-y-4 relative z-10">
                                         <Button className="w-full bg-seo-blue hover:bg-seo-blue-light text-white py-6 text-lg rounded-xl shadow-lg shadow-seo-blue/20">
-                                            <Link href="/seo-audit" className="w-full h-full flex items-center justify-center">
+                                            <a href="/seo-audit" className="w-full h-full flex items-center justify-center">
                                                 Get Your Free Audit
-                                            </Link>
+                                            </a>
                                         </Button>
                                         <Button variant="outline" className="w-full border-slate-700 text-white hover:bg-white/10 py-6 text-lg rounded-xl">
-                                            <Link href="/contact" className="w-full h-full flex items-center justify-center">
+                                            <a href="/contact" className="w-full h-full flex items-center justify-center">
                                                 <Phone className="mr-2 h-5 w-5" />
                                                 Talk to an Expert
-                                            </Link>
+                                            </a>
                                         </Button>
                                     </div>
 
