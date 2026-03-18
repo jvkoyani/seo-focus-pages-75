@@ -74,12 +74,12 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     ).slice(0, 3);
 
     // Generate Schemas
-    const serviceSchema = generateServiceSchema(service);
+    const serviceSchema = generateServiceSchema(service, null, 'Australia', 'australia');
     const faqSchema = service.faqs ? generateFAQSchema(service.faqs) : null;
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: 'Home', url: '/' },
-        { name: 'Services', url: '/services' },
-        { name: service.title, url: `/service/${service.slug}` }
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/services' },
+        { label: service.title, href: `/service/${service.slug}` }
     ]);
 
     const schemas = [serviceSchema, breadcrumbSchema, faqSchema].filter(Boolean);

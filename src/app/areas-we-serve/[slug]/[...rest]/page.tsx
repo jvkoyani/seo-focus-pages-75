@@ -5,7 +5,7 @@ import { services, industries } from '@/lib/data';
 import JsonLd from '@/components/JsonLd';
 import ServiceLocationPageTemplate from '@/components/ServiceLocationPageTemplate';
 import ServiceIndustryLocation from '@/components/ServiceIndustryLocation';
-import { generateServiceSchema, generateLocalBusinessSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/schema';
+import { generateServiceSchema, generateLocalBusinessSchema, generateFAQSchema, generateBreadcrumbSchema, serializeSchemas } from '@/lib/schema';
 
 type Props = {
     params: Promise<{ slug: string; rest: string[] }>;
@@ -116,29 +116,23 @@ export default async function AreaCatchAllPage({ params }: Props) {
             metaDescription: `Professional ${serviceData.title} services in ${city.name}.`
         };
 
-        const serviceSchema = generateServiceSchema(serviceData);
-        const localBusinessSchema = generateLocalBusinessSchema(
-            locationData,
-            serviceData,
-            `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.example.com'}/areas-we-serve/${city.slug}/${serviceData.slug}`
-        );
+        const serviceSchema = generateServiceSchema(serviceData, null, city.name, city.slug);
+        const localBusinessSchema = generateLocalBusinessSchema(city.name);
         const faqSchema = serviceData.faqs ? generateFAQSchema(serviceData.faqs) : null;
         const breadcrumbSchema = generateBreadcrumbSchema([
-            { name: 'Home', url: '/' },
-            { name: 'Areas We Serve', url: '/areas-we-serve' },
-            { name: city.name, url: `/areas-we-serve/${city.slug}` },
-            { name: serviceData.title, url: `/areas-we-serve/${city.slug}/${serviceData.slug}` }
+            { label: 'Home', href: '/' },
+            { label: 'Areas We Serve', href: '/areas-we-serve' },
+            { label: city.name, href: `/areas-we-serve/${city.slug}` },
+            { label: serviceData.title, href: `/areas-we-serve/${city.slug}/${serviceData.slug}` }
         ]);
-        const schemaString = JSON.stringify([serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema].filter(Boolean));
+        const schemaString = serializeSchemas([serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema]);
 
         return (
-            <>
-                <JsonLd schemaString={schemaString} />
-                <ServiceLocationPageTemplate
-                    locationData={locationData}
-                    serviceData={serviceData}
-                />
-            </>
+            <ServiceLocationPageTemplate
+                locationData={locationData}
+                serviceData={serviceData}
+                schemaString={schemaString}
+            />
         );
     }
 
@@ -164,32 +158,26 @@ export default async function AreaCatchAllPage({ params }: Props) {
             description: `${service.title} for ${industry.title} in ${city.name}`,
         };
 
-        const serviceSchema = generateServiceSchema(service);
-        const localBusinessSchema = generateLocalBusinessSchema(
-            locationData,
-            service,
-            `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.example.com'}/areas-we-serve/${city.slug}/${industrySlug}/${service.slug}`
-        );
+        const serviceSchema = generateServiceSchema(service, industry, city.name, city.slug);
+        const localBusinessSchema = generateLocalBusinessSchema(city.name);
         const faqSchema = service.faqs ? generateFAQSchema(service.faqs) : null;
         const breadcrumbSchema = generateBreadcrumbSchema([
-            { name: 'Home', url: '/' },
-            { name: 'Areas We Serve', url: '/areas-we-serve' },
-            { name: city.name, url: `/areas-we-serve/${city.slug}` },
-            { name: industry.title, url: `/areas-we-serve/${city.slug}/${industrySlug}` },
-            { name: service.title, url: `/areas-we-serve/${city.slug}/${industrySlug}/${service.slug}` }
+            { label: 'Home', href: '/' },
+            { label: 'Areas We Serve', href: '/areas-we-serve' },
+            { label: city.name, href: `/areas-we-serve/${city.slug}` },
+            { label: industry.title, href: `/areas-we-serve/${city.slug}/${industrySlug}` },
+            { label: service.title, href: `/areas-we-serve/${city.slug}/${industrySlug}/${service.slug}` }
         ]);
-        const schemaString = JSON.stringify([serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema].filter(Boolean));
+        const schemaString = serializeSchemas([serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema]);
 
         return (
-            <>
-                <JsonLd schemaString={schemaString} />
-                <ServiceIndustryLocation
-                    service={service}
-                    industry={serializedIndustry}
-                    cityName={city.name}
-                    locationSlug={city.slug}
-                />
-            </>
+            <ServiceIndustryLocation
+                service={service}
+                industry={serializedIndustry}
+                cityName={city.name}
+                locationSlug={city.slug}
+                schemaString={schemaString}
+            />
         );
     }
 

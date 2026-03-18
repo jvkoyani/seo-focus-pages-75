@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 import {
   Mail, Clock, ChevronRight,
@@ -53,7 +54,7 @@ const Footer = () => {
           <div className="lg:col-span-4 space-y-8">
             <div>
               <a href="/" className="inline-block mb-4">
-                <img src="/logo.png" alt="SEOfocus" className="h-10 md:h-12 w-auto" />
+                <Image src="/logo.png" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto" />
               </a>
               <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">
                 We help ambitious businesses dominate search results and drive revenue through data-driven SEO strategies.

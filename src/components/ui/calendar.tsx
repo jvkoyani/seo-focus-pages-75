@@ -1,9 +1,14 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { DayPicker } from "react-day-picker";
+import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+
+const DayPicker = dynamic(() => import("react-day-picker").then(mod => mod.DayPicker), { 
+  ssr: false, 
+  loading: () => <div className="p-4 flex items-center justify-center animate-pulse"><div className="w-[250px] h-[250px] bg-muted rounded-md" /></div>
+});
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 

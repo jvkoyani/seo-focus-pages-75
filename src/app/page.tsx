@@ -17,7 +17,7 @@ import { australianCities, caseStudies, services } from '@/lib/data';
 import CaseStudyPreview from '@/components/CaseStudyPreview';
 import LocationGrid from '@/components/LocationGrid';
 import JsonLd from '@/components/JsonLd';
-import { generateWebSiteSchema, generateServiceSchema } from '@/lib/schema';
+import { generateWebSiteSchema, generateServiceSchema, serializeSchemas } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'SEO Agency Australia | #1 Rated SEO Services',
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const websiteSchema = generateWebSiteSchema();
-  const servicesSchema = services.map(service => generateServiceSchema(service));
+  // Services schema doesn't take just service — needs city context. Use high-level service listing.
+  const schemaString = serializeSchemas([websiteSchema]);
 
   // Get featured case studies
   const featuredCaseStudies = caseStudies.slice(0, 2);
-  const schemaString = JSON.stringify([websiteSchema, ...servicesSchema]);
 
   return (
     <main className="flex min-h-screen flex-col bg-white">

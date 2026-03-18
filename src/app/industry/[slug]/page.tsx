@@ -47,11 +47,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
             industry.title.includes(cs.industry)
     ).slice(0, 3);
 
-    const serviceSchema = generateServiceSchema(industry);
+    const serviceSchema = generateServiceSchema(null, industry, 'Australia', 'australia');
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: 'Home', url: '/' },
-        { name: 'Industries', url: '/industries' },
-        { name: industry.title, url: `/industry/${industry.slug}` }
+        { label: 'Home', href: '/' },
+        { label: 'Industries', href: '/industries' },
+        { label: industry.title, href: `/industry/${industry.slug}` }
     ]);
     const schemaString = JSON.stringify([serviceSchema, breadcrumbSchema]);
 

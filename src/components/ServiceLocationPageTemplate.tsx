@@ -32,9 +32,10 @@ import { LocationData, ServiceData, caseStudies, industries } from '@/lib/data';
 interface ServiceLocationPageTemplateProps {
     locationData: LocationData;
     serviceData: ServiceData;
+    schemaString?: string;
 }
 
-const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocationPageTemplateProps) => {
+const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }: ServiceLocationPageTemplateProps) => {
     // Filter case studies for this service
     const relevantCaseStudies = caseStudies
         .filter(cs => cs.serviceType === serviceData.slug)
@@ -47,6 +48,9 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
 
     return (
         <div className="min-h-screen flex flex-col font-sans bg-slate-50">
+            {schemaString && (
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaString }} />
+            )}
             <Navbar />
 
             {/* Hero Section - Dark & Premium */}

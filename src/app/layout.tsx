@@ -8,12 +8,18 @@ import ScrollPopup from "@/components/ScrollPopup";
 import JsonLd from '@/components/JsonLd';
 import { generateOrganizationSchema } from '@/lib/schema';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  adjustFontFallback: true,
+});
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-mackinac",
-  weight: ["700"], // Bold only as requested
+  weight: ["700"],
   display: "swap",
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {

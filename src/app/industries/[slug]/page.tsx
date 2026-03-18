@@ -72,9 +72,9 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     };
 
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: 'Home', url: '/' },
-        { name: 'Industries', url: '/industries' },
-        { name: industry.title, url: `/industries/${industry.slug}` }
+        { label: 'Home', href: '/' },
+        { label: 'Industries', href: '/industries' },
+        { label: industry.title, href: `/industries/${industry.slug}` }
     ]);
     const schemaString = JSON.stringify([serviceSchema, breadcrumbSchema]);
 

@@ -6,6 +6,7 @@ import State from '@/components/State';
 import County from '@/components/County';
 import LocationPageTemplate from '@/components/LocationPageTemplate';
 import { isValidCity, getCity } from '@/lib/masterCities';
+import { injectCity, deepInjectCity, formatCityName } from '@/lib/inject';
 import { services, industries } from '@/lib/data';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -88,9 +89,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const parsed = parseServiceIndustryCity(slug[0]);
     if (parsed) {
         const city = getCity(parsed.citySlug);
+        const cityName = city?.name || formatCityName(parsed.citySlug);
         return {
-            title: `${parsed.service.title} for ${parsed.industry.title} in ${city?.name} | Expert SEO`,
-            description: `Specialized ${parsed.service.title} for ${parsed.industry.title} businesses in ${city?.name}. Tailored strategies to help you outrank competitors and get more clients. Free audit.`,
+            title: injectCity(`${parsed.service.title} for ${parsed.industry.title} in {{city}} | Expert SEO`, parsed.citySlug, cityName),
+            description: injectCity(`Specialized ${parsed.service.title} for ${parsed.industry.title} businesses in {{city}}. Tailored strategies to help you outrank competitors and get more clients. Free audit.`, parsed.citySlug, cityName),
         };
     }
 
@@ -107,9 +109,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const parsedIndustry = parseIndustryInCity(slug[0]);
     if (parsedIndustry) {
         const city = getCity(parsedIndustry.citySlug);
+        const cityName = city?.name || formatCityName(parsedIndustry.citySlug);
         return {
-            title: `${parsedIndustry.industry.title} SEO ${city?.name} | Specialized Agency`,
-            description: `Dominate the ${city?.name} market with our specialized SEO for ${parsedIndustry.industry.title}. We understand your niche and deliver measurable growth. Get a free proposal.`,
+            title: injectCity(`${parsedIndustry.industry.title} SEO {{city}} | Specialized Agency`, parsedIndustry.citySlug, cityName),
+            description: injectCity(`Dominate the {{city}} market with our specialized SEO for ${parsedIndustry.industry.title}. We understand your niche and deliver measurable growth. Get a free proposal.`, parsedIndustry.citySlug, cityName),
         };
     }
 
@@ -117,8 +120,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const city = getCity(slug[0]);
     if (city) {
         return {
-            title: `SEO Services ${city.name} | #1 Rated Agency`,
-            description: `Top-rated SEO services in ${city.name}. We help local businesses rank #1 on Google and drive more revenue. Get your free SEO audit today.`,
+            title: injectCity(`SEO Services {{city}} | #1 Rated Agency`, city.slug, city.name),
+            description: injectCity(`Top-rated SEO services in {{city}}. We help local businesses rank #1 on Google and drive more revenue. Get your free SEO audit today.`, city.slug, city.name),
         };
     }
 
@@ -128,6 +131,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Service-Industry-City Page Component
 import ServiceIndustryLocation from '@/components/ServiceIndustryLocation';
 import IndustryLocationPageTemplate from '@/components/IndustryLocationPageTemplate';
+import { caseStudyTemplates } from '@/lib/data';
 
 function ServiceIndustryCityPage({ service, industry, citySlug }: { service: typeof services[0], industry: typeof industries[0], citySlug: string }) {
     const city = getCity(citySlug);
@@ -135,6 +139,7 @@ function ServiceIndustryCityPage({ service, industry, citySlug }: { service: typ
 
     // Remove icon component to avoid serialization error
     const { icon, ...serializedIndustry } = industry;
+    const injectedCaseStudies = deepInjectCity(caseStudyTemplates, citySlug, city.name);
 
     return (
         <ServiceIndustryLocation
@@ -142,6 +147,7 @@ function ServiceIndustryCityPage({ service, industry, citySlug }: { service: typ
             industry={serializedIndustry}
             cityName={city.name}
             locationSlug={citySlug}
+            injectedCaseStudies={injectedCaseStudies as any[]}
         />
     );
 }

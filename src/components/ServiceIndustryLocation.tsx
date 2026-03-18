@@ -24,6 +24,10 @@ import { Button } from '@/components/ui/button';
 import { caseStudyTemplates } from '@/lib/data';
 import TrustIndicators from '@/components/TrustIndicators';
 import ServicePricing from '@/components/service/ServicePricing';
+import {
+    generatePageClasses, generateSectionClasses, generateHeadingClass,
+    generateCTAClass, generateLinkClass, generateSectionId, generateDivClass
+} from '@/lib/classNames';
 
 interface ServiceData {
     id: string;
@@ -48,9 +52,17 @@ interface ServiceIndustryLocationProps {
     industry: IndustryData;
     cityName: string;
     locationSlug: string;
+    injectedCaseStudies?: any[];
+    schemaString?: string;
+    /** Pre-generated class strings passed from server component */
+    pageClasses?: string;
+    heroSectionClasses?: string;
+    heroSectionId?: string;
+    h1Class?: string;
+    primaryCtaClass?: string;
 }
 
-const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: ServiceIndustryLocationProps) => {
+const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, injectedCaseStudies, schemaString, pageClasses, heroSectionClasses, heroSectionId, h1Class, primaryCtaClass }: ServiceIndustryLocationProps) => {
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -58,7 +70,15 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
         });
     }, [service, industry, cityName]);
 
-    // Helper to pluralize industry title if needed (e.g. "Lawyer" -> "Lawyers")
+    // Derive fallback class names client-side if not passed from server (graceful degradation)
+    const resolvedPageClasses = pageClasses || generatePageClasses({
+        pageType: 'money-page', service: service.slug, industry: industry.slug, location: locationSlug
+    });
+    const resolvedHeroId = heroSectionId || generateSectionId({ sectionType: 'hero', service: service.slug, industry: industry.slug, location: locationSlug });
+    const resolvedHeroClasses = heroSectionClasses || generateSectionClasses({ sectionType: 'hero', service: service.slug, location: locationSlug });
+    const resolvedH1Class = h1Class || generateHeadingClass({ level: 1, service: service.slug, industry: industry.slug, location: locationSlug });
+    const resolvedPrimaryCtaClass = primaryCtaClass || generateCTAClass({ type: 'primary', service: service.slug, location: locationSlug });
+
     const pluralIndustry = industry.title.endsWith('s') ? industry.title : `${industry.title}s`;
 
     // Helper to get industry name without "SEO" (e.g. "Real Estate SEO" -> "Real Estate")
@@ -66,19 +86,34 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
     const industryBusiness = `${industryName} Business`;
 
     return (
-        <div className="min-h-screen flex flex-col font-sans">
+        <main
+            id={`page-${service.slug}-${industry.slug}-${locationSlug}`}
+            className={resolvedPageClasses}
+            data-page-type="money-page"
+            data-service={service.slug}
+            data-industry={industry.slug}
+            data-location={locationSlug}
+        >
+            {schemaString && (
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaString }} />
+            )}
             <Navbar />
 
-            {/* Hero Section - Energetic & Slick */}
-            <section className="pt-32 pb-24 bg-slate-900 relative overflow-hidden">
+            {/* Hero Section */}
+            <section
+                id={resolvedHeroId}
+                className={`${resolvedHeroClasses} pt-32 pb-24 bg-slate-900 relative overflow-hidden`}
+                aria-label={`${service.title} for ${industry.title} in ${cityName}`}
+                data-section="hero"
+            >
                 {/* Dynamic Background Elements */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-seo-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
 
-                <div className="container mx-auto px-4 relative z-10">
+                <div className={`${generateDivClass({ role: 'section-container', section: 'hero', service: service.slug, location: locationSlug })} container mx-auto px-4 relative z-10`}>
                     <AnimatedSection className="mb-8" animation="fade-in">
-                        <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
+                        <div className={`${generateDivClass({ role: 'breadcrumb', section: 'hero', service: service.slug, location: locationSlug })} inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700`}>
                             <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
                             <a href={`/areas-we-serve/${locationSlug}`} className="hover:text-white transition-colors">{cityName}</a>
@@ -87,9 +122,9 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                         </div>
                     </AnimatedSection>
 
-                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <div className={`${generateDivClass({ role: 'hero-content', section: 'hero', service: service.slug, industry: industry.slug, location: locationSlug })} flex flex-col lg:flex-row items-center gap-12 lg:gap-20`}>
                         <AnimatedSection className="lg:w-3/5" animation="fade-in-right">
-                            <div className="flex items-center gap-3 mb-6">
+                            <div className={`${generateDivClass({ role: 'badge-row', section: 'hero', service: service.slug, location: locationSlug })} flex items-center gap-3 mb-6`}>
                                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
                                     <Zap className="h-3 w-3 mr-1" />
                                     #1 {service.title} for {pluralIndustry}
@@ -100,7 +135,10 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                                 </span>
                             </div>
 
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
+                            <h1
+                                className={`${resolvedH1Class} text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight`}
+                                data-keyword={`${service.title} ${industry.title} ${cityName}`}
+                            >
                                 {service.title} for <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{industryBusiness}</span> in <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{cityName}</span>
                             </h1>
 
@@ -108,9 +146,14 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                                 Specialized {service.title.toLowerCase()} strategies designed specifically for {pluralIndustry.toLowerCase()} in {cityName}. Drive more qualified leads and grow your practice.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <div className={`${generateDivClass({ role: 'cta-group', section: 'hero', service: service.slug, location: locationSlug })} flex flex-col sm:flex-row gap-4`}>
                                 <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
-                                    <a href="/free-consultation" className="flex items-center">
+                                <a
+                                    href="/free-consultation"
+                                    className={`${resolvedPrimaryCtaClass} flex items-center`}
+                                    data-action="get-free-audit"
+                                    data-goal="conversion"
+                                >
                                         Get Your Free Audit
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </a>
@@ -135,7 +178,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                         </AnimatedSection>
 
                         <AnimatedSection animation="fade-in-left" delay={200} className="lg:w-2/5 w-full">
-                            <div className="relative">
+                            <div className={`${generateDivClass({ role: 'hero-card', section: 'hero', service: service.slug, location: locationSlug })} relative`}>
                                 <div className="absolute -inset-1 bg-gradient-to-r from-seo-blue to-purple-600 rounded-2xl blur opacity-75 animate-pulse"></div>
                                 <Card className="bg-slate-900 border-slate-800 relative rounded-2xl overflow-hidden shadow-2xl">
                                     <CardContent className="p-8">
@@ -193,10 +236,22 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
             </section>
 
             {/* Stats / Trust Strip */}
-            <TrustIndicators />
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-trust`}
+                className={`page-section section-trust-indicators ${service.slug}-${locationSlug}-trust`}
+                aria-label={`Why trust Power My SEO for ${industry.title} in ${cityName}`}
+                data-section="trust-indicators"
+            >
+                <TrustIndicators />
+            </section>
 
             {/* Why Industry Needs Service in City */}
-            <section className="py-24 bg-white">
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-why`}
+                className={`page-section section-why-seo ${service.slug}-${industry.slug}-why py-24 bg-white`}
+                aria-label={`Why ${industry.title} businesses in ${cityName} need ${service.title}`}
+                data-section="why-seo"
+            >
                 <div className="container mx-auto px-4">
                     <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
                         <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-seo-blue/10 text-seo-blue mb-4">
@@ -210,7 +265,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                         </p>
                     </AnimatedSection>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className={`${generateDivClass({ role: 'features-grid', section: 'why-seo', service: service.slug, industry: industry.slug, location: locationSlug })} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6`}>
                         <InfoCard
                             title="High Competition"
                             description={`The ${cityName} ${industry.title.toLowerCase()} market is saturated. SEO is your only way to stand out without burning cash on ads.`}
@@ -255,23 +310,56 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
             </section>
 
             {/* Process Section */}
-            <ProcessSection />
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-process`}
+                className={`page-section section-process ${service.slug}-${locationSlug}-process`}
+                aria-label={`Our ${service.title} process for ${industry.title} in ${cityName}`}
+                data-section="process"
+            >
+                <ProcessSection />
+            </section>
 
             {/* Local SEO Guide Section */}
-            <LocalSEOGuideSection locationName={cityName} />
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-guide`}
+                className={`page-section section-local-guide ${service.slug}-${locationSlug}-guide`}
+                aria-label={`${service.title} guide for ${industry.title} in ${cityName}`}
+                data-section="local-seo-guide"
+            >
+                <LocalSEOGuideSection locationName={cityName} />
+            </section>
 
             {/* Our Services Section */}
-            <Services
-                location={cityName}
-                locationSlug={locationSlug}
-                title={<>Specialised service we serve in <span className="text-seo-blue">{cityName}</span></>}
-            />
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-services`}
+                className={`page-section section-services ${service.slug}-${locationSlug}-services`}
+                aria-label={`SEO services for ${industry.title} in ${cityName}`}
+                data-section="services"
+            >
+                <Services
+                    location={cityName}
+                    locationSlug={locationSlug}
+                    title={<>Specialised service we serve in <span className="text-seo-blue">{cityName}</span></>}
+                />
+            </section>
 
             {/* Industries Section */}
-            <IndustriesSection locationName={cityName} locationSlug={locationSlug} />
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-industries`}
+                className={`page-section section-industries ${service.slug}-${locationSlug}-industries`}
+                aria-label={`Industries related to ${service.title} in ${cityName}`}
+                data-section="industries"
+            >
+                <IndustriesSection locationName={cityName} locationSlug={locationSlug} />
+            </section>
 
             {/* Dynamic Case Studies Section */}
-            <section className="py-24 bg-white">
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-results`}
+                className={`page-section section-case-studies ${service.slug}-${industry.slug}-${locationSlug}-results py-24 bg-white`}
+                aria-label={`${service.title} results for ${industry.title} in ${cityName}`}
+                data-section="case-studies"
+            >
                 <div className="container mx-auto px-4">
                     <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
                         <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-green-100 text-green-700 mb-4">
@@ -285,24 +373,12 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                         </p>
                     </AnimatedSection>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {caseStudyTemplates.map((template, index) => {
-                            // Create a localized copy of the template
-                            const localizedCaseStudy = {
-                                ...template,
-                                title: template.title.replace(/{City}/g, cityName),
-                                client: template.client.replace(/{City}/g, cityName),
-                                challenge: template.challenge.replace(/{City}/g, cityName),
-                                solution: template.solution.replace(/{City}/g, cityName),
-                                results: template.results.map(r => r.replace(/{City}/g, cityName)),
-                                // Create a dynamic slug: template-slug + location-slug
-                                slug: `${template.slug}-${locationSlug}`
-                            };
-
+                    <div className={`${generateDivClass({ role: 'case-studies-grid', section: 'case-studies', service: service.slug, industry: industry.slug, location: locationSlug })} grid grid-cols-1 md:grid-cols-3 gap-8`}>
+                        {(injectedCaseStudies || []).map((template, index) => {
                             return (
                                 <CaseStudyPreview
                                     key={template.id}
-                                    caseStudy={localizedCaseStudy}
+                                    caseStudy={template}
                                     delay={index * 100}
                                 />
                             );
@@ -312,9 +388,14 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
             </section>
 
             {/* Why Choose Us Section */}
-            <section className="py-24 bg-slate-50">
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-why-us`}
+                className={`page-section section-why-choose-us ${service.slug}-${industry.slug}-${locationSlug}-why-us py-24 bg-slate-50`}
+                aria-label={`Why choose Power My SEO for ${industry.title} ${service.title} in ${cityName}`}
+                data-section="why-choose-us"
+            >
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col lg:flex-row gap-16 items-center">
+                    <div className={`${generateDivClass({ role: 'why-us-grid', section: 'why-choose-us', service: service.slug, industry: industry.slug, location: locationSlug })} flex flex-col lg:flex-row gap-16 items-center`}>
                         <AnimatedSection className="lg:w-1/2" animation="fade-in-right">
                             <div className="relative">
                                 <div className="absolute -left-10 -top-10 w-72 h-72 bg-seo-blue/5 rounded-full blur-3xl"></div>
@@ -327,7 +408,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                                     We don't just do "SEO". We build revenue-generating engines for {industry.title.toLowerCase()} businesses.
                                 </p>
 
-                                <div className="space-y-8 relative z-10">
+                                <div className={`${generateDivClass({ role: 'why-us-features', section: 'why-choose-us', service: service.slug, location: locationSlug })} space-y-8 relative z-10`}>
                                     <div className="flex group">
                                         <div className="flex-shrink-0 mr-6">
                                             <div className="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-gray-100">
@@ -374,7 +455,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
                         </AnimatedSection>
 
                         <AnimatedSection className="lg:w-1/2" animation="fade-in-left">
-                            <div className="bg-white p-2 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <div className={`${generateDivClass({ role: 'why-us-cta-card', section: 'why-choose-us', service: service.slug, location: locationSlug })} bg-white p-2 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500`}>
                                 <div className="bg-slate-900 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-64 h-64 bg-seo-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
@@ -411,14 +492,37 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug }: 
             </section>
 
             {/* Pricing Section */}
-            {industry.pricing && <ServicePricing tiers={industry.pricing} />}
+            {industry.pricing && (
+                <section
+                    id={`${service.slug}-${industry.slug}-${locationSlug}-pricing`}
+                    className={`page-section section-pricing ${service.slug}-${industry.slug}-pricing`}
+                    aria-label={`${service.title} pricing for ${industry.title} in ${cityName}`}
+                    data-section="pricing"
+                >
+                    <ServicePricing tiers={industry.pricing} />
+                </section>
+            )}
 
             {/* FAQ Section */}
-            <FAQSection locationName={cityName} serviceName={service.title} industryName={industryName} />
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-faq`}
+                className={`page-section section-faq ${service.slug}-${industry.slug}-${locationSlug}-faq`}
+                aria-label={`${service.title} FAQ for ${industry.title} in ${cityName}`}
+                data-section="faq"
+            >
+                <FAQSection locationName={cityName} serviceName={service.title} industryName={industryName} />
+            </section>
 
-            <ContactForm />
+            <section
+                id={`${service.slug}-${industry.slug}-${locationSlug}-contact`}
+                className={`page-section section-contact ${service.slug}-${industry.slug}-${locationSlug}-contact`}
+                aria-label={`Contact us for ${service.title} for ${industry.title} in ${cityName}`}
+                data-section="contact"
+            >
+                <ContactForm />
+            </section>
             <Footer />
-        </div>
+        </main>
     );
 };
 

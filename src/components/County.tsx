@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from 'react';
+import Image from 'next/image';
 
 import { useRouter } from 'next/navigation';
 import { ChevronRight, MapPin, ArrowRight } from 'lucide-react';
@@ -140,10 +141,12 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                                 delay={index * 100}
                             >
                                 <div className="relative h-48 overflow-hidden">
-                                    <img
-                                        src={location.image}
-                                        alt={location.name}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    <Image
+                                        src={location.image || '/placeholder.svg'}
+                                        alt={`SEO services in ${location.name}`}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                                     <div className="absolute bottom-0 left-0 w-full p-4">

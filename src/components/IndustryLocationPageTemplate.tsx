@@ -25,6 +25,7 @@ import { LocationData, ServiceData, IndustryData, caseStudies, services } from '
 interface IndustryLocationPageTemplateProps {
     industryData: Omit<IndustryData, 'icon'>;
     locationData: LocationData;
+    schemaString?: string;
 }
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -36,7 +37,7 @@ const iconMap: Record<string, React.ReactNode> = {
     'bar-chart': <BarChart className="w-7 h-7 text-seo-blue" />
 };
 
-const IndustryLocationPageTemplate = ({ industryData, locationData }: IndustryLocationPageTemplateProps) => {
+const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString }: IndustryLocationPageTemplateProps) => {
     // Filter case studies for this industry if available, otherwise generic
     const relevantCaseStudies = caseStudies
         .filter(cs => cs.industry === industryData.title || cs.location === locationData.name)
@@ -44,6 +45,9 @@ const IndustryLocationPageTemplate = ({ industryData, locationData }: IndustryLo
 
     return (
         <div className="min-h-screen flex flex-col font-sans bg-slate-50">
+            {schemaString && (
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaString }} />
+            )}
             <Navbar />
 
             {/* Hero Section - Industry Focused */}

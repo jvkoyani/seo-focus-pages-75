@@ -334,11 +334,11 @@ export const caseStudies: CaseStudyData[] = [
 export const caseStudyTemplates: CaseStudyData[] = [
   {
     id: 'template-1',
-    title: 'Tripling New Patients for {City} Dental Clinic',
+    title: 'Tripling New Patients for {{city}} Dental Clinic',
     slug: 'dental-seo',
-    client: '{City} Family Dental',
+    client: '{{city}} Family Dental',
     industry: 'Dental',
-    challenge: 'Facing stiff competition in {City}.',
+    challenge: 'Facing stiff competition in {{city}}.',
     solution: 'Hyper-local SEO strategy.',
     results: ['300% increase in inquiries'],
     image: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1000&auto=format&fit=crop',

@@ -5,24 +5,22 @@ const nextConfig: NextConfig = {
   /** @type {import('next').NextConfig} */
   output: 'export', // Enabled for Static Site Generation
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true, // Required for static export (next/image optimization needs a server)
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "cms.powermyseo.com",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
-  // Redirects are not supported in static export
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/sitemap',
-  //       destination: '/html-sitemap',
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
+  // Note: images.formats and minimumCacheTTL require a Node.js server (not static export).
+  // These will be enabled when switching from 'output: export' to server-side rendering.
+  // experimental: { optimizeCss: true }, // Uncomment when on server-rendered deployment
 };
 
 export default nextConfig;

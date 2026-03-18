@@ -10,7 +10,7 @@ import { caseStudies } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
 import JsonLd from '@/components/JsonLd';
-import { generateCaseStudySchema, generateBreadcrumbSchema } from '@/lib/schema';
+import { generateCaseStudySchema, generateBreadcrumbSchema, serializeSchemas } from '@/lib/schema';
 
 export async function generateStaticParams() {
     return caseStudies.map((caseStudy) => ({
@@ -39,11 +39,11 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
     const caseStudySchema = generateCaseStudySchema(caseStudy);
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: 'Home', url: '/' },
-        { name: 'Case Studies', url: '/case-studies' },
-        { name: caseStudy.title, url: `/case-studies/${caseStudy.slug}` }
+        { label: 'Home', href: '/' },
+        { label: 'Case Studies', href: '/case-studies' },
+        { label: caseStudy.title, href: `/case-studies/${caseStudy.slug}` }
     ]);
-    const schemaString = JSON.stringify([caseStudySchema, breadcrumbSchema]);
+    const schemaString = serializeSchemas([caseStudySchema, breadcrumbSchema]);
 
     return (
         <div className="min-h-screen flex flex-col">

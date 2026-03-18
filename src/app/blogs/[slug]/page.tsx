@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Calendar, User, Tag, ChevronLeft } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,7 +10,7 @@ import { blogPosts } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
 import JsonLd from '@/components/JsonLd';
-import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/schema';
+import { generateArticleSchema, generateBreadcrumbSchema, serializeSchemas } from '@/lib/schema';
 
 export async function generateStaticParams() {
     return blogPosts.map((post) => ({
@@ -37,11 +38,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
     const articleSchema = generateArticleSchema(post);
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: 'Home', url: '/' },
-        { name: 'Blog', url: '/blogs' },
-        { name: post.title, url: `/blogs/${post.slug}` }
+        { label: 'Home', href: '/' },
+        { label: 'Blog', href: '/blogs' },
+        { label: post.title, href: `/blogs/${post.slug}` }
     ]);
-    const schemaString = JSON.stringify([articleSchema, breadcrumbSchema]);
+    const schemaString = serializeSchemas([articleSchema, breadcrumbSchema]);
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -85,10 +86,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto">
                         <div className="rounded-xl overflow-hidden shadow-lg">
-                            <img
-                                src={post.image}
+                            <Image
+                                src={post.image || '/placeholder.svg'}
                                 alt={post.title}
+                                width={800}
+                                height={450}
                                 className="w-full h-auto"
+                                priority
                             />
                         </div>
                     </div>

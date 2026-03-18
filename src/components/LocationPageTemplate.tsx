@@ -26,37 +26,69 @@ import { Button } from '@/components/ui/button';
 import { Location } from '@/lib/locationData';
 import ServicePricing from '@/components/service/ServicePricing';
 import { services, caseStudyTemplates } from '@/lib/data';
+import {
+    generatePageClasses, generateSectionClasses, generateHeadingClass,
+    generateCTAClass, generateSectionId, generateDivClass
+} from '@/lib/classNames';
 
 interface LocationPageTemplateProps {
     locationData: Location;
+    injectedCaseStudies?: any[];
+    schemaString?: string;
+    /** Pre-generated class strings from server component */
+    pageClasses?: string;
+    heroSectionClasses?: string;
+    heroSectionId?: string;
+    h1Class?: string;
+    primaryCtaClass?: string;
 }
 
-const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
+const LocationPageTemplate = ({ locationData, injectedCaseStudies, schemaString, pageClasses, heroSectionClasses, heroSectionId, h1Class, primaryCtaClass }: LocationPageTemplateProps) => {
     const localSeoPricing = services.find(s => s.slug === 'local-seo')?.pricing || [];
 
+    // Derive fallback classes if not pre-computed server-side
+    const resolvedPageClasses = pageClasses || generatePageClasses({ pageType: 'location-hub', location: locationData.slug });
+    const resolvedHeroId = heroSectionId || generateSectionId({ sectionType: 'hero', location: locationData.slug });
+    const resolvedHeroClasses = heroSectionClasses || generateSectionClasses({ sectionType: 'hero', location: locationData.slug });
+    const resolvedH1Class = h1Class || generateHeadingClass({ level: 1, location: locationData.slug });
+    const resolvedPrimaryCtaClass = primaryCtaClass || generateCTAClass({ type: 'primary', location: locationData.slug });
+
     return (
-        <div className="min-h-screen flex flex-col font-sans">
+        <main
+            id={`page-seo-${locationData.slug}`}
+            className={resolvedPageClasses}
+            data-page-type="location-hub"
+            data-location={locationData.slug}
+        >
+            {schemaString && (
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaString }} />
+            )}
             <Navbar />
 
-            {/* Hero Section - Energetic & Slick */}
-            <section className="pt-32 pb-24 bg-slate-900 relative overflow-hidden">
+            {/* Hero Section */}
+            <section
+                id={resolvedHeroId}
+                className={`${resolvedHeroClasses} pt-32 pb-24 bg-slate-900 relative overflow-hidden`}
+                aria-label={`SEO services in ${locationData.name}`}
+                data-section="hero"
+            >
                 {/* Dynamic Background Elements */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-seo-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
 
-                <div className="container mx-auto px-4 relative z-10">
+                <div className={`${generateDivClass({ role: 'section-container', section: 'hero', location: locationData.slug })} container mx-auto px-4 relative z-10`}>
                     <AnimatedSection className="mb-8" animation="fade-in">
-                        <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
+                        <div className={`${generateDivClass({ role: 'breadcrumb', section: 'hero', location: locationData.slug })} inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700`}>
                             <a href="/" className="hover:text-white transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
                             <span className="text-seo-blue font-medium">{locationData.name}</span>
                         </div>
                     </AnimatedSection>
 
-                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <div className={`${generateDivClass({ role: 'hero-content', section: 'hero', location: locationData.slug })} flex flex-col lg:flex-row items-center gap-12 lg:gap-20`}>
                         <AnimatedSection className="lg:w-3/5" animation="fade-in-right">
-                            <div className="flex items-center gap-3 mb-6">
+                            <div className={`${generateDivClass({ role: 'badge-row', section: 'hero', location: locationData.slug })} flex items-center gap-3 mb-6`}>
                                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
                                     <Zap className="h-3 w-3 mr-1" />
                                     #1 SEO Agency in {locationData.name}
@@ -67,7 +99,10 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                                 </span>
                             </div>
 
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
+                            <h1
+                                className={`${resolvedH1Class} text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight`}
+                                data-keyword={`SEO ${locationData.name}`}
+                            >
                                 Dominate <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{locationData.name}</span> Search Results
                             </h1>
 
@@ -75,9 +110,14 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                                 Stop losing customers to competitors. We implement high-impact SEO strategies tailored for the {locationData.name} market to drive traffic, leads, and revenue.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <div className={`${generateDivClass({ role: 'cta-group', section: 'hero', location: locationData.slug })} flex flex-col sm:flex-row gap-4`}>
                                 <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
-                                    <a href="/free-consultation" className="flex items-center">
+                                    <a
+                                        href="/free-consultation"
+                                        className={`${resolvedPrimaryCtaClass} flex items-center`}
+                                        data-action="get-free-audit"
+                                        data-goal="conversion"
+                                    >
                                         Get Your Free Audit
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </a>
@@ -102,7 +142,7 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                         </AnimatedSection>
 
                         <AnimatedSection animation="fade-in-left" delay={200} className="lg:w-2/5 w-full">
-                            <div className="relative">
+                            <div className={`${generateDivClass({ role: 'hero-card', section: 'hero', location: locationData.slug })} relative`}>
                                 <div className="absolute -inset-1 bg-gradient-to-r from-seo-blue to-purple-600 rounded-2xl blur opacity-75 animate-pulse"></div>
                                 <Card className="bg-slate-900 border-slate-800 relative rounded-2xl overflow-hidden shadow-2xl">
                                     <CardContent className="p-8">
@@ -160,10 +200,22 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
             </section>
 
             {/* Trust Indicators Section */}
-            <TrustIndicators />
+            <section
+                id={`${locationData.slug}-trust-indicators`}
+                className={`page-section section-trust-indicators ${locationData.slug}-trust`}
+                aria-label={`Why trust Power My SEO in ${locationData.name}`}
+                data-section="trust-indicators"
+            >
+                <TrustIndicators />
+            </section>
 
             {/* Why Businesses Need SEO in Location - Dark Theme */}
-            <section className="py-24 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
+            <section
+                id={`${locationData.slug}-why-seo`}
+                className={`page-section section-why-seo ${locationData.slug}-why-seo py-24 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden`}
+                aria-label={`Why ${locationData.name} businesses need SEO`}
+                data-section="why-seo"
+            >
                 {/* Animated background elements */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -183,7 +235,7 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                         </p>
                     </AnimatedSection>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className={`${generateDivClass({ role: 'features-grid', section: 'why-seo', location: locationData.slug })} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6`}>
                         {[
                             {
                                 title: "High Competition",
@@ -230,23 +282,56 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
             </section>
 
             {/* Process Section */}
-            <ProcessSection />
+            <section
+                id={`${locationData.slug}-seo-process`}
+                className={`page-section section-process ${locationData.slug}-process`}
+                aria-label={`Our SEO process for ${locationData.name} businesses`}
+                data-section="process"
+            >
+                <ProcessSection />
+            </section>
 
             {/* Local SEO Guide Section */}
-            <LocalSEOGuideSection locationName={locationData.name} />
+            <section
+                id={`${locationData.slug}-local-seo-guide`}
+                className={`page-section section-local-guide ${locationData.slug}-guide`}
+                aria-label={`Local SEO guide for ${locationData.name}`}
+                data-section="local-seo-guide"
+            >
+                <LocalSEOGuideSection locationName={locationData.name} />
+            </section>
 
             {/* Our Services Section */}
+            <section
+                id={`${locationData.slug}-services`}
+                className={`page-section section-services ${locationData.slug}-services`}
+                aria-label={`SEO services in ${locationData.name}`}
+                data-section="services"
+            >
             <Services
                 location={locationData.name}
                 locationSlug={locationData.slug}
                 title={<>Specialised service we serve in <span className="text-seo-blue">{locationData.name}</span></>}
             />
+            </section>
 
             {/* Industries Section */}
-            <IndustriesSection locationName={locationData.name} locationSlug={locationData.slug} />
+            <section
+                id={`${locationData.slug}-industries`}
+                className={`page-section section-industries ${locationData.slug}-industries`}
+                aria-label={`Industries we serve in ${locationData.name}`}
+                data-section="industries"
+            >
+                <IndustriesSection locationName={locationData.name} locationSlug={locationData.slug} />
+            </section>
 
             {/* Dynamic Case Studies Section */}
-            <section className="py-24 bg-white">
+            <section
+                id={`${locationData.slug}-case-studies`}
+                className={`page-section section-case-studies ${locationData.slug}-results py-24 bg-white`}
+                aria-label={`SEO success stories from ${locationData.name} businesses`}
+                data-section="case-studies"
+            >
                 <div className="container mx-auto px-4">
                     <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 mb-4">
@@ -261,25 +346,12 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                         </p>
                     </AnimatedSection>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {caseStudyTemplates.map((template, index) => {
-                            // Create a localized copy of the template
-                            const localizedCaseStudy = {
-                                ...template,
-                                title: template.title.replace(/{City}/g, locationData.name),
-                                client: template.client.replace(/{City}/g, locationData.name),
-                                challenge: template.challenge.replace(/{City}/g, locationData.name),
-                                solution: template.solution.replace(/{City}/g, locationData.name),
-                                results: template.results.map(r => r.replace(/{City}/g, locationData.name)),
-                                // Create a dynamic slug: template-slug + location-slug
-                                // e.g. dental-seo-melbourne
-                                slug: `${template.slug}-${locationData.slug}`
-                            };
-
+                    <div className={`${generateDivClass({ role: 'case-studies-grid', section: 'case-studies', location: locationData.slug })} grid grid-cols-1 md:grid-cols-3 gap-8`}>
+                        {(injectedCaseStudies || []).map((template, index) => {
                             return (
                                 <CaseStudyPreview
                                     key={template.id}
-                                    caseStudy={localizedCaseStudy}
+                                    caseStudy={template}
                                     delay={index * 100}
                                 />
                             );
@@ -289,9 +361,14 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
             </section>
 
             {/* Why Choose Us Section */}
-            <section className="py-24 bg-slate-50">
+            <section
+                id={`${locationData.slug}-why-choose-us`}
+                className={`page-section section-why-choose-us ${locationData.slug}-why-us py-24 bg-slate-50`}
+                aria-label={`Why choose Power My SEO for ${locationData.name}`}
+                data-section="why-choose-us"
+            >
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col lg:flex-row gap-16 items-center">
+                    <div className={`${generateDivClass({ role: 'why-us-grid', section: 'why-choose-us', location: locationData.slug })} flex flex-col lg:flex-row gap-16 items-center`}>
                         <AnimatedSection className="lg:w-1/2" animation="fade-in-right">
                             <div className="relative">
                                 <div className="absolute -left-10 -top-10 w-72 h-72 bg-seo-blue/5 rounded-full blur-3xl"></div>
@@ -308,7 +385,7 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                                     We don't just do "SEO". We build revenue-generating engines for {locationData.name} businesses.
                                 </p>
 
-                                <div className="space-y-8 relative z-10">
+                                <div className={`${generateDivClass({ role: 'why-us-features', section: 'why-choose-us', location: locationData.slug })} space-y-8 relative z-10`}>
                                     <div className="flex group">
                                         <div className="flex-shrink-0 mr-6">
                                             <div className="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-gray-100">
@@ -355,7 +432,7 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                         </AnimatedSection>
 
                         <AnimatedSection className="lg:w-1/2" animation="fade-in-left">
-                            <div className="bg-white p-2 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <div className={`${generateDivClass({ role: 'why-us-cta-card', section: 'why-choose-us', location: locationData.slug })} bg-white p-2 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500`}>
                                 <div className="bg-slate-900 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-64 h-64 bg-seo-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
@@ -392,20 +469,48 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
             </section>
 
             {/* Pricing Section */}
-            <ServicePricing tiers={localSeoPricing} />
+            <section
+                id={`${locationData.slug}-seo-pricing`}
+                className={`page-section section-pricing ${locationData.slug}-pricing`}
+                aria-label={`SEO pricing plans for ${locationData.name}`}
+                data-section="pricing"
+            >
+                <ServicePricing tiers={localSeoPricing} />
+            </section>
 
             {/* FAQ Section */}
-            <FAQSection locationName={locationData.name} />
+            <section
+                id={`${locationData.slug}-faq`}
+                className={`page-section section-faq ${locationData.slug}-faq`}
+                aria-label={`Frequently asked questions about SEO in ${locationData.name}`}
+                data-section="faq"
+            >
+                <FAQSection locationName={locationData.name} />
+            </section>
 
             {/* Resources Section */}
-            <ResourcesSection
-                filterTag={locationData.name}
-                className="bg-white"
-            />
+            <section
+                id={`${locationData.slug}-resources`}
+                className={`page-section section-resources ${locationData.slug}-resources`}
+                aria-label={`SEO resources and guides for ${locationData.name}`}
+                data-section="resources"
+            >
+                <ResourcesSection
+                    filterTag={locationData.name}
+                    className="bg-white"
+                />
+            </section>
 
-            <ContactForm />
+            <section
+                id={`${locationData.slug}-contact`}
+                className={`page-section section-contact ${locationData.slug}-contact`}
+                aria-label={`Contact Power My SEO for ${locationData.name}`}
+                data-section="contact"
+            >
+                <ContactForm />
+            </section>
             <Footer />
-        </div>
+        </main>
     );
 };
 
