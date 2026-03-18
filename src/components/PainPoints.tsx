@@ -1,8 +1,13 @@
-'use client';
+/**
+ * PainPoints — Server Component
+ * 
+ * Uses Pure CSS for the card flip effect (using group-hover).
+ * 100% server-rendered, zero JavaScript required.
+ * Ensures all problem and solution text is immediately visible to crawlers.
+ */
 
-import { useState } from 'react';
+import React from 'react';
 import { TrendingDown, UserX, Trophy, DollarSign, ArrowRight, Search, Clock, AlertTriangle } from 'lucide-react';
-
 import AnimatedSection from './AnimatedSection';
 
 const painPoints = [
@@ -53,19 +58,12 @@ const painPoints = [
 ];
 
 const PainPoints = () => {
-  const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
-
-  const toggleFlip = (id: number) => {
-    setFlippedCards(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
   return (
     <section className="py-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Animated background elements (CSS only) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -85,7 +83,7 @@ const PainPoints = () => {
           <p className="text-xl text-slate-400">
             These problems cost Australian businesses millions in lost revenue every year.
             <br />
-            <span className="text-white font-medium">Tap a card to see your solution.</span>
+            <span className="text-white font-medium">Hover a card to see your solution.</span>
           </p>
         </AnimatedSection>
 
@@ -96,19 +94,13 @@ const PainPoints = () => {
               animation="slide-up"
               delay={index * 100}
             >
-              <div
-                className="relative h-72 cursor-pointer group perspective-1000"
-                onClick={() => toggleFlip(point.id)}
-              >
-                {/* Card Container */}
-                <div
-                  className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
-                    flippedCards[point.id] ? 'rotate-y-180' : ''
-                  }`}
-                >
+              <div className="relative h-72 cursor-default group perspective-1000">
+                {/* CSS Based Flip Card Container */}
+                <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:[transform:rotateY(180deg)]">
+                  
                   {/* Front - Problem */}
                   <div className="absolute inset-0 backface-hidden">
-                    <div className={`h-full rounded-2xl bg-gradient-to-br ${point.color} p-[2px] group-hover:shadow-2xl group-hover:shadow-red-500/20 transition-all duration-300`}>
+                    <div className={`h-full rounded-2xl bg-gradient-to-br ${point.color} p-[2px] group-hover:shadow-2xl transition-all duration-300`}>
                       <div className="h-full bg-slate-900/95 rounded-2xl p-6 flex flex-col items-center justify-center text-center backdrop-blur-xl">
                         <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${point.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                           <point.icon className="w-8 h-8 text-white" />
@@ -116,7 +108,7 @@ const PainPoints = () => {
                         <h3 className="text-xl font-bold text-white mb-2">{point.problem}</h3>
                         <p className="text-slate-400 text-sm">{point.description}</p>
                         <div className="mt-4 text-xs text-slate-500 flex items-center gap-1">
-                          <span>Tap to see solution</span>
+                          <span>Hover to see solution</span>
                           <ArrowRight className="w-3 h-3" />
                         </div>
                       </div>
@@ -124,8 +116,8 @@ const PainPoints = () => {
                   </div>
 
                   {/* Back - Solution */}
-                  <div className="absolute inset-0 backface-hidden rotate-y-180">
-                    <div className={`h-full rounded-2xl bg-gradient-to-br ${point.solutionColor} p-[2px] shadow-2xl shadow-green-500/20`}>
+                  <div className="absolute inset-0 backface-hidden [transform:rotateY(180deg)]">
+                    <div className={`h-full rounded-2xl bg-gradient-to-br ${point.solutionColor} p-[2px] shadow-2xl`}>
                       <div className="h-full bg-slate-900/95 rounded-2xl p-6 flex flex-col items-center justify-center text-center backdrop-blur-xl">
                         <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${point.solutionColor} flex items-center justify-center mb-4`}>
                           <point.solutionIcon className="w-8 h-8 text-white" />
@@ -159,6 +151,14 @@ const PainPoints = () => {
           <p className="mt-4 text-slate-500 text-sm">No credit card required • Results in 48 hours</p>
         </AnimatedSection>
       </div>
+      
+      {/* Inline styles for 3D flip effect since Tailwind doesn't have all depth utility glasses by default */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+      `}} />
     </section>
   );
 };

@@ -1,32 +1,30 @@
-'use client';
+/**
+ * UrgencyBanner — Server Component
+ * 
+ * Optimized for SEO: calculates month and spots remaining server-side.
+ * Uses 100% server-rendered HTML for time-sensitive marketing signals.
+ * Zero client-side JavaScript required for initial display.
+ */
 
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { Zap, Clock, ArrowRight, Phone } from 'lucide-react';
-
 import AnimatedSection from './AnimatedSection';
 
 const UrgencyBanner = () => {
-    const [spotsRemaining, setSpotsRemaining] = useState(3);
-    const [currentMonth, setCurrentMonth] = useState('');
+    // Calculate month and spots on the server
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    const now = new Date();
+    const currentMonth = monthNames[now.getMonth()];
 
-    // eslint-disable-next-line
-    useEffect(() => {
-        // Get current month name
-        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'];
-        const now = new Date();
-        setCurrentMonth(monthNames[now.getMonth()]);
-
-        // Simulate dynamic spots (in production, this would come from your backend)
-        const dayOfMonth = now.getDate();
-        const calculatedSpots = Math.max(1, 5 - Math.floor(dayOfMonth / 7));
-        setSpotsRemaining(calculatedSpots);
-    }, []);
+    // Simulate dynamic spots based on date
+    const dayOfMonth = now.getDate();
+    const spotsRemaining = Math.max(1, 5 - Math.floor(dayOfMonth / 7));
 
     return (
         <section className="relative py-16 overflow-hidden">
-            {/* Animated gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-seo-blue via-blue-600 to-purple-600 animate-gradient-x"></div>
+            {/* Background elements (CSS Animations) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-seo-blue via-blue-600 to-purple-600 animate-pulse"></div>
 
             {/* Overlay pattern */}
             <div className="absolute inset-0 opacity-10">
@@ -44,7 +42,7 @@ const UrgencyBanner = () => {
                 <AnimatedSection animation="fade-in">
                     <div className="max-w-5xl mx-auto text-center">
                         {/* Urgency Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 mb-6 animate-pulse">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 mb-6">
                             <Zap className="w-4 h-4 text-yellow-300" />
                             <span className="text-white font-semibold text-sm">Limited Availability for {currentMonth}</span>
                         </div>
@@ -73,10 +71,9 @@ const UrgencyBanner = () => {
                                 <div
                                     key={spot}
                                     className={`w-4 h-4 rounded-full transition-all duration-300 ${spot <= spotsRemaining
-                                        ? 'bg-green-400 shadow-lg shadow-green-400/50 animate-pulse'
+                                        ? 'bg-green-400 shadow-lg shadow-green-400/50'
                                         : 'bg-white/30'
                                         }`}
-                                    style={{ animationDelay: `${spot * 0.1}s` }}
                                 ></div>
                             ))}
                         </div>
@@ -120,7 +117,7 @@ const UrgencyBanner = () => {
                 </AnimatedSection>
             </div>
 
-            {/* Bottom wave decoration */}
+            {/* Bottom wave decoration using static SVG */}
             <div className="absolute bottom-0 left-0 right-0">
                 <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
                     <path d="M0 60L60 55C120 50 240 40 360 35C480 30 600 30 720 35C840 40 960 50 1080 52.5C1200 55 1320 50 1380 47.5L1440 45V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white" />

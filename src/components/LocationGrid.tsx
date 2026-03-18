@@ -1,9 +1,14 @@
-"use client";
+/**
+ * LocationGrid — Server Component
+ * 
+ * renders a grid of locations.
+ * Optimized for SSR: all links are immediately indexable.
+ * Entrance animations use CSS-only SSR classes.
+ */
 
 import React from 'react';
-
 import { MapPin, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import AnimatedSection from '@/components/AnimatedSection';
 import { Location } from '@/lib/locationData';
 
 interface LocationGridProps {
@@ -15,12 +20,10 @@ const LocationGrid = ({ locations, serviceSlug }: LocationGridProps) => {
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {locations.map((location, index) => (
-                <motion.div
+                <AnimatedSection
                     key={location.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
+                    animation="slide-up"
+                    delay={index * 50}
                 >
                     <a
                         href={serviceSlug ? `/areas-we-serve/${location.slug}/${serviceSlug}` : `/areas-we-serve/${location.slug}`}
@@ -44,7 +47,7 @@ const LocationGrid = ({ locations, serviceSlug }: LocationGridProps) => {
                             </p>
                         </div>
                     </a>
-                </motion.div>
+                </AnimatedSection>
             ))}
         </div>
     );

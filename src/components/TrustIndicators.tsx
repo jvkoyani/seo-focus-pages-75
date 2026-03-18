@@ -1,8 +1,14 @@
-'use client';
+/**
+ * TrustIndicators — Server Component
+ * 
+ * Optimized for SSR: critical stats are rendered directly in HTML.
+ * Client-side count-up animation is progressively enhanced.
+ */
 
-import { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { TrendingUp, Users, Award, DollarSign, Star } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
+import { CountUp } from '@/components/ui/CountUp';
 
 const stats = [
     {
@@ -52,84 +58,26 @@ const logos = [
     { name: 'Shopify Partner', icon: '🛒' }
 ];
 
-function useCountUp(end: number, duration: number = 2000, startOnView: boolean = true) {
-    const [count, setCount] = useState(0);
-    const [hasStarted, setHasStarted] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!startOnView || hasStarted) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    setHasStarted(true);
-                }
-            },
-            { threshold: 0.5 }
-        );
-
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
-
-        return () => observer.disconnect();
-    }, [startOnView, hasStarted]);
-
-    useEffect(() => {
-        if (!hasStarted) return;
-
-        let startTime: number;
-        let animationFrame: number;
-
-        const animate = (currentTime: number) => {
-            if (!startTime) startTime = currentTime;
-            const progress = Math.min((currentTime - startTime) / duration, 1);
-
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            setCount(easeOutQuart * end);
-
-            if (progress < 1) {
-                animationFrame = requestAnimationFrame(animate);
-            }
-        };
-
-        animationFrame = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(animationFrame);
-    }, [end, duration, hasStarted]);
-
-    return { count, ref };
-}
-
 const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => {
-    const { count, ref } = useCountUp(stat.value, 2500);
-
     return (
         <AnimatedSection
             animation="slide-up"
             delay={index * 150}
         >
-            <div
-                ref={ref}
-                className="relative group"
-            >
+            <div className="relative group">
                 <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
                 <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:border-white/20">
                     <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                         <stat.icon className="w-7 h-7 text-white" />
                     </div>
                     <div className="flex items-baseline gap-1 mb-2">
-                        {stat.prefix && (
-                            <span className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                                {stat.prefix}
-                            </span>
-                        )}
                         <span className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                            {stat.value === 2.5 ? count.toFixed(1) : Math.round(count)}
-                        </span>
-                        <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                            {stat.suffix}
+                            <CountUp 
+                                end={stat.value} 
+                                prefix={stat.prefix} 
+                                suffix={stat.suffix} 
+                                decimals={stat.value === 2.5 ? 1 : 0} 
+                            />
                         </span>
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-1">{stat.label}</h3>

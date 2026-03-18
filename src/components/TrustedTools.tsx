@@ -1,8 +1,13 @@
-"use client";
+/**
+ * TrustedTools — Server Component
+ * 
+ * Optimized for SSR: 100% server-rendered.
+ * Uses Pure CSS for the marquee animation.
+ * Zero JavaScript/Framer Motion required.
+ */
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { BarChart, Search, Database, Globe, Zap, Layers, Cpu } from 'lucide-react';
+import { BarChart, Database, Globe, Zap, Layers, Cpu } from 'lucide-react';
 
 const tools = [
     { name: 'Ahrefs', icon: <BarChart className="w-5 h-5" />, color: 'text-orange-500' },
@@ -28,7 +33,7 @@ const TrustedTools = () => {
             </div>
 
             <div className="relative flex overflow-x-hidden group">
-                <div className="flex animate-marquee whitespace-nowrap" style={{ animationDuration: '60s' }}>
+                <div className="flex animate-marquee-tools whitespace-nowrap">
                     {[...tools, ...tools, ...tools].map((tool, index) => (
                         <div key={index} className="mx-4">
                             <div className="flex items-center gap-3 px-6 py-4 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:scale-105 hover:border-blue-100 transition-all duration-300 cursor-default group/item">
@@ -39,11 +44,12 @@ const TrustedTools = () => {
                             </div>
                         </div>
                     ))}
+                    {/* Loops items */}
                 </div>
 
-                <div className="absolute top-0 flex animate-marquee2 whitespace-nowrap" style={{ animationDuration: '60s' }}>
+                <div className="absolute top-0 flex animate-marquee-tools whitespace-nowrap">
                     {[...tools, ...tools, ...tools].map((tool, index) => (
-                        <div key={index} className="mx-4">
+                        <div key={`clone-${index}`} className="mx-4">
                             <div className="flex items-center gap-3 px-6 py-4 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:scale-105 hover:border-blue-100 transition-all duration-300 cursor-default group/item">
                                 <div className={`p-2 rounded-lg bg-slate-50 ${tool.color} group-hover/item:bg-blue-50 transition-colors`}>
                                     {tool.icon}
@@ -58,6 +64,16 @@ const TrustedTools = () => {
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-slate-50 to-transparent z-10"></div>
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
             </div>
+
+            <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes marquee-tools {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-marquee-tools {
+                    animation: marquee-tools 40s linear infinite;
+                }
+            `}} />
         </section>
     );
 };

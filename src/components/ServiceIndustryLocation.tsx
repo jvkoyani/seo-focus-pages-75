@@ -1,6 +1,5 @@
-"use client";
+import React from 'react';
 
-import React, { useEffect } from 'react';
 
 import {
     ArrowRight, MapPin, TrendingUp, BarChart,
@@ -63,17 +62,12 @@ interface ServiceIndustryLocationProps {
 }
 
 const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, injectedCaseStudies, schemaString, pageClasses, heroSectionClasses, heroSectionId, h1Class, primaryCtaClass }: ServiceIndustryLocationProps) => {
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }, [service, industry, cityName]);
 
-    // Derive fallback class names client-side if not passed from server (graceful degradation)
+    // Class names are derived from props (server-side safe)
     const resolvedPageClasses = pageClasses || generatePageClasses({
         pageType: 'money-page', service: service.slug, industry: industry.slug, location: locationSlug
     });
+
     const resolvedHeroId = heroSectionId || generateSectionId({ sectionType: 'hero', service: service.slug, industry: industry.slug, location: locationSlug });
     const resolvedHeroClasses = heroSectionClasses || generateSectionClasses({ sectionType: 'hero', service: service.slug, location: locationSlug });
     const resolvedH1Class = h1Class || generateHeadingClass({ level: 1, service: service.slug, industry: industry.slug, location: locationSlug });

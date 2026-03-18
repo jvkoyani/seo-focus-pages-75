@@ -1,4 +1,9 @@
-"use client";
+/**
+ * ServiceGrid — Server Component
+ * 
+ * Uses CSS animations for the marquee effect.
+ * 100% server-rendered, zero JavaScript required for the layout.
+ */
 
 import React from 'react';
 import {
@@ -8,8 +13,6 @@ import {
     Mic, ShoppingBag, Newspaper, Megaphone,
     Target, Zap, Layers
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 
 const services = [
     { title: "Infographic Design", icon: ImageIcon, desc: "Visual storytelling" },
@@ -37,10 +40,7 @@ const ServiceCard = ({ item }: { item: typeof services[0] }) => (
     <div
         className="relative group w-64 h-24 mx-3 flex-shrink-0 rounded-xl overflow-hidden bg-slate-900/60 backdrop-blur-md border border-white/5 hover:border-emerald-500/50 transition-colors duration-300 cursor-pointer"
     >
-        {/* Hover Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Animated Border Gradient (Bottom) */}
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
 
         <div className="relative h-full p-4 flex items-center gap-4">
@@ -61,23 +61,29 @@ const ServiceCard = ({ item }: { item: typeof services[0] }) => (
 );
 
 const MarqueeRow = ({ items, direction = "left", speed = 40 }: { items: typeof services, direction?: "left" | "right", speed?: number }) => {
+    // We use the same CSS animation strategy as FeaturedIn.tsx
+    const animationClass = direction === "left" ? "animate-marquee" : "animate-marquee2";
+    
     return (
-        <div className="flex overflow-hidden w-full py-2 mask-gradient-horizontal">
-            <motion.div
-                initial={{ x: direction === "left" ? 0 : "-50%" }}
-                animate={{ x: direction === "left" ? "-50%" : 0 }}
-                transition={{
-                    duration: speed,
-                    repeat: Infinity,
-                    ease: "linear",
-                    repeatType: "loop"
-                }}
-                className="flex flex-shrink-0 hover:pause-animation"
-            >
-                {[...items, ...items].map((item, idx) => (
-                    <ServiceCard key={`${item.title}-${idx}`} item={item} />
+        <div className="relative flex overflow-x-hidden group">
+            <div className={`${animationClass} whitespace-nowrap flex items-center py-2 h-28`}>
+                {items.map((item, idx) => (
+                    <ServiceCard key={`row-1-${idx}`} item={item} />
                 ))}
-            </motion.div>
+                {/* Clone for seamless loop */}
+                {items.map((item, idx) => (
+                    <ServiceCard key={`row-1-clone-${idx}`} item={item} />
+                ))}
+            </div>
+            <div className={`absolute top-0 ${animationClass} whitespace-nowrap flex items-center py-2 h-28`}>
+                {items.map((item, idx) => (
+                    <ServiceCard key={`row-2-${idx}`} item={item} />
+                ))}
+                {/* Clone for seamless loop */}
+                {items.map((item, idx) => (
+                    <ServiceCard key={`row-2-clone-${idx}`} item={item} />
+                ))}
+            </div>
         </div>
     );
 };
@@ -87,13 +93,13 @@ const ServiceGrid = () => {
     const row2 = services.slice(10, 19);
 
     return (
-        <div className="h-full w-full flex flex-col justify-center gap-6 py-8 overflow-hidden relative">
+        <div className="h-full w-full flex flex-col justify-center gap-2 py-8 overflow-hidden relative bg-slate-950/20 rounded-3xl border border-white/5">
             {/* Background Elements */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/10 blur-[100px] rounded-full" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/5 blur-[100px] rounded-full" />
             </div>
 
-            <div className="relative z-10 space-y-6">
+            <div className="relative z-10 space-y-2">
                 <MarqueeRow items={row1} direction="left" speed={40} />
                 <MarqueeRow items={row2} direction="right" speed={45} />
             </div>

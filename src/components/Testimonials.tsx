@@ -1,7 +1,13 @@
-'use client';
+/**
+ * Testimonials — Server Component
+ * 
+ * Optimized for SSR: all testimonials are rendered in the HTML.
+ * Uses a CSS marquee effect for motion without JavaScript.
+ * This ensures search engines and LLMs can read every success story.
+ */
 
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import React from 'react';
+import { Quote, Star } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { testimonials } from '@/lib/data';
 
@@ -9,43 +15,38 @@ interface TestimonialsProps {
   location?: string;
 }
 
+const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
+    <div className="w-80 md:w-96 flex-shrink-0 mx-4">
+        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/10 shadow-xl h-full flex flex-col">
+            <div className="flex items-center gap-1 mb-4">
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="w-4 h-4 text-amber-500 fill-current" />
+                ))}
+            </div>
+            
+            <div className="relative mb-6 flex-grow">
+                <Quote className="absolute -top-2 -left-2 w-8 h-8 text-white/5" />
+                <p className="text-white/90 leading-relaxed italic font-light relative z-10">
+                    &quot;{testimonial.quote}&quot;
+                </p>
+            </div>
+
+            <div className="pt-6 border-t border-white/10 mt-auto">
+                <h4 className="text-white font-bold">{testimonial.name}</h4>
+                <p className="text-slate-400 text-sm">{testimonial.company}</p>
+                <p className="text-slate-500 text-xs mt-1">{testimonial.location}</p>
+            </div>
+        </div>
+    </div>
+);
+
 const Testimonials = ({ location }: TestimonialsProps) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Auto-play testimonials
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) =>
-        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const handlePrev = () => {
-    setIsAutoPlaying(false);
-    setActiveIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setIsAutoPlaying(false);
-    setActiveIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
   return (
     <section className="py-24 bg-gradient-to-b from-slate-900 to-slate-950 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -67,107 +68,72 @@ const Testimonials = ({ location }: TestimonialsProps) => {
           </p>
         </AnimatedSection>
 
-        <div className="relative max-w-5xl mx-auto">
-          {/* Main Testimonial Card */}
-          <AnimatedSection
-            key={activeIndex}
-            className="relative"
-            animation="fade-in"
-          >
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
-              {/* Quote Icon */}
-              <div className="absolute -top-6 left-8 md:left-12">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center shadow-lg">
-                  <Quote className="w-6 h-6 text-white" />
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center pt-8 text-center">
-
-                {/* Content */}
-                <div className="max-w-3xl mx-auto">
-                  <div className="mb-8 flex justify-center">
-                    <div className="flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full px-4 py-1.5 shadow-lg">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star key={star} className="w-4 h-4 text-white fill-current" />
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 leading-relaxed font-light italic">
-                    &quot;{testimonials[activeIndex].quote}&quot;
-                  </p>
-
-                  <div>
-                    <h4 className="text-2xl font-display font-bold text-white mb-2">
-                      {testimonials[activeIndex].name}
-                    </h4>
-                    <div className="flex items-center justify-center gap-2 text-slate-400 text-lg">
-                      <span>{testimonials[activeIndex].company}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
-                      <span>{testimonials[activeIndex].location}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Results Badge (if applicable) */}
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                  <div className="px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-                    <span className="text-green-400 font-semibold text-sm">↑ 180% Traffic Increase</span>
-                  </div>
-                  <div className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
-                    <span className="text-blue-400 font-semibold text-sm">🎯 Page 1 Rankings</span>
-                  </div>
-                  <div className="px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20">
-                    <span className="text-purple-400 font-semibold text-sm">💰 3x ROI</span>
-                  </div>
-                </div>
-              </div>
+        {/* CSS Marquee for Testimonials */}
+        <div className="relative flex overflow-x-hidden group py-10">
+            {/* First Row Marquee */}
+            <div className="animate-marquee-slow whitespace-nowrap flex items-stretch">
+                {testimonials.map((t, i) => (
+                    <TestimonialCard key={`t1-${i}`} testimonial={t} />
+                ))}
+                {/* Clone for loop */}
+                {testimonials.map((t, i) => (
+                    <TestimonialCard key={`t1-clone-${i}`} testimonial={t} />
+                ))}
             </div>
-          </AnimatedSection>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-6 mt-10">
-            {/* Prev Button */}
-            <button
-              className="w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 border border-white/10"
-              onClick={handlePrev}
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
-                    ? 'w-8 bg-gradient-to-r from-amber-500 to-orange-500'
-                    : 'w-2 bg-white/30 hover:bg-white/50'
-                    }`}
-                  onClick={() => {
-                    setIsAutoPlaying(false);
-                    setActiveIndex(index);
-                  }}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
+            
+            {/* Second Row Marquee (Duplicate for seamlessness) */}
+            <div className="absolute top-10 animate-marquee-slow-2 whitespace-nowrap flex items-stretch">
+                {testimonials.map((t, i) => (
+                    <TestimonialCard key={`t2-${i}`} testimonial={t} />
+                ))}
+                {/* Clone for loop */}
+                {testimonials.map((t, i) => (
+                    <TestimonialCard key={`t2-clone-${i}`} testimonial={t} />
+                ))}
             </div>
-
-            {/* Next Button */}
-            <button
-              className="w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 border border-white/10"
-              onClick={handleNext}
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
-          </div>
         </div>
+
+        <AnimatedSection
+          className="text-center mt-12"
+          animation="fade-in"
+          delay={500}
+        >
+          <div className="inline-flex items-center gap-6 p-6 rounded-2xl bg-white/5 border border-white/10">
+            <div className="text-left">
+              <p className="text-white font-bold text-2xl">4.9/5</p>
+              <p className="text-slate-400 text-sm">Average rating from 250+ clients</p>
+            </div>
+            <div className="w-px h-12 bg-white/10"></div>
+            <div className="flex -space-x-3">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="w-12 h-12 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-xs font-bold text-white">
+                    {String.fromCharCode(64 + i)}
+                </div>
+              ))}
+              <div className="w-12 h-12 rounded-full border-2 border-slate-900 bg-seo-blue flex items-center justify-center text-xs font-bold text-white">
+                +246
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .animate-marquee-slow {
+            animation: marquee 60s linear infinite;
+        }
+        .animate-marquee-slow-2 {
+            animation: marquee2 60s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee2 {
+            0% { transform: translateX(50%); }
+            100% { transform: translateX(0); }
+        }
+      `}} />
     </section>
   );
 };

@@ -1,9 +1,13 @@
-"use client";
+/**
+ * ProblemSolution — Server Component
+ * 
+ * Uses CSS :hover for interactivity.
+ * 100% server-rendered, zero JavaScript required.
+ * Ensures both problem and solution text are present in the DOM for SEO/LLMs.
+ */
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { AlertTriangle, CheckCircle, XCircle, ArrowRight, TrendingDown, DollarSign, Clock } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React from 'react';
+import { AlertTriangle, CheckCircle, ArrowRight, TrendingDown, DollarSign, Clock } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
 interface ProblemSolutionProps {
@@ -11,8 +15,6 @@ interface ProblemSolutionProps {
 }
 
 const ProblemSolution = ({ serviceTitle }: ProblemSolutionProps) => {
-    const [activeCard, setActiveCard] = useState<number | null>(null);
-
     const cards = [
         {
             id: 1,
@@ -97,51 +99,53 @@ const ProblemSolution = ({ serviceTitle }: ProblemSolutionProps) => {
                         </AnimatedSection>
                     </div>
 
-                    {/* Right Side: Interactive Cards */}
+                    {/* Right Side: CSS-Interactive Cards */}
                     <div className="space-y-6">
                         {cards.map((card, index) => (
                             <AnimatedSection
                                 key={card.id}
                                 animation="slide-up"
                                 delay={index * 100}
+                                className="group/card"
                             >
-                                <div
-                                    className="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer border border-transparent hover:border-seo-blue/20"
-                                    onMouseEnter={() => setActiveCard(card.id)}
-                                    onMouseLeave={() => setActiveCard(null)}
-                                >
+                                <div className="relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-transparent hover:border-seo-blue/20">
                                     <div className="p-8">
-                                        <div className="flex items-start gap-6">
-                                            <div className={cn(
-                                                "w-14 h-14 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-500",
-                                                activeCard === card.id ? "bg-green-100" : "bg-red-50"
-                                            )}>
-                                                {activeCard === card.id ? card.solution.icon : card.problem.icon}
+                                        <div className="flex items-start gap-6 relative min-h-[100px]">
+                                            {/* Problem Content (Visible by default) */}
+                                            <div className="flex items-start gap-6 group-hover/card:opacity-0 group-hover/card:invisible transition-all duration-300 w-full">
+                                                <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 bg-red-50">
+                                                    {card.problem.icon}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h3 className="text-xl font-bold mb-2 text-seo-dark">
+                                                        {card.problem.title}
+                                                    </h3>
+                                                    <p className="text-seo-gray-dark leading-relaxed">
+                                                        {card.problem.description}
+                                                    </p>
+                                                </div>
                                             </div>
 
-                                            <div className="flex-1">
-                                                <h3 className={cn(
-                                                    "text-xl font-bold mb-2 transition-colors duration-300",
-                                                    activeCard === card.id ? "text-green-700" : "text-seo-dark"
-                                                )}>
-                                                    {activeCard === card.id ? card.solution.title : card.problem.title}
-                                                </h3>
-
-                                                <p className="text-seo-gray-dark leading-relaxed">
-                                                    {activeCard === card.id ? card.solution.description : card.problem.description}
-                                                </p>
+                                            {/* Solution Content (Visible on Hover) */}
+                                            <div className="absolute inset-0 flex items-start gap-6 opacity-0 invisible group-hover/card:opacity-100 group-hover/card:visible transition-all duration-300 w-full p-0">
+                                                <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 bg-green-100">
+                                                    {card.solution.icon}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h3 className="text-xl font-bold mb-2 text-green-700">
+                                                        {card.solution.title}
+                                                    </h3>
+                                                    <p className="text-seo-gray-dark leading-relaxed">
+                                                        {card.solution.description}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Progress Bar / Indicator */}
-                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-100">
-                                        <motion.div
-                                            className="h-full bg-green-500"
-                                            initial={{ width: "0%" }}
-                                            animate={{ width: activeCard === card.id ? "100%" : "0%" }}
-                                            transition={{ duration: 0.3 }}
-                                        />
+                                    {/* Progress Bar Animation (CSS Only) */}
+                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-50 overflow-hidden">
+                                        <div className="h-full bg-green-500 w-0 group-hover/card:w-full transition-all duration-500 ease-in-out" />
                                     </div>
                                 </div>
                             </AnimatedSection>

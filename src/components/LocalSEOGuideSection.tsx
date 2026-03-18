@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { CheckCircle, AlertTriangle, Search, Map } from 'lucide-react';

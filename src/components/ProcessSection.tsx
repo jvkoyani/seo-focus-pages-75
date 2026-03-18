@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Search, BarChart, Settings, TrendingUp, FileText, Share2 } from 'lucide-react';

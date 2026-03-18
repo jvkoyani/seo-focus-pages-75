@@ -1,19 +1,19 @@
-'use client';
+/**
+ * HeroDashboardPreview — Server Component
+ * 
+ * Uses Pure CSS for 3D tilt, floating, and graph animations.
+ * 100% server-rendered, zero JavaScript required.
+ * Ensures the dashboard content is present in the initial HTML for LLMs/SEO.
+ */
 
+import React from 'react';
 import { TrendingUp, Users, MousePointerClick, ArrowUpRight, Search, BarChart3 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const HeroDashboardPreview = () => {
     return (
         <div className="relative w-full max-w-[600px] mx-auto perspective-1000">
-            {/* Main Dashboard Card - Tilted & Floating */}
-            <motion.div
-                initial={{ rotateX: 20, rotateY: -20, opacity: 0, y: 50 }}
-                animate={{ rotateX: 10, rotateY: -10, opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="relative z-20 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden transform-style-3d"
-                style={{ transformStyle: 'preserve-3d' }}
-            >
+            {/* Main Dashboard Card - Tilted & Floating (CSS Animation) */}
+            <div className="relative z-20 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-hero-tilt transform-style-3d">
                 {/* Header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-white/5">
                     <div className="flex items-center gap-2">
@@ -61,15 +61,13 @@ const HeroDashboardPreview = () => {
                             </div>
                         </div>
 
-                        {/* Simulated Graph */}
+                        {/* Simulated Graph (CSS Animated Height) */}
                         <div className="h-32 flex items-end justify-between gap-2">
                             {[30, 45, 35, 55, 45, 60, 50, 75, 65, 85, 70, 95].map((h, i) => (
-                                <motion.div
+                                <div
                                     key={i}
-                                    initial={{ height: 0 }}
-                                    animate={{ height: `${h}%` }}
-                                    transition={{ duration: 0.5, delay: i * 0.05 }}
-                                    className="w-full bg-gradient-to-t from-blue-600/20 to-blue-500 rounded-t-sm"
+                                    style={{ height: `${h}%`, animationDelay: `${i * 0.05}s` }}
+                                    className="w-full bg-gradient-to-t from-blue-600/20 to-blue-500 rounded-t-sm animate-grow-up origin-bottom"
                                 />
                             ))}
                         </div>
@@ -95,14 +93,10 @@ const HeroDashboardPreview = () => {
                         ))}
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
-            {/* Floating Elements for Depth */}
-            <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-12 top-20 z-30 p-4 rounded-xl bg-slate-800/90 backdrop-blur-md border border-green-500/30 shadow-xl"
-            >
+            {/* Floating Elements for Depth (CSS Only) */}
+            <div className="absolute -right-12 top-20 z-30 p-4 rounded-xl bg-slate-800/90 backdrop-blur-md border border-green-500/30 shadow-xl animate-float">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
                         <TrendingUp className="w-5 h-5 text-green-400" />
@@ -112,13 +106,9 @@ const HeroDashboardPreview = () => {
                         <div className="text-lg font-bold text-white">+450%</div>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -left-8 bottom-20 z-30 p-4 rounded-xl bg-slate-800/90 backdrop-blur-md border border-blue-500/30 shadow-xl"
-            >
+            <div className="absolute -left-8 bottom-20 z-30 p-4 rounded-xl bg-slate-800/90 backdrop-blur-md border border-blue-500/30 shadow-xl animate-float-delayed">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
                         <BarChart3 className="w-5 h-5 text-blue-400" />
@@ -128,10 +118,37 @@ const HeroDashboardPreview = () => {
                         <div className="text-lg font-bold text-white">245</div>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
             {/* Glow Effects */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/20 blur-[100px] -z-10 rounded-full" />
+
+            <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes hero-tilt {
+                    0% { transform: rotateX(20deg) rotateY(-20deg) translateY(50px); opacity: 0; }
+                    100% { transform: rotateX(10deg) rotateY(-10deg) translateY(0); opacity: 1; }
+                }
+                .animate-hero-tilt {
+                    animation: hero-tilt 1s ease-out forwards;
+                }
+                @keyframes grow-up {
+                    from { transform: scaleY(0); }
+                    to { transform: scaleY(1); }
+                }
+                .animate-grow-up {
+                    animation: grow-up 0.5s ease-out both;
+                }
+                @keyframes float {
+                    0%, 100% { transform: translateY(-10px); }
+                    50% { transform: translateY(10px); }
+                }
+                .animate-float {
+                    animation: float 4s ease-in-out infinite;
+                }
+                .animate-float-delayed {
+                    animation: float 5s ease-in-out infinite 1s;
+                }
+            `}} />
         </div>
     );
 };

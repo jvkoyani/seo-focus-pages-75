@@ -1,7 +1,12 @@
-'use client';
+/**
+ * Hero — Server Component
+ * 
+ * 100% server-rendered. Zero JavaScript required for layout or initial animations.
+ * Provides critical title and subtitle content directly in the SSR HTML.
+ */
 
+import React from 'react';
 import { ArrowRight, Play, CheckCircle2, Star } from 'lucide-react';
-
 import AnimatedSection from './AnimatedSection';
 import HeroDashboardPreview from './HeroDashboardPreview';
 
@@ -123,9 +128,9 @@ const Hero = ({
           </div>
 
           {/* Right Column: 3D Dashboard Preview */}
-          <AnimatedSection animation="fade-in-left" delay={200} className="hidden lg:block perspective-1000">
+          <div className="hidden lg:block perspective-1000">
             {rightContent || <HeroDashboardPreview />}
-          </AnimatedSection>
+          </div>
         </div>
       </div>
     </div>

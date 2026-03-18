@@ -1,9 +1,14 @@
-"use client";
+/**
+ * FAQSection — Server Component
+ * 
+ * Uses semantic HTML <details> and <summary> for FAQ interactivity.
+ * This ensures 100% of the content is present in the initial SSR HTML
+ * and is fully indexable by Google/LLMs without requiring JS execution.
+ */
 
-import React, { useState } from 'react';
+import React from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
-import { ChevronDown, ChevronUp, HelpCircle, MessageCircleQuestion } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, MessageCircleQuestion, HelpCircle } from 'lucide-react';
 
 interface FAQItem {
     question: string;
@@ -19,7 +24,14 @@ interface FAQSectionProps {
     description?: string;
 }
 
-const FAQSection = ({ locationName = "Your Area", serviceName = "SEO", industryName = "Business", customFaqs, title, description }: FAQSectionProps) => {
+const FAQSection = ({ 
+    locationName = "Your Area", 
+    serviceName = "SEO", 
+    industryName = "Business", 
+    customFaqs, 
+    title, 
+    description 
+}: FAQSectionProps) => {
     const defaultFaqs: FAQItem[] = [
         {
             question: `Why is ${serviceName} important for ${industryName} businesses in ${locationName}?`,
@@ -44,12 +56,6 @@ const FAQSection = ({ locationName = "Your Area", serviceName = "SEO", industryN
     ];
 
     const faqs = customFaqs || defaultFaqs;
-
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-    const toggleFAQ = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
 
     return (
         <section className="py-20 bg-seo-gray-light">
@@ -99,39 +105,35 @@ const FAQSection = ({ locationName = "Your Area", serviceName = "SEO", industryN
                                     delay={index * 100}
                                     className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
                                 >
-                                    <button
-                                        onClick={() => toggleFAQ(index)}
-                                        className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
-                                    >
-                                        <span className={`font-bold text-lg ${openIndex === index ? 'text-seo-blue' : 'text-seo-dark'}`}>
-                                            {faq.question}
-                                        </span>
-                                        {openIndex === index ? (
-                                            <ChevronUp className="w-5 h-5 text-seo-blue flex-shrink-0" />
-                                        ) : (
-                                            <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                                        )}
-                                    </button>
-                                    <AnimatePresence>
-                                        {openIndex === index && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: "auto", opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                transition={{ duration: 0.3 }}
-                                            >
-                                                <div className="px-6 pb-6 text-seo-gray-dark border-t border-gray-50 pt-4">
-                                                    {faq.answer}
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
+                                    <details className="group">
+                                        <summary className="w-full flex items-center justify-between p-6 text-left focus:outline-none list-none cursor-pointer">
+                                            <span className="font-bold text-lg text-seo-dark group-open:text-seo-blue transition-colors">
+                                                {faq.question}
+                                            </span>
+                                            <ChevronDown className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0" />
+                                        </summary>
+                                        <div className="px-6 pb-6 text-seo-gray-dark border-t border-gray-50 pt-4">
+                                            {faq.answer}
+                                        </div>
+                                    </details>
                                 </AnimatedSection>
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
+            
+            {/* Simple CSS to hide the default details marker */}
+            <style dangerouslySetInnerHTML={{ __html: `
+                summary::-webkit-details-marker { display: none; }
+                details[open] summary ~ * {
+                    animation: sweep .3s ease-in-out;
+                }
+                @keyframes sweep {
+                    from { opacity: 0; transform: translateY(-10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `}} />
         </section>
     );
 };

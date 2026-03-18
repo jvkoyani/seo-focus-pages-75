@@ -1,7 +1,12 @@
-'use client';
+/**
+ * ServiceCarousel — Server Component
+ * 
+ * Optimized for SSR: renders the full vertical scroll grid server-side.
+ * Uses Pure CSS for the vertical scrolling motion.
+ * Zero JavaScript required for the initial high-tech aesthetic.
+ */
 
 import React from 'react';
-
 import { services } from '@/lib/data';
 import {
     MapPin,
@@ -27,19 +32,32 @@ const iconMap: { [key: string]: React.ElementType } = {
 
 const ServiceCarousel = () => {
     // Duplicate services for infinite scroll effect
-    const carouselItems = [...services, ...services];
+    const carouselItems = [...services, ...services, ...services];
 
     return (
-        <div className="relative w-full h-[600px] overflow-hidden mask-gradient-y">
+        <div className="relative w-full h-[600px] overflow-hidden">
             {/* Gradient Overlays for smooth fade in/out */}
             <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-slate-950 to-transparent z-10"></div>
             <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
 
-            <div className="grid grid-cols-2 gap-4 animate-scroll-vertical">
+            <div className="grid grid-cols-2 gap-4 animate-scroll-vertical-ssr">
                 {carouselItems.map((service, index) => (
                     <ServiceCard key={`${service.id}-${index}`} service={service} />
                 ))}
             </div>
+
+            <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes scroll-vertical-ssr {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(-50%); }
+                }
+                .animate-scroll-vertical-ssr {
+                    animation: scroll-vertical-ssr 30s linear infinite;
+                }
+                .animate-scroll-vertical-ssr:hover {
+                    animation-play-state: paused;
+                }
+            `}} />
         </div>
     );
 };
