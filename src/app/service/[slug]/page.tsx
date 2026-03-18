@@ -52,7 +52,7 @@ import { generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } fr
 
 import { getServicePaths } from '@/lib/route-utils';
 
-export const dynamicParams = false; // Static Export requires false for ungenerated paths
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     return getServicePaths();
@@ -83,10 +83,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     ]);
 
     const schemas = [serviceSchema, breadcrumbSchema, faqSchema].filter(Boolean);
+    const schemaString = JSON.stringify(schemas);
 
     return (
         <div className="min-h-screen flex flex-col">
-            <JsonLd data={schemas} />
+            <JsonLd schemaString={schemaString} />
             <Navbar />
 
             {/* 1. Enhanced Hero Section */}

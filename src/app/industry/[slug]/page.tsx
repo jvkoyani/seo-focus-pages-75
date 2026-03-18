@@ -25,7 +25,7 @@ import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 import { getIndustryPaths } from '@/lib/route-utils';
 
-export const dynamicParams = false; // Static Export requires false for ungenerated paths
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     return getIndustryPaths();
@@ -53,10 +53,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         { name: 'Industries', url: '/industries' },
         { name: industry.title, url: `/industry/${industry.slug}` }
     ]);
+    const schemaString = JSON.stringify([serviceSchema, breadcrumbSchema]);
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
-            <JsonLd data={[serviceSchema, breadcrumbSchema]} />
+            <JsonLd schemaString={schemaString} />
             <Navbar />
 
             {/* Hero Section - Energetic & Slick (Matches LocationPageTemplate) */}

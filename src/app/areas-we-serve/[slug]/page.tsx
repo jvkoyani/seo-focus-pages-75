@@ -7,7 +7,7 @@ type Props = {
     params: Promise<{ slug: string }>;
 };
 
-// export const dynamicParams = false;
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Page Not Found' };
 }
 
-// export const dynamicParams = false;
+
 
 export async function generateStaticParams() {
     const { getBuildCities } = await import('@/lib/route-utils');

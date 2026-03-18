@@ -129,10 +129,11 @@ export default async function AreaCatchAllPage({ params }: Props) {
             { name: city.name, url: `/areas-we-serve/${city.slug}` },
             { name: serviceData.title, url: `/areas-we-serve/${city.slug}/${serviceData.slug}` }
         ]);
+        const schemaString = JSON.stringify([serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema].filter(Boolean));
 
         return (
             <>
-                <JsonLd data={[serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema].filter(Boolean)} />
+                <JsonLd schemaString={schemaString} />
                 <ServiceLocationPageTemplate
                     locationData={locationData}
                     serviceData={serviceData}
@@ -177,10 +178,11 @@ export default async function AreaCatchAllPage({ params }: Props) {
             { name: industry.title, url: `/areas-we-serve/${city.slug}/${industrySlug}` },
             { name: service.title, url: `/areas-we-serve/${city.slug}/${industrySlug}/${service.slug}` }
         ]);
+        const schemaString = JSON.stringify([serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema].filter(Boolean));
 
         return (
             <>
-                <JsonLd data={[serviceSchema, localBusinessSchema, faqSchema, breadcrumbSchema].filter(Boolean)} />
+                <JsonLd schemaString={schemaString} />
                 <ServiceIndustryLocation
                     service={service}
                     industry={serializedIndustry}

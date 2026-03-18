@@ -76,10 +76,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         { name: 'Industries', url: '/industries' },
         { name: industry.title, url: `/industries/${industry.slug}` }
     ]);
+    const schemaString = JSON.stringify([serviceSchema, breadcrumbSchema]);
 
     return (
         <>
-            <JsonLd data={[serviceSchema, breadcrumbSchema]} />
+            <JsonLd schemaString={schemaString} />
             <IndustryLocationPageTemplate
                 industryData={serializedIndustry}
                 locationData={locationData}

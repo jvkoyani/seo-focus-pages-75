@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  reactStrictMode: true,
   /** @type {import('next').NextConfig} */
   output: 'export', // Enabled for Static Site Generation
   images: {

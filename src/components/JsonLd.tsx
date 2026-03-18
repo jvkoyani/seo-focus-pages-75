@@ -1,14 +1,14 @@
 import React from 'react';
 
 interface JsonLdProps {
-    data: Record<string, any> | Record<string, any>[];
+    schemaString: string;
 }
 
-const JsonLd: React.FC<JsonLdProps> = ({ data }) => {
+const JsonLd: React.FC<JsonLdProps> = ({ schemaString }) => {
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+            dangerouslySetInnerHTML={{ __html: schemaString }}
         />
     );
 };

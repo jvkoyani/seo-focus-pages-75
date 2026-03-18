@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
+import { useMounted } from "@/lib/ssrSafe";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -53,6 +54,7 @@ export default function SeoAuditPage() {
     const [showContactDialog, setShowContactDialog] = useState(false);
     const [capturedUrl, setCapturedUrl] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const isMounted = useMounted();
 
     const urlForm = useForm<UrlFormValues>({
         resolver: zodResolver(urlFormSchema),
@@ -383,91 +385,93 @@ export default function SeoAuditPage() {
             </section>
 
             <Footer />
-            <Dialog open={showContactDialog} onOpenChange={setShowContactDialog}>
-                <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden border-0 shadow-2xl">
-                    <div className="bg-blue-600 p-6 text-white text-center">
-                        <DialogHeader>
-                            <DialogTitle className="text-2xl font-bold text-white text-center">Where should we send your report?</DialogTitle>
-                            <DialogDescription className="text-blue-100 text-center mt-2">
-                                Enter your details below to receive your detailed SEO audit for <span className="font-semibold text-white">{capturedUrl}</span>.
-                            </DialogDescription>
-                        </DialogHeader>
-                    </div>
+            {isMounted && (
+                <Dialog open={showContactDialog} onOpenChange={setShowContactDialog}>
+                    <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden border-0 shadow-2xl">
+                        <div className="bg-blue-600 p-6 text-white text-center">
+                            <DialogHeader>
+                                <DialogTitle className="text-2xl font-bold text-white text-center">Where should we send your report?</DialogTitle>
+                                <DialogDescription className="text-blue-100 text-center mt-2">
+                                    Enter your details below to receive your detailed SEO audit for <span className="font-semibold text-white">{capturedUrl}</span>.
+                                </DialogDescription>
+                            </DialogHeader>
+                        </div>
 
-                    <div className="p-6 bg-white">
-                        <Form {...leadForm}>
-                            <form onSubmit={leadForm.handleSubmit(onLeadSubmit)} className="space-y-4">
-                                <FormField
-                                    control={leadForm.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Full Name</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="John Doe" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <div className="grid grid-cols-2 gap-4">
+                        <div className="p-6 bg-white">
+                            <Form {...leadForm}>
+                                <form onSubmit={leadForm.handleSubmit(onLeadSubmit)} className="space-y-4">
                                     <FormField
                                         control={leadForm.control}
-                                        name="email"
+                                        name="name"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Business Email</FormLabel>
+                                                <FormLabel>Full Name</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="john@company.com" {...field} />
+                                                    <Input placeholder="John Doe" {...field} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
                                     />
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <FormField
+                                            control={leadForm.control}
+                                            name="email"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>Business Email</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder="john@company.com" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={leadForm.control}
+                                            name="phone"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>Phone Number</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder="+61 400 000 000" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
                                     <FormField
                                         control={leadForm.control}
-                                        name="phone"
+                                        name="company"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Phone Number</FormLabel>
+                                                <FormLabel>Company Name (Optional)</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="+61 400 000 000" {...field} />
+                                                    <Input placeholder="Your Company Pty Ltd" {...field} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
                                     />
-                                </div>
-                                <FormField
-                                    control={leadForm.control}
-                                    name="company"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Company Name (Optional)</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Your Company Pty Ltd" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
 
-                                <Button
-                                    type="submit"
-                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white h-12 text-base mt-2"
-                                    disabled={isSubmitting}
-                                >
-                                    {isSubmitting ? "Processing..." : "Get My Free Audit Report"}
-                                </Button>
+                                    <Button
+                                        type="submit"
+                                        className="w-full bg-blue-600 hover:bg-blue-700 text-white h-12 text-base mt-2"
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? "Processing..." : "Get My Free Audit Report"}
+                                    </Button>
 
-                                <p className="text-xs text-center text-slate-400 mt-4">
-                                    By submitting this form, you agree to receive the audit report and occasional SEO tips via email.
-                                </p>
-                            </form>
-                        </Form>
-                    </div>
-                </DialogContent>
-            </Dialog>
+                                    <p className="text-xs text-center text-slate-400 mt-4">
+                                        By submitting this form, you agree to receive the audit report and occasional SEO tips via email.
+                                    </p>
+                                </form>
+                            </Form>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            )}
         </div>
     );
 }

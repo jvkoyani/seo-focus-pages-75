@@ -30,7 +30,7 @@ import { masterCities } from '@/lib/masterCities';
 
 import { getLocationServicePaths } from '@/lib/route-utils';
 
-export const dynamicParams = false; // Static Export requires false for ungenerated paths
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     return getLocationServicePaths();

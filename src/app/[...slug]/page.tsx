@@ -76,7 +76,8 @@ function parseIndustryInCity(slug: string): { service: typeof services[0], indus
     return { service, industry, citySlug };
 }
 
-export const dynamicParams = false; // Static Export requires false for ungenerated paths
+// Allow dynamic rendering of any valid path not pre-generated at build time
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
@@ -148,7 +149,8 @@ function ServiceIndustryCityPage({ service, industry, citySlug }: { service: typ
 import { getCatchAllPaths } from '@/lib/route-utils';
 
 export async function generateStaticParams() {
-    return getCatchAllPaths();
+    // Only pre-build the australia country page. All other paths render dynamically on-demand.
+    return [{ slug: ['australia'] }];
 }
 
 export default async function CatchAllPage({ params }: Props) {

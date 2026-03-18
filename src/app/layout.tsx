@@ -32,12 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const organizationSchema = generateOrganizationSchema();
+  const schemaString = JSON.stringify(organizationSchema);
 
   return (
     <html lang="en">
       <body className={`${inter.className} ${fraunces.variable}`}>
         <Providers>
-          <JsonLd data={organizationSchema} />
+          <JsonLd schemaString={schemaString} />
           {children}
           <FloatingCTA />
           <ScrollPopup />

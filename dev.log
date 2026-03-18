@@ -1,0 +1,23 @@
+
+> temp_next@0.1.0 dev
+> next dev
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.10 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://10.1.1.4:3000
+
+ ✓ Starting...
+ ✓ Ready in 21.3s
+ ○ Compiling /service/[slug] ...
+C:\Users\seoadmin\Downloads\Antigravity\pSEO1\node_modules\next\dist\build\static-paths\app.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+C:\Users\seoadmin\Downloads\Antigravity\pSEO1\node_modules\next\dist\server\dev\static-paths-worker.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+ ⨯ Error: "dynamicParams: true" cannot be used with "output: export". See more info here: https://nextjs.org/docs/app/building-your-application/deploying/static-exports
+    at ignore-listed frames {
+  type: 'Error',
+  page: '/service/local-seo'
+}
+ ○ Compiling /_error ...
+ GET /service/local-seo 500 in 69s (compile: 66s, render: 2.8s)
+ ○ Compiling / ...
+ GET / 200 in 23.0s (compile: 11.7s, render: 11.3s)

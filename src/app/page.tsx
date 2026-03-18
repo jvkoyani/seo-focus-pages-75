@@ -30,10 +30,11 @@ export default function Home() {
 
   // Get featured case studies
   const featuredCaseStudies = caseStudies.slice(0, 2);
+  const schemaString = JSON.stringify([websiteSchema, ...servicesSchema]);
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
-      <JsonLd data={[websiteSchema, ...servicesSchema]} />
+      <JsonLd schemaString={schemaString} />
       <Navbar />
       <Hero />
       <FeaturedIn />

@@ -43,10 +43,11 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         { name: 'Case Studies', url: '/case-studies' },
         { name: caseStudy.title, url: `/case-studies/${caseStudy.slug}` }
     ]);
+    const schemaString = JSON.stringify([caseStudySchema, breadcrumbSchema]);
 
     return (
         <div className="min-h-screen flex flex-col">
-            <JsonLd data={[caseStudySchema, breadcrumbSchema]} />
+            <JsonLd schemaString={schemaString} />
             <Navbar />
 
             {/* Hero Section */}

@@ -41,10 +41,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         { name: 'Blog', url: '/blogs' },
         { name: post.title, url: `/blogs/${post.slug}` }
     ]);
+    const schemaString = JSON.stringify([articleSchema, breadcrumbSchema]);
 
     return (
         <div className="min-h-screen flex flex-col">
-            <JsonLd data={[articleSchema, breadcrumbSchema]} />
+            <JsonLd schemaString={schemaString} />
             <Navbar />
 
             {/* Hero Section */}

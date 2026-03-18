@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { MessageSquare, X, Send, Phone, Mail, Zap } from 'lucide-react';
+import { useMounted } from '@/lib/ssrSafe';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,9 +12,10 @@ import { useToast } from '@/hooks/use-toast';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const FloatingCTA = () => {
-    const [open, setOpen] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
     const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const isMounted = useMounted();
     const [isVisible, setIsVisible] = useState(false);
     const pathname = usePathname();
 
@@ -124,7 +126,7 @@ const FloatingCTA = () => {
                     title: "Message Sent!",
                     description: "We'll get back to you shortly.",
                 });
-                setOpen(false);
+                setIsDialogOpen(false);
             } else {
                 throw new Error('Failed to send');
             }
@@ -137,11 +139,13 @@ const FloatingCTA = () => {
         }
 
         setIsSubmitting(false);
-        setOpen(false);
+        setIsDialogOpen(false);
     };
 
+    if (!isMounted) return null;
+
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <AnimatePresence>
                 {isVisible && (
                     <DialogTrigger asChild>
