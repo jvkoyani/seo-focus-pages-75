@@ -1,6 +1,7 @@
 import React from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { industries } from '@/lib/data';
+import { getIcon } from '@/lib/icons';
 
 import { ArrowRight, Building2 } from 'lucide-react';
 
@@ -28,7 +29,7 @@ const IndustriesSection = ({ locationName, locationSlug }: IndustriesSectionProp
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {industries.map((industry, index) => {
-                        const Icon = industry.icon;
+                        const Icon = getIcon(industry.icon);
                         return (
                             <AnimatedSection
                                 key={index}

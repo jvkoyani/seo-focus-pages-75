@@ -92,7 +92,7 @@ export interface IndustryData {
   title: string;
   slug: string;
   description: string;
-  icon: React.ElementType;
+  icon: string;
   features: string[];
   benefits: string[];
   pricing?: PricingTier[];
@@ -246,7 +246,7 @@ export const industries: IndustryData[] = [
     slug: 'accountant-seo',
     entityName: 'Accounting Firms',
     description: 'SEO for accountants to attract more leads.',
-    icon: Calculator,
+    icon: 'calculator',
     features: ['Local SEO', 'Content Strategy'],
     benefits: ['More leads', 'Establish authority'],
     pricing: [
@@ -264,7 +264,7 @@ export const industries: IndustryData[] = [
     slug: 'chiropractor-seo',
     entityName: 'Chiropractic Clinics',
     description: 'Custom SEO for chiropractors.',
-    icon: Activity,
+    icon: 'activity',
     features: ['Local SEO', 'Patient Testimonials'],
     benefits: ['Attract patients', 'Build trust']
   },
@@ -274,7 +274,7 @@ export const industries: IndustryData[] = [
     slug: 'dental-seo',
     entityName: 'Dental Practices',
     description: 'SEO for dental practices.',
-    icon: Stethoscope,
+    icon: 'stethoscope',
     features: ['Local SEO', 'Service Optimization'],
     benefits: ['New patients', 'High ROI']
   },
@@ -284,7 +284,7 @@ export const industries: IndustryData[] = [
     slug: 'healthcare-seo',
     entityName: 'Healthcare Providers',
     description: 'SEO for healthcare providers.',
-    icon: Stethoscope,
+    icon: 'stethoscope',
     features: ['HIPAA-compliant content', 'Provider Profiles'],
     benefits: ['Specialty authority', 'Patient education']
   },
@@ -294,7 +294,7 @@ export const industries: IndustryData[] = [
     slug: 'lawyer-seo',
     entityName: 'Law Firms',
     description: 'SEO for law firms.',
-    icon: Scale,
+    icon: 'scale',
     features: ['Practice Area Optimization', 'Local SEO'],
     benefits: ['Qualified case inquiries', 'Outrank competitors']
   }

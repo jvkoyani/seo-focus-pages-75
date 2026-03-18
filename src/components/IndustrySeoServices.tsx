@@ -1,8 +1,9 @@
 
-
+import React from 'react';
 import { ArrowRight, CheckCircle, Building2 } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { industries } from '@/lib/data';
+import { getIcon } from '@/lib/icons';
 
 interface IndustrySeoServicesProps {
   title?: string;
@@ -58,7 +59,10 @@ const IndustrySeoServices = ({
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-seo-blue/5 to-transparent rounded-tr-full -z-0"></div>
 
                 <div className="bg-seo-blue/10 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
-                  <industry.icon className="h-8 w-8 text-seo-blue" />
+                  {(() => {
+                    const Icon = getIcon(industry.icon);
+                    return <Icon className="h-8 w-8 text-seo-blue" />;
+                  })()}
                 </div>
 
                 <h3 className="text-xl font-display font-bold text-seo-dark mb-3 relative z-10">
