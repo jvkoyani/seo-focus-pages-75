@@ -75,7 +75,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <a href="/" className="flex items-center" onClick={handleLinkClick}>
-              <Image src="/logo.png" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto" priority />
+              <Image src="/logo.webp" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto" priority />
             </a>
 
             <div className="hidden md:flex items-center space-x-8">

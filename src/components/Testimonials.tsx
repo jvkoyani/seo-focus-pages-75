@@ -32,7 +32,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
             </div>
 
             <div className="pt-6 border-t border-white/10 mt-auto">
-                <h4 className="text-white font-bold">{testimonial.name}</h4>
+                <h3 className="text-white font-bold">{testimonial.name}</h3>
                 <p className="text-slate-400 text-sm">{testimonial.company}</p>
                 <p className="text-slate-500 text-xs mt-1">{testimonial.location}</p>
             </div>

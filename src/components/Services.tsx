@@ -126,7 +126,7 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
                       className={`inline-flex items-center gap-2 font-semibold text-transparent bg-gradient-to-r ${gradient} bg-clip-text group/link`}
                     >
                       <span className="group-hover/link:underline">
-                        {locationSlug ? `${service.title} in ${location}` : 'Learn more'}
+                        {locationSlug ? `${service.title} in ${location}` : <>Learn more <span className="sr-only">about {service.title}</span></>}
                       </span>
                       <ArrowRight className={`h-4 w-4 text-seo-blue transition-transform group-hover/link:translate-x-1`} />
                     </a>

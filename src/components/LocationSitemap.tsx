@@ -118,7 +118,7 @@ const LocationSitemap = () => {
                 href={`/service/${service.slug}`}
                 className="text-sm text-seo-blue font-medium hover:underline flex items-center"
               >
-                <span>Learn more</span>
+                <span>Learn more <span className="sr-only">about {service.title}</span></span>
                 <ArrowRight className="h-4 w-4 ml-1" />
               </a>
             </AnimatedSection>

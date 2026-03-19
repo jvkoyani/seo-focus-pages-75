@@ -7,15 +7,18 @@ import PainPoints from '@/components/PainPoints';
 import TrustIndicators from '@/components/TrustIndicators';
 import Services from '@/components/Services';
 import UrgencyBanner from '@/components/UrgencyBanner';
-import ContactForm from '@/components/ContactForm';
+import dynamic from 'next/dynamic';
+
+const Testimonials = dynamic(() => import('@/components/Testimonials'), { ssr: true });
+const IndustrySeoServices = dynamic(() => import('@/components/IndustrySeoServices'), { ssr: true });
+const ContactForm = dynamic(() => import('@/components/ContactForm'), { ssr: true });
+const LocationGrid = dynamic(() => import('@/components/LocationGrid'), { ssr: true });
+
 import Footer from '@/components/Footer';
-import Testimonials from '@/components/Testimonials';
 import AnimatedSection from '@/components/AnimatedSection';
-import IndustrySeoServices from '@/components/IndustrySeoServices';
 import { ArrowRight, MapPin, CheckCircle2, Zap, Target, TrendingUp } from 'lucide-react';
 import { australianCities, caseStudies, services } from '@/lib/data';
 import CaseStudyPreview from '@/components/CaseStudyPreview';
-import LocationGrid from '@/components/LocationGrid';
 import JsonLd from '@/components/JsonLd';
 import { generateWebSiteSchema, generateServiceSchema, serializeSchemas } from '@/lib/schema';
 

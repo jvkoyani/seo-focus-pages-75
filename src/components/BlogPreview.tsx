@@ -49,7 +49,7 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
           className="inline-flex items-center text-seo-blue font-medium group mt-auto"
         >
           <span className="border-b border-seo-blue/30 group-hover:border-seo-blue transition-colors">
-            Read more
+            Read more <span className="sr-only">about {post.title}</span>
           </span>
           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </a>

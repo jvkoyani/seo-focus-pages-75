@@ -90,7 +90,7 @@ const IndustrySeoServices = ({
                   className="inline-flex items-center text-seo-blue font-medium group/link mt-2 relative z-10"
                 >
                   <span className="border-b border-seo-blue/30 group-hover/link:border-seo-blue transition-colors">
-                    Learn more
+                    Learn more <span className="sr-only">about {industry.title}</span>
                   </span>
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
                 </a>

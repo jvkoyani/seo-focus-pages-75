@@ -53,7 +53,7 @@ export function generateCaseStudySchema(caseStudy: any) {
             "name": "Power My SEO",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://powermyseo.com/logo.png"
+                "url": "https://powermyseo.com/logo.webp"
             }
         }
     };
@@ -159,7 +159,7 @@ export function generateArticleSchema(post: any, cityName?: string) {
             "name": "Power My SEO",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://powermyseo.com/logo.png"
+                "url": "https://powermyseo.com/logo.webp"
             }
         },
         ...(cityName ? {

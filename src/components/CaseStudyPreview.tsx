@@ -74,7 +74,7 @@ const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
               variant="ghost"
               className="w-full justify-between hover:bg-seo-blue hover:text-white group/btn transition-all duration-300"
             >
-              <span className="font-medium">Read Case Study</span>
+              <span className="font-medium">Read Case Study <span className="sr-only">for {caseStudy.client}</span></span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
             </Button>
           </a>

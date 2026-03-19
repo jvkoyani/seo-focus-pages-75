@@ -54,21 +54,22 @@ const Footer = () => {
           <div className="lg:col-span-4 space-y-8">
             <div>
               <a href="/" className="inline-block mb-4">
-                <Image src="/logo.png" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto" />
+                <Image src="/logo.webp" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto" />
               </a>
               <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">
                 We help ambitious businesses dominate search results and drive revenue through data-driven SEO strategies.
               </p>
               <div className="flex space-x-4">
                 {[
-                  { icon: <Twitter className="w-5 h-5" />, href: "#" },
-                  { icon: <Linkedin className="w-5 h-5" />, href: "#" },
-                  { icon: <Facebook className="w-5 h-5" />, href: "#" },
-                  { icon: <Instagram className="w-5 h-5" />, href: "#" }
+                  { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
+                  { icon: <Linkedin className="w-5 h-5" />, href: "#", label: "LinkedIn" },
+                  { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
+                  { icon: <Instagram className="w-5 h-5" />, href: "#", label: "Instagram" }
                 ].map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
+                    aria-label={social.label}
                     className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:bg-seo-blue hover:text-white transition-all duration-300"
                   >
                     {social.icon}
@@ -105,8 +106,8 @@ const Footer = () => {
                 { label: "SEO Audits", href: "/service/seo-audits" },
               ].map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-slate-400 hover:text-seo-blue transition-colors flex items-center group">
-                    <ChevronRight className="w-4 h-4 mr-2 text-slate-600 group-hover:text-seo-blue transition-colors" />
+                  <a href={link.href} className="text-slate-300 hover:text-seo-blue transition-colors flex items-center group">
+                    <ChevronRight className="w-4 h-4 mr-2 text-slate-400 group-hover:text-seo-blue transition-colors" />
                     {link.label}
                   </a>
                 </li>
@@ -128,8 +129,8 @@ const Footer = () => {
                 { label: "Contact", href: "/contact" },
               ].map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-slate-400 hover:text-seo-blue transition-colors flex items-center group">
-                    <ChevronRight className="w-4 h-4 mr-2 text-slate-600 group-hover:text-seo-blue transition-colors" />
+                  <a href={link.href} className="text-slate-300 hover:text-seo-blue transition-colors flex items-center group">
+                    <ChevronRight className="w-4 h-4 mr-2 text-slate-400 group-hover:text-seo-blue transition-colors" />
                     {link.label}
                   </a>
                 </li>
@@ -163,7 +164,7 @@ const Footer = () => {
                   {!isLoading && <ArrowRight className="w-4 h-4 ml-2" />}
                 </Button>
               </form>
-              <p className="text-xs text-slate-600 mt-4">
+              <p className="text-xs text-slate-400 mt-4">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </div>
@@ -176,7 +177,7 @@ const Footer = () => {
       <div className="border-t border-slate-900 bg-black/20">
         <div className="container mx-auto px-4 py-4 md:py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-slate-500">
+            <div className="text-sm text-slate-400">
               © {new Date().getFullYear()} SEOfocus. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm text-slate-500">

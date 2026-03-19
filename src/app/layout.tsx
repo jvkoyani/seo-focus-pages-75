@@ -11,6 +11,7 @@ import { generateOrganizationSchema } from '@/lib/schema';
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  weight: ["400", "700"],
   display: "swap",
   adjustFontFallback: true,
 });
@@ -42,6 +43,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+      </head>
       <body className={`${inter.className} ${fraunces.variable}`}>
         <Providers>
           <JsonLd schemaString={schemaString} />
