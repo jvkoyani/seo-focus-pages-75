@@ -68,7 +68,7 @@ const PainPoints = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-4 md:mb-16 max-w-3xl mx-auto"
           animation="fade-in"
         >
           <span className="inline-block px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-red-500/20 to-orange-500/20 text-red-400 border border-red-500/30 mb-6">
@@ -80,21 +80,21 @@ const PainPoints = () => {
               Invisible Online?
             </span>
           </h2>
-          <p className="text-xl text-slate-400">
+          <p className="text-base md:text-xl text-slate-400">
             These problems cost Australian businesses millions in lost revenue every year.
             <br />
             <span className="text-white font-medium">Hover a card to see your solution.</span>
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-4 md:mb-16">
           {painPoints.map((point, index) => (
             <AnimatedSection
               key={point.id}
               animation="slide-up"
               delay={index * 100}
             >
-              <div className="relative h-72 cursor-default group perspective-1000">
+              <div className="relative h-44 sm:h-60 md:h-72 cursor-default group perspective-1000">
                 {/* CSS Based Flip Card Container */}
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:[transform:rotateY(180deg)]">
                   

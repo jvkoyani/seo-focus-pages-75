@@ -20,7 +20,7 @@ const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
       delay={delay}
     >
       {/* Image Section */}
-      <div className="relative h-56 w-full overflow-hidden">
+      <div className="relative h-32 sm:h-56 w-full overflow-hidden">
         <Image
           src={caseStudy.image}
           alt={caseStudy.title}
@@ -39,12 +39,12 @@ const CaseStudyPreview = ({ caseStudy, delay = 0 }: CaseStudyPreviewProps) => {
       </div>
 
       {/* Content Section */}
-      <div className="p-6 flex flex-col flex-grow">
+      <div className="p-3 sm:p-6 flex flex-col flex-grow">
         <h3 className="text-xl font-display font-bold text-seo-dark mb-3 group-hover:text-seo-blue transition-colors line-clamp-2">
           {caseStudy.title}
         </h3>
 
-        <p className="text-seo-gray-dark text-sm mb-6 line-clamp-2 flex-grow">
+        <p className="hidden sm:block text-seo-gray-dark text-sm mb-4 sm:mb-6 line-clamp-2 flex-grow">
           {caseStudy.challenge}
         </p>
 

@@ -53,9 +53,9 @@ const logos = [
 
 const FeaturedIn = () => {
     return (
-        <div className="w-full bg-slate-900 border-b border-white/5 py-10 overflow-hidden">
-            <div className="container mx-auto px-4 mb-8 text-center">
-                <p className="text-2xl font-medium uppercase tracking-wider bg-gradient-to-r from-seo-blue via-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        <div className="w-full bg-slate-900 border-b border-white/5 py-4 md:py-10 overflow-hidden">
+            <div className="container mx-auto px-4 mb-4 md:mb-8 text-center">
+                <p className="text-lg md:text-2xl font-medium uppercase tracking-wider bg-gradient-to-r from-seo-blue via-blue-400 to-cyan-400 bg-clip-text text-transparent">
                     We are proudly featured in
                 </p>
             </div>
@@ -63,7 +63,7 @@ const FeaturedIn = () => {
             <div className="relative flex overflow-x-hidden group">
                 <div className="animate-marquee whitespace-nowrap flex items-center gap-6 px-6">
                     {logos.map((logo, index) => (
-                        <div key={`logo-1-${index}`} className="relative h-20 w-48 flex-shrink-0 bg-white rounded-xl shadow-md flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
+                        <div key={`logo-1-${index}`} className="relative h-14 md:h-20 w-36 md:w-48 flex-shrink-0 bg-white rounded-xl shadow-md flex items-center justify-center p-2 md:p-4 hover:scale-105 transition-transform duration-300">
                             <Image
                                 src={logo.url}
                                 alt={logo.name}
@@ -77,7 +77,7 @@ const FeaturedIn = () => {
 
                 <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-6 px-6">
                     {logos.map((logo, index) => (
-                        <div key={`logo-2-${index}`} className="relative h-20 w-48 flex-shrink-0 bg-white rounded-xl shadow-md flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
+                        <div key={`logo-2-${index}`} className="relative h-14 md:h-20 w-36 md:w-48 flex-shrink-0 bg-white rounded-xl shadow-md flex items-center justify-center p-2 md:p-4 hover:scale-105 transition-transform duration-300">
                             <Image
                                 src={logo.url}
                                 alt={logo.name}

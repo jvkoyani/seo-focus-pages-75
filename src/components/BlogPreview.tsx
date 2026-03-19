@@ -18,7 +18,7 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
       animation="fade-in"
       delay={delay}
     >
-      <div className="h-48 overflow-hidden">
+      <div className="h-32 sm:h-48 overflow-hidden relative">
         <Image
           src={post.image}
           alt={post.title}
@@ -26,7 +26,7 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
           className="object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
-      <div className="p-6 flex-1 flex flex-col">
+      <div className="p-3 sm:p-6 flex-1 flex flex-col">
         <div className="flex items-center text-sm text-seo-gray-dark mb-3">
           <span className="flex items-center">
             <Calendar className="h-4 w-4 mr-1" />
@@ -38,10 +38,10 @@ const BlogPreview = ({ post, delay = 0 }: BlogPreviewProps) => {
             {post.author}
           </span>
         </div>
-        <h3 className="text-xl font-display font-bold text-seo-dark mb-3">
+        <h3 className="text-sm sm:text-xl font-display font-bold text-seo-dark mb-2 sm:mb-3 line-clamp-2">
           {post.title}
         </h3>
-        <p className="text-seo-gray-dark mb-4 flex-1">
+        <p className="hidden sm:block text-seo-gray-dark mb-4 flex-1">
           {post.excerpt}
         </p>
         <a

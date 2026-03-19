@@ -22,7 +22,7 @@ const UrgencyBanner = () => {
     const spotsRemaining = Math.max(1, 5 - Math.floor(dayOfMonth / 7));
 
     return (
-        <section className="relative py-16 overflow-hidden">
+        <section className="relative py-4 md:py-16 overflow-hidden">
             {/* Background elements (CSS Animations) */}
             <div className="absolute inset-0 bg-gradient-to-r from-seo-blue via-blue-600 to-purple-600 animate-pulse"></div>
 
@@ -48,7 +48,7 @@ const UrgencyBanner = () => {
                         </div>
 
                         {/* Main Headline */}
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-6 leading-tight">
+                        <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-2 md:mb-6 leading-tight">
                             We Only Accept{' '}
                             <span className="relative inline-block">
                                 <span className="relative z-10">5 New Clients</span>
@@ -57,7 +57,7 @@ const UrgencyBanner = () => {
                             {' '}Per Month
                         </h2>
 
-                        <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                        <p className="text-base md:text-xl text-white/90 mb-4 md:mb-8 max-w-2xl mx-auto">
                             To ensure exceptional results, we limit our client intake.
                             <br className="hidden md:block" />
                             <span className="font-semibold text-yellow-300">
@@ -66,7 +66,7 @@ const UrgencyBanner = () => {
                         </p>
 
                         {/* Spots Indicator */}
-                        <div className="flex justify-center gap-3 mb-10">
+                        <div className="flex justify-center gap-2 md:gap-3 mb-5 md:mb-10">
                             {[1, 2, 3, 4, 5].map((spot) => (
                                 <div
                                     key={spot}
@@ -99,7 +99,7 @@ const UrgencyBanner = () => {
                         </div>
 
                         {/* Trust note */}
-                        <div className="mt-8 flex flex-wrap justify-center gap-6 text-white/70 text-sm">
+                        <div className="mt-4 md:mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-white/70 text-sm">
                             <div className="flex items-center gap-2">
                                 <Clock className="w-4 h-4" />
                                 <span>Free 30-min consultation</span>

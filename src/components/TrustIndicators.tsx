@@ -66,12 +66,12 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
         >
             <div className="relative group">
                 <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
-                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:border-white/20">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                        <stat.icon className="w-7 h-7 text-white" />
+                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-3 sm:p-8 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:border-white/20">
+                    <div className={`w-8 h-8 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center mb-2 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                        <stat.icon className="w-4 h-4 sm:w-7 sm:h-7 text-white" />
                     </div>
-                    <div className="flex items-baseline gap-1 mb-2">
-                        <span className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                    <div className="flex items-baseline gap-1 mb-1 sm:mb-2">
+                        <span className={`text-xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                             <CountUp 
                                 end={stat.value} 
                                 prefix={stat.prefix} 
@@ -80,8 +80,8 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
                             />
                         </span>
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-1">{stat.label}</h3>
-                    <p className="text-slate-400 text-sm">{stat.description}</p>
+                    <h3 className="text-sm sm:text-lg font-semibold text-white mb-1">{stat.label}</h3>
+                    <p className="text-slate-400 text-xs sm:text-sm">{stat.description}</p>
                 </div>
             </div>
         </AnimatedSection>
@@ -99,7 +99,7 @@ const TrustIndicators = () => {
 
             <div className="container mx-auto px-4 relative z-10">
                 <AnimatedSection
-                    className="text-center mb-16 max-w-3xl mx-auto"
+                    className="text-center mb-8 md:mb-16 max-w-3xl mx-auto"
                     animation="fade-in"
                 >
                     <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/30 mb-6">
@@ -117,7 +117,7 @@ const TrustIndicators = () => {
                     </p>
                 </AnimatedSection>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-20">
                     {stats.map((stat, index) => (
                         <StatCard key={stat.id} stat={stat} index={index} />
                     ))}
@@ -128,7 +128,7 @@ const TrustIndicators = () => {
                     <div className="text-center mb-8">
                         <p className="text-slate-500 text-sm uppercase tracking-wider font-medium">Trusted & Certified</p>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                    <div className="flex flex-wrap justify-center items-center gap-3 md:gap-8 md:gap-12">
                         {logos.map((logo) => (
                             <div
                                 key={logo.name}

@@ -51,7 +51,7 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
 
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-4 md:mb-16 max-w-3xl mx-auto"
           animation="fade-in"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-seo-blue/10 to-purple-100 mb-6">
@@ -70,7 +70,7 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
           {services.map((service, index) => {
             const gradient = gradientMap[service.slug] || 'from-blue-500 to-cyan-500';
 
@@ -82,7 +82,7 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
                 delay={100 * index}
               >
                 {/* Card */}
-                <div className="relative h-full bg-white rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden">
+                <div className="relative h-full bg-white rounded-2xl p-3 sm:p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden">
                   {/* Gradient border on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`}></div>
                   <div className="absolute inset-[2px] bg-white rounded-2xl"></div>
@@ -90,22 +90,22 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
                   {/* Content */}
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${gradient} flex items-center justify-center mb-6 text-white shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300`}>
+                    <div className={`w-8 h-8 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-r ${gradient} flex items-center justify-center mb-2 sm:mb-6 text-white shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300`}>
                       {iconMap[service.icon]}
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-display font-bold text-seo-dark mb-3 group-hover:text-seo-blue transition-colors">
+                    <h3 className="text-sm sm:text-xl font-display font-bold text-seo-dark mb-1 sm:mb-3 group-hover:text-seo-blue transition-colors">
                       {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-seo-gray-dark mb-6 leading-relaxed">
+                    <p className="hidden sm:block text-seo-gray-dark mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
                       {service.description}
                     </p>
 
                     {/* Features */}
-                    <ul className="space-y-3 mb-8">
+                    <ul className="hidden sm:block space-y-3 mb-4 sm:mb-8">
                       {service.features.slice(0, 3).map((feature, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <div className={`w-5 h-5 rounded-full bg-gradient-to-r ${gradient} flex items-center justify-center flex-shrink-0 mt-0.5`}>

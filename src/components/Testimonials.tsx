@@ -16,8 +16,8 @@ interface TestimonialsProps {
 }
 
 const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-    <div className="w-80 md:w-96 flex-shrink-0 mx-4">
-        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/10 shadow-xl h-full flex flex-col">
+    <div className="w-56 sm:w-64 md:w-80 lg:w-96 flex-shrink-0 mx-2 md:mx-4">
+        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-3 md:p-8 border border-white/10 shadow-xl h-full flex flex-col">
             <div className="flex items-center gap-1 mb-4">
                 {[1, 2, 3, 4, 5].map((star) => (
                     <Star key={star} className="w-4 h-4 text-amber-500 fill-current" />
@@ -51,7 +51,7 @@ const Testimonials = ({ location }: TestimonialsProps) => {
 
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-4 md:mb-16 max-w-3xl mx-auto"
           animation="fade-in"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/30 mb-6">
@@ -61,7 +61,7 @@ const Testimonials = ({ location }: TestimonialsProps) => {
           <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
             Don&apos;t Take Our Word For It
           </h2>
-          <p className="text-xl text-slate-400">
+          <p className="text-base md:text-xl text-slate-400">
             {location
               ? `Hear from ${location} businesses we've helped achieve SEO success`
               : 'Real feedback from businesses we\'ve helped grow'}
@@ -69,7 +69,7 @@ const Testimonials = ({ location }: TestimonialsProps) => {
         </AnimatedSection>
 
         {/* CSS Marquee for Testimonials */}
-        <div className="relative flex overflow-x-hidden group py-10">
+        <div className="relative flex overflow-x-hidden group py-2 sm:py-10">
             {/* First Row Marquee */}
             <div className="animate-marquee-slow whitespace-nowrap flex items-stretch">
                 {testimonials.map((t, i) => (
