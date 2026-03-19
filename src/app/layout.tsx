@@ -11,7 +11,6 @@ import { generateOrganizationSchema } from '@/lib/schema';
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["400", "700"],
   display: "swap",
   adjustFontFallback: true,
 });
