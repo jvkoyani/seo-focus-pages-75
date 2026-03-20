@@ -1,8 +1,7 @@
 /**
  * Hero — Server Component
  * 
- * 100% server-rendered. Zero JavaScript required for layout or initial animations.
- * Provides critical title and subtitle content directly in the SSR HTML.
+ * Redesigned to follow the bright, clean layout architecture of supple.com.au
  */
 
 import React from 'react';
@@ -25,22 +24,21 @@ const Hero = ({
   location,
   rightContent,
 }: HeroProps) => {
-  // Default problem-focused content for homepage
   const defaultTitle = location
-    ? `Dominate ${location} Search Results`
-    : "Your Competitors Are Stealing Your Customers";
+    ? `Grow Your ${location} Business`
+    : "Data-Driven SEO That Drives Revenue";
 
   const defaultSubtitle = location
-    ? `Data-driven SEO strategies tailored for ${location} businesses`
-    : "Stop losing revenue. We help Australian businesses rank #1, drive qualified traffic, and turn clicks into customers.";
+    ? `Specialized digital marketing strategies designed for ${location}. Turn searches into loyal customers.`
+    : "We partner with ambitious Australian businesses to predictably scale organic traffic, leads, and sales.";
 
   const displayTitle = title || defaultTitle;
   const displaySubtitle = subtitle || defaultSubtitle;
 
   return (
-    <div className="relative min-h-[75vh] md:min-h-screen flex items-center pt-12 md:pt-20 pb-4 md:pb-0 overflow-hidden bg-slate-950">
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 z-0">
+    <div className="relative min-h-[75vh] md:min-h-screen flex items-center pt-12 md:pt-20 pb-4 md:pb-0 overflow-hidden bg-seo-clean">
+      {/* Supple Minimalist Background */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-white via-seo-clean to-[#E6F3FF]">
         <Image
           src="/images/hero-powermyseo.webp"
           alt="Power My SEO — Australian SEO agency helping local businesses rank on Google"
@@ -49,74 +47,69 @@ const Hero = ({
           priority={true}
           loading="eager"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
-          className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-5 pointer-events-none mix-blend-multiply"
         />
-        {/* Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        {/* Soft Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)]" />
 
-        {/* Spotlights */}
-        <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-transparent blur-3xl" />
-        <div aria-hidden="true" className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
-        <div aria-hidden="true" className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+        <div aria-hidden="true" className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-seo-blue/10 rounded-full blur-[100px] animate-pulse" />
+        <div aria-hidden="true" className="absolute bottom-[10%] -right-[5%] w-[40%] h-[40%] bg-seo-peach/20 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
 
           {/* Left Column: Text Content */}
-          <div className="max-w-2xl">
+          <div className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
             <AnimatedSection animation="fade-in">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 md:mb-8 hover:bg-white/10 transition-colors cursor-default">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-6 md:mb-8 hover:bg-slate-50 transition-colors mx-auto lg:mx-0">
                 <div className="flex -space-x-2">
                   {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-6 h-6 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 border-2 border-slate-950 flex items-center justify-center text-[10px] text-white font-bold">
+                    <div key={i} className="w-6 h-6 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] text-seo-navy font-bold">
                       {String.fromCharCode(64 + i)}
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center gap-1 text-sm text-slate-300 pl-2">
-                  <span className="text-yellow-400 flex items-center">
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
+                <div className="flex items-center gap-2 text-sm text-seo-navy pl-1">
+                  <span className="text-amber-400 flex items-center">
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
                   </span>
-                  <span className="font-medium">Trusted by 250+ Founders</span>
+                  <span className="font-bold tracking-tight">4.9/5 Average Rating</span>
                 </div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in" delay={100}>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight mb-2 md:mb-6 text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight mb-4 md:mb-6 text-seo-navy">
                 {displayTitle.split(' ').slice(0, -2).join(' ')}{' '}
-                <span className="relative whitespace-nowrap">
-                  <span className="relative z-10 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    {displayTitle.split(' ').slice(-2).join(' ')}
-                  </span>
-                  <span className="absolute bottom-2 left-0 w-full h-3 bg-blue-500/20 -rotate-1 -z-10 blur-sm"></span>
+                <span className="text-seo-blue">
+                  {displayTitle.split(' ').slice(-2).join(' ')}
                 </span>
               </h1>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in" delay={200}>
-              <p className="text-sm sm:text-lg md:text-xl text-slate-400 leading-relaxed mb-3 md:mb-8 max-w-lg line-clamp-3 sm:line-clamp-none">
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-6 md:mb-10 max-w-lg mx-auto lg:mx-0 font-medium">
                 {displaySubtitle}
               </p>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in" delay={300}>
-              <div className="flex flex-col sm:flex-row gap-3 mb-6 md:mb-12">
+              <div className="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12 justify-center lg:justify-start">
                 <a
                   href="/seo-audit"
-                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-white text-slate-950 rounded-full font-bold text-base sm:text-lg transition-all hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] flex items-center justify-center w-full sm:w-auto"
+                  className="group relative px-6 sm:px-8 py-4 bg-seo-navy text-white rounded-md font-bold text-sm sm:text-base tracking-wider uppercase transition-all hover:bg-seo-blue hover:shadow-lg flex items-center justify-center w-full sm:w-auto"
                 >
-                  Get Free Audit
+                  Book a Free Consultation
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
                   href="/case-studies"
-                  className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg text-white border border-white/10 hover:bg-white/5 transition-all flex items-center justify-center group w-full sm:w-auto"
+                  className="px-6 sm:px-8 py-4 rounded-md font-bold text-sm sm:text-base tracking-wider uppercase text-seo-navy border-2 border-seo-navy hover:bg-seo-navy hover:text-white transition-all flex items-center justify-center group w-full sm:w-auto"
                 >
                   <Play className="w-4 h-4 mr-2 fill-current group-hover:scale-110 transition-transform" />
                   View Case Studies
@@ -125,20 +118,20 @@ const Hero = ({
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in" delay={400}>
-              <div className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm font-medium text-slate-500 border-t border-white/5 pt-4 sm:pt-8">
+              <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-8 text-xs sm:text-sm font-bold text-slate-500 pt-4">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Results in 90 Days</span>
+                  <CheckCircle2 className="w-5 h-5 text-seo-blue" />
+                  <span className="uppercase tracking-wide">Data-Driven Approach</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>No Lock-in Contracts</span>
+                  <CheckCircle2 className="w-5 h-5 text-seo-blue" />
+                  <span className="uppercase tracking-wide">No Lock-in Contracts</span>
                 </div>
               </div>
             </AnimatedSection>
           </div>
 
-          {/* Right Column: 3D Dashboard Preview */}
+          {/* Right Column: 3D Dashboard Preview (Slightly altered to fit bright theme) */}
           <div className="hidden lg:block perspective-1000">
             {rightContent || <HeroDashboardPreview />}
           </div>

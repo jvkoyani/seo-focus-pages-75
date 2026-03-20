@@ -51,8 +51,8 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
             )}
             <Navbar />
 
-            {/* Hero Section - Dark & Premium */}
-            <section className="relative pt-32 pb-24 overflow-hidden bg-slate-950">
+            {/* Hero Section - Clean & Trustworthy */}
+            <section className="relative pt-32 pb-24 overflow-hidden bg-seo-clean">
                 {/* Background Effects */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
                 <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 blur-3xl opacity-20">
@@ -86,22 +86,22 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                 </span>
                             </div>
 
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
-                                {serviceData.title} in <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{locationData.name}</span>
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-black text-seo-navy mb-8 leading-tight tracking-tight">
+                                {serviceData.title} in <span className="text-seo-blue">{locationData.name}</span>
                             </h1>
 
-                            <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+                            <p className="text-xl text-slate-600 font-medium mb-10 leading-relaxed max-w-2xl">
                                 {serviceData.description} tailored specifically for the {locationData.name} market. We help local businesses dominate search results and drive revenue.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
+                                <Button size="lg" className="bg-seo-navy hover:bg-seo-blue text-white h-14 px-8 text-lg rounded-md uppercase font-bold tracking-wider shadow-lg transition-all hover:scale-[1.02]">
                                     <a href="/free-consultation" className="flex items-center">
                                         Get Free Consultation
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </a>
                                 </Button>
-                                <Button size="lg" variant="outline" className="bg-transparent border-slate-600 text-white hover:bg-white/10 h-14 px-8 text-lg rounded-full backdrop-blur-sm">
+                                <Button size="lg" variant="outline" className="bg-transparent border-2 border-seo-navy text-seo-navy hover:bg-seo-navy hover:text-white h-14 px-8 text-lg rounded-md uppercase font-bold tracking-wider transition-all">
                                     <a href="#case-studies">
                                         View Case Studies
                                     </a>
@@ -110,13 +110,13 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                         </AnimatedSection>
 
                         <AnimatedSection animation="fade-in-left" delay={200} className="lg:w-2/5 w-full">
-                            <Card className="bg-slate-900 border-slate-800 relative rounded-2xl overflow-hidden shadow-2xl">
-                                <div className="absolute inset-0 bg-gradient-to-br from-seo-blue/10 to-purple-500/10"></div>
-                                <CardContent className="p-8 relative">
+                            <Card className="bg-white border-slate-100 relative rounded-2xl overflow-hidden shadow-2xl">
+                                <div className="absolute inset-0 bg-gradient-to-br from-seo-blue/5 to-transparent pointer-events-none"></div>
+                                <CardContent className="p-8 relative z-10">
                                     <div className="flex items-center justify-between mb-8">
                                         <div>
-                                            <h2 className="text-2xl font-bold text-white">Dominate {locationData.name}</h2>
-                                            <p className="text-slate-400 text-sm">Specialized {serviceData.title} Strategy</p>
+                                            <h2 className="text-2xl font-black text-seo-navy">Dominate {locationData.name}</h2>
+                                            <p className="text-slate-500 font-medium text-sm">Specialized {serviceData.title} Strategy</p>
                                         </div>
                                         <div className="h-12 w-12 bg-seo-blue/20 rounded-full flex items-center justify-center">
                                             <Trophy className="h-6 w-6 text-seo-blue" />
@@ -129,8 +129,8 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                                 <CheckCircle className="h-4 w-4 text-green-500" />
                                             </div>
                                             <div>
-                                                <h3 className="text-white font-medium">Local Market Analysis</h3>
-                                                <p className="text-slate-400 text-sm">Deep dive into {locationData.name} competitors</p>
+                                                <h3 className="text-seo-navy font-bold">Local Market Analysis</h3>
+                                                <p className="text-slate-500 font-medium text-sm">Deep dive into {locationData.name} competitors</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-3">
@@ -138,8 +138,8 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                                 <CheckCircle className="h-4 w-4 text-green-500" />
                                             </div>
                                             <div>
-                                                <h3 className="text-white font-medium">Custom Implementation</h3>
-                                                <p className="text-slate-400 text-sm">Tailored {serviceData.title} tactics</p>
+                                                <h3 className="text-seo-navy font-bold">Custom Implementation</h3>
+                                                <p className="text-slate-500 font-medium text-sm">Tailored {serviceData.title} tactics</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-3">
@@ -147,13 +147,13 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                                 <CheckCircle className="h-4 w-4 text-green-500" />
                                             </div>
                                             <div>
-                                                <h3 className="text-white font-medium">Revenue Focus</h3>
-                                                <p className="text-slate-400 text-sm">Tracking real ROI, not just rankings</p>
+                                                <h3 className="text-seo-navy font-bold">Revenue Focus</h3>
+                                                <p className="text-slate-500 font-medium text-sm">Tracking real ROI, not just rankings</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <Button className="w-full bg-white text-slate-900 hover:bg-gray-100 font-bold h-12 text-lg">
+                                    <Button className="w-full bg-seo-navy text-white hover:bg-seo-blue font-bold uppercase tracking-wider h-12 text-lg rounded-md transition-colors">
                                         <a href="/seo-audit">
                                             Start Your Growth
                                         </a>
@@ -337,21 +337,21 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
             {serviceData.faqs && <FAQSection locationName={locationData.name} />}
 
             {/* CTA Section */}
-            <section className="py-24 bg-slate-950 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:32px_32px] opacity-20"></div>
+            <section className="py-24 bg-seo-clean relative overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:32px_32px]"></div>
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-8">
-                            Ready to Transform Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{locationData.name} Business?</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-black text-seo-navy mb-8">
+                            Ready to Transform Your <span className="text-seo-blue">{locationData.name} Business?</span>
                         </h2>
-                        <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+                        <p className="text-xl text-slate-600 font-medium mx-auto mb-10 max-w-2xl">
                             Don't let your competitors win. Get a custom {serviceData.title} strategy designed for the {locationData.name} market today.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-16 px-10 text-xl rounded-full shadow-xl shadow-seo-blue/20">
+                            <Button size="lg" className="bg-seo-peach hover:bg-white text-seo-navy h-16 px-10 text-xl rounded-md uppercase font-black tracking-wider shadow-xl transition-colors">
                                 <a href="/free-consultation">Get Your Free Proposal</a>
                             </Button>
-                            <Button size="lg" variant="outline" className="bg-transparent border-slate-700 text-white hover:bg-white/10 h-16 px-10 text-xl rounded-full">
+                            <Button size="lg" variant="outline" className="bg-transparent border-2 border-seo-navy text-seo-navy hover:bg-seo-navy hover:text-white h-16 px-10 text-xl rounded-md uppercase font-bold tracking-wider transition-colors">
                                 <a href="/contact">Contact Us</a>
                             </Button>
                         </div>

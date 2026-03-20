@@ -45,7 +45,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-slate-950 text-slate-300 border-t border-slate-900 font-sans">
+    <footer className="bg-seo-navy text-slate-300 border-t border-seo-navy font-sans">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-8 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
@@ -149,7 +149,7 @@ const Footer = () => {
                 <Input
                   type="email"
                   placeholder="Enter your email"
-                  className="bg-slate-950 border-slate-800 text-white placeholder:text-slate-600 focus-visible:ring-seo-blue"
+                  className="bg-seo-navy border-white/20 text-white placeholder:text-slate-400 focus-visible:ring-seo-peach"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isLoading}

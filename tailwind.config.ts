@@ -68,12 +68,15 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				seo: {
-					blue: '#0EA5E9',
-					'blue-light': '#38BDF8',
+					blue: '#00D4FF',
+					'blue-light': '#80EAFF',
+					navy: '#2C3053',
+					clean: '#F0F8FF',
+					peach: '#F3D8C1',
 					dark: '#1A1F2C',
 					'gray-light': '#F8FAFC',
 					'gray-medium': '#94A3B8',
-					'gray-dark': '#475569'
+					'gray-dark': '#4A4A4A'
 				}
 			},
 			borderRadius: {
@@ -126,9 +129,9 @@ export default {
 				marquee2: 'marquee2 40s linear infinite'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				display: ['SF Pro Display', 'Inter', 'sans-serif'],
-				mackinac: ['var(--font-mackinac)', 'serif']
+				sans: ['var(--font-montserrat)', 'sans-serif'],
+				display: ['var(--font-montserrat)', 'sans-serif'],
+				mackinac: ['var(--font-montserrat)', 'sans-serif']
 			}
 		}
 	},

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import Script from "next/script";
@@ -7,17 +7,11 @@ import FloatingCTA from "@/components/FloatingCTA";
 import ScrollPopup from "@/components/ScrollPopup";
 import JsonLd from '@/components/JsonLd';
 import { generateOrganizationSchema } from '@/lib/schema';
+import StickyOfferBanner from "@/components/StickyOfferBanner";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  adjustFontFallback: true,
-});
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-mackinac",
-  weight: ["700"],
+  variable: "--font-montserrat",
   display: "swap",
   adjustFontFallback: true,
 });
@@ -46,10 +40,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://seo-jay.vercel.app" />
         <link rel="dns-prefetch" href="https://seo-jay.vercel.app" />
       </head>
-      <body className={`${inter.className} ${fraunces.variable}`}>
+      <body className={`${montserrat.className} ${montserrat.variable} bg-white text-seo-dark`}>
         <Providers>
           <JsonLd schemaString={schemaString} />
           {children}
+          <StickyOfferBanner />
           <FloatingCTA />
           <ScrollPopup />
           <Script
