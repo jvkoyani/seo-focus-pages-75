@@ -96,7 +96,7 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                             SEO Services in {countyFormatted}, {stateFormatted}
                         </h1>
 
-                        <p className="text-xl text-seo-gray-dark mb-8">
+                        <p className="text-base text-seo-gray-dark mb-8">
                             Specialized SEO solutions designed specifically for businesses in the {countyFormatted} area. Boost your local visibility and attract more customers.
                         </p>
 

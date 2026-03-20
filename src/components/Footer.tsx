@@ -14,6 +14,8 @@ import { toast } from 'sonner';
 const Footer = () => {
   const [email, setEmail] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isServicesOpen, setIsServicesOpen] = React.useState(false);
+  const [isCompanyOpen, setIsCompanyOpen] = React.useState(false);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ const Footer = () => {
           <div className="lg:col-span-4 space-y-8">
             <div>
               <a href="/" className="inline-block mb-4">
-                <Image src="/logo.webp" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto" />
+                <Image src="/logo.webp" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto brightness-0 invert" />
               </a>
               <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">
                 We help ambitious businesses dominate search results and drive revenue through data-driven SEO strategies.
@@ -95,8 +97,14 @@ const Footer = () => {
 
           {/* Column 2: Services (3 cols) */}
           <div className="lg:col-span-3 lg:pl-8">
-            <h3 className="text-lg font-display font-bold text-white mb-6">Our Services</h3>
-            <ul className="space-y-3">
+            <button 
+              className="w-full flex items-center justify-between lg:block text-left group"
+              onClick={() => setIsServicesOpen(!isServicesOpen)}
+            >
+              <h3 className="text-lg font-display font-bold text-white mb-6 lg:mb-6 uppercase tracking-tight">Our Services</h3>
+              <ChevronRight className={`w-5 h-5 text-slate-400 transition-transform lg:hidden ${isServicesOpen ? 'rotate-90' : ''}`} />
+            </button>
+            <ul className={`space-y-3 ${isServicesOpen ? 'block' : 'hidden lg:block'} pb-6 lg:pb-0`}>
               {[
                 { label: "Local SEO", href: "/service/local-seo" },
                 { label: "Technical SEO", href: "/service/technical-seo" },
@@ -117,8 +125,14 @@ const Footer = () => {
 
           {/* Column 3: Company (2 cols) */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg font-display font-bold text-white mb-6">Company</h3>
-            <ul className="space-y-3">
+            <button 
+              className="w-full flex items-center justify-between lg:block text-left group"
+              onClick={() => setIsCompanyOpen(!isCompanyOpen)}
+            >
+              <h3 className="text-lg font-display font-bold text-white mb-6 lg:mb-6 uppercase tracking-tight">Company</h3>
+              <ChevronRight className={`w-5 h-5 text-slate-400 transition-transform lg:hidden ${isCompanyOpen ? 'rotate-90' : ''}`} />
+            </button>
+            <ul className={`space-y-3 ${isCompanyOpen ? 'block' : 'hidden lg:block'} pb-6 lg:pb-0`}>
               {[
                 { label: "About Us", href: "/about" },
                 { label: "Case Studies", href: "/case-studies" },

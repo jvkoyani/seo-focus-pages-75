@@ -73,24 +73,24 @@ const PainPoints = () => {
           <span className="inline-block px-4 py-2 rounded-full text-sm font-semibold bg-red-50 text-red-500 border border-red-100 mb-6">
             Sound Familiar?
           </span>
-          <h2 className="text-4xl md:text-5xl font-display font-black text-seo-navy mb-6 leading-tight uppercase tracking-tight">
+          <h2 className="text-2xl md:text-5xl font-display font-black text-seo-navy mb-4 md:mb-6 leading-tight uppercase tracking-tight">
             Tired of Being <span className="text-red-500">Invisible</span> Online?
           </h2>
-          <p className="text-base md:text-xl text-slate-600 font-medium">
+          <p className="text-sm text-slate-600 font-medium leading-relaxed">
             These problems cost Australian businesses millions in lost revenue every year.
             <br />
             <span className="text-seo-navy font-bold">Hover a card to see your solution.</span>
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-4 md:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-4 md:mb-16">
           {painPoints.map((point, index) => (
             <AnimatedSection
               key={point.id}
               animation="slide-up"
               delay={index * 100}
             >
-              <div className="relative h-44 sm:h-60 md:h-72 cursor-default group perspective-1000">
+              <div className="relative h-48 sm:h-60 md:h-72 cursor-default group perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:[transform:rotateY(180deg)]">
                   
                   {/* Front - Problem */}

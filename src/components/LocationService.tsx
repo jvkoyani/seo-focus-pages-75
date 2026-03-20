@@ -295,7 +295,7 @@ const LocationService = ({ locationSlug, serviceSlug, cityName }: LocationServic
                                 {currentServiceInfo.title}
                             </h1>
 
-                            <p className="text-xl text-seo-gray-dark mb-8">
+                            <p className="text-base text-seo-gray-dark mb-8">
                                 {currentServiceInfo.description}
                             </p>
 

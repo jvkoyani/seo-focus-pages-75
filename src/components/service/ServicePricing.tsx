@@ -35,9 +35,9 @@ const ServicePricing = ({ tiers, serviceName }: ServicePricingProps) => {
                     {tiers.map((tier, index) => (
                         <AnimatedSection
                             key={index}
-                            className={`relative rounded-2xl p-8 border ${tier.recommended
-                                ? 'bg-slate-900 text-white border-seo-blue shadow-2xl scale-105 z-10'
-                                : 'bg-white text-slate-900 border-gray-200 shadow-lg hover:shadow-xl'
+                            className={`relative rounded-3xl p-8 border ${tier.recommended
+                                ? 'bg-seo-navy text-white border-none shadow-2xl scale-105 z-10'
+                                : 'bg-white text-seo-navy border-slate-200 shadow-xl hover:shadow-2xl'
                                 } transition-all duration-300`}
                             animation="slide-up"
                             delay={index * 100}

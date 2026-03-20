@@ -96,7 +96,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
             {/* Hero Section */}
             <section
                 id={resolvedHeroId}
-                className={`${resolvedHeroClasses} pt-32 pb-24 bg-slate-900 relative overflow-hidden`}
+                className={`${resolvedHeroClasses} pt-32 pb-24 bg-white relative overflow-hidden`}
                 aria-label={`${service.title} for ${industry.title} in ${cityName}`}
                 data-section="hero"
             >
@@ -106,17 +106,17 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
 
                 <div className={`${generateDivClass({ role: 'section-container', section: 'hero', service: service.slug, location: locationSlug })} container mx-auto px-4 relative z-10`}>
-                    <AnimatedSection className="mb-8" animation="fade-in">
-                        <div className={`${generateDivClass({ role: 'breadcrumb', section: 'hero', service: service.slug, location: locationSlug })} inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700`}>
-                            <a href="/" className="hover:text-white transition-colors">Home</a>
-                            <ChevronRight className="h-3 w-3" />
-                            <a href={`/areas-we-serve/${locationSlug}`} className="hover:text-white transition-colors">{cityName}</a>
-                            <ChevronRight className="h-3 w-3" />
-                            <span className="text-seo-blue font-medium">{service.title} for {industryBusiness}</span>
+                    <AnimatedSection className="mb-4 md:mb-8" animation="fade-in">
+                        <div className={`${generateDivClass({ role: 'breadcrumb', section: 'hero', service: service.slug, location: locationSlug })} inline-flex items-center space-x-2 text-xs md:text-sm text-slate-500 bg-white/50 px-4 py-2 rounded-full border border-slate-200 shadow-sm font-medium`}>
+                            <a href="/" className="hover:text-seo-blue transition-colors">Home</a>
+                            <ChevronRight className="h-3 w-3 text-slate-400" />
+                            <a href={`/areas-we-serve/${locationSlug}`} className="hover:text-seo-blue transition-colors">{cityName}</a>
+                            <ChevronRight className="h-3 w-3 text-slate-400" />
+                            <span className="text-seo-blue font-bold tracking-tight">{service.title} for {industryBusiness}</span>
                         </div>
                     </AnimatedSection>
 
-                    <div className={`${generateDivClass({ role: 'hero-content', section: 'hero', service: service.slug, industry: industry.slug, location: locationSlug })} flex flex-col lg:flex-row items-center gap-12 lg:gap-20`}>
+                    <div className={`${generateDivClass({ role: 'hero-content', section: 'hero', service: service.slug, industry: industry.slug, location: locationSlug })} flex flex-col lg:flex-row items-center gap-6 md:gap-12 lg:gap-20`}>
                         <AnimatedSection className="lg:w-3/5" animation="fade-in-right">
                             <div className={`${generateDivClass({ role: 'badge-row', section: 'hero', service: service.slug, location: locationSlug })} flex items-center gap-3 mb-6`}>
                                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
@@ -130,13 +130,13 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                             </div>
 
                             <h1
-                                className={`${resolvedH1Class} text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight`}
+                                className={`${resolvedH1Class} text-4xl lg:text-7xl font-display font-black text-seo-navy mb-6 md:mb-8 leading-[1.1] tracking-tight uppercase text-center lg:text-left`}
                                 data-keyword={`${service.title} ${industry.title} ${cityName}`}
                             >
-                                {service.title} for <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{industryBusiness}</span> in <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{cityName}</span>
+                                {service.title} for <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-cyan-500">{industryBusiness}</span> in <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-cyan-500">{cityName}</span>
                             </h1>
 
-                            <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+                            <p className="text-base text-slate-600 mb-10 leading-relaxed max-w-2xl font-medium">
                                 Specialized {service.title.toLowerCase()} strategies designed specifically for {pluralIndustry.toLowerCase()} in {cityName}. Drive more qualified leads and grow your practice.
                             </p>
 
@@ -152,7 +152,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </a>
                                 </Button>
-                                <Button size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900 h-14 px-8 text-lg rounded-full backdrop-blur-sm transition-all duration-300">
+                                <Button size="lg" variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900 h-14 px-8 text-lg rounded-full backdrop-blur-sm transition-all duration-300">
                                     <a href="/case-studies">
                                         View Our Results
                                     </a>
@@ -174,12 +174,12 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                         <AnimatedSection animation="fade-in-left" delay={200} className="lg:w-2/5 w-full">
                             <div className={`${generateDivClass({ role: 'hero-card', section: 'hero', service: service.slug, location: locationSlug })} relative`}>
                                 <div className="absolute -inset-1 bg-gradient-to-r from-seo-blue to-purple-600 rounded-2xl blur opacity-75 animate-pulse"></div>
-                                <Card className="bg-slate-900 border-slate-800 relative rounded-2xl overflow-hidden shadow-2xl">
+                                <Card className="bg-white border-slate-200 relative rounded-2xl overflow-hidden shadow-xl">
                                     <CardContent className="p-8">
                                         <div className="flex items-center justify-between mb-8">
                                             <div>
-                                                <h2 className="text-2xl font-bold text-white">Free {industry.title} Audit</h2>
-                                                <p className="text-slate-400 text-sm">Value $500 • Limited Time</p>
+                                                <h2 className="text-2xl font-black uppercase text-seo-navy tracking-tight">Free {industry.title} Audit</h2>
+                                                <p className="text-slate-500 font-bold text-sm mt-1">Value $500 • Limited Time</p>
                                             </div>
                                             <div className="h-12 w-12 bg-seo-blue/20 rounded-full flex items-center justify-center">
                                                 <BarChart className="h-6 w-6 text-seo-blue" />
@@ -188,30 +188,30 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
 
                                         <div className="space-y-4 mb-8">
                                             <div className="flex items-start gap-3">
-                                                <div className="mt-1 bg-green-500/20 p-1 rounded-full">
-                                                    <CheckCircle className="h-4 w-4 text-green-500" />
+                                                <div className="mt-1 bg-green-50 p-1 rounded-full border border-green-100">
+                                                    <CheckCircle className="h-4 w-4 text-green-600" />
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-white font-medium">Technical Analysis</h3>
-                                                    <p className="text-slate-400 text-sm">Identify site speed & crawl issues</p>
+                                                    <h3 className="text-seo-navy font-bold">Technical Analysis</h3>
+                                                    <p className="text-slate-500 font-medium text-sm mt-0.5">Identify site speed & crawl issues</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <div className="mt-1 bg-green-500/20 p-1 rounded-full">
-                                                    <CheckCircle className="h-4 w-4 text-green-500" />
+                                                <div className="mt-1 bg-green-50 p-1 rounded-full border border-green-100">
+                                                    <CheckCircle className="h-4 w-4 text-green-600" />
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-white font-medium">Competitor Spy</h3>
-                                                    <p className="text-slate-400 text-sm">See what other {cityName} {pluralIndustry.toLowerCase()} are doing</p>
+                                                    <h3 className="text-seo-navy font-bold">Competitor Spy</h3>
+                                                    <p className="text-slate-500 font-medium text-sm mt-0.5">See what other {cityName} {pluralIndustry.toLowerCase()} are doing</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <div className="mt-1 bg-green-500/20 p-1 rounded-full">
-                                                    <CheckCircle className="h-4 w-4 text-green-500" />
+                                                <div className="mt-1 bg-green-50 p-1 rounded-full border border-green-100">
+                                                    <CheckCircle className="h-4 w-4 text-green-600" />
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-white font-medium">Growth Roadmap</h3>
-                                                    <p className="text-slate-400 text-sm">Step-by-step plan to rank #1</p>
+                                                    <h3 className="text-seo-navy font-bold">Growth Roadmap</h3>
+                                                    <p className="text-slate-500 font-medium text-sm mt-0.5">Step-by-step plan to rank #1</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -450,24 +450,24 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
 
                         <AnimatedSection className="lg:w-1/2" animation="fade-in-left">
                             <div className={`${generateDivClass({ role: 'why-us-cta-card', section: 'why-choose-us', service: service.slug, location: locationSlug })} bg-white p-2 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500`}>
-                                <div className="bg-slate-900 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-seo-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                                <div className="bg-white border border-slate-200 shadow-xl rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-seo-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-                                    <h3 className="text-3xl font-display font-bold text-white mb-6 relative z-10">
+                                    <h3 className="text-3xl font-display font-black text-seo-navy uppercase tracking-tight mb-6 relative z-10">
                                         Ready to Dominate?
                                     </h3>
-                                    <p className="text-slate-300 mb-8 relative z-10">
+                                    <p className="text-slate-600 font-medium mb-8 relative z-10">
                                         Your competitors in {cityName} are already investing in SEO. Don't get left behind.
                                     </p>
 
                                     <div className="space-y-4 relative z-10">
-                                        <Button className="w-full bg-seo-blue hover:bg-seo-blue-light text-white py-6 text-lg rounded-xl shadow-lg shadow-seo-blue/20">
+                                        <Button className="w-full bg-seo-peach hover:bg-seo-navy text-seo-navy hover:text-white font-bold py-6 text-lg rounded-xl shadow-lg transition-colors uppercase">
                                             <a href="/seo-audit" className="w-full h-full flex items-center justify-center">
                                                 Get Your Free Audit
                                             </a>
                                         </Button>
-                                        <Button variant="outline" className="w-full border-slate-700 text-white hover:bg-white/10 py-6 text-lg rounded-xl">
+                                        <Button variant="outline" className="w-full border-seo-navy text-seo-navy hover:bg-seo-gray-light font-bold py-6 text-lg rounded-xl bg-transparent uppercase">
                                             <a href="/contact" className="w-full h-full flex items-center justify-center">
                                                 <Phone className="mr-2 h-5 w-5" />
                                                 Talk to an Expert
@@ -475,7 +475,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                                         </Button>
                                     </div>
 
-                                    <p className="text-xs text-slate-500 mt-6">
+                                    <p className="text-xs font-bold text-slate-500 mt-6">
                                         Limited spots available for new clients in {cityName}.
                                     </p>
                                 </div>

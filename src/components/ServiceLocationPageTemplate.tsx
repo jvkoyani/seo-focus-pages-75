@@ -64,12 +64,12 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
 
                 <div className="container mx-auto px-4 relative z-10">
                     <AnimatedSection className="mb-8" animation="fade-in">
-                        <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
-                            <a href="/" className="hover:text-white transition-colors">Home</a>
+                         <div className="inline-flex items-center space-x-2 text-xs md:text-sm text-slate-500 bg-white/50 px-4 py-2 rounded-full border border-slate-200 shadow-sm font-medium">
+                            <a href="/" className="hover:text-seo-blue transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
-                            <a href={`/areas-we-serve/${locationData.slug}`} className="hover:text-white transition-colors">{locationData.name}</a>
+                            <a href={`/areas-we-serve/${locationData.slug}`} className="hover:text-seo-blue transition-colors">{locationData.name}</a>
                             <ChevronRight className="h-3 w-3" />
-                            <span className="text-seo-blue font-medium">{serviceData.title}</span>
+                            <span className="text-seo-blue font-bold tracking-wide">{serviceData.title}</span>
                         </div>
                     </AnimatedSection>
 
@@ -86,16 +86,16 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                 </span>
                             </div>
 
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-black text-seo-navy mb-8 leading-tight tracking-tight">
+                             <h1 className="text-4xl lg:text-7xl font-display font-black text-seo-navy mb-6 md:mb-8 leading-[1.1] tracking-tight text-center lg:text-left">
                                 {serviceData.title} in <span className="text-seo-blue">{locationData.name}</span>
                             </h1>
 
-                            <p className="text-xl text-slate-600 font-medium mb-10 leading-relaxed max-w-2xl">
+                            <p className="text-base text-slate-600 font-medium mb-10 leading-relaxed max-w-2xl">
                                 {serviceData.description} tailored specifically for the {locationData.name} market. We help local businesses dominate search results and drive revenue.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Button size="lg" className="bg-seo-navy hover:bg-seo-blue text-white h-14 px-8 text-lg rounded-md uppercase font-bold tracking-wider shadow-lg transition-all hover:scale-[1.02]">
+                                <Button size="lg" className="bg-seo-navy hover:bg-seo-blue text-white h-14 px-8 text-base rounded-md uppercase font-bold tracking-wider shadow-lg transition-all hover:scale-[1.02]">
                                     <a href="/free-consultation" className="flex items-center">
                                         Get Free Consultation
                                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -254,15 +254,15 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                             ))}
                                         </ul>
                                     </div>
-                                    <div className="bg-slate-900 p-8 rounded-2xl shadow-lg text-center relative overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-seo-blue/20 rounded-full blur-2xl"></div>
-                                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl"></div>
+                                    <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100 text-center relative overflow-hidden">
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-seo-blue/10 rounded-full blur-2xl"></div>
+                                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
 
-                                        <h3 className="text-2xl font-bold text-white mb-4 relative z-10">Need Help with {serviceData.title}?</h3>
-                                        <p className="text-slate-300 mb-6 relative z-10">
+                                        <h3 className="text-2xl font-black text-seo-navy uppercase tracking-tight mb-4 relative z-10">Need Help with {serviceData.title}?</h3>
+                                        <p className="text-slate-600 font-medium mb-6 relative z-10">
                                             Our team in {locationData.name} is ready to help you grow.
                                         </p>
-                                        <Button className="w-full bg-seo-blue hover:bg-seo-blue-light text-white font-bold relative z-10">
+                                        <Button className="w-full bg-seo-peach hover:bg-seo-navy text-seo-navy hover:text-white font-bold uppercase tracking-wider transition-colors relative z-10">
                                             <a href="/contact">Speak to an Expert</a>
                                         </Button>
                                     </div>

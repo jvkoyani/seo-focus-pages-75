@@ -41,7 +41,7 @@ const Hero = ({
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-white via-seo-clean to-[#E6F3FF]">
         <Image
           src="/images/hero-powermyseo.webp"
-          alt="Power My SEO — Australian SEO agency helping local businesses rank on Google"
+          alt="Australian SEO agency helping local businesses rank on Google"
           width={1200}
           height={600}
           priority={true}
@@ -84,7 +84,7 @@ const Hero = ({
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in" delay={100}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight mb-4 md:mb-6 text-seo-navy">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight mb-4 md:mb-6 text-seo-navy text-center lg:text-left">
                 {displayTitle.split(' ').slice(0, -2).join(' ')}{' '}
                 <span className="text-seo-blue">
                   {displayTitle.split(' ').slice(-2).join(' ')}
@@ -93,7 +93,7 @@ const Hero = ({
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in" delay={200}>
-              <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-6 md:mb-10 max-w-lg mx-auto lg:mx-0 font-medium">
+              <p className="text-base text-slate-600 leading-relaxed mb-6 md:mb-10 max-w-lg mx-auto lg:mx-0 font-medium">
                 {displaySubtitle}
               </p>
             </AnimatedSection>

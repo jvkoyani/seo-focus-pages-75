@@ -69,18 +69,18 @@ const FAQSection = ({
                             </span>
                             {title ? (
                                 typeof title === 'string' ? (
-                                    <h2 className="text-3xl md:text-5xl font-display font-black text-seo-navy mb-6 uppercase tracking-tight">{title}</h2>
+                                    <h2 className="text-xl md:text-5xl font-display font-black text-seo-navy mb-4 md:mb-6 uppercase tracking-tight">{title}</h2>
                                 ) : (
                                     title
                                 )
                             ) : (
-                                <h2 className="text-3xl md:text-5xl font-display font-black text-seo-navy mb-6 uppercase tracking-tight">
+                                <h2 className="text-xl md:text-5xl font-display font-black text-seo-navy mb-4 md:mb-6 uppercase tracking-tight">
                                     Frequently Asked <span className="text-seo-blue">Questions</span>
                                 </h2>
                             )}
-                            <p className="text-lg text-seo-gray-dark mb-8">
-                                {description || `Got questions about SEO in ${locationName}? We've got answers.`}
-                            </p>
+                        <p className="text-base md:text-lg text-seo-gray-dark mb-6 md:mb-8 font-medium">
+                            {description || `Got questions about SEO in ${locationName}? We've got answers.`}
+                        </p>
                             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                                 <div className="flex items-start gap-4 mb-4">
                                     <div className="bg-seo-blue/10 p-3 rounded-full">
@@ -106,13 +106,13 @@ const FAQSection = ({
                                     className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
                                 >
                                     <details className="group">
-                                        <summary className="w-full flex items-center justify-between p-6 text-left focus:outline-none list-none cursor-pointer hover:bg-seo-clean/50 transition-colors">
-                                            <span className="font-bold text-lg text-seo-navy uppercase tracking-wider group-open:text-seo-blue transition-colors">
+                                        <summary className="w-full flex items-center justify-between p-4 md:p-6 text-left focus:outline-none list-none cursor-pointer hover:bg-seo-clean/50 transition-colors">
+                                            <span className="font-bold text-sm md:text-lg text-seo-navy uppercase tracking-wider group-open:text-seo-blue transition-colors">
                                                 {faq.question}
                                             </span>
                                             <ChevronDown className="w-5 h-5 text-seo-navy group-open:rotate-180 transition-transform duration-300 flex-shrink-0" />
                                         </summary>
-                                        <div className="px-6 pb-6 text-seo-gray-dark border-t border-gray-50 pt-4">
+                                        <div className="px-4 md:px-6 pb-4 md:pb-6 text-xs md:text-sm text-seo-gray-dark border-t border-gray-50 pt-4 font-medium leading-relaxed">
                                             {faq.answer}
                                         </div>
                                     </details>

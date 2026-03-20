@@ -154,13 +154,13 @@ const FloatingCTA = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: 100, opacity: 0 }}
                             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                            className="fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-gradient-to-b from-seo-blue to-purple-600 text-white py-6 px-1.5 rounded-l-xl shadow-2xl hover:shadow-seo-blue/50 hover:scale-105 transition-all duration-300 flex flex-col items-center gap-3 group border-l border-t border-b border-white/20"
+                            className="fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-gradient-to-b from-seo-blue to-purple-600 text-white py-4 md:py-6 px-1 md:px-1.5 rounded-l-xl shadow-2xl hover:shadow-seo-blue/50 hover:scale-105 transition-all duration-300 flex flex-col items-center gap-2 md:gap-3 group border-l border-t border-b border-white/20"
                             aria-label={contextData.text}
                         >
-                            <div className="bg-white/20 p-1.5 rounded-full animate-pulse">
-                                <Zap className="w-5 h-5 text-white" />
+                            <div className="bg-white/20 p-2 md:p-1.5 rounded-full animate-pulse">
+                                <Zap className="w-6 h-6 md:w-5 md:h-5 text-white" />
                             </div>
-                            <span className="writing-mode-vertical text-xs font-bold tracking-widest uppercase text-shadow-sm whitespace-nowrap">
+                            <span className="hidden md:inline-block writing-mode-vertical text-xs font-bold tracking-widest uppercase text-shadow-sm whitespace-nowrap">
                                 {contextData.text}
                             </span>
                         </motion.button>

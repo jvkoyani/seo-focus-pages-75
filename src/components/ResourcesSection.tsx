@@ -33,7 +33,7 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
     <div className={`py-16 ${className}`}>
       <div className="container mx-auto px-4">
         <AnimatedSection
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-10"
           animation="fade-in"
         >
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-purple-500/10 text-purple-500 border border-purple-500/20 mb-4">
@@ -43,7 +43,7 @@ const ResourcesSection = ({ filterTag, className = '' }: ResourcesSectionProps) 
           <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
             Resources & <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Insights</span>
           </h2>
-          <p className="text-lg text-seo-gray-dark mb-8">
+          <p className="text-base text-seo-gray-dark mb-8">
             Stay ahead of the curve with our latest SEO guides, success stories, and industry insights designed to help you grow.
           </p>
 

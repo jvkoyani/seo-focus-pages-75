@@ -27,7 +27,7 @@ const IndustrySeoServices = ({
 
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection
-          className="text-center mb-4 md:mb-16 max-w-3xl mx-auto"
+          className="text-center mb-4 md:mb-10 max-w-3xl mx-auto"
           animation="fade-in"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-seo-blue/10 to-blue-500/10 text-seo-blue border border-seo-blue/20 mb-6">
@@ -40,7 +40,7 @@ const IndustrySeoServices = ({
               SEO Solutions
             </span>
           </h2>
-          <p className="text-xl text-seo-gray-dark">
+          <p className="text-base text-seo-gray-dark font-medium leading-relaxed">
             {description}
           </p>
         </AnimatedSection>

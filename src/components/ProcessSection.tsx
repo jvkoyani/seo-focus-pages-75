@@ -45,7 +45,7 @@ const ProcessSection = () => {
     return (
         <section className="py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10 w-full max-w-7xl">
-                <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
+                <AnimatedSection className="text-center max-w-3xl mx-auto mb-10" animation="fade-in">
                     <h2 className="text-4xl md:text-5xl font-display font-black text-seo-navy mb-6">
                         OUR PROVEN <span className="text-seo-blue">PROCESS</span>
                     </h2>
@@ -74,7 +74,7 @@ const ProcessSection = () => {
                                 </div>
 
                                 <div className="pt-10">
-                                    <h3 className="text-lg font-black text-seo-navy mb-3 line-clamp-1">{step.title}</h3>
+                                    <h3 className="text-base font-black text-seo-navy mb-3 line-clamp-1">{step.title}</h3>
                                     <p className="text-slate-500 font-medium leading-relaxed">
                                         {step.description}
                                     </p>

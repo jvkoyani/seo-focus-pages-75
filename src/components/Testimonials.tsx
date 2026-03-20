@@ -58,10 +58,10 @@ const Testimonials = ({ location }: TestimonialsProps) => {
             <Star className="w-4 h-4 fill-current" />
             Client Success Stories
           </span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-5xl font-display font-black text-white mb-4 md:mb-6 uppercase tracking-tight">
             Don&apos;t Take Our Word For It
           </h2>
-          <p className="text-base md:text-xl text-slate-400">
+          <p className="text-base md:text-lg text-slate-400 font-medium leading-relaxed">
             {location
               ? `Hear from ${location} businesses we've helped achieve SEO success`
               : 'Real feedback from businesses we\'ve helped grow'}

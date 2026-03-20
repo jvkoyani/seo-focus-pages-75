@@ -49,7 +49,7 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
             <Navbar />
 
             {/* Hero Section - Industry Focused */}
-            <section className="relative pt-32 pb-24 overflow-hidden bg-slate-950">
+            <section className="relative pt-32 pb-24 overflow-hidden bg-white">
                 {/* Background Effects */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
                 <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 blur-3xl opacity-20">
@@ -60,13 +60,13 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">
-                    <AnimatedSection className="mb-8" animation="fade-in">
-                        <div className="inline-flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700">
-                            <a href="/" className="hover:text-white transition-colors">Home</a>
+                     <AnimatedSection className="mb-8" animation="fade-in">
+                        <div className="inline-flex items-center space-x-2 text-xs md:text-sm text-slate-500 bg-white/50 px-4 py-2 rounded-full border border-slate-200 shadow-sm font-medium">
+                            <a href="/" className="hover:text-seo-blue transition-colors">Home</a>
                             <ChevronRight className="h-3 w-3" />
-                            <a href={`/areas-we-serve/${locationData.slug}`} className="hover:text-white transition-colors">{locationData.name}</a>
+                            <a href={`/areas-we-serve/${locationData.slug}`} className="hover:text-seo-blue transition-colors">{locationData.name}</a>
                             <ChevronRight className="h-3 w-3" />
-                            <span className="text-seo-blue font-medium">{industryData.title}</span>
+                            <span className="text-seo-blue font-bold tracking-wide">{industryData.title}</span>
                         </div>
                     </AnimatedSection>
 
@@ -83,22 +83,22 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                                 </span>
                             </div>
 
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
-                                Specialized <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-400">{industryData.title}</span> in {locationData.name}
+                             <h1 className="text-4xl lg:text-7xl font-display font-black text-seo-navy mb-6 md:mb-8 leading-[1.1] tracking-tight uppercase text-center lg:text-left">
+                                Specialized <span className="text-transparent bg-clip-text bg-gradient-to-r from-seo-blue to-purple-600">{industryData.title}</span> in {locationData.name}
                             </h1>
 
-                            <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+                            <p className="text-base text-slate-600 font-medium mb-10 leading-relaxed max-w-2xl">
                                 {industryData.description} tailored specifically for the {locationData.name} market. We help {industryData.entityName?.toLowerCase() || industryData.title.toLowerCase()} dominate local search results.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Button size="lg" className="bg-seo-blue hover:bg-seo-blue-light text-white h-14 px-8 text-lg rounded-full shadow-lg shadow-seo-blue/25 transition-all hover:scale-105">
+                                <Button size="lg" className="bg-seo-peach hover:bg-seo-navy text-seo-navy hover:text-white font-bold h-14 px-8 text-base rounded-full shadow-lg transition-all hover:scale-105 uppercase tracking-wider">
                                     <a href="/free-consultation" className="flex items-center">
                                         Get Free Consultation
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </a>
                                 </Button>
-                                <Button size="lg" variant="outline" className="bg-transparent border-slate-600 text-white hover:bg-white/10 h-14 px-8 text-lg rounded-full backdrop-blur-sm">
+                                <Button size="lg" variant="outline" className="bg-white border-seo-navy text-seo-navy hover:bg-seo-gray-light font-bold h-14 px-8 text-lg rounded-full shadow-sm uppercase tracking-wider transition-colors">
                                     <a href="#services">
                                         View Our Services
                                     </a>
@@ -107,45 +107,45 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                         </AnimatedSection>
 
                         <AnimatedSection animation="fade-in-left" delay={200} className="lg:w-2/5 w-full">
-                            <Card className="bg-slate-900 border-slate-800 relative rounded-2xl overflow-hidden shadow-2xl">
+                            <Card className="bg-white border-slate-200 relative rounded-2xl overflow-hidden shadow-xl">
                                 <div className="absolute inset-0 bg-gradient-to-br from-seo-blue/10 to-purple-500/10"></div>
                                 <CardContent className="p-8 relative">
                                     <div className="flex items-center justify-between mb-8">
                                         <div>
-                                            <h3 className="text-2xl font-bold text-white">Grow Your Practice</h3>
-                                            <p className="text-slate-400 text-sm">In {locationData.name}</p>
+                                            <h3 className="text-2xl font-black text-seo-navy uppercase tracking-tight">Grow Your Practice</h3>
+                                            <p className="text-slate-500 font-bold text-sm mt-1">In {locationData.name}</p>
                                         </div>
-                                        <div className="h-12 w-12 bg-seo-blue/20 rounded-full flex items-center justify-center">
+                                        <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center border border-blue-100">
                                             <TrendingUp className="h-6 w-6 text-seo-blue" />
                                         </div>
                                     </div>
 
                                     <div className="space-y-4 mb-8">
                                         <div className="flex items-start gap-3">
-                                            <div className="mt-1 bg-green-500/20 p-1 rounded-full">
-                                                <CheckCircle className="h-4 w-4 text-green-500" />
+                                            <div className="mt-1 bg-green-50 p-1 rounded-full border border-green-100">
+                                                <CheckCircle className="h-4 w-4 text-green-600" />
                                             </div>
                                             <div>
-                                                <h4 className="text-white font-medium">Targeted Local Traffic</h4>
-                                                <p className="text-slate-400 text-sm">Reach customers in {locationData.name} actively looking for you.</p>
+                                                <h4 className="text-seo-navy font-bold">Targeted Local Traffic</h4>
+                                                <p className="text-slate-500 font-medium text-sm mt-0.5">Reach customers in {locationData.name} actively looking for you.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-3">
-                                            <div className="mt-1 bg-green-500/20 p-1 rounded-full">
-                                                <CheckCircle className="h-4 w-4 text-green-500" />
+                                            <div className="mt-1 bg-green-50 p-1 rounded-full border border-green-100">
+                                                <CheckCircle className="h-4 w-4 text-green-600" />
                                             </div>
                                             <div>
-                                                <h4 className="text-white font-medium">Industry Expertise</h4>
-                                                <p className="text-slate-400 text-sm">We understand the nuances of {industryData.title}.</p>
+                                                <h4 className="text-seo-navy font-bold">Industry Expertise</h4>
+                                                <p className="text-slate-500 font-medium text-sm mt-0.5">We understand the nuances of {industryData.title}.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-3">
-                                            <div className="mt-1 bg-green-500/20 p-1 rounded-full">
-                                                <CheckCircle className="h-4 w-4 text-green-500" />
+                                            <div className="mt-1 bg-green-50 p-1 rounded-full border border-green-100">
+                                                <CheckCircle className="h-4 w-4 text-green-600" />
                                             </div>
                                             <div>
-                                                <h4 className="text-white font-medium">Proven ROI</h4>
-                                                <p className="text-slate-400 text-sm">Strategies focused on generating leads and revenue.</p>
+                                                <h4 className="text-seo-navy font-bold">Proven ROI</h4>
+                                                <p className="text-slate-500 font-medium text-sm mt-0.5">Strategies focused on generating leads and revenue.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -172,10 +172,10 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                             <Briefcase className="w-3 h-3 mr-2" />
                             Comprehensive Solutions
                         </span>
-                        <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
+                        <h2 className="text-2xl md:text-5xl font-display font-black text-seo-dark mb-4 md:mb-6 uppercase tracking-tight">
                             Complete <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">{industryData.title} Services</span> in {locationData.name}
                         </h2>
-                        <p className="text-lg text-seo-gray-dark">
+                        <p className="text-sm text-seo-gray-dark font-medium leading-relaxed">
                             Everything you need to dominate the {locationData.name} market. Choose a service to learn more.
                         </p>
                     </AnimatedSection>
@@ -235,12 +235,13 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                                         'text-green-600 bg-green-100';
 
                                 return (
-                                    <AnimatedSection key={index} className="p-8 rounded-2xl bg-white border border-slate-100 hover:shadow-lg transition-all" delay={index * 100}>
-                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${colorClass}`}>
-                                            <Icon className="w-6 h-6" />
+                                    <AnimatedSection key={index} className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden" delay={index * 100}>
+                                        <div className={`absolute top-0 right-0 w-32 h-32 opacity-10 blur-2xl group-hover:opacity-30 transition-opacity bg-gradient-to-br ${colorClass} rounded-full`}></div>
+                                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-sm border border-slate-50 group-hover:scale-110 transition-transform ${colorClass}`}>
+                                            <Icon className="w-7 h-7" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-seo-dark mb-3">{item.title}</h3>
-                                        <p className="text-seo-gray-dark">
+                                        <h3 className="text-2xl font-black text-seo-navy mb-3 uppercase tracking-tight">{item.title}</h3>
+                                        <p className="text-slate-600 font-medium leading-relaxed">
                                             {item.description}
                                         </p>
                                     </AnimatedSection>
@@ -248,30 +249,30 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                             })
                         ) : (
                             <>
-                                <AnimatedSection className="p-8 rounded-2xl bg-white border border-slate-100 hover:shadow-lg transition-all" delay={0}>
-                                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600">
-                                        <Target className="w-6 h-6" />
+                                <AnimatedSection className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden" delay={0}>
+                                    <div className={`w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-blue-600 border border-blue-100 group-hover:scale-110 transition-transform`}>
+                                        <Target className="w-7 h-7" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-seo-dark mb-3">High Intent Leads</h3>
-                                    <p className="text-seo-gray-dark">
+                                    <h3 className="text-2xl font-black text-seo-navy mb-3 uppercase tracking-tight">High Intent Leads</h3>
+                                    <p className="text-slate-600 font-medium leading-relaxed">
                                         Capture customers in {locationData.name} who are actively searching for {industryData.entityName || industryData.title} right now.
                                     </p>
                                 </AnimatedSection>
-                                <AnimatedSection className="p-8 rounded-2xl bg-white border border-slate-100 hover:shadow-lg transition-all" delay={100}>
-                                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-6 text-purple-600">
-                                        <Shield className="w-6 h-6" />
+                                <AnimatedSection className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden" delay={100}>
+                                    <div className={`w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center mb-6 text-purple-600 border border-purple-100 group-hover:scale-110 transition-transform`}>
+                                        <Shield className="w-7 h-7" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-seo-dark mb-3">Build Trust</h3>
-                                    <p className="text-seo-gray-dark">
+                                    <h3 className="text-2xl font-black text-seo-navy mb-3 uppercase tracking-tight">Build Trust</h3>
+                                    <p className="text-slate-600 font-medium leading-relaxed">
                                         Establish your brand as the go-to expert for {industryData.entityName || industryData.title} in the {locationData.name} area.
                                     </p>
                                 </AnimatedSection>
-                                <AnimatedSection className="p-8 rounded-2xl bg-white border border-slate-100 hover:shadow-lg transition-all" delay={200}>
-                                    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-6 text-green-600">
-                                        <TrendingUp className="w-6 h-6" />
+                                <AnimatedSection className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden" delay={200}>
+                                    <div className={`w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center mb-6 text-green-600 border border-green-100 group-hover:scale-110 transition-transform`}>
+                                        <TrendingUp className="w-7 h-7" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-seo-dark mb-3">Long-Term Growth</h3>
-                                    <p className="text-seo-gray-dark">
+                                    <h3 className="text-2xl font-black text-seo-navy mb-3 uppercase tracking-tight">Long-Term Growth</h3>
+                                    <p className="text-slate-600 font-medium leading-relaxed">
                                         Build a sustainable flow of new clients for your {industryData.entityName || industryData.title} in {locationData.name}.
                                     </p>
                                 </AnimatedSection>

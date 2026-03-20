@@ -94,7 +94,7 @@ const State = ({ countrySlug, stateSlug }: StateProps) => {
                             SEO Services in {stateFormatted}
                         </h1>
 
-                        <p className="text-xl text-seo-gray-dark mb-8">
+                        <p className="text-base text-seo-gray-dark mb-8">
                             Comprehensive SEO solutions tailored for businesses in {stateFormatted}. Improve your online visibility and attract more local customers.
                         </p>
 

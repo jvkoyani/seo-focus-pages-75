@@ -29,13 +29,13 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
   return (
     <section className="py-24 relative overflow-hidden bg-gradient-to-br from-seo-clean via-sky-100 to-cyan-100">
       <div className="container mx-auto px-4 relative z-10 w-full max-w-7xl">
-        <AnimatedSection className="mb-12 md:mb-16 max-w-3xl" animation="fade-in">
-          <h2 className="text-4xl md:text-5xl font-display font-black text-seo-navy mb-6 uppercase tracking-tight">
+        <AnimatedSection className="mb-8 md:mb-16 max-w-3xl" animation="fade-in">
+          <h2 className="text-2xl md:text-5xl font-display font-black text-seo-navy mb-4 md:mb-6 uppercase tracking-tight">
             {title ? title : (location
               ? <>SEO Services in <span className="text-seo-blue">{location}</span></>
               : <>Digital Marketing <span className="text-seo-blue">Services</span></>)}
           </h2>
-          <p className="text-xl text-seo-navy/80 font-medium">
+          <p className="text-lg md:text-xl text-seo-navy/80 font-medium leading-relaxed">
             {location
               ? `We help businesses in ${location} improve their search visibility and drive more qualified traffic.`
               : 'Our digital marketing campaigns are customised to meet your business and marketing goals.'}
@@ -53,10 +53,10 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
                   onClick={() => setActiveIndex(index)}
                   className={`group relative flex items-center w-full text-left py-4 sm:py-6 px-4 transition-all duration-300 border-l-4 ${isActive ? 'bg-transparent border-seo-navy' : 'border-transparent hover:bg-white/40'}`}
                 >
-                  <span className={`text-4xl sm:text-5xl font-display font-black mr-6 transition-colors duration-300 ${isActive ? 'text-seo-navy' : 'text-seo-navy/20 group-hover:text-seo-navy/40'}`}>
+                  <span className={`text-3xl sm:text-5xl font-display font-black mr-4 sm:mr-6 transition-colors duration-300 ${isActive ? 'text-seo-navy' : 'text-seo-navy/20 group-hover:text-seo-navy/40'}`}>
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className={`text-lg sm:text-2xl font-bold transition-colors duration-300 ${isActive ? 'text-seo-navy' : 'text-seo-navy/60 group-hover:text-seo-navy'}`}>
+                  <span className={`text-base sm:text-2xl font-bold transition-colors duration-300 ${isActive ? 'text-seo-navy' : 'text-seo-navy/60 group-hover:text-seo-navy'}`}>
                     {service.title}
                   </span>
                   
@@ -76,11 +76,11 @@ const Services = ({ location, locationSlug, title }: ServicesProps) => {
                 {iconMap[activeService.icon]}
               </div>
               
-              <h3 className="text-3xl sm:text-4xl font-display font-black text-seo-navy mb-6 relative z-10">
+              <h3 className="text-2xl sm:text-4xl font-display font-black text-seo-navy mb-4 sm:mb-6 relative z-10 uppercase tracking-tight">
                 {activeService.title}
               </h3>
               
-              <p className="text-slate-600 text-lg sm:text-xl font-medium mb-8 leading-relaxed max-w-2xl relative z-10">
+              <p className="text-slate-600 text-base sm:text-xl font-medium mb-6 sm:mb-8 leading-relaxed max-w-2xl relative z-10">
                 {activeService.description}
               </p>
 

@@ -65,12 +65,12 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
             delay={index * 150}
         >
             <div className="relative group">
-                <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
-                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-3 sm:p-8 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:border-white/20">
-                    <div className={`w-8 h-8 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center mb-2 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                        <stat.icon className="w-4 h-4 sm:w-7 sm:h-7 text-white" />
+                <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} rounded-2xl blur-xl opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                <div className="relative bg-white border border-slate-200 shadow-xl rounded-2xl p-4 sm:p-8 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-seo-blue/20">
+                    <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                        <stat.icon className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
                     </div>
-                    <div className="flex items-baseline gap-1 mb-1 sm:mb-2 justify-center sm:justify-start">
+                    <div className="flex items-baseline gap-1 mb-1 sm:mb-2 justify-start">
                         <span className={`text-4xl sm:text-6xl md:text-7xl font-display font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                             <CountUp 
                                 end={stat.value} 
@@ -80,8 +80,8 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
                             />
                         </span>
                     </div>
-                    <div className="text-base sm:text-xl font-bold text-white mb-1 uppercase tracking-tight">{stat.label}</div>
-                    <p className="text-slate-400 text-xs sm:text-sm">{stat.description}</p>
+                    <div className="text-base sm:text-xl font-bold text-seo-navy mb-1 uppercase tracking-tight">{stat.label}</div>
+                    <p className="text-slate-500 font-medium text-xs sm:text-sm">{stat.description}</p>
                 </div>
             </div>
         </AnimatedSection>
@@ -90,7 +90,7 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
 
 const TrustIndicators = () => {
     return (
-        <section className="py-24 bg-seo-navy relative overflow-hidden">
+        <section className="py-24 bg-seo-clean relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute inset-0">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-seo-blue/5 rounded-full blur-3xl"></div>
@@ -99,20 +99,20 @@ const TrustIndicators = () => {
 
             <div className="container mx-auto px-4 relative z-10">
                 <AnimatedSection
-                    className="text-center mb-8 md:mb-16 max-w-3xl mx-auto"
+                    className="text-center mb-8 md:mb-10 max-w-3xl mx-auto"
                     animation="fade-in"
                 >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/30 mb-6">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-amber-50 text-amber-500 border border-amber-200 mb-6 uppercase tracking-wider">
                         <Star className="w-4 h-4" />
                         Proven Results
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-display font-black text-white mb-6 uppercase tracking-tight">
+                    <h2 className="text-2xl md:text-5xl font-display font-black text-seo-navy mb-4 md:mb-6 uppercase tracking-tight">
                         Numbers That{' '}
-                        <span className="text-seo-peach">
+                        <span className="text-seo-blue">
                             Speak Volumes
                         </span>
                     </h2>
-                    <p className="text-xl text-slate-300 font-medium">
+                    <p className="text-sm text-slate-600 font-medium leading-relaxed">
                         Real results from real Australian businesses. No fluff, just growth.
                     </p>
                 </AnimatedSection>
@@ -125,17 +125,17 @@ const TrustIndicators = () => {
 
                 {/* Logo Carousel */}
                 <AnimatedSection animation="fade-in" delay={600}>
-                    <div className="text-center mb-8">
-                        <p className="text-slate-500 text-sm uppercase tracking-wider font-medium">Trusted & Certified</p>
+                    <div className="text-center mb-6">
+                        <p className="text-slate-500 text-sm uppercase tracking-wider font-bold">Trusted & Certified</p>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center gap-3 md:gap-8 md:gap-12">
+                    <div className="flex flex-wrap justify-center items-center gap-2 md:gap-8 lg:gap-12">
                         {logos.map((logo) => (
                             <div
                                 key={logo.name}
-                                className="flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"
+                                className="flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-6 md:py-3 bg-white rounded-full border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
                             >
-                                <span className="text-2xl">{logo.icon}</span>
-                                <span className="text-slate-300 font-medium">{logo.name}</span>
+                                <span className="text-lg md:text-2xl">{logo.icon}</span>
+                                <span className="text-seo-navy font-bold text-xs md:text-base">{logo.name}</span>
                             </div>
                         ))}
                     </div>

@@ -28,7 +28,7 @@ const CountryCities = () => {
           <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
             SEO Services Across Australia
           </h2>
-          <p className="text-lg text-seo-gray-dark">
+          <p className="text-base text-seo-gray-dark">
             We provide specialized SEO solutions for businesses in all major Australian cities
           </p>
         </AnimatedSection>

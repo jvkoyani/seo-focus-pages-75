@@ -113,7 +113,7 @@ const ContactForm = ({ location }: ContactFormProps) => {
                   : <>Ready to Get <span className="text-seo-blue">More Customers?</span></>}
               </h2>
 
-              <p className="text-xl text-seo-gray-dark mb-10">
+              <p className="text-base text-seo-gray-dark mb-10">
                 {location
                   ? `Take the first step towards improving your ${location} business's online visibility.`
                   : 'Fill out the form and get a free, personalized SEO strategy within 48 hours.'}

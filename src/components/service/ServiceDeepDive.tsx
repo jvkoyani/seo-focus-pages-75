@@ -56,7 +56,7 @@ const ServiceDeepDive = ({ title, sections }: ServiceDeepDiveProps) => {
                         <h2 className="text-4xl md:text-5xl font-display font-bold text-seo-dark mb-6">
                             The Ultimate Guide to <span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Local SEO Dominance</span>
                         </h2>
-                        <p className="text-xl text-seo-gray-dark max-w-2xl mx-auto">
+                        <p className="text-base text-seo-gray-dark max-w-2xl mx-auto">
                             Everything you need to know to dominate your local market and outrank the competition.
                         </p>
                     </AnimatedSection>

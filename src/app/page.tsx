@@ -2,7 +2,6 @@
 import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import FeaturedIn from '@/components/FeaturedIn';
 import dynamic from 'next/dynamic';
 
 const PainPoints = dynamic(() => import('@/components/PainPoints'), { ssr: true });
@@ -40,7 +39,6 @@ export default function Home() {
       <JsonLd schemaString={schemaString} />
       <Navbar />
       <Hero />
-      <FeaturedIn />
 
       {/* Pain Points Section */}
       <PainPoints />

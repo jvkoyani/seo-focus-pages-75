@@ -14,7 +14,7 @@ const IndustriesSection = ({ locationName, locationSlug }: IndustriesSectionProp
     return (
         <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
-                <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
+                <AnimatedSection className="text-center max-w-3xl mx-auto mb-10" animation="fade-in">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-500 border border-blue-500/20 mb-4">
                         <Building2 className="w-3 h-3 mr-2" />
                         Industries We Serve
@@ -22,7 +22,7 @@ const IndustriesSection = ({ locationName, locationSlug }: IndustriesSectionProp
                     <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
                         Specialized SEO for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">{locationName} Industries</span>
                     </h2>
-                    <p className="text-lg text-seo-gray-dark">
+                    <p className="text-sm text-seo-gray-dark font-medium leading-relaxed">
                         We understand that every industry is unique. Our SEO strategies are tailored to the specific needs of your business sector in {locationName}.
                     </p>
                 </AnimatedSection>
@@ -39,19 +39,21 @@ const IndustriesSection = ({ locationName, locationSlug }: IndustriesSectionProp
                             >
                                 <a
                                     href={`/areas-we-serve/${locationSlug}/${industry.slug.replace('-seo', '')}/local-seo`}
-                                    className="block h-full bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-seo-blue/30 transition-all group"
+                                    className="block h-full bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-seo-blue/30 transition-all group min-h-[200px] max-w-[365px] mx-auto"
                                 >
-                                    <div className="mb-4 p-3 bg-gray-50 rounded-lg w-fit group-hover:bg-seo-blue/5 transition-colors">
-                                        <Icon className="w-8 h-8 text-seo-blue group-hover:scale-110 transition-transform" />
+                                    <div className="flex items-center gap-4 mb-4">
+                                        <div className="p-3 bg-gray-50 rounded-lg group-hover:bg-seo-blue/5 transition-colors">
+                                            <Icon className="w-8 h-8 text-seo-blue group-hover:scale-110 transition-transform" />
+                                        </div>
+                                        <h3 className="text-lg font-bold text-seo-dark group-hover:text-seo-blue transition-colors leading-tight">
+                                            {industry.title}
+                                        </h3>
                                     </div>
-                                    <h3 className="text-xl font-bold text-seo-dark mb-2 group-hover:text-seo-blue transition-colors">
-                                        {industry.title}
-                                    </h3>
-                                    <p className="text-sm text-seo-gray-dark mb-4">
+                                    <p className="text-sm text-seo-gray-dark mb-4 line-clamp-1 font-medium italic">
                                         {industry.description}
                                     </p>
-                                    <div className="flex items-center text-sm font-semibold text-seo-blue opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                                        View Strategy <ArrowRight className="ml-1 w-4 h-4" />
+                                    <div className="flex items-center text-xs font-bold text-seo-blue uppercase tracking-wider group-hover:translate-x-1 transition-transform">
+                                        Know more about this {industry.title.replace(' SEO', '')} SEO service <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
                                     </div>
                                 </a>
                             </AnimatedSection>

@@ -77,7 +77,7 @@ const ProblemSolution = ({ serviceTitle }: ProblemSolutionProps) => {
                             <h2 className="text-4xl md:text-5xl font-display font-bold text-seo-dark mb-6 leading-tight">
                                 Why 90% of {serviceTitle} Campaigns <span className="text-red-500">Fail</span>
                             </h2>
-                            <p className="text-lg text-seo-gray-dark mb-8 leading-relaxed">
+                            <p className="text-base text-seo-gray-dark mb-8 leading-relaxed">
                                 Most businesses waste thousands on SEO because they fall into these common traps.
                                 <br /><br />
                                 We don't just fix these problems; we flip them into your competitive advantage.
