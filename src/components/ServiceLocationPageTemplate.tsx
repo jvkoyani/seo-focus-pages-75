@@ -115,7 +115,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                 <CardContent className="p-8 relative">
                                     <div className="flex items-center justify-between mb-8">
                                         <div>
-                                            <h3 className="text-2xl font-bold text-white">Dominate {locationData.name}</h3>
+                                            <h2 className="text-2xl font-bold text-white">Dominate {locationData.name}</h2>
                                             <p className="text-slate-400 text-sm">Specialized {serviceData.title} Strategy</p>
                                         </div>
                                         <div className="h-12 w-12 bg-seo-blue/20 rounded-full flex items-center justify-center">
@@ -129,7 +129,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                                 <CheckCircle className="h-4 w-4 text-green-500" />
                                             </div>
                                             <div>
-                                                <h4 className="text-white font-medium">Local Market Analysis</h4>
+                                                <h3 className="text-white font-medium">Local Market Analysis</h3>
                                                 <p className="text-slate-400 text-sm">Deep dive into {locationData.name} competitors</p>
                                             </div>
                                         </div>
@@ -138,7 +138,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                                 <CheckCircle className="h-4 w-4 text-green-500" />
                                             </div>
                                             <div>
-                                                <h4 className="text-white font-medium">Custom Implementation</h4>
+                                                <h3 className="text-white font-medium">Custom Implementation</h3>
                                                 <p className="text-slate-400 text-sm">Tailored {serviceData.title} tactics</p>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
                                                 <CheckCircle className="h-4 w-4 text-green-500" />
                                             </div>
                                             <div>
-                                                <h4 className="text-white font-medium">Revenue Focus</h4>
+                                                <h3 className="text-white font-medium">Revenue Focus</h3>
                                                 <p className="text-slate-400 text-sm">Tracking real ROI, not just rankings</p>
                                             </div>
                                         </div>

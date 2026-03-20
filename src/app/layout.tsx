@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Script from "next/script";
 import FloatingCTA from "@/components/FloatingCTA";
 import ScrollPopup from "@/components/ScrollPopup";
 import JsonLd from '@/components/JsonLd';
@@ -43,8 +43,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://seo-jay.vercel.app" />
+        <link rel="dns-prefetch" href="https://seo-jay.vercel.app" />
       </head>
       <body className={`${inter.className} ${fraunces.variable}`}>
         <Providers>
@@ -52,8 +52,18 @@ export default function RootLayout({
           {children}
           <FloatingCTA />
           <ScrollPopup />
-          {/* Replace 'G-XXXXXXXXXX' with your actual Google Analytics ID */}
-          <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+            strategy="lazyOnload"
+          />
+          <Script id="gtag-init" strategy="lazyOnload">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `}
+          </Script>
         </Providers>
       </body>
     </html>

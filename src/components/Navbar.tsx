@@ -75,7 +75,15 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <a href="/" className="flex items-center" onClick={handleLinkClick}>
-              <Image src="/logo.webp" alt="SEOfocus" width={160} height={48} className="h-10 md:h-12 w-auto" priority />
+              <Image 
+                src="/logo.webp" 
+                alt="Power My SEO" 
+                width={160} 
+                height={48} 
+                sizes="(max-width: 768px) 120px, 160px"
+                className="h-10 md:h-12 w-auto" 
+                priority={false} 
+              />
             </a>
 
             <div className="hidden md:flex items-center space-x-8">
@@ -246,139 +254,140 @@ const Navbar = () => {
         </div>
       </AnimatedSection>
 
-      <div
-        className={`fixed inset-0 bg-white z-40 transition-all duration-300 transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          } md:hidden`}
-        style={{ top: isScrolled ? '64px' : '80px' }}
-      >
-        <div className="flex flex-col p-6 space-y-6 overflow-y-auto max-h-[calc(100vh-64px)]">
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-white z-40 transition-all duration-300 md:hidden overflow-y-auto"
+          style={{ top: isScrolled ? '64px' : '80px' }}
+        >
+          <div className="flex flex-col p-6 space-y-6 overflow-y-auto max-h-[calc(100vh-64px)]">
 
 
-          <div>
-            <button
-              onClick={toggleServices}
-              className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
-            >
-              Services
-              <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isServicesOpen ? 'block' : 'hidden'}`}>
-              <a
-                href="/services"
-                className="block py-2 font-medium text-seo-gray-dark hover:text-seo-blue transition-colors"
-                onClick={handleLinkClick}
+            <div>
+              <button
+                onClick={toggleServices}
+                className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
               >
-                All Services
-              </a>
-              {services.map((service) => (
+                Services
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isServicesOpen ? 'block' : 'hidden'}`}>
                 <a
-                  key={service.id}
-                  href={`/service/${service.slug}`}
-                  className="block py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
+                  href="/services"
+                  className="block py-2 font-medium text-seo-gray-dark hover:text-seo-blue transition-colors"
                   onClick={handleLinkClick}
                 >
-                  {service.title}
+                  All Services
                 </a>
-              ))}
+                {services.map((service) => (
+                  <a
+                    key={service.id}
+                    href={`/service/${service.slug}`}
+                    className="block py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
+                    onClick={handleLinkClick}
+                  >
+                    {service.title}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <button
-              onClick={toggleIndustries}
-              className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
-            >
-              Industries
-              <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isIndustriesOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isIndustriesOpen ? 'block' : 'hidden'}`}>
-              <a
-                href="/industries"
-                className="block py-2 font-medium text-seo-gray-dark hover:text-seo-blue transition-colors"
-                onClick={handleLinkClick}
+            <div>
+              <button
+                onClick={toggleIndustries}
+                className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
               >
-                All Industries
-              </a>
-              {industries.map((industry) => (
+                Industries
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isIndustriesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isIndustriesOpen ? 'block' : 'hidden'}`}>
                 <a
-                  key={industry.id}
-                  href={`/industries/${industry.slug}`}
-                  className="block py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
+                  href="/industries"
+                  className="block py-2 font-medium text-seo-gray-dark hover:text-seo-blue transition-colors"
                   onClick={handleLinkClick}
                 >
-                  {industry.title}
+                  All Industries
                 </a>
-              ))}
+                {industries.map((industry) => (
+                  <a
+                    key={industry.id}
+                    href={`/industries/${industry.slug}`}
+                    className="block py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
+                    onClick={handleLinkClick}
+                  >
+                    {industry.title}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <button
-              onClick={toggleLocations}
-              className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
-            >
-              Locations
-              <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isLocationsOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isLocationsOpen ? 'block' : 'hidden'}`}>
-              {locations.map((loc) => (
+            <div>
+              <button
+                onClick={toggleLocations}
+                className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
+              >
+                Locations
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isLocationsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isLocationsOpen ? 'block' : 'hidden'}`}>
+                {locations.map((loc) => (
+                  <a
+                    key={loc.id}
+                    href={`/areas-we-serve/${loc.slug}`}
+                    className="block py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
+                    onClick={handleLinkClick}
+                  >
+                    {loc.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <button
+                onClick={toggleResources}
+                className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
+              >
+                Resources
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isResourcesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isResourcesOpen ? 'block' : 'hidden'}`}>
                 <a
-                  key={loc.id}
-                  href={`/areas-we-serve/${loc.slug}`}
-                  className="block py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
+                  href="/blogs"
+                  className="flex items-center py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
                   onClick={handleLinkClick}
                 >
-                  {loc.name}
+                  <FileText className="h-4 w-4 mr-2" />
+                  Blog Articles
                 </a>
-              ))}
+                <a
+                  href="/case-studies"
+                  className="flex items-center py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
+                  onClick={handleLinkClick}
+                >
+                  <Briefcase className="h-4 w-4 mr-2" />
+                  Case Studies
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div>
-            <button
-              onClick={toggleResources}
-              className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors focus:outline-none flex items-center"
+            <a
+              href="/about"
+              className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors"
+              onClick={handleLinkClick}
             >
-              Resources
-              <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isResourcesOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`mt-2 ml-4 transition-all duration-200 space-y-2 ${isResourcesOpen ? 'block' : 'hidden'}`}>
-              <a
-                href="/blogs"
-                className="flex items-center py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
-                onClick={handleLinkClick}
-              >
-                <FileText className="h-4 w-4 mr-2" />
-                Blog Articles
-              </a>
-              <a
-                href="/case-studies"
-                className="flex items-center py-2 text-seo-gray-dark hover:text-seo-blue transition-colors"
-                onClick={handleLinkClick}
-              >
-                <Briefcase className="h-4 w-4 mr-2" />
-                Case Studies
-              </a>
-            </div>
+              About
+            </a>
+
+            <a
+              href="/contact"
+              className="bg-seo-blue text-white text-center py-3 px-5 rounded-md transition-colors button-hover-effect"
+              onClick={handleLinkClick}
+            >
+              Contact
+            </a>
           </div>
-
-          <a
-            href="/about"
-            className="text-lg font-medium text-seo-dark hover:text-seo-blue transition-colors"
-            onClick={handleLinkClick}
-          >
-            About
-          </a>
-
-          <a
-            href="/contact"
-            className="bg-seo-blue text-white text-center py-3 px-5 rounded-md transition-colors button-hover-effect"
-            onClick={handleLinkClick}
-          >
-            Contact
-          </a>
         </div>
-      </div>
+      )}
     </>
   );
 };

@@ -178,7 +178,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                                     <CardContent className="p-8">
                                         <div className="flex items-center justify-between mb-8">
                                             <div>
-                                                <h3 className="text-2xl font-bold text-white">Free {industry.title} Audit</h3>
+                                                <h2 className="text-2xl font-bold text-white">Free {industry.title} Audit</h2>
                                                 <p className="text-slate-400 text-sm">Value $500 • Limited Time</p>
                                             </div>
                                             <div className="h-12 w-12 bg-seo-blue/20 rounded-full flex items-center justify-center">
@@ -192,7 +192,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                                                     <CheckCircle className="h-4 w-4 text-green-500" />
                                                 </div>
                                                 <div>
-                                                    <h4 className="text-white font-medium">Technical Analysis</h4>
+                                                    <h3 className="text-white font-medium">Technical Analysis</h3>
                                                     <p className="text-slate-400 text-sm">Identify site speed & crawl issues</p>
                                                 </div>
                                             </div>
@@ -201,7 +201,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                                                     <CheckCircle className="h-4 w-4 text-green-500" />
                                                 </div>
                                                 <div>
-                                                    <h4 className="text-white font-medium">Competitor Spy</h4>
+                                                    <h3 className="text-white font-medium">Competitor Spy</h3>
                                                     <p className="text-slate-400 text-sm">See what other {cityName} {pluralIndustry.toLowerCase()} are doing</p>
                                                 </div>
                                             </div>
@@ -210,7 +210,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                                                     <CheckCircle className="h-4 w-4 text-green-500" />
                                                 </div>
                                                 <div>
-                                                    <h4 className="text-white font-medium">Growth Roadmap</h4>
+                                                    <h3 className="text-white font-medium">Growth Roadmap</h3>
                                                     <p className="text-slate-400 text-sm">Step-by-step plan to rank #1</p>
                                                 </div>
                                             </div>

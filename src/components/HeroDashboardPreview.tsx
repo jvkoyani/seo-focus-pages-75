@@ -96,26 +96,27 @@ const HeroDashboardPreview = () => {
             </div>
 
             {/* Floating Elements for Depth (CSS Only) */}
-            <div className="absolute -right-12 top-20 z-30 p-4 rounded-xl bg-slate-800/90 backdrop-blur-md border border-green-500/30 shadow-xl animate-float">
+            <div className="absolute -right-12 top-20 z-30 p-4 rounded-xl bg-slate-950/95 backdrop-blur-md border border-green-500/30 shadow-xl animate-float">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
                         <TrendingUp className="w-5 h-5 text-green-400" />
                     </div>
                     <div>
-                        <div className="text-xs text-slate-400">ROI</div>
-                        <div className="text-lg font-bold text-white">+450%</div>
+                        <div className="text-xs text-slate-400 shadow-black drop-shadow-sm">ROI</div>
+                        <div className="text-lg font-bold text-white shadow-black drop-shadow-md">+450%</div>
                     </div>
                 </div>
             </div>
 
-            <div className="absolute -left-8 bottom-20 z-30 p-4 rounded-xl bg-slate-800/90 backdrop-blur-md border border-blue-500/30 shadow-xl animate-float-delayed">
+            <div className="absolute -left-8 bottom-20 z-30 p-4 rounded-xl bg-slate-950/95 backdrop-blur-md border border-blue-500/30 shadow-xl animate-float-delayed">
+
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
                         <BarChart3 className="w-5 h-5 text-blue-400" />
                     </div>
                     <div>
-                        <div className="text-xs text-slate-400">Leads</div>
-                        <div className="text-lg font-bold text-white">245</div>
+                        <div className="text-xs text-slate-400 shadow-black drop-shadow-sm">Leads</div>
+                        <div className="text-lg font-bold text-white shadow-black drop-shadow-md">245</div>
                     </div>
                 </div>
             </div>

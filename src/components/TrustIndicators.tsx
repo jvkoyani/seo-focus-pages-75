@@ -80,7 +80,7 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
                             />
                         </span>
                     </div>
-                    <h3 className="text-sm sm:text-lg font-semibold text-white mb-1">{stat.label}</h3>
+                    <div className="text-sm sm:text-lg font-semibold text-white mb-1">{stat.label}</div>
                     <p className="text-slate-400 text-xs sm:text-sm">{stat.description}</p>
                 </div>
             </div>

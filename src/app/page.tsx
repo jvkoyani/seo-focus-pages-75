@@ -3,16 +3,16 @@ import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import FeaturedIn from '@/components/FeaturedIn';
-import PainPoints from '@/components/PainPoints';
-import TrustIndicators from '@/components/TrustIndicators';
-import Services from '@/components/Services';
-import UrgencyBanner from '@/components/UrgencyBanner';
 import dynamic from 'next/dynamic';
 
+const PainPoints = dynamic(() => import('@/components/PainPoints'), { ssr: true });
+const TrustIndicators = dynamic(() => import('@/components/TrustIndicators'), { ssr: true });
+const Services = dynamic(() => import('@/components/Services'), { ssr: true });
 const Testimonials = dynamic(() => import('@/components/Testimonials'), { ssr: true });
 const IndustrySeoServices = dynamic(() => import('@/components/IndustrySeoServices'), { ssr: true });
 const ContactForm = dynamic(() => import('@/components/ContactForm'), { ssr: true });
 const LocationGrid = dynamic(() => import('@/components/LocationGrid'), { ssr: true });
+const UrgencyBanner = dynamic(() => import('@/components/UrgencyBanner'), { ssr: true });
 
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
