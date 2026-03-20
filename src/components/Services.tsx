@@ -1,37 +1,19 @@
+'use client';
 
+import React, { useState } from 'react';
 import {
-  MapPin,
-  Settings,
-  FileText,
-  Link as LinkIcon,
-  ShoppingCart,
-  BarChart,
-  ArrowRight,
-  Sparkles
+  MapPin, Settings, FileText, Link as LinkIcon, ShoppingCart, BarChart, ArrowRight, Sparkles
 } from 'lucide-react';
-
 import AnimatedSection from './AnimatedSection';
 import { services } from '@/lib/data';
 
 const iconMap: Record<string, React.ReactNode> = {
-  'map-pin': <MapPin className="h-7 w-7" />,
-  'settings': <Settings className="h-7 w-7" />,
-  'file-text': <FileText className="h-7 w-7" />,
-  'link': <LinkIcon className="h-7 w-7" />,
-  'shopping-cart': <ShoppingCart className="h-7 w-7" />,
-  'bar-chart': <BarChart className="h-7 w-7" />
-};
-
-// Gradient colors for each service
-const gradientMap: Record<string, string> = {
-  'local-seo': 'from-blue-500 to-cyan-500',
-  'technical-seo': 'from-purple-500 to-pink-500',
-  'ecommerce-seo': 'from-orange-500 to-red-500',
-  'content-marketing': 'from-green-500 to-emerald-500',
-  'link-building': 'from-indigo-500 to-purple-500',
-  'seo-audits': 'from-amber-500 to-orange-500',
-  'digital-pr': 'from-pink-500 to-rose-500',
-  'analytics-reporting': 'from-teal-500 to-cyan-500'
+  'map-pin': <MapPin className="h-6 w-6" />,
+  'settings': <Settings className="h-6 w-6" />,
+  'file-text': <FileText className="h-6 w-6" />,
+  'link': <LinkIcon className="h-6 w-6" />,
+  'shopping-cart': <ShoppingCart className="h-6 w-6" />,
+  'bar-chart': <BarChart className="h-6 w-6" />
 };
 
 interface ServicesProps {
@@ -41,120 +23,93 @@ interface ServicesProps {
 }
 
 const Services = ({ location, locationSlug, title }: ServicesProps) => {
-  return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-50"></div>
-      </div>
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeService = services[activeIndex];
 
-      <div className="container mx-auto px-4 relative z-10">
-        <AnimatedSection
-          className="text-center mb-4 md:mb-16 max-w-3xl mx-auto"
-          animation="fade-in"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-seo-blue/10 to-purple-100 mb-6">
-            <Sparkles className="w-4 h-4 text-seo-blue" />
-            <span className="text-sm font-semibold text-seo-blue">Our Services</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-seo-dark mb-6">
+  return (
+    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-seo-clean via-sky-100 to-cyan-100">
+      <div className="container mx-auto px-4 relative z-10 w-full max-w-7xl">
+        <AnimatedSection className="mb-12 md:mb-16 max-w-3xl" animation="fade-in">
+          <h2 className="text-4xl md:text-5xl font-display font-black text-seo-navy mb-6 uppercase tracking-tight">
             {title ? title : (location
               ? <>SEO Services in <span className="text-seo-blue">{location}</span></>
-              : <>Comprehensive <span className="text-seo-blue">SEO Solutions</span></>)}
+              : <>Digital Marketing <span className="text-seo-blue">Services</span></>)}
           </h2>
-          <p className="text-xl text-seo-gray-dark">
+          <p className="text-xl text-seo-navy/80 font-medium">
             {location
               ? `We help businesses in ${location} improve their search visibility and drive more qualified traffic.`
-              : 'Tailored strategies to improve your online visibility and drive sustainable growth'}
+              : 'Our digital marketing campaigns are customised to meet your business and marketing goals.'}
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-          {services.map((service, index) => {
-            const gradient = gradientMap[service.slug] || 'from-blue-500 to-cyan-500';
+        <div className="flex flex-col lg:flex-row gap-0 lg:gap-8 min-h-[500px]">
+          {/* Left Column: Vertical Tabs */}
+          <div className="w-full lg:w-1/3 flex flex-col relative z-20">
+            {services.map((service, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <button
+                  key={service.id}
+                  onClick={() => setActiveIndex(index)}
+                  className={`group relative flex items-center w-full text-left py-4 sm:py-6 px-4 transition-all duration-300 border-l-4 ${isActive ? 'bg-transparent border-seo-navy' : 'border-transparent hover:bg-white/40'}`}
+                >
+                  <span className={`text-4xl sm:text-5xl font-display font-black mr-6 transition-colors duration-300 ${isActive ? 'text-seo-navy' : 'text-seo-navy/20 group-hover:text-seo-navy/40'}`}>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className={`text-lg sm:text-2xl font-bold transition-colors duration-300 ${isActive ? 'text-seo-navy' : 'text-seo-navy/60 group-hover:text-seo-navy'}`}>
+                    {service.title}
+                  </span>
+                  
+                  {/* Supple Pointer Triangle */}
+                  {isActive && (
+                    <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-[40px] w-0 h-0 border-t-[20px] border-t-transparent border-b-[20px] border-b-transparent border-l-[20px] border-l-seo-clean z-30"></div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
 
-            return (
-              <AnimatedSection
-                key={service.id}
-                className="group relative"
-                animation="slide-up"
-                delay={100 * index}
-              >
-                {/* Card */}
-                <div className="relative h-full bg-white rounded-2xl p-3 sm:p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden">
-                  {/* Gradient border on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`}></div>
-                  <div className="absolute inset-[2px] bg-white rounded-2xl"></div>
+          {/* Right Column: Content Card */}
+          <div className="w-full lg:w-2/3 mt-8 lg:mt-0 relative z-10 transition-all duration-500 min-h-[400px]">
+            <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-2xl border border-white/50 h-full flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 text-seo-blue/5">
+                {iconMap[activeService.icon]}
+              </div>
+              
+              <h3 className="text-3xl sm:text-4xl font-display font-black text-seo-navy mb-6 relative z-10">
+                {activeService.title}
+              </h3>
+              
+              <p className="text-slate-600 text-lg sm:text-xl font-medium mb-8 leading-relaxed max-w-2xl relative z-10">
+                {activeService.description}
+              </p>
 
-                  {/* Content */}
-                  <div className="relative z-10">
-                    {/* Icon */}
-                    <div className={`w-8 h-8 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-r ${gradient} flex items-center justify-center mb-2 sm:mb-6 text-white shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300`}>
-                      {iconMap[service.icon]}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 relative z-10">
+                {activeService.features.map((feature, i) => (
+                  <div key={i} className="flex items-center gap-4 bg-seo-clean rounded-xl p-4 border border-blue-100 hover:scale-[1.02] transition-transform duration-300 group cursor-default">
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-seo-blue group-hover:bg-seo-blue group-hover:text-white transition-colors duration-300 shadow-sm shrink-0">
+                      <Sparkles className="w-4 h-4" />
                     </div>
-
-                    {/* Title */}
-                    <h3 className="text-sm sm:text-xl font-display font-bold text-seo-dark mb-1 sm:mb-3 group-hover:text-seo-blue transition-colors">
-                      {service.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="hidden sm:block text-seo-gray-dark mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                      {service.description}
-                    </p>
-
-                    {/* Features */}
-                    <ul className="hidden sm:block space-y-3 mb-4 sm:mb-8">
-                      {service.features.slice(0, 3).map((feature, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <div className={`w-5 h-5 rounded-full bg-gradient-to-r ${gradient} flex items-center justify-center flex-shrink-0 mt-0.5`}>
-                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 12 12">
-                              <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
-                            </svg>
-                          </div>
-                          <span className="text-sm text-seo-gray-dark">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Link */}
-                    <a
-                      href={locationSlug
-                        ? `/areas-we-serve/${locationSlug}/${service.slug}`
-                        : `/service/${service.slug}`}
-                      className={`inline-flex items-center gap-2 font-semibold text-transparent bg-gradient-to-r ${gradient} bg-clip-text group/link`}
-                    >
-                      <span className="group-hover/link:underline">
-                        {locationSlug ? `${service.title} in ${location}` : <>Learn more <span className="sr-only">about {service.title}</span></>}
-                      </span>
-                      <ArrowRight className={`h-4 w-4 text-seo-blue transition-transform group-hover/link:translate-x-1`} />
-                    </a>
+                    <span className="text-seo-navy font-bold text-sm sm:text-base">{feature}</span>
                   </div>
-                </div>
-              </AnimatedSection>
-            );
-          })}
-        </div>
+                ))}
+              </div>
 
-        {/* Bottom CTA */}
-        <AnimatedSection
-          className="text-center mt-16"
-          animation="fade-in"
-          delay={600}
-        >
-          <a
-            href="/services"
-            className="inline-flex items-center gap-3 bg-seo-dark hover:bg-slate-800 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl group"
-          >
-            <span>View All Services</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
-        </AnimatedSection>
+              <div className="mt-auto relative z-10">
+                <a
+                  href={locationSlug ? `/areas-we-serve/${locationSlug}/${activeService.slug}` : `/service/${activeService.slug}`}
+                  className="inline-flex items-center justify-center gap-3 bg-seo-peach hover:bg-seo-navy text-seo-navy hover:text-white uppercase tracking-wider font-bold py-4 px-8 rounded-md transition-colors duration-300 shadow-lg w-full sm:w-auto"
+                >
+                  <span className="whitespace-nowrap">Explore {activeService.title}</span>
+                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
 export default Services;
-

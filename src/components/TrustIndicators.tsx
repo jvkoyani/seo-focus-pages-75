@@ -70,8 +70,8 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
                     <div className={`w-8 h-8 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center mb-2 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
                         <stat.icon className="w-4 h-4 sm:w-7 sm:h-7 text-white" />
                     </div>
-                    <div className="flex items-baseline gap-1 mb-1 sm:mb-2">
-                        <span className={`text-xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                    <div className="flex items-baseline gap-1 mb-1 sm:mb-2 justify-center sm:justify-start">
+                        <span className={`text-4xl sm:text-6xl md:text-7xl font-display font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                             <CountUp 
                                 end={stat.value} 
                                 prefix={stat.prefix} 
@@ -80,7 +80,7 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
                             />
                         </span>
                     </div>
-                    <div className="text-sm sm:text-lg font-semibold text-white mb-1">{stat.label}</div>
+                    <div className="text-base sm:text-xl font-bold text-white mb-1 uppercase tracking-tight">{stat.label}</div>
                     <p className="text-slate-400 text-xs sm:text-sm">{stat.description}</p>
                 </div>
             </div>
@@ -90,11 +90,11 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
 
 const TrustIndicators = () => {
     return (
-        <section className="py-24 bg-gradient-to-b from-slate-900 to-slate-950 relative overflow-hidden">
+        <section className="py-24 bg-seo-navy relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-seo-blue/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
@@ -106,13 +106,13 @@ const TrustIndicators = () => {
                         <Star className="w-4 h-4" />
                         Proven Results
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                    <h2 className="text-4xl md:text-5xl font-display font-black text-white mb-6 uppercase tracking-tight">
                         Numbers That{' '}
-                        <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                        <span className="text-seo-peach">
                             Speak Volumes
                         </span>
                     </h2>
-                    <p className="text-xl text-slate-400">
+                    <p className="text-xl text-slate-300 font-medium">
                         Real results from real Australian businesses. No fluff, just growth.
                     </p>
                 </AnimatedSection>

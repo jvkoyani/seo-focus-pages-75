@@ -38,21 +38,20 @@ const services = [
 
 const ServiceCard = ({ item }: { item: typeof services[0] }) => (
     <div
-        className="relative group w-64 h-24 mx-3 flex-shrink-0 rounded-xl overflow-hidden bg-slate-900/60 backdrop-blur-md border border-white/5 hover:border-emerald-500/50 transition-colors duration-300 cursor-pointer"
+        className="relative group w-64 h-24 mx-3 flex-shrink-0 rounded-xl overflow-hidden bg-white shadow-sm border border-slate-200 hover:border-seo-blue transition-colors duration-300 cursor-pointer"
     >
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-seo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         <div className="relative h-full p-4 flex items-center gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <item.icon className="w-6 h-6 text-emerald-400" />
+            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-seo-clean flex items-center justify-center group-hover:scale-110 group-hover:bg-seo-blue transition-all duration-300">
+                <item.icon className="w-6 h-6 text-seo-blue group-hover:text-white transition-colors" />
             </div>
 
             <div className="flex flex-col">
-                <h3 className="text-white font-semibold text-sm leading-tight mb-1 group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-seo-navy font-bold text-sm leading-tight mb-1">
                     {item.title}
                 </h3>
-                <p className="text-slate-400 text-xs">
+                <p className="text-slate-500 font-medium text-xs">
                     {item.desc}
                 </p>
             </div>
@@ -93,10 +92,10 @@ const ServiceGrid = () => {
     const row2 = services.slice(10, 19);
 
     return (
-        <div className="h-full w-full flex flex-col justify-center gap-2 py-8 overflow-hidden relative bg-slate-950/20 rounded-3xl border border-white/5">
+        <div className="h-full w-full flex flex-col justify-center gap-2 py-8 overflow-hidden relative bg-seo-clean/50 rounded-3xl border border-seo-blue/10">
             {/* Background Elements */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/5 blur-[100px] rounded-full" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-sky-200/20 blur-[100px] rounded-full" />
             </div>
 
             <div className="relative z-10 space-y-2">

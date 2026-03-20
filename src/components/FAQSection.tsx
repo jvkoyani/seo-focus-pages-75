@@ -58,7 +58,7 @@ const FAQSection = ({
     const faqs = customFaqs || defaultFaqs;
 
     return (
-        <section className="py-20 bg-seo-gray-light">
+        <section className="py-20 bg-seo-clean">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col lg:flex-row gap-12">
                     <AnimatedSection className="lg:w-1/3" animation="fade-in-right">
@@ -69,13 +69,13 @@ const FAQSection = ({
                             </span>
                             {title ? (
                                 typeof title === 'string' ? (
-                                    <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">{title}</h2>
+                                    <h2 className="text-3xl md:text-5xl font-display font-black text-seo-navy mb-6 uppercase tracking-tight">{title}</h2>
                                 ) : (
                                     title
                                 )
                             ) : (
-                                <h2 className="text-3xl md:text-4xl font-display font-bold text-seo-dark mb-6">
-                                    Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Questions</span>
+                                <h2 className="text-3xl md:text-5xl font-display font-black text-seo-navy mb-6 uppercase tracking-tight">
+                                    Frequently Asked <span className="text-seo-blue">Questions</span>
                                 </h2>
                             )}
                             <p className="text-lg text-seo-gray-dark mb-8">
@@ -106,11 +106,11 @@ const FAQSection = ({
                                     className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
                                 >
                                     <details className="group">
-                                        <summary className="w-full flex items-center justify-between p-6 text-left focus:outline-none list-none cursor-pointer">
-                                            <span className="font-bold text-lg text-seo-dark group-open:text-seo-blue transition-colors">
+                                        <summary className="w-full flex items-center justify-between p-6 text-left focus:outline-none list-none cursor-pointer hover:bg-seo-clean/50 transition-colors">
+                                            <span className="font-bold text-lg text-seo-navy uppercase tracking-wider group-open:text-seo-blue transition-colors">
                                                 {faq.question}
                                             </span>
-                                            <ChevronDown className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0" />
+                                            <ChevronDown className="w-5 h-5 text-seo-navy group-open:rotate-180 transition-transform duration-300 flex-shrink-0" />
                                         </summary>
                                         <div className="px-6 pb-6 text-seo-gray-dark border-t border-gray-50 pt-4">
                                             {faq.answer}
