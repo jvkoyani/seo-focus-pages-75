@@ -16,8 +16,8 @@ interface TestimonialsProps {
 }
 
 const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-    <div className="w-56 sm:w-64 md:w-80 lg:w-96 flex-shrink-0 mx-2 md:mx-4">
-        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-3 md:p-8 border border-white/10 shadow-xl h-full flex flex-col">
+    <div className="w-[85vw] sm:w-[60vw] md:w-80 lg:w-96 flex-shrink-0 mx-2 md:mx-4 whitespace-normal">
+        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/10 shadow-xl h-full flex flex-col hover:border-seo-blue/50 transition-colors">
             <div className="flex items-center gap-1 mb-4">
                 {[1, 2, 3, 4, 5].map((star) => (
                     <Star key={star} className="w-4 h-4 text-amber-500 fill-current" />
@@ -69,26 +69,15 @@ const Testimonials = ({ location }: TestimonialsProps) => {
         </AnimatedSection>
 
         {/* CSS Marquee for Testimonials */}
-        <div className="relative flex overflow-x-hidden group py-2 sm:py-10">
-            {/* First Row Marquee */}
-            <div className="animate-marquee-slow whitespace-nowrap flex items-stretch">
+        <div className="relative flex overflow-x-hidden group py-4 sm:py-10 Mask-Edges">
+            {/* Seamless Single-Track Marquee */}
+            <div className="animate-marquee-slow whitespace-nowrap flex items-stretch group-hover:[animation-play-state:paused]">
                 {testimonials.map((t, i) => (
                     <TestimonialCard key={`t1-${i}`} testimonial={t} />
                 ))}
                 {/* Clone for loop */}
                 {testimonials.map((t, i) => (
                     <TestimonialCard key={`t1-clone-${i}`} testimonial={t} />
-                ))}
-            </div>
-            
-            {/* Second Row Marquee (Duplicate for seamlessness) */}
-            <div className="absolute top-10 animate-marquee-slow-2 whitespace-nowrap flex items-stretch">
-                {testimonials.map((t, i) => (
-                    <TestimonialCard key={`t2-${i}`} testimonial={t} />
-                ))}
-                {/* Clone for loop */}
-                {testimonials.map((t, i) => (
-                    <TestimonialCard key={`t2-clone-${i}`} testimonial={t} />
                 ))}
             </div>
         </div>
@@ -120,18 +109,20 @@ const Testimonials = ({ location }: TestimonialsProps) => {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .animate-marquee-slow {
-            animation: marquee 60s linear infinite;
+            animation: marquee 40s linear infinite;
         }
-        .animate-marquee-slow-2 {
-            animation: marquee2 60s linear infinite;
+        .Mask-Edges {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-        @keyframes marquee2 {
-            0% { transform: translateX(50%); }
-            100% { transform: translateX(0); }
+        @media (max-width: 640px) {
+            .animate-marquee-slow {
+                animation: marquee 25s linear infinite;
+            }
         }
       `}} />
     </section>
