@@ -82,7 +82,7 @@ const UrgencyBanner = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <a
                                 href="/seo-audit"
-                                className="group inline-flex items-center gap-3 bg-white text-seo-blue font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-xl shadow-black/20 hover:shadow-2xl hover:shadow-black/30 hover:scale-105"
+                                className="group inline-flex items-center gap-3 bg-white text-seo-navy font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-xl shadow-black/20 hover:shadow-2xl hover:shadow-black/30 hover:scale-105"
                             >
                                 <Zap className="w-5 h-5" />
                                 <span>Claim Your Spot Now</span>

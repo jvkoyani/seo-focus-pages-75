@@ -156,7 +156,7 @@ const ContactForm = ({ location }: ContactFormProps) => {
               <div className="mt-10 flex items-center gap-4 text-sm text-seo-gray-dark">
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-seo-blue" />
-                  <span><strong>47</strong> people requested an audit this month</span>
+                  <span><strong>250+</strong> businesses have requested a free audit</span>
                 </div>
               </div>
             </AnimatedSection>
@@ -307,18 +307,18 @@ const ContactForm = ({ location }: ContactFormProps) => {
                       </button>
 
                       {/* Trust badges */}
-                      <div className="flex items-center justify-center gap-4 pt-4 text-xs text-seo-gray-medium">
+                      <div className="flex items-center justify-center gap-4 pt-4 text-xs text-slate-600">
                         <div className="flex items-center gap-1">
                           <Shield className="w-3 h-3" />
-                          <span>SSL Secure</span>
+                          <span className="font-medium">SSL Secure</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Check className="w-3 h-3" />
-                          <span>No Spam</span>
+                          <span className="font-medium">No Spam</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
-                          <span>48hr Response</span>
+                          <span className="font-medium">48hr Response</span>
                         </div>
                       </div>
                     </form>

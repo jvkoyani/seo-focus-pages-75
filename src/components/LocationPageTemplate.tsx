@@ -9,7 +9,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import ContactForm from '@/components/ContactForm';
+import CTABanner from '@/components/CTABanner';
 import ResourcesSection from '@/components/ResourcesSection';
 import Services from '@/components/Services';
 import InfoCard from '@/components/InfoCard';
@@ -505,7 +505,7 @@ const LocationPageTemplate = ({ locationData, injectedCaseStudies, schemaString,
                 aria-label={`Contact Power My SEO for ${locationData.name}`}
                 data-section="contact"
             >
-                <ContactForm />
+                <CTABanner />
             </section>
             <Footer />
         </main>

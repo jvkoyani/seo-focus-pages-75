@@ -45,7 +45,6 @@ const Hero = ({
           width={1200}
           height={600}
           priority={true}
-          loading="eager"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
           className="absolute inset-0 w-full h-full object-cover opacity-5 pointer-events-none mix-blend-multiply"
         />

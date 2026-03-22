@@ -11,7 +11,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import ContactForm from '@/components/ContactForm';
+import CTABanner from '@/components/CTABanner';
 import ServicePricing from '@/components/service/ServicePricing';
 import FAQSection from '@/components/FAQSection';
 import CaseStudyPreview from '@/components/CaseStudyPreview';
@@ -331,7 +331,7 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                 customFaqs={industryData.faqs}
             />
 
-            <ContactForm />
+            <CTABanner />
             <Footer />
         </div >
     );

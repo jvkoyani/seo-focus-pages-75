@@ -126,7 +126,7 @@ const TrustIndicators = () => {
                 {/* Logo Carousel */}
                 <AnimatedSection animation="fade-in" delay={600}>
                     <div className="text-center mb-6">
-                        <p className="text-slate-500 text-sm uppercase tracking-wider font-bold">Trusted & Certified</p>
+                        <p className="text-slate-700 text-sm uppercase tracking-wider font-bold">Trusted & Certified</p>
                     </div>
                     <div className="flex flex-wrap justify-center items-center gap-2 md:gap-8 lg:gap-12">
                         {logos.map((logo) => (

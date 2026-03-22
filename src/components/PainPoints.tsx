@@ -119,7 +119,7 @@ const PainPoints = () => {
                         </div>
                         <h3 className="text-xl font-bold text-seo-navy mb-2">{point.solution}</h3>
                         <p className="text-slate-500 font-medium text-sm">{point.solutionDesc}</p>
-                        <div className="mt-4 text-xs font-bold text-green-500 flex items-center gap-1">
+                        <div className="mt-4 text-xs font-semibold text-green-700 flex items-center gap-1">
                           <span>✓ We can help</span>
                         </div>
                       </div>

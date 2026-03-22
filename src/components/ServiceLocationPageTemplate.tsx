@@ -10,7 +10,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import ContactForm from '@/components/ContactForm';
+import CTABanner from '@/components/CTABanner';
 
 import ServicePricing from '@/components/service/ServicePricing';
 import FAQSection from '@/components/FAQSection';
@@ -360,7 +360,7 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData, schemaString }
             </section>
 
 
-            <ContactForm />
+            <CTABanner city={locationData.name} service={serviceData.title} />
             <Footer />
         </div>
     );

@@ -9,7 +9,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import ContactForm from '@/components/ContactForm';
+import CTABanner from '@/components/CTABanner';
 import ResourcesSection from '@/components/ResourcesSection';
 import Services from '@/components/Services';
 import InfoCard from '@/components/InfoCard';
@@ -513,7 +513,7 @@ const ServiceIndustryLocation = ({ service, industry, cityName, locationSlug, in
                 aria-label={`Contact us for ${service.title} for ${industry.title} in ${cityName}`}
                 data-section="contact"
             >
-                <ContactForm />
+                <CTABanner />
             </section>
             <Footer />
         </main>

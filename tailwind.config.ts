@@ -4,10 +4,10 @@ import animate from "tailwindcss-animate";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./app/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	prefix: "",
 	theme: {
@@ -116,6 +116,10 @@ export default {
 				marquee2: {
 					'0%': { transform: 'translateX(100%)' },
 					'100%': { transform: 'translateX(0%)' }
+				},
+				'marquee-tools': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' }
 				}
 			},
 			animation: {
@@ -126,7 +130,8 @@ export default {
 				'fade-in-right': 'fade-in-right 0.6s ease-out forwards',
 				'slide-up': 'slide-up 0.6s ease-out forwards',
 				marquee: 'marquee 40s linear infinite',
-				marquee2: 'marquee2 40s linear infinite'
+				marquee2: 'marquee2 40s linear infinite',
+				'marquee-tools': 'marquee-tools 30s linear infinite',
 			},
 			fontFamily: {
 				sans: ['var(--font-montserrat)', 'sans-serif'],

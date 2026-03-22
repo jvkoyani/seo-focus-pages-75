@@ -34,22 +34,8 @@ const TrustedTools = () => {
 
             <div className="relative flex overflow-x-hidden group">
                 <div className="flex animate-marquee-tools whitespace-nowrap">
-                    {[...tools, ...tools, ...tools].map((tool, index) => (
+                    {[...tools, ...tools].map((tool, index) => (
                         <div key={index} className="mx-4">
-                            <div className="flex items-center gap-3 px-6 py-4 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:scale-105 hover:border-blue-100 transition-all duration-300 cursor-default group/item">
-                                <div className={`p-2 rounded-lg bg-slate-50 ${tool.color} group-hover/item:bg-blue-50 transition-colors`}>
-                                    {tool.icon}
-                                </div>
-                                <span className="text-lg font-bold text-slate-700 group-hover/item:text-seo-dark transition-colors">{tool.name}</span>
-                            </div>
-                        </div>
-                    ))}
-                    {/* Loops items */}
-                </div>
-
-                <div className="absolute top-0 flex animate-marquee-tools whitespace-nowrap">
-                    {[...tools, ...tools, ...tools].map((tool, index) => (
-                        <div key={`clone-${index}`} className="mx-4">
                             <div className="flex items-center gap-3 px-6 py-4 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:scale-105 hover:border-blue-100 transition-all duration-300 cursor-default group/item">
                                 <div className={`p-2 rounded-lg bg-slate-50 ${tool.color} group-hover/item:bg-blue-50 transition-colors`}>
                                     {tool.icon}
@@ -64,16 +50,6 @@ const TrustedTools = () => {
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-slate-50 to-transparent z-10"></div>
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
             </div>
-
-            <style dangerouslySetInnerHTML={{ __html: `
-                @keyframes marquee-tools {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
-                }
-                .animate-marquee-tools {
-                    animation: marquee-tools 40s linear infinite;
-                }
-            `}} />
         </section>
     );
 };

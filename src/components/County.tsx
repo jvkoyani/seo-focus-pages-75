@@ -8,7 +8,7 @@ import { ChevronRight, MapPin, ArrowRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import ContactForm from '@/components/ContactForm';
+import CTABanner from '@/components/CTABanner';
 import { Button } from '@/components/ui/button';
 import { services, locations } from '@/lib/data';
 
@@ -251,7 +251,7 @@ const County = ({ countrySlug, stateSlug, countySlug }: CountyProps) => {
                 </div>
             </section>
 
-            <ContactForm />
+            <CTABanner />
             <Footer />
         </div>
     );

@@ -11,7 +11,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import ContactForm from '@/components/ContactForm';
+import CTABanner from '@/components/CTABanner';
 import ResourcesSection from '@/components/ResourcesSection';
 import { allAustralianCities } from '@/lib/locationData';
 import { services as allServices } from '@/lib/data';
@@ -487,7 +487,7 @@ const LocationService = ({ locationSlug, serviceSlug, cityName }: LocationServic
                 className="bg-white"
             />
 
-            <ContactForm />
+            <CTABanner />
             <Footer />
         </div>
     );
