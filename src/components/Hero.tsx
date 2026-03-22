@@ -38,16 +38,7 @@ const Hero = ({
   return (
     <div className="relative min-h-[75vh] md:min-h-screen flex items-center pt-12 md:pt-20 pb-4 md:pb-0 overflow-hidden bg-seo-clean">
       {/* Supple Minimalist Background */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-white via-seo-clean to-[#E6F3FF]">
-        <Image
-          src="/images/hero-powermyseo.webp"
-          alt="Australian SEO agency helping local businesses rank on Google"
-          width={1200}
-          height={600}
-          priority={true}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
-          className="absolute inset-0 w-full h-full object-cover opacity-5 pointer-events-none mix-blend-multiply"
-        />
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-white via-seo-clean to-[#E0F2FE]">
         {/* Soft Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)]" />
 
