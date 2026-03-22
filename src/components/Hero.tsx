@@ -73,20 +73,16 @@ const Hero = ({
               </div>
             </AnimatedSection>
 
-            <AnimatedSection animation="fade-in" delay={100}>
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight mb-4 md:mb-6 text-seo-navy text-center lg:text-left">
-                {displayTitle.split(' ').slice(0, -2).join(' ')}{' '}
-                <span className="text-seo-blue">
-                  {displayTitle.split(' ').slice(-2).join(' ')}
-                </span>
-              </h1>
-            </AnimatedSection>
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight mb-4 md:mb-6 text-seo-navy text-center lg:text-left">
+              {displayTitle.split(' ').slice(0, -2).join(' ')}{' '}
+              <span className="text-seo-blue">
+                {displayTitle.split(' ').slice(-2).join(' ')}
+              </span>
+            </h1>
 
-            <AnimatedSection animation="fade-in" delay={200}>
-              <p className="text-base text-slate-600 leading-relaxed mb-6 md:mb-10 max-w-lg mx-auto lg:mx-0 font-medium">
-                {displaySubtitle}
-              </p>
-            </AnimatedSection>
+            <p className="text-base text-slate-600 leading-relaxed mb-6 md:mb-10 max-w-lg mx-auto lg:mx-0 font-medium">
+              {displaySubtitle}
+            </p>
 
             <AnimatedSection animation="fade-in" delay={300}>
               <div className="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12 justify-center lg:justify-start">
