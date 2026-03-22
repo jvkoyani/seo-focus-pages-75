@@ -73,11 +73,11 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
                     <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                         <AnimatedSection className="lg:w-3/5" animation="fade-in-right">
                             <div className="flex items-center gap-3 mb-6">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-seo-blue/10 text-seo-blue border border-seo-blue/20">
+                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-seo-blue/10 text-blue-700 border border-seo-blue/20">
                                     <MapPin className="h-3 w-3 mr-1" />
                                     {locationData.name} {industryData.title} Experts
                                 </span>
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/10 text-green-400 border border-green-500/20">
+                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/10 text-green-700 border border-green-500/20">
                                     <Star className="h-3 w-3 mr-1" />
                                     Specialized Strategy
                                 </span>
@@ -286,7 +286,7 @@ const IndustryLocationPageTemplate = ({ industryData, locationData, schemaString
             < section id="case-studies" className="py-20 bg-white" >
                 <div className="container mx-auto px-4">
                     <AnimatedSection className="text-center max-w-3xl mx-auto mb-16" animation="fade-in">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 mb-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-700 border border-amber-500/20 mb-4">
                             <Trophy className="w-3 h-3 mr-2" />
                             Proven Results
                         </span>

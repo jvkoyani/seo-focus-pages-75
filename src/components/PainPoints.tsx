@@ -70,7 +70,7 @@ const PainPoints = () => {
           className="text-center mb-4 md:mb-16 max-w-3xl mx-auto"
           animation="fade-in"
         >
-          <span className="inline-block px-4 py-2 rounded-full text-sm font-semibold bg-red-50 text-red-500 border border-red-100 mb-6">
+          <span className="inline-block px-4 py-2 rounded-full text-sm font-semibold bg-red-50 text-red-700 border border-red-100 mb-6">
             Sound Familiar?
           </span>
           <h2 className="text-2xl md:text-5xl font-display font-black text-seo-navy mb-4 md:mb-6 leading-tight uppercase tracking-tight">

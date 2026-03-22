@@ -102,13 +102,13 @@ const TrustIndicators = () => {
                     className="text-center mb-8 md:mb-10 max-w-3xl mx-auto"
                     animation="fade-in"
                 >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-amber-50 text-amber-500 border border-amber-200 mb-6 uppercase tracking-wider">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-amber-50 text-amber-700 border border-amber-200 mb-6 uppercase tracking-wider">
                         <Star className="w-4 h-4" />
                         Proven Results
                     </span>
                     <h2 className="text-2xl md:text-5xl font-display font-black text-seo-navy mb-4 md:mb-6 uppercase tracking-tight">
                         Numbers That{' '}
-                        <span className="text-seo-blue">
+                        <span className="text-blue-700">
                             Speak Volumes
                         </span>
                     </h2>

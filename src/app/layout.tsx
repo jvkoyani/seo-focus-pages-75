@@ -42,8 +42,10 @@ export default function RootLayout({
       </head>
       <body className={`${montserrat.className} ${montserrat.variable} bg-white text-seo-dark`}>
         <Providers>
-          <JsonLd schemaString={schemaString} />
-          {children}
+          <main id="main-content">
+            <JsonLd schemaString={schemaString} />
+            {children}
+          </main>
           <StickyOfferBanner />
           <FloatingCTA />
           <ScrollPopup />

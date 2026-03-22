@@ -167,7 +167,7 @@ const Footer = () => {
                 />
                 <Button
                   type="submit"
-                  className="w-full bg-seo-blue hover:bg-seo-blue-light text-white"
+                  className="w-full bg-seo-blue hover:bg-seo-blue-light text-seo-navy font-bold"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Subscribing...' : 'Subscribe'}

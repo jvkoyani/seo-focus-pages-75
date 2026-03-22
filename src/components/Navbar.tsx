@@ -78,11 +78,11 @@ const Navbar = () => {
               <Image 
                 src="/logo.webp" 
                 alt="Power My SEO" 
-                width={160} 
-                height={48} 
-                sizes="(max-width: 768px) 120px, 160px"
+                width={120} 
+                height={36} 
+                sizes="(max-width: 768px) 120px, 120px"
                 className="h-10 md:h-12 w-auto" 
-                priority={false} 
+                priority={true} 
               />
             </a>
 

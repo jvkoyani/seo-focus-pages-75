@@ -99,7 +99,7 @@ const Testimonials = ({ location }: TestimonialsProps) => {
                     {String.fromCharCode(64 + i)}
                 </div>
               ))}
-              <div className="w-12 h-12 rounded-full border-2 border-slate-900 bg-seo-blue flex items-center justify-center text-xs font-bold text-white">
+              <div className="w-12 h-12 rounded-full border-2 border-slate-900 bg-seo-blue flex items-center justify-center text-xs font-bold text-seo-navy">
                 +246
               </div>
             </div>
