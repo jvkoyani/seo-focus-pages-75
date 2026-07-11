@@ -12,10 +12,18 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.seofocus.com.a
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
-function entry(path: string, changeFrequency: SitemapEntry['changeFrequency'], priority: number): SitemapEntry {
+// Fallback for content with no tracked modification date (build time).
+const BUILD_DATE = new Date();
+
+function entry(
+    path: string,
+    changeFrequency: SitemapEntry['changeFrequency'],
+    priority: number,
+    lastModified: Date = BUILD_DATE
+): SitemapEntry {
     return {
         url: `${BASE_URL}${path}`,
-        lastModified: new Date(),
+        lastModified,
         changeFrequency,
         priority,
     };
@@ -40,9 +48,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const serviceRoutes = services.map(service => entry(`/service/${service.slug}`, 'monthly', 0.8));
     const industryRoutes = industries.map(industry => entry(`/industry/${industry.slug}`, 'monthly', 0.8));
-    const blogRoutes = blogPosts.map(post => entry(`/blog/${post.slug}`, 'monthly', 0.6));
+    const blogRoutes = blogPosts.map(post =>
+        entry(`/blog/${post.slug}`, 'monthly', 0.6, new Date(post.date))
+    );
     const methodologyRoutes = methodologies.map(m => entry(`/methodology/${m.slug}`, 'yearly', 0.4));
-    const glossaryRoutes = glossaryTerms.map(term => entry(`/glossary/${term.slug}`, 'monthly', 0.6));
+    const glossaryRoutes = glossaryTerms.map(term =>
+        entry(`/glossary/${term.slug}`, 'monthly', 0.6, new Date(term.lastUpdated))
+    );
 
     const caseStudyRoutes = caseStudies.map(study => entry(`/case-study/${study.slug}`, 'monthly', 0.6));
     const caseStudyComboRoutes: SitemapEntry[] = [];
