@@ -32,6 +32,7 @@ export interface LocationData {
   county?: string;
   country: string;
   relatedLocations?: string[];
+  population?: number;
 }
 
 export interface ProcessStep {

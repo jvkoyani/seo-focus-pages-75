@@ -179,8 +179,16 @@ const LocationPageTemplate = ({ locationData }: LocationPageTemplateProps) => {
                             Why {locationData.name} Businesses <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Need SEO</span>
                         </h2>
                         <p className="text-xl text-slate-400">
-                            The {locationData.name} digital landscape is evolving. Here's why you can't afford to be invisible.
+                            {locationData.population
+                                ? `${locationData.description} With a population of around ${locationData.population.toLocaleString()}, the ${locationData.name} digital landscape is competitive — here's why you can't afford to be invisible.`
+                                : `The ${locationData.name} digital landscape is evolving. Here's why you can't afford to be invisible.`}
                         </p>
+                        {locationData.population && (
+                            <div className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-sm font-medium text-slate-200">
+                                <Users className="w-4 h-4 text-blue-400" />
+                                <span>{locationData.name}, {locationData.state} &middot; population {locationData.population.toLocaleString()}</span>
+                            </div>
+                        )}
                     </AnimatedSection>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

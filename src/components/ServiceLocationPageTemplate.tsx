@@ -174,8 +174,16 @@ const ServiceLocationPageTemplate = ({ locationData, serviceData }: ServiceLocat
                             Why {locationData.name} Businesses Need <span className="text-seo-blue">{serviceData.title}</span>
                         </h2>
                         <p className="text-lg text-seo-gray-dark">
-                            The digital landscape in {locationData.name} is competitive. To stand out, you need a strategy that understands the local market nuances.
+                            {locationData.population
+                                ? `${locationData.description} With a population of around ${locationData.population.toLocaleString()}, ${locationData.name} is a competitive market — you need a ${serviceData.title} strategy built specifically for it.`
+                                : `The digital landscape in ${locationData.name} is competitive. To stand out, you need a strategy that understands the local market nuances.`}
                         </p>
+                        {locationData.population && (
+                            <div className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-seo-blue/5 border border-seo-blue/10 text-sm font-medium text-seo-dark">
+                                <Users className="w-4 h-4 text-seo-blue" />
+                                <span>{locationData.name}, {locationData.state} &middot; population {locationData.population.toLocaleString()}</span>
+                            </div>
+                        )}
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

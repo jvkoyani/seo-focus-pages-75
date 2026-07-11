@@ -18,10 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const row = getCityServicePage(city, service);
+    const localContext = cityData.description ? `${cityData.description} ` : '';
 
     return {
         title: row?.metaTitle || `${serviceData.title} ${cityData.name} | #1 Rated Agency`,
-        description: row?.metaDescription || `Expert ${serviceData.title} services in ${cityData.name}. Boost your rankings, drive more local traffic, and grow your business. Book your free consultation now.`,
+        description: row?.metaDescription || `${localContext}Expert ${serviceData.title} services in ${cityData.name}. Boost your rankings, drive more local traffic, and grow your business.`,
         alternates: {
             canonical: `/location/${cityData.slug}/${serviceData.slug}`,
         },
@@ -63,7 +64,8 @@ export default async function CityServicePage({ params }: Props) {
         image: cityData.image || "/placeholder.svg",
         description: row?.intro || cityData.description || `${serviceData.title} in ${cityData.name}`,
         metaTitle: row?.metaTitle || `${serviceData.title} in ${cityData.name}`,
-        metaDescription: row?.metaDescription || `Professional ${serviceData.title} services in ${cityData.name}.`
+        metaDescription: row?.metaDescription || `Professional ${serviceData.title} services in ${cityData.name}.`,
+        population: cityData.population,
     };
 
     const serviceSchema = generateServiceSchema(serviceData);
