@@ -18,6 +18,24 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const industry = industries.find(i => i.slug === slug);
+
+    if (!industry) {
+        return { title: 'Industry Not Found' };
+    }
+
+    // This route duplicates /industry/[slug]; canonicalize to the linked-to version.
+    return {
+        title: `${industry.title} SEO Services`,
+        description: industry.description,
+        alternates: {
+            canonical: `/industry/${industry.slug}`,
+        },
+    };
+}
+
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const industry = industries.find(i => i.slug === slug);

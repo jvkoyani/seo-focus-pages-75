@@ -4,6 +4,7 @@ import SitemapClient from "@/components/SitemapClient";
 import AnimatedSection from "@/components/AnimatedSection";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { getGeneratedLocations } from "@/lib/cityLocationData";
 
 export const metadata = {
     title: 'HTML Sitemap | SEOfocus',
@@ -42,7 +43,7 @@ export default function SitemapPage() {
                 </div>
             </section>
 
-            <SitemapClient />
+            <SitemapClient locations={getGeneratedLocations()} />
 
             <Footer />
         </div>

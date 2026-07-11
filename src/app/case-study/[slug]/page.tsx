@@ -73,6 +73,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: `${caseStudy.title} | Case Study`,
         description: `Read how we helped ${caseStudy.client} achieve amazing results with our ${caseStudy.industry} SEO strategy.`,
+        alternates: {
+            canonical: `/case-study/${slug}`,
+        },
     };
 }
 

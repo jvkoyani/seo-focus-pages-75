@@ -1,0 +1,35 @@
+# SEOfocus
+
+> SEOfocus is a data-driven SEO agency serving Australian businesses, offering local SEO, technical SEO, content strategy, link building, ecommerce SEO, and analytics & reporting services across major cities and regional centres nationwide.
+
+SEOfocus helps businesses improve organic search visibility through measurable, strategy-led SEO work rather than one-size-fits-all tactics. The site includes service pages, industry-specific SEO guidance, city-level location pages, an SEO glossary, and published case studies with real client results.
+
+## Services
+
+- [Local SEO](/service/local-seo): Google Business Profile optimization, local citations, and location-specific keyword targeting.
+- [Technical SEO](/service/technical-seo): Site speed, crawlability, and Core Web Vitals audits and fixes.
+- [Content Strategy](/service/content-strategy): Content planning and creation aligned to search intent.
+- [Link Building](/service/link-building): Earning high-quality backlinks and domain authority.
+- [Ecommerce SEO](/service/ecommerce-seo): Product and category page optimization for online retailers.
+- [Analytics & Reporting](/service/analytics-reporting): Tracking and reporting on SEO performance.
+- [All services](/services)
+
+## Industries
+
+- [Industry-specific SEO strategies](/industries) for accounting, healthcare, legal, real estate, and other professional services.
+
+## Locations
+
+- SEO services delivered across major Australian cities and regional centres. See the [full location list](/html-sitemap) for all cities and service combinations currently covered.
+
+## Resources
+
+- [SEO Glossary](/glossary): Definitions of SEO, technical SEO, local SEO, and AI/generative-search-engine-optimization (GEO) terms and concepts.
+- [Blog](/blogs): SEO insights, guides, and industry news.
+- [Case Studies](/case-studies): Documented client results by industry and service type.
+- [Methodology](/methodology/research-analysis): How SEOfocus approaches research, planning, implementation, and ongoing optimization.
+
+## Contact
+
+- [Free SEO consultation](/free-consultation)
+- [Contact](/contact)

@@ -18,6 +18,24 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const caseStudy = caseStudies.find(c => c.slug === slug);
+
+    if (!caseStudy) {
+        return { title: 'Case Study Not Found' };
+    }
+
+    // This route duplicates /case-study/[slug]; canonicalize to the linked-to version.
+    return {
+        title: caseStudy.title,
+        description: caseStudy.challenge,
+        alternates: {
+            canonical: `/case-study/${caseStudy.slug}`,
+        },
+    };
+}
+
 export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
 
     const { slug } = await params;

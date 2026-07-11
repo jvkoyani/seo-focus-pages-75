@@ -1,9 +1,9 @@
 import { BlogPostData, CaseStudyData, FAQItem, PricingTier, ServiceData } from './data';
 import { Location } from './locationData';
 
-const SITE_URL = 'https://www.example.com'; // Replace with actual domain
-const ORGANIZATION_NAME = 'SEO Agency'; // Replace with actual name
-const ORGANIZATION_LOGO = `${SITE_URL}/logo.png`; // Replace with actual logo path
+const SITE_URL = 'https://www.seofocus.com.au';
+const ORGANIZATION_NAME = 'SEOfocus';
+const ORGANIZATION_LOGO = `${SITE_URL}/logo.png`;
 
 interface ServiceLike {
     title: string;
@@ -18,14 +18,9 @@ export const generateOrganizationSchema = () => {
         name: ORGANIZATION_NAME,
         url: SITE_URL,
         logo: ORGANIZATION_LOGO,
-        sameAs: [
-            'https://www.facebook.com/example',
-            'https://twitter.com/example',
-            'https://www.linkedin.com/company/example',
-        ],
         contactPoint: {
             '@type': 'ContactPoint',
-            telephone: '+61-123-456-789',
+            telephone: '1300 123 456',
             contactType: 'customer service',
             areaServed: 'AU',
             availableLanguage: 'en',
@@ -93,19 +88,20 @@ export const generateLocalBusinessSchema = (location: Location, service?: Servic
         image: location.image ? (location.image.startsWith('http') ? location.image : `${SITE_URL}${location.image}`) : `${SITE_URL}/placeholder.svg`,
         '@id': `${SITE_URL}/location/${location.slug}`,
         url: `${SITE_URL}/location/${location.slug}`,
-        telephone: '+61-123-456-789',
+        telephone: '1300 123 456',
         address: {
             '@type': 'PostalAddress',
             addressLocality: location.name,
             addressRegion: location.state,
             addressCountry: 'AU',
         },
-        geo: {
-            '@type': 'GeoCoordinates',
-            // Placeholder coordinates - in a real app these would be in locationData
-            latitude: -37.8136,
-            longitude: 144.9631,
-        },
+        ...(location.coordinates && {
+            geo: {
+                '@type': 'GeoCoordinates',
+                latitude: location.coordinates.lat,
+                longitude: location.coordinates.lng,
+            },
+        }),
         areaServed: {
             '@type': 'City',
             name: location.name,
@@ -142,7 +138,7 @@ export const generateBreadcrumbSchema = (items: { name: string; url: string }[])
     };
 };
 
-export const generateArticleSchema = (post: BlogPostData) => {
+export const generateArticleSchema = (post: BlogPostData, dateModified?: string) => {
     return {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
@@ -161,7 +157,31 @@ export const generateArticleSchema = (post: BlogPostData) => {
             },
         },
         datePublished: post.date,
+        dateModified: dateModified || post.date,
         description: post.excerpt,
+    };
+};
+
+export const generateDefinedTermSchema = (term: {
+    term: string;
+    definition: string;
+    slug: string;
+    lastUpdated: string;
+    author: { name: string; role: string };
+}) => {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'DefinedTerm',
+        name: term.term,
+        description: term.definition,
+        url: `${SITE_URL}/glossary/${term.slug}`,
+        dateModified: term.lastUpdated,
+        author: {
+            '@type': 'Person',
+            name: term.author.name,
+            jobTitle: term.author.role,
+        },
+        inDefinedTermSet: `${SITE_URL}/glossary`,
     };
 };
 
