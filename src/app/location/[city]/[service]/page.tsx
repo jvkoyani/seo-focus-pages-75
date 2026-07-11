@@ -1,9 +1,8 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getCity, isValidCity } from '@/lib/masterCities';
 import { services } from '@/lib/data';
-import LocationService from '@/components/LocationService';
 import { getCityServicePage, getCityServicePages } from '@/lib/cityServicePages';
+import { getLocationData } from '@/lib/cityLocationData';
 
 type Props = {
     params: Promise<{ city: string; service: string }>;
@@ -11,7 +10,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { city, service } = await params;
-    const cityData = getCity(city);
+    const cityData = getLocationData(city);
     const serviceData = services.find(s => s.slug === service);
 
     if (!cityData || !serviceData) {
@@ -23,6 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: row?.metaTitle || `${serviceData.title} ${cityData.name} | #1 Rated Agency`,
         description: row?.metaDescription || `Expert ${serviceData.title} services in ${cityData.name}. Boost your rankings, drive more local traffic, and grow your business. Book your free consultation now.`,
+        alternates: {
+            canonical: `/location/${cityData.slug}/${serviceData.slug}`,
+        },
     };
 }
 
@@ -43,11 +45,7 @@ export default async function CityServicePage({ params }: Props) {
 
     const { city, service } = await params;
 
-    if (!isValidCity(city)) {
-        notFound();
-    }
-
-    const cityData = getCity(city);
+    const cityData = getLocationData(city);
     const serviceData = services.find(s => s.slug === service);
 
     if (!cityData || !serviceData) {
@@ -60,10 +58,10 @@ export default async function CityServicePage({ params }: Props) {
         id: cityData.slug,
         name: cityData.name,
         slug: cityData.slug,
-        state: "Australia",
-        country: "Australia",
-        image: "/placeholder.svg",
-        description: row?.intro || `${serviceData.title} in ${cityData.name}`,
+        state: cityData.state,
+        country: cityData.country,
+        image: cityData.image || "/placeholder.svg",
+        description: row?.intro || cityData.description || `${serviceData.title} in ${cityData.name}`,
         metaTitle: row?.metaTitle || `${serviceData.title} in ${cityData.name}`,
         metaDescription: row?.metaDescription || `Professional ${serviceData.title} services in ${cityData.name}.`
     };
@@ -73,7 +71,7 @@ export default async function CityServicePage({ params }: Props) {
     const faqSchema = serviceData.faqs ? generateFAQSchema(serviceData.faqs) : null;
     const breadcrumbSchema = generateBreadcrumbSchema([
         { name: 'Home', url: '/' },
-        { name: 'Locations', url: '/locations' },
+        { name: 'Locations', url: '/html-sitemap' },
         { name: cityData.name, url: `/location/${cityData.slug}` },
         { name: serviceData.title, url: `/location/${cityData.slug}/${serviceData.slug}` }
     ]);

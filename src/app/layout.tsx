@@ -16,9 +16,31 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const SITE_URL = "https://www.seofocus.com.au";
+const SITE_TITLE = "SEOfocus: #1 Data-Driven SEO Agency for Growth";
+const SITE_DESCRIPTION = "Dominate search results with SEOfocus. Our data-driven SEO strategies drive qualified traffic and revenue. Get your free professional SEO audit today.";
+
 export const metadata: Metadata = {
-  title: "SEOfocus: #1 Data-Driven SEO Agency for Growth",
-  description: "Dominate search results with SEOfocus. Our data-driven SEO strategies drive qualified traffic and revenue. Get your free professional SEO audit today.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: "%s | SEOfocus",
+  },
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: "SEOfocus",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "SEOfocus" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

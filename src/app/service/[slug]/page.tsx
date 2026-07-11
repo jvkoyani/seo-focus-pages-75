@@ -44,6 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `${service.title} Services | Expert Agency`,
         description: `Get results with our proven ${service.title} strategies. We drive traffic, leads, and revenue for Australian businesses. Book your free strategy call.`,
+        alternates: {
+            canonical: `/service/${service.slug}`,
+        },
     };
 }
 

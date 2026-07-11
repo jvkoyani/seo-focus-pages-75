@@ -82,7 +82,7 @@ const IndustrySeoServices = ({
                 </div>
 
                 <Link
-                  href={`/industries/${industry.slug}`}
+                  href={`/industry/${industry.slug}`}
                   className="inline-flex items-center text-seo-blue font-medium group/link mt-2 relative z-10"
                 >
                   <span className="border-b border-seo-blue/30 group-hover/link:border-seo-blue transition-colors">

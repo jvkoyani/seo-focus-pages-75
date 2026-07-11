@@ -6,6 +6,8 @@ import { glossaryTerms } from '@/lib/glossaryData';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
+import JsonLd from '@/components/JsonLd';
+import { generateDefinedTermSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 interface Props {
     params: Promise<{
@@ -21,6 +23,9 @@ export async function generateMetadata({ params }: Props) {
     return {
         title: `What is ${term.term}? | SEO Glossary`,
         description: term.definition,
+        alternates: {
+            canonical: `/glossary/${term.slug}`,
+        },
     };
 }
 
@@ -38,8 +43,16 @@ export default async function GlossaryTermPage({ params }: Props) {
         notFound();
     }
 
+    const definedTermSchema = generateDefinedTermSchema(term);
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: 'Home', url: '/' },
+        { name: 'Glossary', url: '/glossary' },
+        { name: term.term, url: `/glossary/${term.slug}` },
+    ]);
+
     return (
         <div className="min-h-screen bg-white">
+            <JsonLd data={[definedTermSchema, breadcrumbSchema]} />
             <Navbar />
 
             {/* Hero Header */}
@@ -127,8 +140,10 @@ export default async function GlossaryTermPage({ params }: Props) {
                         <div id="related" className="mt-16 pt-8 border-t border-slate-100">
                             <h3 className="text-2xl font-bold text-slate-900 mb-6">Related Terms</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {term.relatedTerms.map((related, index) => (
-                                    <Link key={index} href={`/glossary`} className="block group">
+                                {term.relatedTerms.map((related, index) => {
+                                    const relatedTerm = glossaryTerms.find(t => t.term === related);
+                                    return (
+                                    <Link key={index} href={relatedTerm ? `/glossary/${relatedTerm.slug}` : '/glossary'} className="block group">
                                         <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50/50 transition-all">
                                             <div className="flex items-center justify-between">
                                                 <span className="font-medium text-slate-700 group-hover:text-blue-700">{related}</span>
@@ -136,7 +151,8 @@ export default async function GlossaryTermPage({ params }: Props) {
                                             </div>
                                         </div>
                                     </Link>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
                     </main>

@@ -5,18 +5,22 @@ import Link from 'next/link';
 import { MapPin, Layers, ExternalLink, Search, ChevronDown, ChevronUp, Briefcase, Building, FileText, Compass } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { allAustralianCities } from '@/lib/locationData';
+import type { Location } from '@/lib/locationData';
 import { services, industries } from '@/lib/data';
 import AnimatedSection from '@/components/AnimatedSection';
 
-export default function SitemapClient() {
+interface SitemapClientProps {
+    locations: Location[];
+}
+
+export default function SitemapClient({ locations }: SitemapClientProps) {
     const [searchTerm, setSearchTerm] = useState('');
 
     // Group cities by state for better organization
     const stateGroups = useMemo(() => {
-        const groups: Record<string, typeof allAustralianCities> = {};
+        const groups: Record<string, Location[]> = {};
 
-        allAustralianCities.forEach(city => {
+        locations.forEach(city => {
             const state = city.state === "Various" ? "Other Locations" : city.state;
 
             if (!groups[state]) {
@@ -26,12 +30,12 @@ export default function SitemapClient() {
         });
 
         return groups;
-    }, []);
+    }, [locations]);
 
     const states = useMemo(() => Object.keys(stateGroups).sort(), [stateGroups]);
 
     // Filter locations based on search term
-    const filterLocations = (locations: typeof allAustralianCities) => {
+    const filterLocations = (locations: Location[]) => {
         if (!searchTerm) return locations;
         return locations.filter(location =>
             location.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -50,10 +54,10 @@ export default function SitemapClient() {
 
     // Get major cities for popular combinations
     const majorCities = useMemo(() => {
-        return allAustralianCities
+        return locations
             .filter(city => city.description && city.state !== "Various")
             .slice(0, 15);
-    }, []);
+    }, [locations]);
 
     return (
         <main className="flex-1 py-16 bg-slate-50">
@@ -152,7 +156,7 @@ export default function SitemapClient() {
                             Locations <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">We Serve</span>
                         </h2>
                         <p className="text-slate-600 max-w-2xl mx-auto mb-6">
-                            Serving {allAustralianCities.length.toLocaleString()} locations across Australia
+                            Serving {locations.length.toLocaleString()} locations across Australia
                         </p>
                     </div>
 
@@ -191,12 +195,7 @@ export default function SitemapClient() {
                                 <div key={state} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                                     <div className="p-5 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
                                         <h3 className="text-xl font-bold text-slate-900 flex items-center justify-between">
-                                            <Link
-                                                href={state !== "Other Locations" ? `/australia/${state.toLowerCase().replace(/\s+/g, '-')}` : "#"}
-                                                className={state !== "Other Locations" ? "hover:text-orange-600 transition-colors" : ""}
-                                            >
-                                                {state}
-                                            </Link>
+                                            <span>{state}</span>
                                             <span className="text-sm font-normal text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
                                                 {filteredLocations.length.toLocaleString()}
                                             </span>
@@ -208,7 +207,7 @@ export default function SitemapClient() {
                                             {displayLocations.map(city => (
                                                 <Link
                                                     key={city.id}
-                                                    href={`/${city.slug}`}
+                                                    href={`/location/${city.slug}`}
                                                     className="flex items-center p-2 text-sm hover:bg-orange-50 rounded-lg transition-colors group"
                                                 >
                                                     <MapPin className="h-3 w-3 mr-1.5 text-orange-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
