@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { getCity, isValidCity } from '@/lib/masterCities';
 import { services } from '@/lib/data';
 import LocationService from '@/components/LocationService';
+import { getCityServicePage, getCityServicePages } from '@/lib/cityServicePages';
 
 type Props = {
     params: Promise<{ city: string; service: string }>;
@@ -17,30 +18,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return { title: 'Page Not Found' };
     }
 
+    const row = getCityServicePage(city, service);
+
     return {
-        title: `${serviceData.title} ${cityData.name} | #1 Rated Agency`,
-        description: `Expert ${serviceData.title} services in ${cityData.name}. Boost your rankings, drive more local traffic, and grow your business. Book your free consultation now.`,
+        title: row?.metaTitle || `${serviceData.title} ${cityData.name} | #1 Rated Agency`,
+        description: row?.metaDescription || `Expert ${serviceData.title} services in ${cityData.name}. Boost your rankings, drive more local traffic, and grow your business. Book your free consultation now.`,
     };
 }
 
 import JsonLd from '@/components/JsonLd';
 import ServiceLocationPageTemplate from '@/components/ServiceLocationPageTemplate';
 import { generateServiceSchema, generateLocalBusinessSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/schema';
-import { masterCities } from '@/lib/masterCities';
 
 export async function generateStaticParams() {
-    // Limit to top 20 cities for now to prevent build timeout
-    const topCities = masterCities.slice(0, 20);
-    const params = [];
-    for (const city of topCities) {
-        for (const service of services) {
-            params.push({
-                city: city.slug,
-                service: service.slug,
-            });
-        }
-    }
-    return params;
+    // City+service combinations to build are driven by data/city-service-pages.csv,
+    // so pages can be added/removed by editing the CSV instead of this code.
+    return getCityServicePages().map(row => ({
+        city: row.citySlug,
+        service: row.serviceSlug,
+    }));
 }
 
 export default async function CityServicePage({ params }: Props) {
@@ -58,6 +54,8 @@ export default async function CityServicePage({ params }: Props) {
         notFound();
     }
 
+    const row = getCityServicePage(city, service);
+
     const locationData = {
         id: cityData.slug,
         name: cityData.name,
@@ -65,9 +63,9 @@ export default async function CityServicePage({ params }: Props) {
         state: "Australia",
         country: "Australia",
         image: "/placeholder.svg",
-        description: `${serviceData.title} in ${cityData.name}`,
-        metaTitle: `${serviceData.title} in ${cityData.name}`,
-        metaDescription: `Professional ${serviceData.title} services in ${cityData.name}.`
+        description: row?.intro || `${serviceData.title} in ${cityData.name}`,
+        metaTitle: row?.metaTitle || `${serviceData.title} in ${cityData.name}`,
+        metaDescription: row?.metaDescription || `Professional ${serviceData.title} services in ${cityData.name}.`
     };
 
     const serviceSchema = generateServiceSchema(serviceData);
