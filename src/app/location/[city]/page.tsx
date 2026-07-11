@@ -15,9 +15,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return { title: 'Page Not Found' };
     }
 
+    const localContext = cityData.description ? `${cityData.description} ` : '';
+
     return {
         title: `SEO Agency ${cityData.name} | #1 Rated Local SEO`,
-        description: `Looking for the best SEO agency in ${cityData.name}? We help local businesses dominate search results and grow revenue. Get your free local SEO audit today.`,
+        description: `${localContext}Looking for the best SEO agency in ${cityData.name}? We help local businesses dominate search results and grow revenue.`,
         alternates: {
             canonical: `/location/${cityData.slug}`,
         },
