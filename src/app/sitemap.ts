@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://cambayindustries.co.in';
+// Get the base URL from environment variable set at build/deployment time
+// For staging: set NEXT_PUBLIC_SITE_URL=https://staging.seofocus.com.au
+// For production: set NEXT_PUBLIC_SITE_URL=https://www.seofocus.com.au
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.seofocus.com.au';
 
 export const dynamic = 'force-static';
 
