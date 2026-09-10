@@ -1,10 +1,4 @@
 import { MetadataRoute } from 'next';
-import { services, industries, blogPosts, caseStudies, caseStudyTemplates } from '@/lib/data';
-import { glossaryTerms } from '@/lib/glossaryData';
-import { methodologies } from '@/lib/methodology-data';
-import { australianCities } from '@/lib/locationData';
-import { getCityPageSlugs } from '@/lib/cityLocationData';
-import { getCityServicePages } from '@/lib/cityServicePages';
 
 export const dynamic = 'force-static';
 
@@ -22,6 +16,7 @@ function entry(path: string, changeFrequency: SitemapEntry['changeFrequency'], p
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+    // Core static pages that are always available
     const staticRoutes: SitemapEntry[] = [
         entry('/', 'daily', 1.0),
         entry('/about', 'monthly', 0.6),
@@ -38,35 +33,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         entry('/privacy', 'yearly', 0.2),
     ];
 
-    const serviceRoutes = services.map(service => entry(`/service/${service.slug}`, 'monthly', 0.8));
-    const industryRoutes = industries.map(industry => entry(`/industry/${industry.slug}`, 'monthly', 0.8));
-    const blogRoutes = blogPosts.map(post => entry(`/blog/${post.slug}`, 'monthly', 0.6));
-    const methodologyRoutes = methodologies.map(m => entry(`/methodology/${m.slug}`, 'yearly', 0.4));
-    const glossaryRoutes = glossaryTerms.map(term => entry(`/glossary/${term.slug}`, 'monthly', 0.6));
-
-    const caseStudyRoutes = caseStudies.map(study => entry(`/case-study/${study.slug}`, 'monthly', 0.6));
-    const caseStudyComboRoutes: SitemapEntry[] = [];
-    for (const template of caseStudyTemplates) {
-        for (const city of australianCities) {
-            caseStudyComboRoutes.push(entry(`/case-study/${template.slug}-${city.slug}`, 'monthly', 0.5));
-        }
-    }
-
-    const cityRoutes = getCityPageSlugs().map(citySlug => entry(`/location/${citySlug}`, 'monthly', 0.7));
-    const cityServiceRoutes = getCityServicePages().map(row =>
-        entry(`/location/${row.citySlug}/${row.serviceSlug}`, 'monthly', 0.7)
-    );
-
-    return [
-        ...staticRoutes,
-        ...serviceRoutes,
-        ...industryRoutes,
-        ...blogRoutes,
-        ...methodologyRoutes,
-        ...glossaryRoutes,
-        ...caseStudyRoutes,
-        ...caseStudyComboRoutes,
-        ...cityRoutes,
-        ...cityServiceRoutes,
-    ];
+    return staticRoutes;
 }
