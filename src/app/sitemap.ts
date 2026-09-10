@@ -8,6 +8,7 @@ import { getCityServicePages } from '@/lib/cityServicePages';
 
 export const dynamic = 'force-static';
 
+<<<<<<< HEAD
 // Dynamic domain detection - uses deployment URL if available, falls back to env var or default
 const getBaseURL = () => {
   // Vercel automatically sets VERCEL_URL for each deployment
@@ -19,6 +20,16 @@ const getBaseURL = () => {
     return process.env.NEXT_PUBLIC_SITE_URL;
   }
   // Fallback to production domain
+=======
+// Dynamic domain detection
+const getBaseURL = () => {
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+>>>>>>> c67d826 (Expand main branch sitemap with full dynamic routes)
   return 'https://www.seofocus.com.au';
 };
 
@@ -54,7 +65,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
             entry('/privacy', 'yearly', 0.2),
         ];
 
+<<<<<<< HEAD
         // Dynamic routes from data
+=======
+        // Dynamic routes
+>>>>>>> c67d826 (Expand main branch sitemap with full dynamic routes)
         const serviceRoutes = (services || []).map(s => entry(`/service/${s.slug}`, 'monthly', 0.8));
         const industryRoutes = (industries || []).map(i => entry(`/industry/${i.slug}`, 'monthly', 0.8));
         const blogRoutes = (blogPosts || []).map(p => entry(`/blog/${p.slug}`, 'monthly', 0.6));
@@ -90,7 +105,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ];
     } catch (error) {
         console.error('Error generating sitemap:', error);
+<<<<<<< HEAD
         // Return just static pages if dynamic generation fails
+=======
+        // Fallback to static pages
+>>>>>>> c67d826 (Expand main branch sitemap with full dynamic routes)
         return [
             entry('/', 'daily', 1.0),
             entry('/about', 'monthly', 0.6),
