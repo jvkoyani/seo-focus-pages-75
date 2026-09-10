@@ -2,7 +2,21 @@ import { MetadataRoute } from 'next';
 
 export const dynamic = 'force-static';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.seofocus.com.au';
+// Dynamic domain detection - uses deployment URL if available, falls back to env var or default
+const getBaseURL = () => {
+  // Vercel automatically sets VERCEL_URL for each deployment
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  // Use explicit environment variable if set (for custom domains)
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  // Fallback to production domain
+  return 'https://www.seofocus.com.au';
+};
+
+const BASE_URL = getBaseURL();
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
